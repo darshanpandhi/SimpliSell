@@ -1,7 +1,7 @@
 # SimpliiSell
 
 ## Vision Statement
-[Vision Statement](c538a1bcb183cfe2773d66b3b7299d0f90293469)
+[Vision Statement](Vision.md)
 
 ## Features
 [Feature List](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/issues?label_name%5B%5D=Feature)
