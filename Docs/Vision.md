@@ -1,4 +1,4 @@
-SimpliSell Vision Statement
+# SimpliSell Vision Statement
 
 SimpliSell will be a classified advertisement platform designed to give students a centralized place to post and view local advertisements.
 
