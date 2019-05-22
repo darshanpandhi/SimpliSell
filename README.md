@@ -3,7 +3,7 @@
 ## Vision Statement
 
 ## Features
-[Feature List](url)
+[Feature List](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/issues?label_name%5B%5D=Feature)
 
 ## User Stories
 [Iteration 1 User Stories](url)
