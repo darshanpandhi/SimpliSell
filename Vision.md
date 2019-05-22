@@ -1,0 +1,15 @@
+**SimpliSell Vision Statement**
+
+SimpliSell will be a classified advertisement platform designed to give students a centralized place to post and view local advertisements.
+
+The application will be akin to a digital bulletin board comprising of advertisements for a variety of different things. Users will be able to post advertisements to sell textbooks, devices like laptops, tickets to community/school events, tutoring services, or even information regarding student clubs or groups. Users will also have the option to create "wanted" advertisements, such as in the case of looking for other students to carpool with. The application will be easy to navigate through this list of existing advertisement postings and users will be able to obtain the advertiser’s contact information for further communication. 
+
+Users will be able to search for advertisements based on categories, while also having the ability to sort postings based on price. Users will also be able to save things for later by adding specific postings to their watch list. A rating system will be put in place that will ask users to provide feedback on their interactions with other users. Additionally, users will be able to report advertisements or other users that are inappropriate which will be further investigated by an administrator.
+
+To increase convenience for students, the system will be stationed within educational institutions like schools, colleges or universities to maximise exposure towards our targeted audience. To reflect this very demographic, advertisement postings will be classified according to various categories primarily tailored for items or services used in educational institutions. Students will also be able to post advertisements for anything related to their institution, such as volunteer groups or gatherings. 
+
+SimpliSell is designed specifically for students, so users will expect advertisements that are catered to their own desires and needs. Therefore, instead of having an overwhelming and abundant amount of unrelated advertisements, SimpliSell gives students a user-friendly platform that allows them to navigate through advertisements they are more likely to be interested in. 
+
+The suitable location will prove advantageous to the advertisers as well since it will result in a higher chance that a particular product or service is sold. To further aid their effort, the always on display feature will scroll through all the existing ad postings in the application to grab more eyeballs. With the rating system and reporting system built in the application, students can feel at ease when doing business with trusted individuals on the platform.
+
+The application will be considered successful based on the following criteria. First, the majority of students prefer using SimpliSell over existing advertisement posting services, as determined by a survey. Second, users posting advertisements on the system see at least a 25% increase in genuinely interested responses compared to alternative platforms. Lastly, there is a demand for additional SimpliSell terminals within the current or other educational institutions.
