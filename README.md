@@ -1,4 +1,4 @@
-# SimpliiSell
+# SimpliSell
 
 ## Vision Statement
 [Vision Statement](Vision.md)
