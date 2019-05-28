@@ -14,4 +14,4 @@
 [Iteration 3 User Stories](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/milestones/3)
 
 ## Developer Tasks
-[Dveloper Tasks](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/issues?label_name%5B%5D=Developer+Task)
+[Developer Tasks](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/issues?label_name%5B%5D=Developer+Task)
