@@ -1,9 +1,4 @@
 <resources>
-    <string name="app_name">SimpliSell</string>
+    <string name="app_name">CrazyEights</string>
     <string name="welcome">WELCOME!</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="copyrightWarning"> © 2019 Crazy Eights</string>
-
-
 </resources>
