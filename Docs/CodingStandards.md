@@ -9,7 +9,7 @@
         }
 *   **All if,while, and for statements must use brackets even if they control one statement**
 *       if (foo == bar) System.out.println("Hi");    //BAD!
-*       if (foo == bar)
+        if (foo == bar)
         {
             System.out.println("Hi");
         }
@@ -17,7 +17,7 @@
 *   **All method names should be immediately followed by a left paranthesis!**
 *       foo (i, j); //BAD!
         foo(i, j);  //GOOD!
-*       
+       
 *   **All array dereferences should be immediately followed by a left square bracket**
 *       args [0];   //BAD!
         args[0];    //GOOD!
@@ -46,7 +46,7 @@
         }
 
 #   2 - Identifiers
-*   **Do not use underscores, dollar signs or non-ascii characters!**
+*   **Do not use dollar signs or non-ascii characters!**
 ### 2.1 - Classes and Interfaces
 *   **The first letter of each word in the name will be UPPERCASE, INCLUDING the first letter of the name**
 *       salesOrder  //BAD! because it is a class
@@ -55,7 +55,7 @@
 *   **Package names will use lower case characters only!.**
 *       Common  //BAD!
         common  //GOOD!
-### 2.3 - Others
+### 2.3 - Other
 *   **Use camelCase for other identifiers (e.g. fields, local variables, methods, and paramters)**
 *       addTototal()    //BAD!
         addToTotal()    //Good!
