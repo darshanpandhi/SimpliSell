@@ -1,4 +1,4 @@
-** Most of this comes from this website: [Coding Standard](https://javaranch.com/styleLong.jsp#doc)**
+**Most of this comes from this website:** [Coding Standard](https://javaranch.com/styleLong.jsp#doc)
 #   1 - Formatting
 ### 1.1 - Identation
 *   **All indenting is done with TABS :)**
@@ -52,7 +52,7 @@
 *       salesOrder  //BAD! because it is a class
         SalesOrder  //GOOD! 
 ### 2.2 - Packages
-*   **Package names will use lower case characters only!.**
+*   **Package names will use lower case characters only!**
 *       Common  //BAD!
         common  //GOOD!
 ### 2.3 - Other
