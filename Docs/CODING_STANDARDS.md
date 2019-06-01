@@ -22,17 +22,17 @@
 *       args [0];   //BAD!
         args[0];    //GOOD!
        
-*   **Binary operators sohuld have a space on either side!**
+*   **Binary operators should have a space on either side!**
 *       a=b+c;      //BAD!
         a = b + c;  //GOOD!
         z = 2*x + 3*y;  //BAD!
-        z = 2 * x + 3 * y   //GOOD!
+        z = 2 * x + 3 * y;   //GOOD!
 *   **Commas and semicolons are always followed by whitespace**
 *       for (int i = 0;i < 10;i++);    //BAD!
         for (int i = 0; i < 10; i++);   //GOOD!
         foo(a,b);   //BAD!
         foo(a, b);  //GOOD!
-*   **The keywords if,while,for,switch and catch must be followed by a space**
+*   **The keywords if, while, for, switch and catch must be followed by a space**
 *       if(hungry)  //BAD!
         if (hungry) //GOOD!
         while(pancakes < 7) //BAD!
@@ -48,7 +48,7 @@
 #   2 - Identifiers
 *   **Do not use dollar signs or non-ascii characters!**
 ### 2.1 - Classes and Interfaces
-*   **The first letter of each word in the name will be UPPERCASE, INCLUDING the first letter of the name**
+*   **The first letter of each word in the name will be UPPERCASE, INCLUDING the first letter of the name (Pascal Case)**
 *       salesOrder  //BAD! because it is a class
         SalesOrder  //GOOD! 
 ### 2.2 - Packages
@@ -56,7 +56,7 @@
 *       Common  //BAD!
         common  //GOOD!
 ### 2.3 - Other
-*   **Use camelCase for other identifiers (e.g. fields, local variables, methods, and paramters)**
+*   **Use camelCase for other identifiers (e.g. fields, local variables, methods, and parameters)**
 *       addTototal()    //BAD!
         addToTotal()    //Good!
 *   **Constants names use CONSTANT_CASE**: all UPPERCASE letters, with each word separated from the next by a single underscore.
