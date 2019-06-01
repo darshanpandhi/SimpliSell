@@ -101,7 +101,7 @@
 *   All fields must be private, except for some constants!
 
 #   4 - Self-Documenting Code
-*   **Instead of attempting to document how you did a complex algorithm, try to EASIER to READ by introducing more identifiers**
+*   **Instead of attempting to document how you did a complex algorithm, try to make it EASIER to READ by introducing more identifiers**
 *       //  color is in the rainbow!
         if ( color == "red" || color == "orange" || color == "yellow" || color = "green" || color = "blue" || color == "indigo" || color == "violet")   //REALLY BAD!
         
