@@ -47,15 +47,15 @@
     2.  Do work and commit (how often you commit depends on you)
             git add file_name   // Add a (modified) file to commit
             git add *           // Add all modified files
-            git commit -m "Did some work"   //Commit these changes.  Please use the commit message convention when making your message!"
+            git commit -m "Did some work"   //Commit these changes.  Please use the commit message convention when making your message!
     3.  Push your work onto the feature branch
             git push
-    4.  Once you are done the feature, craete a merge request at GitLab
+    4.  Once you are done the feature, create a merge request at GitLab
         -   Code review
         -   Make changes according to code review
         -   Wait for at least 2 approvals
     5.  Merge your branch!
-        -   So I am not sure how this works exactly, so we'll see how this whole merge requesting this happens!
+        -   So I am not sure how this works exactly, so we'll see how this whole merge requesting thing happens!
         
 #   Important
 *   Before merging into the dev branch, please create a merge request first!
