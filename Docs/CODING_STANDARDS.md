@@ -73,7 +73,7 @@
 *   3.1.1 - Never use do..while loops!
 *   3.1.2 - Never use *return* in the middle of the method!  It should be used at the end of the method only!
 *   3.1.3 - Never use *continue*
-*   3.1.4 - Never use *break*
+*   3.1.4 - Never use *break* other than in a switch statement
 *   3.1.5 - Do not use Compount Increment or Decrement Operators.  Use a separate line for an increment or decrement.
 *           foo(x++);   //BAD!
             foo(x);     //GOOD!
