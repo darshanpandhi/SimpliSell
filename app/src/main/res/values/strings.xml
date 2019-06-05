@@ -23,5 +23,29 @@
 
     <string name="backToLogin">Back To Login</string>
 
+    <string name="tabTextAll">All</string>
+
+    <string name="tabTextArrangement">Arrangement</string>
+
+    <string name="tabTextBooks">Books</string>
+
+    <string name="tabTextElectronics">Electronics</string>
+
+    <string name="tabTextEvents">Events</string>
+
+    <string name="tabTextHobbiesGames">Hobbies &amp; Games</string>
+
+    <string name="tabTextLiving">Living</string>
+
+    <string name="tabTextOther">Other</string>
+
+    <string name="tabTextServiceJobs">Services &amp; Jobs</string>
+
+    <string name="tabTextTransportation">Transportation</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

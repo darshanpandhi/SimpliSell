@@ -1,4 +1,4 @@
-package com.example.simplisell;
+package com.simplisell.presentation;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.simplisell.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -67,7 +69,7 @@ public class SignUp extends AppCompatActivity {
         //------------------------------------------------------
 
         // takes to sign in page
-        Intent loginPage= new Intent(getApplicationContext(),Login.class);
+        Intent loginPage= new Intent(getApplicationContext(), Login.class);
         startActivity(loginPage);
 
     }

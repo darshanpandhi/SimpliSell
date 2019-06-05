@@ -1,4 +1,4 @@
-package com.example.simplisell;
+package com.simplisell.presentation;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.simplisell.R;
+
 
 public class Login extends AppCompatActivity {
 
@@ -102,7 +105,7 @@ public class Login extends AppCompatActivity {
 
 
         // takes to sign in page
-        Intent signUp= new Intent(Login.this,SignUp.class);
+        Intent signUp= new Intent(Login.this, SignUp.class);
         startActivity (signUp);
 
 

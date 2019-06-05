@@ -1,36 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.MainActivity"
+    android:orientation="vertical"
+    >
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-16dp"
-        android:gravity="top">
+        android:gravity="top"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/imageButton_mainActivty_accountButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
-            android:layout_marginStart="4dp"
             android:background="@android:color/transparent"
             android:src="@drawable/baseline_account_circle_white_36"
-            tools:layout_editor_absoluteX="141dp"
-            tools:layout_editor_absoluteY="188dp"
             tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/textView_mainactivity_appnameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15sp"
+            android:fontFamily="@font/allura"
+            android:text="@string/app_name"
+            android:textColor="@android:color/background_light"
+            android:textSize="70sp" />
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabview_mainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@color/colorPrimaryDark"
+        app:tabIndicatorColor="@android:color/holo_red_dark"
+        app:tabMode="scrollable"
+        android:contextClickable="true"
+        app:tabRippleColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@android:color/black"
+        app:tabTextColor="@android:color/background_light">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contextClickable="true"
+
+            android:text="@string/tabTextAll" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_books"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contextClickable="true"
+
+            android:text="@string/tabTextBooks" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contextClickable="true"
+
+            android:text="@string/tabTextEvents" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_servicesJobs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contextClickable="true"
+
+            android:text="@string/tabTextServiceJobs" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_electronics"
+            android:layout_width="wrap_content"
+            android:contextClickable="true"
+
+            android:layout_height="wrap_content"
+            android:text="@string/tabTextElectronics" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_hobbiesGames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contextClickable="true"
+
+            android:text="@string/tabTextHobbiesGames" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_living"
+            android:layout_width="wrap_content"
+            android:contextClickable="true"
+
+            android:layout_height="wrap_content"
+            android:text="@string/tabTextLiving" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_transportation"
+            android:layout_width="wrap_content"
+            android:contextClickable="true"
+            android:layout_height="wrap_content"
+            android:text="@string/tabTextTransportation" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_arrangement"
+            android:layout_width="wrap_content"
+            android:contextClickable="true"
+            android:layout_height="wrap_content"
+            android:text="@string/tabTextArrangement" />
+
+
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem_mainActivity_other"
+            android:layout_width="wrap_content"
+            android:contextClickable="true"
+            android:layout_height="wrap_content"
+            android:text="@string/tabTextOther" />
+
+
+    </android.support.design.widget.TabLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_mainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="792dp"
+        android:layout_gravity="end" />
+
+
+</LinearLayout>

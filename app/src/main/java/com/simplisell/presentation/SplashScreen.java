@@ -1,9 +1,11 @@
-package com.example.simplisell;
+package com.simplisell.presentation;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.simplisell.R;
 
 public class SplashScreen extends AppCompatActivity {
 
