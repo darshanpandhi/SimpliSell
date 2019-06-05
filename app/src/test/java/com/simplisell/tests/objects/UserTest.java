@@ -20,8 +20,8 @@ public class UserTest
 
 		user = new User("user1", "1234");
 		assertNotNull(user);
-		assertTrue("user1".equals(user.getUserName()));
-		assertTrue("1234".equals(user.getPassword()));
+		assertEquals("user1",user.getUserName());
+		assertEquals("1234",user.getPassword());
 
 		System.out.println("Finished testStudent");
 	}
@@ -38,10 +38,10 @@ public class UserTest
 		user = new UserAdvertiser("user1", "1234", userPostings);
 		assertNotNull(user);
 		assertNotNull(userPostings);
-		assertTrue("user1".equals(user.getUserName()));
-		assertTrue("1234".equals(user.getPassword()));
+		assertEquals("user1",user.getUserName());
+		assertEquals("1234",user.getPassword());
 		List<String> userAds = ((UserAdvertiser) user).getPostings();
-		assertTrue(userPostings.get(0).equals(userAds.get(0)));
+		assertEquals(userPostings.get(0),userAds.get(0));
 
 		System.out.println("Finished testStudent");
 	}

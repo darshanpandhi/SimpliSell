@@ -3,7 +3,7 @@ package com.simplisell.objects;
 public class User
 {
     private final String userName;
-    private final String password;
+    private String password;
 
     public User()
     {
@@ -18,16 +18,24 @@ public class User
 
     public String getUserName()
     {
+
         return userName;
     }
 
     public String getPassword()
     {
+
         return password;
+    }
+
+    public void setPassword(final String newPassword)
+    {
+        this.password = newPassword;
     }
 
     public String toString()
     {
+
         return String.format("User: %s %s %s", userName, userName);
     }
 }
