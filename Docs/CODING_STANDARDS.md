@@ -51,8 +51,8 @@
 *   **The first letter of each word in the name will be UPPERCASE, INCLUDING the first letter of the name (Pascal Case)**
 *       salesOrder  //BAD! because it is a class
         SalesOrder  //GOOD! 
-*   **Naming XML files
-*   (typeOfView)_(activityUsedIn)_(briefDescriptionOfView)
+*   Naming XML files
+*   typeOfView_activityUsedIn_briefDescriptionOfView
 *   Example: textView_splashscreen_copyright
 ### 2.2 - Packages
 *   **Package names will use lower case characters only!**
