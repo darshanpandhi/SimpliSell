@@ -133,6 +133,7 @@ public class Login extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // if the back button is pressed. Do nothing for now.
-
+        finish();
+        System.exit(0);
     }
 }
