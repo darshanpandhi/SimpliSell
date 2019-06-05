@@ -46,7 +46,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_signUp_signUpText"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.071"
+        android:autofillHints=""
+        tools:targetApi="o"
+        />
 
     <EditText
         android:id="@+id/editText_name_registrationEmail"
@@ -69,7 +72,11 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationName"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.059"
+        android:autofillHints=""
+        tools:targetApi="o"
+
+        />
 
     <EditText
         android:id="@+id/editText_name_registrationPass"
@@ -91,7 +98,10 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationEmail"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintVertical_bias="0.089"
+        android:autofillHints=""
+        tools:targetApi="o"
+        />
 
     <EditText
         android:id="@+id/editText_name_registrationConfirmPass"
@@ -113,7 +123,10 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationPass"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintVertical_bias="0.12"
+        android:autofillHints=""
+        tools:targetApi="o"
+        />
 
     <Button
         android:id="@+id/button_signUp_registerbutton"
