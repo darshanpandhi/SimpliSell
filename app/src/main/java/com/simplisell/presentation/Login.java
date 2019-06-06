@@ -26,8 +26,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // initializing the buttons and edit textboxes
-        email= findViewById(R.id.editText_login_enterEmail);
-        password= findViewById(R.id.editText_login_enterPassword);
+        email = findViewById(R.id.editText_login_enterEmail);
+        password = findViewById(R.id.editText_login_enterPassword);
 
 
     }
@@ -59,12 +59,12 @@ public class Login extends AppCompatActivity {
         }
         else
         {
-            userEmail=email.getText().toString();
-            userPassword=password.getText().toString();
+            userEmail = email.getText().toString();
+            userPassword = password.getText().toString();
 
 
             // Show a progress Dialog while the authentication is loading
-            progressDialog= new ProgressDialog(this);
+            progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Logging In");
             progressDialog.show();
 
@@ -105,7 +105,7 @@ public class Login extends AppCompatActivity {
 
 
         // takes to sign in page
-        Intent signUp= new Intent(Login.this, SignUp.class);
+        Intent signUp = new Intent(Login.this, SignUp.class);
         startActivity (signUp);
 
 
@@ -123,7 +123,7 @@ public class Login extends AppCompatActivity {
         // Return- True if authentication is successful
         //------------------------------------------------------
 
-        boolean retValue=false;
+        boolean retValue = false;
 
 
         //**********AUTHENTICATE WITH BUSINESS LOGIC and DB

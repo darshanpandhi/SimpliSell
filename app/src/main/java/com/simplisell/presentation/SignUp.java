@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
         email = findViewById(R.id.editText_name_registrationEmail);
         password = findViewById(R.id.editText_name_registrationPass);
         name = findViewById(R.id.editText_name_registrationName);
-        confirmPassword=findViewById(R.id.editText_name_registrationConfirmPass);
+        confirmPassword = findViewById(R.id.editText_name_registrationConfirmPass);
 
     }
 
@@ -69,7 +69,7 @@ public class SignUp extends AppCompatActivity {
         //------------------------------------------------------
 
         // takes to sign in page
-        Intent loginPage= new Intent(getApplicationContext(), Login.class);
+        Intent loginPage = new Intent(getApplicationContext(), Login.class);
         startActivity(loginPage);
 
     }
@@ -87,7 +87,7 @@ public class SignUp extends AppCompatActivity {
         int number;
 
         // are the fields empty
-        boolean empty=(!userName.isEmpty()&&!userEmail.isEmpty()&&!userPassword.isEmpty()&&!userConfirmPassword.isEmpty());
+        boolean empty = (!userName.isEmpty()&&!userEmail.isEmpty()&&!userPassword.isEmpty()&&!userConfirmPassword.isEmpty());
 
         if(empty){
 
@@ -145,7 +145,7 @@ public class SignUp extends AppCompatActivity {
 
         if (mat.matches())
         {
-            retvalue=true;
+            retvalue = true;
 
         }
 
@@ -161,7 +161,7 @@ public class SignUp extends AppCompatActivity {
         //
         //------------------------------------------------------
 
-        boolean retValue=false;
+        boolean retValue  = false;
 
 
         if (userPassword.equals(userConfirmPassword))   // if both passwords are same
