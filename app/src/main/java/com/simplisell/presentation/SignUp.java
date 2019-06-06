@@ -43,7 +43,7 @@ public class SignUp extends AppCompatActivity {
         //
         // PURPOSE: Performs actions when the signUp button is clicked.
         //
-        // Patameter- View view- is the display view.
+        // Parameter- View view- is the display view.
         //------------------------------------------------------
 
 
@@ -65,7 +65,7 @@ public class SignUp extends AppCompatActivity {
         //
         // PURPOSE: Performs actions when the back to login text is clicked.
         //
-        // Patameter- View view- is the display view.
+        // Parameter- View view- is the display view.
         //------------------------------------------------------
 
         // takes to sign in page

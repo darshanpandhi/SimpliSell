@@ -1,4 +1,4 @@
-package com.simplisell.persistence.stub;
+package com.simplisell.persistence.stubs;
 
 public class PersistenceStubTest {
 }
