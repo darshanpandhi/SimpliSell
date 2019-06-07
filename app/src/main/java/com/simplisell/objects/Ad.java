@@ -7,7 +7,7 @@ public final class Ad
     private static int idCounter = 1;
 
     private final int adId;
-    private final User adOwner;
+    private final UserAdvertiser adOwner;
     private final AdType adType;
     private final Category category;
     private final Date adPostDate;
@@ -29,8 +29,8 @@ public final class Ad
     }
 
 
-    Ad(final User adOwner, final AdType adType, final Category category, final Date adPostDate,
-       final String title, final String description, final double price)
+    Ad(final UserAdvertiser adOwner, final AdType adType, final Category category, final Date
+            adPostDate, final String title, final String description, final double price)
     {
         adId = idCounter;
         idCounter++;
@@ -45,7 +45,7 @@ public final class Ad
     }
 
 
-    public final User getAdOwner()
+    public final UserAdvertiser getAdOwner()
     {
        return adOwner;
     }

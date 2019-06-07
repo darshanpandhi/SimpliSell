@@ -1,6 +1,6 @@
 package com.simplisell.objects;
 
-enum Category
+public enum Category
 {
     ELECTRONICS, BOOKS, ACCOMMODATION, JOBS_SERVICES, TRANSPORTATION, EVENTS, OTHERS
 }

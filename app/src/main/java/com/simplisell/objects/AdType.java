@@ -1,6 +1,6 @@
 package com.simplisell.objects;
 
-enum AdType
+public enum AdType
 {
     OFFERING, WANT
 }
