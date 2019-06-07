@@ -27,7 +27,8 @@ public final class Ad
     }
 
 
-    Ad(final UserAdvertiser adOwner, final AdType adType, final Category category, final String title, final String description, final double price)
+    public Ad(final UserAdvertiser adOwner, final AdType adType, final Category category, final
+    String title, final String description, final double price)
     {
         adId = idCounter;
         idCounter++;

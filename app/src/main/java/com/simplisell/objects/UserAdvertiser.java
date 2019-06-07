@@ -5,27 +5,27 @@ import java.util.List;
 
 public class UserAdvertiser extends User
 {
-    private List<Ad> postings;
+    private List<Ad> myAdList;
 
     public UserAdvertiser(String userName, String password)
     {
         super(userName, password);
-        postings = new ArrayList<>();
+        myAdList = new ArrayList<>();
     }
 
-    public void addNewAd(Ad ad)
+    public void insertAdToList(Ad ad)
     {
-        this.postings.add(ad);
+        this.myAdList.add(ad);
     }
 
     public void deleteAd(String adID)
     {
-        this.postings.remove(adID);
+        this.myAdList.remove(adID);
     }
 
     public List<Ad> getPostings()
     {
-        return postings;
+        return myAdList;
     }
 
 }
