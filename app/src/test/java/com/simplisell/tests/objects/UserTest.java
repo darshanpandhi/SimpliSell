@@ -4,7 +4,6 @@ import org.junit.Test;
 import com.simplisell.objects.User;
 import com.simplisell.objects.UserAdvertiser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -29,20 +28,63 @@ public class UserTest
 	@Test
 	public void testUserAdvertiser()
 	{
-		User user;
-		List<String> userPostings = new ArrayList<>();
+		System.out.println("\nStarting testUserAdvertiser");
 
-		System.out.println("\nStarting testUser");
-
-		userPostings.add("Ad 1");
-		user = new UserAdvertiser("user1", "1234", userPostings);
+		User user = new UserAdvertiser("user1", "1234");
 		assertNotNull(user);
-		assertNotNull(userPostings);
 		assertEquals("user1",user.getUserName());
 		assertEquals("1234",user.getPassword());
-		List<String> userAds = ((UserAdvertiser) user).getPostings();
-		assertEquals(userPostings.get(0),userAds.get(0));
 
-		System.out.println("Finished testStudent");
+
+		System.out.println("Finished testUserAdvertiser");
+	}
+
+	@Test
+	public void testAddNewUserAd()
+	{
+		System.out.println("\nStarting testAddNewUserAd");
+
+		UserAdvertiser user = new UserAdvertiser("user1", "1234");
+		assertNotNull(user);
+		user.addNewAd("TestAd");
+		List<String> userAds = user.getPostings();
+		assertTrue(user.getPostings().size() == 1);
+		assertTrue(userAds.contains("TestAd"));
+		System.out.println("Finished testAddNewUserAd");
+	}
+
+	@Test
+	public void testDeleteValidUserAd()
+	{
+		System.out.println("\nStarting testDeleteValidUserAd");
+
+		UserAdvertiser user = new UserAdvertiser("user1", "1234");
+		assertNotNull(user);
+		user.addNewAd("TestAd");
+		List<String> userAds = user.getPostings();
+		assertTrue(userAds.size() == 1);
+		assertTrue(userAds.contains("TestAd"));
+		user.deleteAd("TestAd");
+		assertTrue(userAds.size() == 0);
+		assertFalse(userAds.contains("TestAd"));
+
+		System.out.println("Starting testDeleteValidUserAd");
+	}
+
+	@Test
+	public void testDeleteInvalidUserAd()
+	{
+		System.out.println("\nStarting testDeleteInvalidUserAd");
+
+		UserAdvertiser user = new UserAdvertiser("user1", "1234");
+		List<String> userAds = user.getPostings();
+		assertNotNull(user);
+		user.addNewAd("TestAd");
+		assertTrue(userAds.size() == 1);
+		user.deleteAd("Invalid Ad");
+		assertTrue(userAds.size() == 1);
+		assertTrue(userAds.contains("TestAd"));
+
+		System.out.println("Starting testDeleteInvalidUserAd");
 	}
 }
