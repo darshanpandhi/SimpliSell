@@ -8,17 +8,37 @@ import java.util.List;
 
 public class AccessUsers {
     private UserPersistence userPersistence;
-    private List<User> users;
 
     public AccessUsers() {
         userPersistence = Services.getUserPersistence();
-        users = null;
     }
 
-    public List<User> getUsers()
+    public List<User> getAllUsers()
     {
-        users =  userPersistence.getUsers();
-        return users;
+        return userPersistence.getUsers();
+    }
+
+    public User insertNewUser(final User currentUser)
+    {
+        User newUser = null;
+        String userName = currentUser.getUserName();
+        if (!userNameExists(userName))
+        {
+            newUser = currentUser;
+            userPersistence.insertUser(newUser);
+        }
+        return newUser;
+    }
+
+    public boolean correctPassword(final String userName, final String password)
+    {
+        boolean match = false;
+        User user = userPersistence.getUser(userName);
+        if (user != null)
+        {
+            match = user.getPassword().equals(password);
+        }
+        return match;
     }
 
     public String getPassword(final String userName)
@@ -26,13 +46,15 @@ public class AccessUsers {
         return userPersistence.getPassword(userName);
     }
 
-    public User insertNewUser(final User currentUser)
-    {
-        return userPersistence.insertUser(currentUser);
-    }
-
     public User updatePassword(final String userName, final String newPassword)
     {
         return userPersistence.updatePassword(userName, newPassword);
+    }
+
+    private boolean userNameExists(final String userName)
+    {
+        User user = userPersistence.getUser(userName);
+        boolean userNameExists = user != null;
+        return userNameExists;
     }
 }
