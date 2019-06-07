@@ -18,6 +18,11 @@ public class AccessUsers {
         return userPersistence.getUsers();
     }
 
+    public User getUser(final String userName)
+    {
+        return userPersistence.getUser(userName);
+    }
+
     public User insertNewUser(final User currentUser)
     {
         User newUser = null;
