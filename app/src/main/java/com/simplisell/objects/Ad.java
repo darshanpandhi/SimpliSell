@@ -2,7 +2,7 @@ package com.simplisell.objects;
 
 import java.util.Date;
 
-final class Ad
+public final class Ad
 {
     private static int idCounter = 1;
 
@@ -29,8 +29,8 @@ final class Ad
     }
 
 
-    private Ad(User adOwner, AdType adType, Category category, Date adPostDate, String title, String
-            description, double price)
+    Ad(final User adOwner, final AdType adType, final Category category, final Date adPostDate,
+       final String title, final String description, final double price)
     {
         adId = idCounter;
         idCounter++;
@@ -42,6 +42,12 @@ final class Ad
         this.title = title;
         this.description = description;
         this.price = price;
+    }
+
+
+    public final User getAdOwner()
+    {
+       return adOwner;
     }
 }
 
