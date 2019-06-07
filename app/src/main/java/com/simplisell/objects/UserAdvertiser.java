@@ -18,9 +18,9 @@ public class UserAdvertiser extends User
         this.myAdList.add(ad);
     }
 
-    public void deleteAd(String adID)
+    public void deleteAd(int adId)
     {
-        this.myAdList.remove(adID);
+        this.myAdList.remove(adId);
     }
 
     public List<Ad> getPostings()
