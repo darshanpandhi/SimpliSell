@@ -5,13 +5,13 @@
 
     <string name="login">Login</string>
 
-    <string name="email">  Email Address</string>
+    <string name="userName">  Username</string>
 
     <string name="password">  Password</string>
 
     <string name="confirmpassword">  Confirm Password</string>
 
-    <string name="Useresname">  Name</string>
+    <string name="Useresname">  First and Last Name</string>
 
     <string name="signup">  Sign Up</string>
 
@@ -42,6 +42,11 @@
     <string name="tabTextServiceJobs">Services &amp; Jobs</string>
 
     <string name="tabTextTransportation">Transportation</string>
+
+    <string name="postAnAd">Post An Ad</string>
+
+    <string name="sort">Sort</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

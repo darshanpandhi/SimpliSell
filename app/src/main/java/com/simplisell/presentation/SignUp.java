@@ -16,7 +16,7 @@ public class SignUp extends AppCompatActivity {
 
 
     private EditText name;              // name of user
-    private EditText email;             // email of user
+    private EditText userName;             // firstNLastName of user
     private EditText password;          // password of user
     private EditText confirmPassword;   // confirm passord of user
 
@@ -30,7 +30,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         // initializing the buttons and edit textboxes
-        email = findViewById(R.id.editText_name_registrationEmail);
+        userName = findViewById(R.id.editText_name_user);
         password = findViewById(R.id.editText_name_registrationPass);
         name = findViewById(R.id.editText_name_registrationName);
         confirmPassword = findViewById(R.id.editText_name_registrationConfirmPass);
@@ -48,13 +48,13 @@ public class SignUp extends AppCompatActivity {
 
 
         // get the input from user
-        String userName = name.getText().toString().trim();
-        String userEmail = email.getText().toString().trim();
+        String firstNLastName = name.getText().toString().trim();
+        String userName = this.userName.getText().toString().trim();
         String userPassword = password.getText().toString();
         String userConfirmPassword = confirmPassword.getText().toString();
 
 
-        validate(userName,userEmail,userPassword,userConfirmPassword);
+        validate(firstNLastName,userName,userPassword,userConfirmPassword);
 
 
     }
@@ -75,7 +75,7 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    private void validate(String userName,String userEmail,String userPassword, String userConfirmPassword){
+    private void validate(String firstNLastName,String userName,String userPassword, String userConfirmPassword){
         //------------------------------------------------------
         // validate
         //
@@ -87,21 +87,20 @@ public class SignUp extends AppCompatActivity {
         int number;
 
         // are the fields empty
-        boolean empty = (!userName.isEmpty()&&!userEmail.isEmpty()&&!userPassword.isEmpty()&&!userConfirmPassword.isEmpty());
+        boolean empty = (!firstNLastName.isEmpty()&&!userName.isEmpty()&&!userPassword.isEmpty()&&!userConfirmPassword.isEmpty());
 
         if(empty){
 
-            if (emailCheck(userEmail))  // if email matches the email rejex
-            {
 
-                if (passwordChecker(userPassword,userConfirmPassword))  // if password meets the standards
+
+            if (passwordChecker(userPassword,userConfirmPassword))  // if password meets the standards
                 {
 
                     // Animation starts
 
 
 
-
+                    // check for duplicate username in DB and pop a toast
 
 
                     // ************add the data to the DB and Log in this user!************************
@@ -110,16 +109,7 @@ public class SignUp extends AppCompatActivity {
 
 
 
-
                 }
-
-
-            }
-            else
-            {
-                Toast.makeText(this, "Please enter a valid Email", Toast.LENGTH_SHORT).show();
-
-            }
 
 
         }else{
@@ -131,26 +121,6 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    public boolean emailCheck(String email){
-        //------------------------------------------------------
-        // emailcheck
-        //
-        // PURPOSE: Performs a validation of email and returns true if it meets the format
-        //
-        //------------------------------------------------------
-
-        Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Matcher mat = pattern.matcher(email);
-        boolean retvalue=false;
-
-        if (mat.matches())
-        {
-            retvalue = true;
-
-        }
-
-        return retvalue;
-    }
 
 
     public boolean passwordChecker(String userPassword,String userConfirmPassword){

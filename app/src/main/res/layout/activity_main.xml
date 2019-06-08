@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity"
     android:orientation="vertical"
-    >
+    tools:context=".presentation.MainActivity"
+    tools:visibility="visible">
 
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="66dp"
         android:background="@color/colorPrimaryDark"
         android:gravity="top"
         android:orientation="horizontal">
@@ -21,23 +21,25 @@
             android:id="@+id/imageButton_mainActivty_accountButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/baseline_account_circle_white_36"
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/baseline_account_box_white_18"
+            tools:ignore="ContentDescription"
+
+            />
 
 
         <TextView
             android:id="@+id/textView_mainactivity_appnameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15sp"
-            android:fontFamily="@font/allura"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/orbitron"
             android:text="@string/app_name"
             android:textColor="@android:color/background_light"
-            android:textSize="70sp" />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -46,11 +48,14 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="@color/colorPrimaryDark"
-        app:tabIndicatorColor="@android:color/holo_red_dark"
-        app:tabMode="scrollable"
         android:contextClickable="true"
-        app:tabRippleColor="@color/colorPrimary"
+        app:tabIconTint="@color/colorPrimary"
+        app:tabIndicatorColor="@android:color/holo_red_dark"
+        app:tabIndicatorHeight="6dp"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@color/colorAccent"
         app:tabSelectedTextColor="@android:color/black"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
         app:tabTextColor="@android:color/background_light">
 
         <android.support.design.widget.TabItem
@@ -88,9 +93,9 @@
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem_mainActivity_electronics"
             android:layout_width="wrap_content"
-            android:contextClickable="true"
-
             android:layout_height="wrap_content"
+
+            android:contextClickable="true"
             android:text="@string/tabTextElectronics" />
 
         <android.support.design.widget.TabItem
@@ -104,43 +109,86 @@
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem_mainActivity_living"
             android:layout_width="wrap_content"
-            android:contextClickable="true"
-
             android:layout_height="wrap_content"
+
+            android:contextClickable="true"
             android:text="@string/tabTextLiving" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem_mainActivity_transportation"
             android:layout_width="wrap_content"
-            android:contextClickable="true"
             android:layout_height="wrap_content"
+            android:contextClickable="true"
             android:text="@string/tabTextTransportation" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem_mainActivity_arrangement"
             android:layout_width="wrap_content"
-            android:contextClickable="true"
             android:layout_height="wrap_content"
+            android:contextClickable="true"
             android:text="@string/tabTextArrangement" />
-
 
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem_mainActivity_other"
             android:layout_width="wrap_content"
-            android:contextClickable="true"
             android:layout_height="wrap_content"
+            android:contextClickable="true"
             android:text="@string/tabTextOther" />
 
 
     </android.support.design.widget.TabLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+
+        <ImageButton
+            android:id="@+id/regreshBtn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="19dp"
+            tools:ignore="contentDescription"
+
+            android:background="@drawable/baseline_refresh_white_18" />
+
+        <Button
+            android:id="@+id/postAdBtn"
+            android:layout_width="289dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="90dp"
+            android:layout_marginEnd="80dp"
+            android:background="@android:drawable/editbox_background"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:fontFamily="@font/candal"
+            android:text="@string/postAnAd"
+            android:textColor="@color/whiteBtn" />
+
+
+        <ImageButton
+            android:id="@+id/sortBtn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            tools:ignore="contentDescription"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/baseline_sort_white_18" />
+
+
+    </LinearLayout>
+
+
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager_mainActivity"
         android:layout_width="match_parent"
-        android:layout_height="792dp"
-        android:layout_gravity="end" />
+        android:layout_height="776dp"
+        android:layout_gravity="end"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:outlineSpotShadowColor="@color/colorPrimary"
+        tools:visibility="gone" />
 
 
 </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp"
+    tools:context=".presentation.SignUp"
     android:background="@color/colorPrimary">
 
     <TextView
@@ -14,17 +14,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/allura"
+        android:fontFamily="@font/orbitron"
         android:text="@string/signupTwo"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textSize="75sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.168" />
 
     <EditText
         android:id="@+id/editText_name_registrationName"
@@ -52,7 +52,7 @@
         />
 
     <EditText
-        android:id="@+id/editText_name_registrationEmail"
+        android:id="@+id/editText_name_user"
         android:layout_width="254dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
@@ -62,8 +62,8 @@
         android:background="@android:drawable/editbox_background"
         android:backgroundTint="@color/colorPrimaryDark"
         android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
+        android:hint="@string/userName"
+        android:inputType="text"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@color/colorAccent"
         android:textColorLink="@color/colorAccent"
@@ -83,8 +83,10 @@
         android:layout_width="254dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:autofillHints=""
         android:background="@android:drawable/editbox_background"
         android:backgroundTint="@color/colorPrimaryDark"
         android:ems="10"
@@ -97,11 +99,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name_user"
         app:layout_constraintVertical_bias="0.089"
-        android:autofillHints=""
-        tools:targetApi="o"
-        />
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/editText_name_registrationConfirmPass"
