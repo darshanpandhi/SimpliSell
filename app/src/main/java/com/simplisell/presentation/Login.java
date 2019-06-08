@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.simplisell.R;
+import com.simplisell.business.AccessUsers;
+import com.simplisell.objects.User;
 
 
 public class Login extends AppCompatActivity {
@@ -17,6 +19,8 @@ public class Login extends AppCompatActivity {
     private EditText userName;             // the edit text box for userName of the user
     private EditText password;          // the edit text box for password of the user
     private ProgressDialog progressDialog;  // progress Dialogue
+    private AccessUsers accessUsers;      // helps  access users
+
 
 
     @Override
@@ -28,6 +32,8 @@ public class Login extends AppCompatActivity {
         // initializing the buttons and edit textboxes
         userName = findViewById(R.id.editText_login_enterUserName);
         password = findViewById(R.id.editText_login_enterPassword);
+
+        accessUsers=new AccessUsers();
 
 
     }
@@ -68,9 +74,9 @@ public class Login extends AppCompatActivity {
             progressDialog.setMessage("Logging In");
             progressDialog.show();
 
-            boolean isSuccessful = authenticate (userName,userPassword);
+            User loggedInUser = authenticate (userName,userPassword);
 
-            if (isSuccessful){  // if logging in is successful
+            if (loggedInUser!=null){  // if logging in is successful
 
                 progressDialog.dismiss();   // dismiss the progress bar
 
@@ -79,7 +85,9 @@ public class Login extends AppCompatActivity {
 
                 // login and go to homepage
                 finish();
-                Intent logIn=new Intent(Login.this,MainActivity.class);
+
+                Intent logIn=new Intent(getApplicationContext(),MainActivity.class);
+                logIn.putExtra("User",loggedInUser);
                 startActivity(logIn);
 
 
@@ -112,7 +120,7 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public boolean authenticate(String userName,String userPassword){
+    public User authenticate(String userName, String userPassword){
         //------------------------------------------------------
         // authenticate
         //
@@ -123,11 +131,15 @@ public class Login extends AppCompatActivity {
         // Return- True if authentication is successful
         //------------------------------------------------------
 
-        boolean retValue = false;
+        User retValue=null;
 
 
-        //**********AUTHENTICATE WITH BUSINESS LOGIC and DB
+        boolean credintalsValid=accessUsers.correctPassword(userName,userPassword);
 
+        if(credintalsValid)    // if the credintals are valid
+        {
+            retValue=accessUsers.getUser(userName);
+        }
 
         return retValue;
     }

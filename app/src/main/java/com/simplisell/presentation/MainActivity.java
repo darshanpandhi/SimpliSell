@@ -4,21 +4,32 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.simplisell.R;
+import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private User currUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try{
+
+            currUser=(UserAdvertiser) getIntent().getSerializableExtra("User");
+
+        }catch (Exception e){
+            currUser=null;
+        }
+        currUser=(UserAdvertiser) getIntent().getSerializableExtra("User");
 
 
         tabLayout = findViewById(R.id.tabview_mainActivity);
@@ -42,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
 
     }
 }
