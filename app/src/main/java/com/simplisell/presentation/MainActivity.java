@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         // adding the fragments
         adapter.addFragment(new TabFragmentAll(), "All");
-        adapter.addFragment(new TabFragmentBooks(), "Books");
+        adapter.addFragment(new TabFragmentBooks(), "Book");
         adapter.addFragment(new TabFragmentServicesJobs(), "Services & Jobs");
         adapter.addFragment(new TabFragmentArrangement(), "Arrangement");
         adapter.addFragment(new TabFragmentElectronics(), "Electronics");
