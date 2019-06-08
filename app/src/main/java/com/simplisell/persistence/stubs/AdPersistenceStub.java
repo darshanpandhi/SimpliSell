@@ -7,11 +7,11 @@ import com.simplisell.objects.Ad;
 import java.util.ArrayList;
 import java.util.List;
 
-final class AdPersistenceStub implements AdPersistence
+public class AdPersistenceStub implements AdPersistence
 {
     private List<Ad> ads;
 
-    private AdPersistenceStub()
+    public AdPersistenceStub()
     {
         ads = new ArrayList<>();
 
