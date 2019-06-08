@@ -7,7 +7,7 @@ public final class Ad
     private static int idCounter = 1;
 
     private final int adId;
-    private final UserAdvertiser adOwner;
+    private final String adOwner;
     private final AdType adType;
     private final Category category;
     private final String title;
@@ -27,7 +27,7 @@ public final class Ad
     }
 
 
-    public Ad(final UserAdvertiser adOwner, final AdType adType, final Category category, final
+    public Ad(final String adOwner, final AdType adType, final Category category, final
     String title, final String description, final double price)
     {
         adId = idCounter;
@@ -43,7 +43,7 @@ public final class Ad
 
 
     // Some ads especially of type Wanted wouldn't have price associated with it
-    public Ad(final UserAdvertiser adOwner, final AdType adType, final Category category, final
+    public Ad(final String adOwner, final AdType adType, final Category category, final
     String title, final String description)
     {
         adId = idCounter;
@@ -59,7 +59,7 @@ public final class Ad
     }
 
 
-    public final UserAdvertiser getAdOwner()
+    public final String getAdOwner()
     {
        return adOwner;
     }

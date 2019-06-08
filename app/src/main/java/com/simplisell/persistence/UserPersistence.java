@@ -1,7 +1,6 @@
 package com.simplisell.persistence;
 
 import com.simplisell.objects.User;
-
 import java.util.List;
 
 public interface UserPersistence

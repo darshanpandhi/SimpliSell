@@ -2,24 +2,20 @@ package com.simplisell.persistence.stubs;
 
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.persistence.AdPersistence;
 import com.simplisell.objects.Ad;
 import java.util.ArrayList;
+import java.util.List;
 
 final class AdPersistenceStub implements AdPersistence
 {
-    private ArrayList<Ad> allAdList;
+    private List<Ad> ads;
 
     private AdPersistenceStub()
     {
-        allAdList = new ArrayList<>();
+        ads = new ArrayList<>();
 
-        final UserAdvertiser bob = new UserAdvertiser("Bob", "1234");
-        final UserAdvertiser allice = new UserAdvertiser("Allice", "4321");
-        final UserAdvertiser jay = new UserAdvertiser("Jay", "abc");
-
-        UserAdvertiser adOwner = bob;
+        String adOwner = "bob";
         AdType adType = AdType.OFFERING;
         Category category = Category.ELECTRONICS;
         String title = "Brand new 6th Generation 128 gb Apple iPad 9.7 inch";
@@ -33,20 +29,25 @@ final class AdPersistenceStub implements AdPersistence
 
         Ad newAd = new Ad(adOwner, adType, category, title, description, price);
 
-        allAdList.add(newAd);
-        adOwner.insertAdToList(newAd);
+        ads.add(newAd);
 
-        adOwner = allice;
-        adType = AdType.WANT;
-        category = Category.JOBS_SERVICES;
-        //title =
+        ads.add(new Ad("bob", AdType.OFFERING, Category.ELECTRONICS, "Electronics Test 1",
+                "Description for electronics test 1", 10));
+        ads.add(new Ad("bob", AdType.OFFERING, Category.ELECTRONICS, "Electronics Test 2",
+                "Description for electronics test 2", 15));
+        ads.add(new Ad("bob", AdType.OFFERING, Category.ELECTRONICS, "Electronics Test 3",
+                "Description for electronics test 3", 20));
 
+    }
 
+    public List<Ad> getAds()
+    {
+        return ads;
     }
 
     public void insertAd(final Ad ad)
     {
-        UserAdvertiser adOwner = ad.getAdOwner();
+        //UserAdvertiser adOwner = ad.getAdOwner();
 
         //adOwner.
 
