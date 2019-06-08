@@ -153,7 +153,6 @@
             android:layout_gravity="center"
             android:layout_marginStart="30dp"
             android:background="@drawable/baseline_refresh_white_18"
-
             tools:ignore="contentDescription" />
 
         <Button
