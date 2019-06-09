@@ -14,7 +14,6 @@ import com.simplisell.objects.User;
 public class MainActivity extends AppCompatActivity
 {
 
-
     private final String USERNAME_TEXT="USER";
 
     private TabLayout tabLayout;
