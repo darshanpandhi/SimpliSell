@@ -13,7 +13,8 @@ import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
 
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity
+{
 
     private final String USERNAME_TEXT="USER";
 
@@ -29,7 +30,8 @@ public class Login extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -45,13 +47,14 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void loginBtnClick(View view){
+    public void loginBtnClick(View view)
+    {
         //------------------------------------------------------
         // loginBtnClick
         //
         // PURPOSE: Performs actions when the Login button is clicked on Login activity
         //
-        // Patameter- View view- is the display view.
+        // Parameter- View view- is the display view.
         //------------------------------------------------------
 
         String userName;       // The userName in the textbox will be stored here.
@@ -109,13 +112,14 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void signUpBtnClick(View view){
+    public void signUpBtnClick(View view)
+    {
         //------------------------------------------------------
         // signUpBtnClick
         //
         // PURPOSE: Performs actions when the sign up button is clicked on Login activity
         //
-        // Patameter- View view- is the display view.
+        // Parameter- View view- is the display view.
         //------------------------------------------------------
 
 
@@ -127,13 +131,14 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public User authenticate(String userName, String userPassword){
+    public User authenticate(String userName, String userPassword)
+    {
         //------------------------------------------------------
         // authenticate
         //
         // PURPOSE: Performs an authentication and returns true if authentication was successful
         //
-        // Patameter- String userName- the userName of the user
+        // Parameter- String userName- the userName of the user
         //              String userPassword- the userName of the user
         // Return- True if authentication is successful
         //------------------------------------------------------
@@ -153,7 +158,8 @@ public class Login extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         // if the back button is pressed. Do nothing for now.
         finish();
         System.exit(0);
