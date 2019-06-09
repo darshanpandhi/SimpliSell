@@ -1,5 +1,4 @@
 package com.simplisell.presentation;
-
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,7 +11,8 @@ import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     private final String USERNAME_TEXT="USER";
 
@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
                 userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
 
-                if(userName!=null)
+                if (userName!=null)
                 {
 
                     currUser=accessUsers.getUser(userName);
@@ -57,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+        tabSetUp();
+
+
+
+    }
+
+    private void tabSetUp()
+    {
 
         tabLayout = findViewById(R.id.tabview_mainActivity);
         viewPager = findViewById(R.id.view_pager_mainActivity);
@@ -79,19 +89,19 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
-
-
     }
 
 
-    static void logOutUser(){   // logs out user
+
+    public static void logOutUser()
+    {   // logs out user
         currUser=null;
         userName=null;
     }
 
     @Override
-    public void onBackPressed() {   // if anytime the back is pressed. Go to app home
+    public void onBackPressed()
+    {   // if anytime the back is pressed. Go to app home
 
         Intent i = new Intent(Intent.ACTION_MAIN);
         i.addCategory(Intent.CATEGORY_HOME);
@@ -99,9 +109,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void accountBtnClick(View view) {
+    public void accountBtnClick(View view)
+    {
 
-        if(userName == null)
+        if (userName == null)
         {   // not logged in
 
             startActivity(new Intent(getApplicationContext() , Login.class));
@@ -110,12 +121,28 @@ public class MainActivity extends AppCompatActivity {
         else   // already logged in
         {
 
-            //TODO  go to user profile and logout button
+            Intent intent=new Intent(getApplicationContext() , UserProfileMenu.class);
+            intent.putExtra(USERNAME_TEXT,userName);
+            startActivity(intent);
         }
     }
 
 
     public void sortBtnClick(View view) {
+
+        int position= tabLayout.getSelectedTabPosition();   // get position of current tab layout
+
+        TabFragmentAll.sort();
+        TabFragmentBooks.sort();
+        TabFragmentTransportation.sort();
+        TabFragmentServicesJobs.sort();
+        TabFragmentLiving.sort();
+        TabFragmentEvents.sort();
+        TabFragmentElectronics.sort();
+        TabFragmentOther.sort();
+        tabSetUp();                 // set up all tabs again
+
+        viewPager.setCurrentItem(position); // set it to the position user wanted
 
 
     }
