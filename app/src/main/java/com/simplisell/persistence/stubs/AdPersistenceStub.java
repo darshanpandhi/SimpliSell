@@ -1,15 +1,11 @@
 package com.simplisell.persistence.stubs;
 
+import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.persistence.AdPersistence;
-
 import com.simplisell.objects.Ad;
-import com.simplisell.objects.OfferingAd;
-import com.simplisell.objects.WantedAd;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class AdPersistenceStub implements AdPersistence
 {
@@ -20,29 +16,33 @@ public class AdPersistenceStub implements AdPersistence
         ads = new ArrayList<>();
 
         String adOwner = "bob";
+        AdType adType = AdType.OFFERING;
         Category category = Category.ELECTRONICS;
         String title = "iPad 6th Gen";
         String description = "iPad Ad description";
         double price = 554.99;
 
-        Ad newAd = new OfferingAd(adOwner, category, title, description, price);
+        Ad newAd = new Ad(adOwner, adType, category, title, description, price);
         ads.add(newAd);
 
         adOwner = "Allice";
+        adType = AdType.WANT;
         category = Category.JOBS_SERVICES;
         title = "Wanted Tutoring Services";
         description = "Tutoring Services Description";
+        price = 40;
 
-        newAd = new WantedAd(adOwner, category, title, description);
+        newAd = new Ad(adOwner, adType, category, title, description, price);
         ads.add(newAd);
 
         adOwner = "Jay";
+        adType = AdType.OFFERING;
         category = Category.TRANSPORTATION;
         title = "CarPooling Ad Title";
         description = "CarPooling Ad Description";
         price = 100;
 
-        newAd = new OfferingAd(adOwner, category, title, description, price);
+        newAd = new Ad(adOwner, adType, category, title, description, price);
         ads.add(newAd);
     }
 
