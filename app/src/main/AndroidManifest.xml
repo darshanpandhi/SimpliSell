@@ -10,9 +10,11 @@
         android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.UserProfileMenu"></activity>
-        <activity android:name=".presentation.SignUp" />
+
+        <activity android:name=".presentation.SignUp"/>
+
         <activity android:name=".presentation.Login" />
+
         <activity android:name=".presentation.MainActivity" />
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>

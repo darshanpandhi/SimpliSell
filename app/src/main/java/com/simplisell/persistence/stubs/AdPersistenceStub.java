@@ -44,28 +44,6 @@ public class AdPersistenceStub implements AdPersistence
 
         newAd = new Ad(adOwner, adType, category, title, description, price);
         ads.add(newAd);
-
-
-        adOwner = "Ann";
-        adType = AdType.OFFERING;
-        category = Category.BOOKS;
-        title = "Transcendence- A spiritual journey with pramukh swami maharaj";
-        description = "A nice book by Dr APJ abdul kalaam";
-        price = 0;
-
-        newAd = new Ad(adOwner, adType, category, title, description, price);
-        ads.add(newAd);
-
-
-        adOwner = "Mahant";
-        adType = AdType.OFFERING;
-        category = Category.BOOKS;
-        title = "Analysis of Algorithms";
-        description = "Book for COMP2080 and COMP3170";
-        price = 20;
-
-        newAd = new Ad(adOwner, adType, category, title, description, price);
-        ads.add(newAd);
     }
 
     public List<Ad> getAds()
@@ -73,25 +51,21 @@ public class AdPersistenceStub implements AdPersistence
         return ads;
     }
 
-    public void insertAd(final Ad newAd)
+    public void insertAd(final Ad ad)
     {
-        ads.add(newAd);
-    }
+        //UserAdvertiser adOwner = ad.getAdOwner();
 
-    public void editAd(final Ad adToBeEdited)
-    {
-        int adId = adToBeEdited.getAdId();
-
+        //adOwner.
 
     }
 
-    public void removeAd(final Ad adToBeRemoved)
+    public void editAd(final Ad ad)
     {
-        final int index = ads.indexOf(adToBeRemoved);
 
-        if(index >= 0)
-        {
-            ads.remove(adToBeRemoved);
-        }
+    }
+
+    public void removeAd(final Ad ad)
+    {
+
     }
 }

@@ -19,18 +19,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context myContext;
     private List<Ad> myAd;
 
-    public RecyclerViewAdapter(Context context,List<Ad> ad)
-    {
+    public RecyclerViewAdapter(Context context,List<Ad> ad){
         myContext=context;
         myAd=ad;
     }
 
 
-
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
-    {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view;
         view= LayoutInflater.from(myContext).inflate(R.layout.row,viewGroup,false);
@@ -41,8 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i)
-    {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
         String title=myAd.get(i).getTitle();
         String price="$"+myAd.get(i).getPrice();
@@ -52,23 +48,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
-
-
-
     @Override
     public int getItemCount() {
         return myAd.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder
-    {
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView adTitle;
         private TextView adPrice;
 
 
-        public MyViewHolder(@NonNull View itemView)
-        {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             adTitle=(TextView)itemView.findViewById(R.id.row_mainTitle);

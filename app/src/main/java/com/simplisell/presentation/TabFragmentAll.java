@@ -1,7 +1,6 @@
 package com.simplisell.presentation;
 
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,24 +22,20 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentAll extends Fragment
-{
+public class TabFragmentAll extends Fragment {
 
     private RecyclerView recyclerView;
-    private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAds();
-    private static boolean isSortedAscending = false;
+    private Search adsSearch;
+    private List<Ad> ads;
 
-    public TabFragmentAll()
-    {
+    public TabFragmentAll() {
         // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         //Inflate the layout for this fragment
 
 
@@ -55,26 +50,11 @@ public class TabFragmentAll extends Fragment
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        adsSearch=new Search();
+        ads=adsSearch.getAllAds();
 
-    }
-
-    public static void sort()
-    {
-
-
-        if(isSortedAscending)       // if its already sorted in ascending
-        {
-            ads=adsSearch.sortPriceDesc(ads);
-            isSortedAscending=false;
-        }
-        else
-        {
-            ads=adsSearch.sortPriceAsc(ads);
-            isSortedAscending=true;
-        }
     }
 }

@@ -7,12 +7,10 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 
-public class SplashScreen extends AppCompatActivity
-{
+public class SplashScreen extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
@@ -22,8 +20,7 @@ public class SplashScreen extends AppCompatActivity
             @Override
             public void run() {
 
-                try
-                {
+                try {
 
                     Thread.sleep(1200); // As I am using LENGTH_LONG in Toast
 
@@ -31,8 +28,7 @@ public class SplashScreen extends AppCompatActivity
                     startActivity(new Intent(getApplicationContext() , MainActivity.class));
                     finish();
 
-                } catch (Exception e)
-                {
+                } catch (Exception e) {
 
                     // sent an error message as a toast if we are not able to go to main activity
                     Toast.makeText(getApplicationContext(), "Error: Cant run App", Toast.LENGTH_SHORT).show();

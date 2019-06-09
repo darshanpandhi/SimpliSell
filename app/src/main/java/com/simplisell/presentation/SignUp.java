@@ -14,8 +14,7 @@ import com.simplisell.objects.User;
 import com.simplisell.objects.UserAdvertiser;
 
 
-public class SignUp extends AppCompatActivity
-{
+public class SignUp extends AppCompatActivity {
 
     private final String USERNAME_TEXT="USER";
 
@@ -30,8 +29,7 @@ public class SignUp extends AppCompatActivity
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
@@ -47,8 +45,7 @@ public class SignUp extends AppCompatActivity
 
     }
 
-    public void signUpBtnClickRegister(View view)
-    {
+    public void signUpBtnClickRegister(View view){
         //------------------------------------------------------
         // signUpBtnClickRegister
         //
@@ -70,8 +67,7 @@ public class SignUp extends AppCompatActivity
 
     }
 
-    public void backToLoginTextClick(View view)
-    {
+    public void backToLoginTextClick(View view){
         //------------------------------------------------------
         // signUpBtnClickRegister
         //
@@ -87,8 +83,7 @@ public class SignUp extends AppCompatActivity
     }
 
 
-    private void validate(String firstNLastName,String userName,String userPassword, String userConfirmPassword)
-    {
+    private void validate(String firstNLastName,String userName,String userPassword, String userConfirmPassword){
         //------------------------------------------------------
         // validate
         //
@@ -153,10 +148,4 @@ public class SignUp extends AppCompatActivity
 
     }
 
-
-    @Override
-    public void onBackPressed() {
-        finish();
-        Intent loginPage = new Intent(getApplicationContext(), Login.class);
-        startActivity(loginPage);    }
 }
