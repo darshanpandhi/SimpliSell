@@ -13,51 +13,42 @@ public class AccessUsers {
         userPersistence = Services.getUserPersistence();
     }
 
-    public List<User> getAllUsers()
-    {
+    public List<User> getAllUsers() {
         return userPersistence.getUsers();
     }
 
-    public User getUser(final String userName)
-    {
+    public User getUser(final String userName) {
         return userPersistence.getUser(userName);
     }
 
-    public User insertNewUser(final User currentUser)
-    {
+    public User insertNewUser(final User currentUser) {
         User newUser = null;
         String userName = currentUser.getUserName();
-        if (!userNameExists(userName))
-        {
+        if (!userNameExists(userName)) {
             newUser = currentUser;
             userPersistence.insertUser(newUser);
         }
         return newUser;
     }
 
-    public boolean correctPassword(final String userName, final String password)
-    {
+    public boolean correctPassword(final String userName, final String password) {
         boolean match = false;
         User user = userPersistence.getUser(userName);
-        if (user != null)
-        {
+        if (user != null) {
             match = user.getPassword().equals(password);
         }
         return match;
     }
 
-    public String getPassword(final String userName)
-    {
+    public String getPassword(final String userName) {
         return userPersistence.getPassword(userName);
     }
 
-    public User updatePassword(final String userName, final String newPassword)
-    {
+    public User updatePassword(final String userName, final String newPassword) {
         return userPersistence.updatePassword(userName, newPassword);
     }
 
-    private boolean userNameExists(final String userName)
-    {
+    private boolean userNameExists(final String userName) {
         User user = userPersistence.getUser(userName);
         boolean userNameExists = user != null;
         return userNameExists;
