@@ -56,13 +56,6 @@ public class AdPersistenceStub implements AdPersistence
         ads.add(newAd);
     }
 
-    public void editAd(final Ad adToBeEdited)
-    {
-        int adId = adToBeEdited.getAdId();
-
-
-    }
-
     public void removeAd(final Ad adToBeRemoved)
     {
         final int index = ads.indexOf(adToBeRemoved);

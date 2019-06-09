@@ -7,6 +7,5 @@ public interface AdPersistence
 {
     List<Ad> getAds();
     void insertAd(final Ad ad);
-    void editAd(final Ad ad);
     void removeAd(final Ad ad);
 }
