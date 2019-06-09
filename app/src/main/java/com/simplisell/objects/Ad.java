@@ -1,5 +1,7 @@
 package com.simplisell.objects;
 
+import java.util.Date;
+
 public final class Ad
 {
     private static int idCounter = 1;
@@ -11,18 +13,6 @@ public final class Ad
     private String title;
     private String description;
     private double price;
-
-
-    Ad()
-    {
-        adId = 0;
-        adOwner = null;
-        adType = null;
-        category = null;
-        title = null;
-        description = null;
-        price = -1;
-    }
 
 
     public Ad(final String adOwner, final AdType adType, final Category category, final
@@ -40,6 +30,7 @@ public final class Ad
     }
 
 
+    //Getters and Setters below
 
     public int getAdId()
     {
