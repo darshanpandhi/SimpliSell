@@ -15,11 +15,16 @@ import com.simplisell.objects.User;
 
 public class Login extends AppCompatActivity {
 
+    private final String USERNAME_TEXT="USER";
+
 
     private EditText userName;             // the edit text box for userName of the user
     private EditText password;          // the edit text box for password of the user
     private ProgressDialog progressDialog;  // progress Dialogue
     private AccessUsers accessUsers;      // helps  access users
+
+    private static String uniqueUserName;
+
 
 
 
@@ -28,6 +33,7 @@ public class Login extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        uniqueUserName=null;
 
         // initializing the buttons and edit textboxes
         userName = findViewById(R.id.editText_login_enterUserName);
@@ -82,12 +88,13 @@ public class Login extends AppCompatActivity {
 
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                uniqueUserName=userName;
 
                 // login and go to homepage
                 finish();
 
                 Intent logIn=new Intent(getApplicationContext(),MainActivity.class);
-                logIn.putExtra("User",loggedInUser);
+                logIn.putExtra(USERNAME_TEXT,uniqueUserName);
                 startActivity(logIn);
 
 

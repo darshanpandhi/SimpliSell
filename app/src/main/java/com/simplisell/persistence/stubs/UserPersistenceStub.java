@@ -71,19 +71,23 @@ public class UserPersistenceStub implements UserPersistence
     private User findUser(final String userName)
     {
         User user = null;
-        boolean foundUser = false;
-        for (int i = 0; i < users.size() && !foundUser; i++)
+
+        if(userName!=null)
         {
-            user = users.get(i);
-            if (user.getUserName().equals(userName))
-            {
-                foundUser = true;
+
+            boolean foundUser = false;
+            for (int i = 0; i < users.size() && !foundUser; i++) {
+                user = users.get(i);
+                if (user.getUserName().equals(userName)) {
+                    foundUser = true;
+                }
             }
+            if (!foundUser) {
+                user = null;
+            }
+
         }
-        if (!foundUser)
-        {
-            user = null;
-        }
+
         return user;
     }
 }

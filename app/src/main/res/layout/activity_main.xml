@@ -20,14 +20,15 @@
         <ImageButton
             android:id="@+id/imageButton_mainActivty_accountButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
+            android:onClick="accountBtnClick"
             android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/holo_red_dark"
             android:src="@drawable/baseline_account_box_white_18"
-            tools:ignore="ContentDescription"
 
-            />
+            tools:ignore="ContentDescription" />
 
 
         <TextView
@@ -50,7 +51,7 @@
         android:background="@color/colorPrimaryDark"
         android:contextClickable="true"
         app:tabIconTint="@color/colorPrimary"
-        app:tabIndicatorColor="@android:color/holo_red_dark"
+        app:tabIndicatorColor="@color/black_overlay"
         app:tabIndicatorHeight="6dp"
         app:tabMode="scrollable"
         app:tabRippleColor="@color/colorAccent"
@@ -163,7 +164,7 @@
             android:layout_marginStart="90dp"
             android:layout_marginEnd="90dp"
             android:background="@android:drawable/editbox_background"
-            android:backgroundTint="@android:color/holo_red_dark"
+            android:backgroundTint="@color/black_overlay"
             android:fontFamily="@font/candal"
             android:text="@string/postAnAd"
             android:textColor="@color/whiteBtn" />
@@ -174,6 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:onClick="sortBtnClick"
             android:layout_marginEnd="8dp"
             android:background="@drawable/baseline_sort_white_18"
             tools:ignore="contentDescription" />
@@ -188,8 +190,7 @@
         android:layout_height="776dp"
         android:layout_gravity="end"
         android:outlineAmbientShadowColor="@color/colorPrimary"
-        android:outlineSpotShadowColor="@color/colorPrimary"
-        tools:visibility="gone" />
+        android:outlineSpotShadowColor="@color/colorPrimary" />
 
 
 

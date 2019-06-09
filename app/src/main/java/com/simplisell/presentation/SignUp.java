@@ -16,14 +16,15 @@ import com.simplisell.objects.UserAdvertiser;
 
 public class SignUp extends AppCompatActivity {
 
+    private final String USERNAME_TEXT="USER";
 
     private EditText name;              // name of user
     private EditText userName;             // firstNLastName of user
     private EditText password;          // password of user
     private EditText confirmPassword;   // confirm passord of user
-
     private AccessUsers accessUsers;      // helps  access users
 
+    private static String uniqueUserName;
 
 
 
@@ -32,6 +33,7 @@ public class SignUp extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        uniqueUserName=null;
 
         // initializing the buttons and edit textboxes
         userName = findViewById(R.id.editText_name_user);
@@ -108,10 +110,12 @@ public class SignUp extends AppCompatActivity {
                     if(accessUsers.insertNewUser(newUser)!=null){   // check if userName is in the database and insert
 
                         Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+                        uniqueUserName=userName;
+
 
                         // Pass this domain object across activities
                         Intent signedUp=new Intent(getApplicationContext(),MainActivity.class);
-                        signedUp.putExtra("User",newUser);
+                        signedUp.putExtra(USERNAME_TEXT,uniqueUserName);
                         startActivity(signedUp);
 
                     }

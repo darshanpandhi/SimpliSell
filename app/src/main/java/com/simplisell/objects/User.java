@@ -2,7 +2,7 @@ package com.simplisell.objects;
 
 import java.io.Serializable;
 
-public abstract class User implements Serializable
+public abstract class User
 {
     private final String userName;
     private String password;
