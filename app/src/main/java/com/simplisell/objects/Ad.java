@@ -15,18 +15,6 @@ public final class Ad
     private double price;
 
 
-    Ad()
-    {
-        adId = 0;
-        adOwner = null;
-        adType = null;
-        category = null;
-        title = null;
-        description = null;
-        price = -1;
-    }
-
-
     public Ad(final String adOwner, final AdType adType, final Category category, final
     String title, final String description, final double price)
     {
@@ -41,22 +29,6 @@ public final class Ad
         this.price = price;
     }
 
-
-    // Some ads especially of type Wanted wouldn't have price associated with it
-    public Ad(final String adOwner, final AdType adType, final Category category, final
-    String title, final String description)
-    {
-        adId = idCounter;
-        idCounter++;
-
-        this.adOwner = adOwner;
-        this.adType = adType;
-        this.category = category;
-        this.title = title;
-        this.description = description;
-
-        price = -1;
-    }
 
     //Getters and Setters below
 
