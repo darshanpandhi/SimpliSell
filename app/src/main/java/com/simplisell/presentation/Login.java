@@ -13,7 +13,8 @@ import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
 
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity
+{
 
     private final String USERNAME_TEXT="USER";
 
@@ -29,7 +30,8 @@ public class Login extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -45,7 +47,8 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void loginBtnClick(View view){
+    public void loginBtnClick(View view)
+    {
         //------------------------------------------------------
         // loginBtnClick
         //
@@ -82,7 +85,8 @@ public class Login extends AppCompatActivity {
 
             User loggedInUser = authenticate (userName,userPassword);
 
-            if (loggedInUser!=null){  // if logging in is successful
+            if (loggedInUser!=null)
+            {  // if logging in is successful
 
                 progressDialog.dismiss();   // dismiss the progress bar
 
@@ -109,7 +113,8 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void signUpBtnClick(View view){
+    public void signUpBtnClick(View view)
+    {
         //------------------------------------------------------
         // signUpBtnClick
         //
@@ -127,7 +132,8 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public User authenticate(String userName, String userPassword){
+    public User authenticate(String userName, String userPassword)
+    {
         //------------------------------------------------------
         // authenticate
         //
@@ -143,7 +149,7 @@ public class Login extends AppCompatActivity {
 
         boolean credintalsValid=accessUsers.correctPassword(userName,userPassword);
 
-        if(credintalsValid)    // if the credintals are valid
+        if (credintalsValid)    // if the credintals are valid
         {
             retValue=accessUsers.getUser(userName);
         }
@@ -154,8 +160,7 @@ public class Login extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // if the back button is pressed. Do nothing for now.
         finish();
-        System.exit(0);
-    }
+        Intent loginPage = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(loginPage);    }
 }

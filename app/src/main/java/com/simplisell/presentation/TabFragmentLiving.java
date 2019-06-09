@@ -23,21 +23,25 @@ import static com.simplisell.objects.Category.BOOKS;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentLiving extends Fragment {
+public class TabFragmentLiving extends Fragment
+{
 
 
     private RecyclerView recyclerView;
-    private Search adsSearch;
-    private List<Ad> ads;
+    private static Search adsSearch = new Search();
+    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(ACCOMMODATION);
+    private static boolean isSortedAscending = false;
 
-    public TabFragmentLiving() {
+    public TabFragmentLiving()
+    {
         // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         //Inflate the layout for this fragment
 
 
@@ -52,11 +56,26 @@ public class TabFragmentLiving extends Fragment {
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
-        adsSearch=new Search();
-        ads=adsSearch.getAllAdsByCateogry(ACCOMMODATION);
 
+    }
+
+    public static void sort()
+    {
+
+
+        if(isSortedAscending)       // if its already sorted in ascending
+        {
+            ads=adsSearch.sortPriceDesc(ads);
+            isSortedAscending=false;
+        }
+        else
+        {
+            ads=adsSearch.sortPriceAsc(ads);
+            isSortedAscending=true;
+        }
     }
 }
