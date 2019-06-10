@@ -6,6 +6,7 @@ import java.util.List;
 public interface AdPersistence
 {
     List<Ad> getAds();
+    Ad getAd(int adId);
     void insertAd(final Ad ad);
     void removeAd(final Ad ad);
 }

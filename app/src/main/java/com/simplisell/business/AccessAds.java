@@ -17,6 +17,11 @@ public final class AccessAds
     }
 
 
+    public final Ad getAd(int adId)
+    {
+        return adPersistence.getAd(adId);
+    }
+
     public final List<Ad> getAllAds()
     {
         return adPersistence.getAds();
