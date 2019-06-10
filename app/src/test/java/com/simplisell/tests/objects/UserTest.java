@@ -1,8 +1,7 @@
 package com.simplisell.tests.objects;
 
+import com.simplisell.objects.*;
 import org.junit.Test;
-import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 
 import java.util.List;
 
@@ -46,8 +45,12 @@ public class UserTest
 
 		UserAdvertiser user = new UserAdvertiser("user1", "1234");
 		assertNotNull(user);
-		user.addNewAd("TestAd");
-		List<String> userAds = user.getPostings();
+
+		Ad testAd = new Ad(user.getUserName(), AdType.OFFERING, Category.OTHERS, "TestAd Title",
+				"TestAd Description", 500);
+		user.addNewAd(testAd);
+
+		List<Ad> userAds = user.getPostings();
 		assertTrue(user.getPostings().size() == 1);
 		assertTrue(userAds.contains("TestAd"));
 		System.out.println("Finished testAddNewUserAd");
@@ -60,15 +63,19 @@ public class UserTest
 
 		UserAdvertiser user = new UserAdvertiser("user1", "1234");
 		assertNotNull(user);
-		user.addNewAd("TestAd");
-		List<String> userAds = user.getPostings();
+
+		Ad testAd = new Ad(user.getUserName(), AdType.OFFERING, Category.OTHERS, "TestAd Title",
+				"TestAd Description", 500);
+		user.addNewAd(testAd);
+
+		List<Ad> userAds = user.getPostings();
 		assertTrue(userAds.size() == 1);
 		assertTrue(userAds.contains("TestAd"));
 		user.deleteAd("TestAd");
 		assertTrue(userAds.size() == 0);
 		assertFalse(userAds.contains("TestAd"));
 
-		System.out.println("Starting testDeleteValidUserAd");
+		System.out.println("Finished testDeleteValidUserAd");
 	}
 
 	@Test
@@ -77,14 +84,18 @@ public class UserTest
 		System.out.println("\nStarting testDeleteInvalidUserAd");
 
 		UserAdvertiser user = new UserAdvertiser("user1", "1234");
-		List<String> userAds = user.getPostings();
+		List<Ad> userAds = user.getPostings();
 		assertNotNull(user);
-		user.addNewAd("TestAd");
+
+		Ad testAd = new Ad(user.getUserName(), AdType.OFFERING, Category.OTHERS, "TestAd Title",
+				"TestAd Description", 500);
+		user.addNewAd(testAd);
+
 		assertTrue(userAds.size() == 1);
 		user.deleteAd("Invalid Ad");
 		assertTrue(userAds.size() == 1);
 		assertTrue(userAds.contains("TestAd"));
 
-		System.out.println("Starting testDeleteInvalidUserAd");
+		System.out.println("Finished testDeleteInvalidUserAd");
 	}
 }

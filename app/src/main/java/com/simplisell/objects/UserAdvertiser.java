@@ -6,7 +6,7 @@ import java.util.List;
 public final class UserAdvertiser extends User
 {
 
-    private List<String> postings;
+    private List<Ad> postings;
 
 
     public UserAdvertiser(String userName, String password)
@@ -14,9 +14,9 @@ public final class UserAdvertiser extends User
         super(userName, password);
     }
 
-    public void addNewAd(String ad)
+    public void addNewAd(Ad newAd)
     {
-        this.postings.add(ad);
+        this.postings.add(newAd);
     }
 
     public void deleteAd(String adID)
@@ -24,7 +24,7 @@ public final class UserAdvertiser extends User
         this.postings.remove(adID);
     }
 
-    public List<String> getPostings()
+    public List<Ad> getPostings()
     {
         return postings;
     }
