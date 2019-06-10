@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void sortBtnClick(View view) {
+    public void sortBtnClick(View view)
+    {
 
         int position= tabLayout.getSelectedTabPosition();   // get position of current tab layout
 
@@ -145,5 +146,19 @@ public class MainActivity extends AppCompatActivity
         viewPager.setCurrentItem(position); // set it to the position user wanted
 
 
+    }
+
+    public void postAdBtnClick(View view)
+    {
+        if (userName == null)
+        {
+            startActivity(new Intent(getApplicationContext() , Login.class));
+        }
+        else
+        {
+            Intent postAd=new Intent(getApplicationContext(), PostAd.class);
+            postAd.putExtra(USERNAME_TEXT, userName);
+            startActivity(postAd);
+        }
     }
 }

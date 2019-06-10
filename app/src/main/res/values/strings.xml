@@ -49,6 +49,25 @@
 
     <string name="menu">Menu</string>
 
+    <string name="post">Post</string>
+
+    <string name="title">Title</string>
+
+    <string name="description">Description</string>
+
+    <string name="price">Price</string>
+
+    <string name="postAd">Post Ad</string>
+
+    <string name="selectCategory">Select Category</string>
+
+    <string name="category">Category</string>
+
+    <string name="edit">Edit</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="save">Save</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

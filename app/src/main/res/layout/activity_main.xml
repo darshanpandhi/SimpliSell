@@ -167,6 +167,7 @@
             android:background="@android:drawable/editbox_background"
             android:backgroundTint="@color/black_overlay"
             android:fontFamily="@font/candal"
+            android:onClick="postAdBtnClick"
             android:text="@string/postAnAd"
             android:textColor="@color/whiteBtn" />
 
