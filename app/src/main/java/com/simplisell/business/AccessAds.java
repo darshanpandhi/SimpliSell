@@ -11,7 +11,7 @@ public final class AccessAds
     private final AdPersistence adPersistence;
 
 
-    private AccessAds()
+    public AccessAds()
     {
         adPersistence = Services.getAdPersistence();
     }
