@@ -22,4 +22,9 @@ final class AccessAds
         return adPersistence.getAds();
     }
 
+    public final void insertAd(final Ad adToBeInserted)
+    {
+        adPersistence.insertAd(adToBeInserted);
+    }
+
 }

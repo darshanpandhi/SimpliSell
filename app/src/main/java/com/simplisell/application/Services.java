@@ -5,21 +5,26 @@ import com.simplisell.persistence.stubs.UserPersistenceStub;
 import com.simplisell.persistence.AdPersistence;
 import com.simplisell.persistence.stubs.AdPersistenceStub;
 
-public class Services {
+public class Services
+{
 
     public static UserPersistence userPersistence = null;
     public static AdPersistence adPersistence = null;
 
-    public static synchronized UserPersistence getUserPersistence() {
-        if (userPersistence == null) {
+    public static synchronized UserPersistence getUserPersistence()
+    {
+        if (userPersistence == null)
+        {
             userPersistence = new UserPersistenceStub();
         }
 
         return userPersistence;
     }
 
-    public static synchronized AdPersistence getAdPersistence() {
-        if (adPersistence == null) {
+    public static synchronized AdPersistence getAdPersistence()
+    {
+        if (adPersistence == null)
+        {
             adPersistence = new AdPersistenceStub();
         }
 
