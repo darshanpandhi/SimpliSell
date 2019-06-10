@@ -6,7 +6,7 @@ import com.simplisell.persistence.AdPersistence;
 import com.simplisell.objects.Ad;
 import java.util.List;
 
-final class AccessAds
+public final class AccessAds
 {
     private final AdPersistence adPersistence;
 
