@@ -27,4 +27,8 @@ public final class AccessAds
         adPersistence.insertAd(adToBeInserted);
     }
 
+    public final void removeAd(final Ad adToBeRemoved)
+    {
+        adPersistence.removeAd(adToBeRemoved);
+    }
 }
