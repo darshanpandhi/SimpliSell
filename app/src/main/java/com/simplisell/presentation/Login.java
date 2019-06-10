@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity
         //
         // PURPOSE: Performs actions when the Login button is clicked on Login activity
         //
-        // Parameter- View view- is the display view.
+        // Patameter- View view- is the display view.
         //------------------------------------------------------
 
         String userName;       // The userName in the textbox will be stored here.
@@ -120,7 +120,7 @@ public class Login extends AppCompatActivity
         //
         // PURPOSE: Performs actions when the sign up button is clicked on Login activity
         //
-        // Parameter- View view- is the display view.
+        // Patameter- View view- is the display view.
         //------------------------------------------------------
 
 
@@ -139,7 +139,7 @@ public class Login extends AppCompatActivity
         //
         // PURPOSE: Performs an authentication and returns true if authentication was successful
         //
-        // Parameter- String userName- the userName of the user
+        // Patameter- String userName- the userName of the user
         //              String userPassword- the userName of the user
         // Return- True if authentication is successful
         //------------------------------------------------------
