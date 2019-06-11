@@ -95,7 +95,6 @@ public class UserProfileMenu extends AppCompatActivity {
                 {
                     logout();
                 }
-
             }
         });
 
@@ -104,7 +103,6 @@ public class UserProfileMenu extends AppCompatActivity {
 
     public void accountBtnClick(View view)
     {
-
         finish();
         startActivity(new Intent(getApplicationContext() , MainActivity.class));
     }
@@ -116,7 +114,5 @@ public class UserProfileMenu extends AppCompatActivity {
         RecyclerViewAdapter.logOut();
         finish();
         startActivity(new Intent(getApplicationContext() , MainActivity.class));
-
-
     }
 }

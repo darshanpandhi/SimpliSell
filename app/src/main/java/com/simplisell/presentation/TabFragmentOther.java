@@ -16,21 +16,20 @@ import com.simplisell.objects.Ad;
 
 import java.util.List;
 
-import static com.simplisell.objects.Category.BOOKS;
 import static com.simplisell.objects.Category.OTHERS;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentOther extends Fragment {
-
-
+public class TabFragmentOther extends Fragment
+{
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(OTHERS);
+    private List<Ad> ads = adsSearch.getAllAdsByCategory(OTHERS);
     private static boolean isSortedAscending = false;
 
-    public TabFragmentOther() {
+    public TabFragmentOther()
+    {
         // Required empty public constructor
     }
 
@@ -60,7 +59,7 @@ public class TabFragmentOther extends Fragment {
 
     }
 
-    public static void sort()
+    public void sort()
     {
 
 

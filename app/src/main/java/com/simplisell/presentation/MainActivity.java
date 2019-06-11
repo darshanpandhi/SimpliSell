@@ -20,10 +20,21 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private AccessUsers accessUsers;      // helps  access users
     private ImageButton profileBtn;
+    private TabFragmentAll tabFragmentAllObj;
+    private TabFragmentBooks tabFragmentBooksObj;
+    private TabFragmentTransportation tabFragmentTransportationObj;
+    private TabFragmentServicesJobs tabFragmentServicesJobsObj;
+    private TabFragmentLiving tabFragmentLivingObj;
+    private TabFragmentEvents tabFragmentEventsObj;
+    private TabFragmentElectronics tabFragmentElectronicsObj;
+    private TabFragmentOther tabFragmentOtherObj;
 
-    private static User currUser=null;
-    private static String userName=null;
-    private static boolean isSortedAscending=false;
+
+
+
+    private static User currUser = null;
+    private static String userName = null;
+    private static boolean isSortedAscending = false;
 
 
 
@@ -31,14 +42,26 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
+
+        tabFragmentAllObj = new TabFragmentAll();
+        tabFragmentBooksObj = new TabFragmentBooks();
+        tabFragmentTransportationObj = new TabFragmentTransportation();
+        tabFragmentServicesJobsObj = new TabFragmentServicesJobs();
+        tabFragmentLivingObj = new TabFragmentLiving();
+        tabFragmentEventsObj = new TabFragmentEvents();
+        tabFragmentElectronicsObj = new TabFragmentElectronics();
+        tabFragmentOtherObj = new TabFragmentOther();
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        accessUsers=new AccessUsers();
+        accessUsers = new AccessUsers();
 
-        if(userName==null)  // if there is no logged in user
+        if(userName == null)  // if there is no logged in user
         {
-
             try
             {
 
@@ -50,19 +73,14 @@ public class MainActivity extends AppCompatActivity
                     currUser=accessUsers.getUser(userName);
                 }
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
 
                 userName = null;
                 currUser=null;
             }
-
         }
-
-
         tabSetUp();
-
-
-
     }
 
     private void tabSetUp()
@@ -75,14 +93,14 @@ public class MainActivity extends AppCompatActivity
         TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
 
         // adding the fragments
-        adapter.addFragment(new TabFragmentAll(), "All");
-        adapter.addFragment(new TabFragmentBooks(), "Book");
-        adapter.addFragment(new TabFragmentServicesJobs(), "Services & Jobs");
-        adapter.addFragment(new TabFragmentElectronics(), "Electronics");
-        adapter.addFragment(new TabFragmentEvents(), "Events");
-        adapter.addFragment(new TabFragmentTransportation(), "Transportation");
-        adapter.addFragment(new TabFragmentLiving(), "Accomodation");
-        adapter.addFragment(new TabFragmentOther(), "Other");
+        adapter.addFragment(tabFragmentAllObj, "All");
+        adapter.addFragment(tabFragmentBooksObj, "Book");
+        adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
+        adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
+        adapter.addFragment(tabFragmentEventsObj, "Events");
+        adapter.addFragment(tabFragmentTransportationObj, "Transportation");
+        adapter.addFragment(tabFragmentLivingObj, "Accommodation");
+        adapter.addFragment(tabFragmentOtherObj, "Other");
 
 
         // adapter setup
@@ -128,19 +146,22 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void sortBtnClick(View view)
+    public  void sortBtnClick(View view)
     {
 
         int position= tabLayout.getSelectedTabPosition();   // get position of current tab layout
 
-        TabFragmentAll.sort();
-        TabFragmentBooks.sort();
-        TabFragmentTransportation.sort();
-        TabFragmentServicesJobs.sort();
-        TabFragmentLiving.sort();
-        TabFragmentEvents.sort();
-        TabFragmentElectronics.sort();
-        TabFragmentOther.sort();
+
+
+        tabFragmentAllObj.sort();
+        tabFragmentBooksObj.sort();
+        tabFragmentTransportationObj.sort();
+        tabFragmentServicesJobsObj.sort();
+        tabFragmentLivingObj.sort();
+        tabFragmentEventsObj.sort();
+        tabFragmentElectronicsObj.sort();
+        tabFragmentOtherObj.sort();
+
         tabSetUp();                 // set up all tabs again
 
         viewPager.setCurrentItem(position); // set it to the position user wanted
