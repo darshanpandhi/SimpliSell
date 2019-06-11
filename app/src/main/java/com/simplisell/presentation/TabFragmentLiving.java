@@ -28,7 +28,7 @@ public class TabFragmentLiving extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(ACCOMMODATION);
+    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(ACCOMMODATION);
     private static boolean isSortedAscending = false;
 
     public TabFragmentLiving()
@@ -64,7 +64,7 @@ public class TabFragmentLiving extends Fragment
 
     }
 
-    public void sort()
+    public static void sort()
     {
 
 
