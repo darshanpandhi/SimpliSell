@@ -15,10 +15,13 @@ public class Search {
     private AdPersistence adPersistence;
 
     public Search() {
+
         adPersistence = Services.getAdPersistence();
+
     }
 
-    public List<Ad> getAllAdsByCategory(Category category)
+
+    public List<Ad> getAllAdsByCateogry(Category category)
     {
         List<Ad> adList = new ArrayList<Ad>();
 

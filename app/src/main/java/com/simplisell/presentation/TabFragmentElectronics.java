@@ -28,7 +28,7 @@ public class TabFragmentElectronics extends Fragment {
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(ELECTRONICS);
+    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(ELECTRONICS);
     private static boolean isSortedAscending=false;
 
     public TabFragmentElectronics()
@@ -43,7 +43,7 @@ public class TabFragmentElectronics extends Fragment {
     {
         //Inflate the layout for this fragment
 
-        ads = adsSearch.getAllAdsByCategory(ELECTRONICS);
+        ads = adsSearch.getAllAdsByCateogry(ELECTRONICS);
         View view=inflater.inflate(R.layout.fragment_tab_fragment_electronics, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentElectronics);
         RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
@@ -62,7 +62,7 @@ public class TabFragmentElectronics extends Fragment {
 
     }
 
-    public void sort()
+    public static void sort()
     {
 
 
