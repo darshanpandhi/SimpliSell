@@ -14,6 +14,12 @@ public class Search {
 
     private AdPersistence adPersistence;
 
+    //Constructor used for testing purposes
+    public Search(AdPersistence persistence)
+    {
+        adPersistence = persistence;
+    }
+
     public Search() {
         adPersistence = Services.getAdPersistence();
     }
