@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        accessUsers=new AccessUsers();
+        accessUsers = new AccessUsers();
 
         if(userName==null)  // if there is no logged in user
         {

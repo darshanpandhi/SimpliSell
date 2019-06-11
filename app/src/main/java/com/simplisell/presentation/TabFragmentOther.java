@@ -27,10 +27,11 @@ public class TabFragmentOther extends Fragment {
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(OTHERS);
+    private static List<Ad> ads = adsSearch.getAllAdsByCategory(OTHERS);
     private static boolean isSortedAscending = false;
 
-    public TabFragmentOther() {
+    public TabFragmentOther()
+    {
         // Required empty public constructor
     }
 

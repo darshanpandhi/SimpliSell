@@ -28,7 +28,7 @@ public class TabFragmentBooks extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(BOOKS);
+    private static List<Ad> ads = adsSearch.getAllAdsByCategory(BOOKS);
     private static boolean isSortedAscending = false;
 
     public TabFragmentBooks()

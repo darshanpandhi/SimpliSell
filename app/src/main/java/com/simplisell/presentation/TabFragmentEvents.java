@@ -29,7 +29,7 @@ public class TabFragmentEvents extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(EVENTS);
+    private static List<Ad> ads = adsSearch.getAllAdsByCategory(EVENTS);
     private static boolean isSortedAscending = false;
 
     public TabFragmentEvents()

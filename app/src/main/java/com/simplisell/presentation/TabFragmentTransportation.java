@@ -28,7 +28,7 @@ public class TabFragmentTransportation extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(TRANSPORTATION);
+    private static List<Ad> ads = adsSearch.getAllAdsByCategory(TRANSPORTATION);
     private static boolean isSortedAscending = false;
 
     public TabFragmentTransportation()

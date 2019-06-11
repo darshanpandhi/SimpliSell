@@ -28,7 +28,7 @@ public class TabFragmentElectronics extends Fragment {
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(ELECTRONICS);
+    private static List<Ad> ads = adsSearch.getAllAdsByCategory(ELECTRONICS);
     private static boolean isSortedAscending=false;
 
     public TabFragmentElectronics()

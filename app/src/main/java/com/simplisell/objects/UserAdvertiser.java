@@ -22,6 +22,8 @@ public final class UserAdvertiser extends User
     public void deleteAd(String adID)
     {
         this.postings.remove(adID);
+
+
     }
 
     public List<Ad> getPostings()
