@@ -9,7 +9,7 @@ import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 
 
-final class AdTest
+public class AdTest
 {
     @Test
     public void testNewAd()

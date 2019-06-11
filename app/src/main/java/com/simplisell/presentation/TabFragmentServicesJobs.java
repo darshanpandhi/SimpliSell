@@ -30,7 +30,7 @@ public class TabFragmentServicesJobs extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(JOBS_SERVICES);
+    private List<Ad> ads = adsSearch.getAllAdsByCategory(JOBS_SERVICES);
     private static boolean isSortedAscending = false;
 
     public TabFragmentServicesJobs()
@@ -65,7 +65,7 @@ public class TabFragmentServicesJobs extends Fragment
 
     }
 
-    public static void sort()
+    public void sort()
     {
 
 
