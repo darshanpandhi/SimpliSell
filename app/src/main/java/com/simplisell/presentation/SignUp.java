@@ -114,9 +114,13 @@ public class SignUp extends AppCompatActivity
 
                     if(accessUsers.insertNewUser(newUser)!=null){   // check if userName is in the database and insert
 
-                        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
-                        uniqueUserName=userName;
 
+                        String registrationSuccessMessage = "Registration successful";
+                        Toast.makeText(this, registrationSuccessMessage, Toast.LENGTH_SHORT).show();
+
+                        String successMessage = "Logged in as " + userName;
+                        Toast.makeText(this, successMessage, Toast.LENGTH_SHORT).show();
+                        uniqueUserName=userName;
 
                         // Pass this domain object across activities
                         Intent signedUp=new Intent(getApplicationContext(),MainActivity.class);
