@@ -89,6 +89,7 @@ public class PostAd extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
 
             // go to View Individual Ad activity (current user)
+            finish();
             Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
             viewAd.putExtra(ADID_TEXT, ad.getAdId());
             startActivity(viewAd);
@@ -99,6 +100,8 @@ public class PostAd extends AppCompatActivity
     {
         selectCategory();
     }
+
+
 
     private void selectCategory()
     {

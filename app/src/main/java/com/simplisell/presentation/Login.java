@@ -99,6 +99,7 @@ public class Login extends AppCompatActivity
 
                 Intent logIn=new Intent(getApplicationContext(),MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT,uniqueUserName);
+                RecyclerViewAdapter.login(userName);
                 startActivity(logIn);
 
 

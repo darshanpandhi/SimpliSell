@@ -17,7 +17,6 @@ import com.simplisell.objects.Ad;
 import java.util.List;
 
 import static com.simplisell.objects.Category.ACCOMMODATION;
-import static com.simplisell.objects.Category.BOOKS;
 
 
 /**
@@ -46,8 +45,10 @@ public class TabFragmentLiving extends Fragment
 
 
         View view=inflater.inflate(R.layout.fragment_tab_fragment_living, container, false);
-        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentLiving);
-        RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
+
+
+        recyclerView = (RecyclerView)view.findViewById(R.id.listView_insideFragmentLiving);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 

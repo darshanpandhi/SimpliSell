@@ -60,6 +60,8 @@ public class TabFragmentAll extends Fragment
 
         super.onCreate(savedInstanceState);
 
+
+
     }
 
     public void sort()

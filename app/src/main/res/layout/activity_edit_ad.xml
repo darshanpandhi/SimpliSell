@@ -24,7 +24,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_editAd_header"
-        app:layout_constraintVertical_bias="0.222"
+        app:layout_constraintVertical_bias="0.17"
         tools:targetApi="o" />
 
     <EditText
@@ -79,10 +79,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
         android:backgroundTint="@color/colorPrimary"
         android:onClick="saveBtnClick"
         android:text="@string/save"
         android:textAllCaps="false"
+        android:textColor="@color/whiteBtn"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,10 +96,10 @@
 
     <TextView
         android:id="@+id/textView_editAd_header"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/orbitron"
         android:text="@string/edit"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -118,6 +121,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/whiteBtn"
         android:hint="@string/category"
+        android:onClick="selectCategoryBtnClick"
         android:textAlignment="viewStart"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -125,26 +129,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_editAd_selectCategory"
-        app:layout_constraintVertical_bias="0.386" />
-
-    <Button
-        android:id="@+id/button_editAd_selectCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:onClick="selectCategoryBtnClick"
-        android:text="@string/selectCategory"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/editText_editAd_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_editAd_header"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_editAd_header" />
 
 </android.support.constraint.ConstraintLayout>

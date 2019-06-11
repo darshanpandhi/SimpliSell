@@ -87,7 +87,9 @@ public class UserProfileMenu extends AppCompatActivity {
 
                 if (position==0)
                 {
-                    // TODO posting an ad page
+                    Intent postAd=new Intent(getApplicationContext(), PostAd.class);
+                    postAd.putExtra(USERNAME_TEXT, userName);
+                    startActivity(postAd);
                 }
                 else if (position==1)
                 {
@@ -109,6 +111,7 @@ public class UserProfileMenu extends AppCompatActivity {
     {
         MainActivity.logOutUser();
         userName=null;
+        RecyclerViewAdapter.logOut();
         finish();
         startActivity(new Intent(getApplicationContext() , MainActivity.class));
     }

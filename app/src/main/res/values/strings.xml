@@ -5,15 +5,15 @@
 
     <string name="login">Login</string>
 
-    <string name="userName">  Username</string>
+    <string name="userName">  USERNAME</string>
 
-    <string name="password">  Password</string>
+    <string name="password">  PASSWORD</string>
 
-    <string name="confirmpassword">  Confirm Password</string>
+    <string name="confirmpassword">  CONFIRM PASSWORD</string>
 
-    <string name="Useresname">  First and Last Name</string>
+    <string name="Useresname">  FIRST AND LAST NAME</string>
 
-    <string name="signup">  Sign Up</string>
+    <string name="signup">  SIGN UP</string>
 
     <string name="or">OR</string>
 

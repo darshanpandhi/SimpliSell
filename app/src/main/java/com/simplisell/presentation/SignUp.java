@@ -121,6 +121,7 @@ public class SignUp extends AppCompatActivity
                         // Pass this domain object across activities
                         Intent signedUp=new Intent(getApplicationContext(),MainActivity.class);
                         signedUp.putExtra(USERNAME_TEXT,uniqueUserName);
+                        RecyclerViewAdapter.login(userName);
                         startActivity(signedUp);
 
                     }
