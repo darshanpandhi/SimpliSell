@@ -88,6 +88,7 @@ public class PostAd extends AppCompatActivity
             accessAds.insertAd(ad);
             Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
 
+
             // go to View Individual Ad activity (current user)
             finish();
             Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
