@@ -28,13 +28,12 @@ public class TabFragmentBooks extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(BOOKS);
+    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(BOOKS);
     private static boolean isSortedAscending = false;
 
     public TabFragmentBooks()
     {
         // Required empty public constructor
-        adsSearch = new Search();
     }
 
 
@@ -44,7 +43,7 @@ public class TabFragmentBooks extends Fragment
     {
         //Inflate the layout for this fragment
 
-        ads = adsSearch.getAllAdsByCategory(BOOKS);
+
         View view=inflater.inflate(R.layout.fragment_tab_fragment_books, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentBooks);
         RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
@@ -64,7 +63,7 @@ public class TabFragmentBooks extends Fragment
 
     }
 
-    public void sort()
+    public static void sort()
     {
 
 
@@ -79,6 +78,4 @@ public class TabFragmentBooks extends Fragment
             isSortedAscending=true;
         }
     }
-
-
 }

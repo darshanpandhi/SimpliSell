@@ -29,7 +29,7 @@ public class TabFragmentEvents extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(EVENTS);
+    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(EVENTS);
     private static boolean isSortedAscending = false;
 
     public TabFragmentEvents()
@@ -44,7 +44,7 @@ public class TabFragmentEvents extends Fragment
     {
         //Inflate the layout for this fragment
 
-        ads = adsSearch.getAllAdsByCategory(EVENTS);
+
         View view=inflater.inflate(R.layout.fragment_tab_fragment_events, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentEvents);
         RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
@@ -63,7 +63,7 @@ public class TabFragmentEvents extends Fragment
 
     }
 
-    public void sort()
+    public static void sort()
     {
 
 
