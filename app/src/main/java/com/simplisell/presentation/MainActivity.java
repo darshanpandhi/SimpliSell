@@ -20,6 +20,17 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private AccessUsers accessUsers;      // helps  access users
     private ImageButton profileBtn;
+    private TabFragmentAll tabFragmentAllObj;
+    private TabFragmentBooks tabFragmentBooksObj;
+    private TabFragmentTransportation tabFragmentTransportationObj;
+    private TabFragmentServicesJobs tabFragmentServicesJobsObj;
+    private TabFragmentLiving tabFragmentLivingObj;
+    private TabFragmentEvents tabFragmentEventsObj;
+    private TabFragmentElectronics tabFragmentElectronicsObj;
+    private TabFragmentOther tabFragmentOtherObj;
+
+
+
 
     private static User currUser = null;
     private static String userName = null;
@@ -31,6 +42,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
+
+        tabFragmentAllObj = new TabFragmentAll();
+        tabFragmentBooksObj = new TabFragmentBooks();
+        tabFragmentTransportationObj = new TabFragmentTransportation();
+        tabFragmentServicesJobsObj = new TabFragmentServicesJobs();
+        tabFragmentLivingObj = new TabFragmentLiving();
+        tabFragmentEventsObj = new TabFragmentEvents();
+        tabFragmentElectronicsObj = new TabFragmentElectronics();
+        tabFragmentOtherObj = new TabFragmentOther();
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -69,14 +93,14 @@ public class MainActivity extends AppCompatActivity
         TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
 
         // adding the fragments
-        adapter.addFragment(new TabFragmentAll(), "All");
-        adapter.addFragment(new TabFragmentBooks(), "Book");
-        adapter.addFragment(new TabFragmentServicesJobs(), "Services & Jobs");
-        adapter.addFragment(new TabFragmentElectronics(), "Electronics");
-        adapter.addFragment(new TabFragmentEvents(), "Events");
-        adapter.addFragment(new TabFragmentTransportation(), "Transportation");
-        adapter.addFragment(new TabFragmentLiving(), "Accommodation");
-        adapter.addFragment(new TabFragmentOther(), "Other");
+        adapter.addFragment(tabFragmentAllObj, "All");
+        adapter.addFragment(tabFragmentBooksObj, "Book");
+        adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
+        adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
+        adapter.addFragment(tabFragmentEventsObj, "Events");
+        adapter.addFragment(tabFragmentTransportationObj, "Transportation");
+        adapter.addFragment(tabFragmentLivingObj, "Accommodation");
+        adapter.addFragment(tabFragmentOtherObj, "Other");
 
 
         // adapter setup
@@ -127,14 +151,7 @@ public class MainActivity extends AppCompatActivity
 
         int position= tabLayout.getSelectedTabPosition();   // get position of current tab layout
 
-        TabFragmentAll tabFragmentAllObj = new TabFragmentAll();
-        TabFragmentBooks tabFragmentBooksObj = new TabFragmentBooks();
-        TabFragmentTransportation tabFragmentTransportationObj = new TabFragmentTransportation();
-        TabFragmentServicesJobs tabFragmentServicesJobsObj = new TabFragmentServicesJobs();
-        TabFragmentLiving tabFragmentLivingObj = new TabFragmentLiving();
-        TabFragmentEvents tabFragmentEventsObj = new TabFragmentEvents();
-        TabFragmentElectronics tabFragmentElectronicsObj = new TabFragmentElectronics();
-        TabFragmentOther tabFragmentOtherObj = new TabFragmentOther();
+
 
         tabFragmentAllObj.sort();
         tabFragmentBooksObj.sort();
