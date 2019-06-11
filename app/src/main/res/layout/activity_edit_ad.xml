@@ -96,10 +96,10 @@
 
     <TextView
         android:id="@+id/textView_editAd_header"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/orbitron"
         android:text="@string/edit"
         android:textAlignment="center"
         android:textAllCaps="false"
