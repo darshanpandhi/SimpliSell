@@ -100,6 +100,8 @@ public class PostAd extends AppCompatActivity
         selectCategory();
     }
 
+
+
     private void selectCategory()
     {
         //------------------------------------------------------
