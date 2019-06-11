@@ -45,7 +45,7 @@ public class TabFragmentServicesJobs extends Fragment
     {
         //Inflate the layout for this fragment
 
-        ads = adsSearch.getAllAdsByCateogry(JOBS_SERVICES);
+
         View view=inflater.inflate(R.layout.fragment_tab_fragment_servicesjobs, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentJobs);
         RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
