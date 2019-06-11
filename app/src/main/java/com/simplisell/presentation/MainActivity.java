@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity
     private AccessUsers accessUsers;      // helps  access users
     private ImageButton profileBtn;
 
-    private static User currUser=null;
-    private static String userName=null;
-    private static boolean isSortedAscending=false;
+    private static User currUser = null;
+    private static String userName = null;
+    private static boolean isSortedAscending = false;
 
 
 
@@ -34,11 +34,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        accessUsers=new AccessUsers();
+        accessUsers = new AccessUsers();
 
-        if(userName==null)  // if there is no logged in user
+        if(userName == null)  // if there is no logged in user
         {
-
             try
             {
 
@@ -50,19 +49,14 @@ public class MainActivity extends AppCompatActivity
                     currUser=accessUsers.getUser(userName);
                 }
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
 
                 userName = null;
                 currUser=null;
             }
-
         }
-
-
         tabSetUp();
-
-
-
     }
 
     private void tabSetUp()
@@ -81,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new TabFragmentElectronics(), "Electronics");
         adapter.addFragment(new TabFragmentEvents(), "Events");
         adapter.addFragment(new TabFragmentTransportation(), "Transportation");
-        adapter.addFragment(new TabFragmentLiving(), "Accomodation");
+        adapter.addFragment(new TabFragmentLiving(), "Accommodation");
         adapter.addFragment(new TabFragmentOther(), "Other");
 
 
@@ -128,19 +122,29 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void sortBtnClick(View view)
+    public  void sortBtnClick(View view)
     {
 
         int position= tabLayout.getSelectedTabPosition();   // get position of current tab layout
 
-        TabFragmentAll.sort();
-        TabFragmentBooks.sort();
-        TabFragmentTransportation.sort();
-        TabFragmentServicesJobs.sort();
-        TabFragmentLiving.sort();
-        TabFragmentEvents.sort();
-        TabFragmentElectronics.sort();
-        TabFragmentOther.sort();
+        TabFragmentAll tabFragmentAllObj = new TabFragmentAll();
+        TabFragmentBooks tabFragmentBooksObj = new TabFragmentBooks();
+        TabFragmentTransportation tabFragmentTransportationObj = new TabFragmentTransportation();
+        TabFragmentServicesJobs tabFragmentServicesJobsObj = new TabFragmentServicesJobs();
+        TabFragmentLiving tabFragmentLivingObj = new TabFragmentLiving();
+        TabFragmentEvents tabFragmentEventsObj = new TabFragmentEvents();
+        TabFragmentElectronics tabFragmentElectronicsObj = new TabFragmentElectronics();
+        TabFragmentOther tabFragmentOtherObj = new TabFragmentOther();
+
+        tabFragmentAllObj.sort();
+        tabFragmentBooksObj.sort();
+        tabFragmentTransportationObj.sort();
+        tabFragmentServicesJobsObj.sort();
+        tabFragmentLivingObj.sort();
+        tabFragmentEventsObj.sort();
+        tabFragmentElectronicsObj.sort();
+        tabFragmentOtherObj.sort();
+
         tabSetUp();                 // set up all tabs again
 
         viewPager.setCurrentItem(position); // set it to the position user wanted

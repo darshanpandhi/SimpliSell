@@ -28,7 +28,7 @@ public class TabFragmentLiving extends Fragment
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private static List<Ad> ads = adsSearch.getAllAdsByCateogry(ACCOMMODATION);
+    private List<Ad> ads = adsSearch.getAllAdsByCategory(ACCOMMODATION);
     private static boolean isSortedAscending = false;
 
     public TabFragmentLiving()
@@ -43,7 +43,7 @@ public class TabFragmentLiving extends Fragment
     {
         //Inflate the layout for this fragment
 
-        ads = adsSearch.getAllAdsByCateogry(ACCOMMODATION);
+        ads = adsSearch.getAllAdsByCategory(ACCOMMODATION);
         View view=inflater.inflate(R.layout.fragment_tab_fragment_living, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.listView_insideFragmentLiving);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),ads);
@@ -62,7 +62,7 @@ public class TabFragmentLiving extends Fragment
 
     }
 
-    public static void sort()
+    public void sort()
     {
 
 
