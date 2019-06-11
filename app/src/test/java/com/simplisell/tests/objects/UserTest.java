@@ -16,10 +16,10 @@ public class UserTest
 
 		System.out.println("\nStarting testUser");
 
-		user = new UserAdvertiser("user1", "1234");
+		user = new UserAdvertiser("user1", "123456");
 		assertNotNull(user);
 		assertEquals("user1",user.getUserName());
-		assertEquals("1234",user.getPassword());
+		assertEquals("123456",user.getPassword());
 
 		System.out.println("Finished testStudent");
 	}
@@ -29,10 +29,10 @@ public class UserTest
 	{
 		System.out.println("\nStarting testUserAdvertiser");
 
-		User user = new UserAdvertiser("user1", "1234");
+		User user = new UserAdvertiser("user1", "123456");
 		assertNotNull(user);
 		assertEquals("user1",user.getUserName());
-		assertEquals("1234",user.getPassword());
+		assertEquals("123456",user.getPassword());
 
 
 		System.out.println("Finished testUserAdvertiser");
@@ -43,7 +43,7 @@ public class UserTest
 	{
 		System.out.println("\nStarting testAddNewUserAd");
 
-		UserAdvertiser user = new UserAdvertiser("user1", "1234");
+		UserAdvertiser user = new UserAdvertiser("user1", "123456");
 		assertNotNull(user);
 
 		Ad testAd = new Ad(user.getUserName(), AdType.OFFERING, Category.OTHERS, "TestAd Title",
@@ -61,7 +61,7 @@ public class UserTest
 	{
 		System.out.println("\nStarting testDeleteValidUserAd");
 
-		UserAdvertiser user = new UserAdvertiser("user1", "1234");
+		UserAdvertiser user = new UserAdvertiser("user1", "123456");
 		assertNotNull(user);
 
 		Ad testAd = new Ad(user.getUserName(), AdType.OFFERING, Category.OTHERS, "TestAd Title",
@@ -83,7 +83,7 @@ public class UserTest
 	{
 		System.out.println("\nStarting testDeleteInvalidUserAd");
 
-		UserAdvertiser user = new UserAdvertiser("user1", "1234");
+		UserAdvertiser user = new UserAdvertiser("user1", "123456");
 		List<Ad> userAds = user.getPostings();
 		assertNotNull(user);
 
