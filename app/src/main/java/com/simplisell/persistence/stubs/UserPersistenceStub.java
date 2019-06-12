@@ -1,7 +1,6 @@
 package com.simplisell.persistence.stubs;
 
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.persistence.UserPersistence;
 
 import java.util.ArrayList;
@@ -15,11 +14,11 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-        user = new UserAdvertiser("Bob", "123456");
+        user = new User("Bob", "123456", "What is your favourite color", "Red");
         users.add(user);
-        user = new UserAdvertiser("Allice", "123456");
+        user = new User("Allice", "123456", "What is your favourite color", "Green");
         users.add(user);
-        user = new UserAdvertiser("Jay", "123456");
+        user = new User("Jay", "123456", "What is your favourite color", "Blue");
         users.add(user);
     }
 
@@ -48,6 +47,29 @@ public class UserPersistenceStub implements UserPersistence
         return password;
     }
 
+    @Override
+    public String getSecurityQuestion(String userName)
+    {
+        User user = findUser(userName);
+        String securityQuestion = null;
+        if (user != null)
+        {
+            securityQuestion = user.getSecurityQuestion();
+        }
+        return securityQuestion;
+    }
+
+    @Override
+    public String getSecurityAnswer(String userName)
+    {
+        User user = findUser(userName);
+        String securityQuestion = null;
+        if (user != null)
+        {
+            securityQuestion = user.getSecurityQuestion();
+        }
+        return securityQuestion;
+    }
 
     @Override
     public User insertUser(final User user)

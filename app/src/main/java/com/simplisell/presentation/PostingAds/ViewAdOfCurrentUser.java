@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.PostingAds;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
+import com.simplisell.presentation.MainActivity;
 
 public class ViewAdOfCurrentUser extends AppCompatActivity {
 
@@ -53,13 +54,6 @@ public class ViewAdOfCurrentUser extends AppCompatActivity {
 
     public void editBtnClick(View view)
     {
-        //------------------------------------------------------
-        // editBtnClick
-        //
-        // PURPOSE: let user edit the current ad
-        //
-        //------------------------------------------------------
-
         Intent editAd = new Intent(getApplicationContext(), EditAd.class);
         editAd.putExtra(ADID_TEXT, adId);
         startActivity(editAd);
@@ -67,13 +61,6 @@ public class ViewAdOfCurrentUser extends AppCompatActivity {
 
     public void deleteBtnClick(View view)
     {
-        //------------------------------------------------------
-        // deleteBtnClick
-        //
-        // PURPOSE: delete the current ad
-        //
-        //------------------------------------------------------
-
         accessAds.removeAd(currAd);
         Toast.makeText(getApplicationContext(), "Advertisement Deleted", Toast.LENGTH_LONG).show();
 
@@ -84,13 +71,6 @@ public class ViewAdOfCurrentUser extends AppCompatActivity {
 
     public void onBackPressed()
     {
-        //------------------------------------------------------
-        // onBackPressed
-        //
-        // PURPOSE: go back to main page if done with editing
-        //
-        //------------------------------------------------------
-
         finish();
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainPage);

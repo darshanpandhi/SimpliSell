@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.HomePageTabs;
 
 
 import android.os.Bundle;
@@ -9,26 +9,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
-
+import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
 import java.util.List;
+import static com.simplisell.objects.Category.ACCOMMODATION;
 
-import static com.simplisell.objects.Category.OTHERS;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentOther extends Fragment
+public class TabFragmentLiving extends Fragment
 {
-    private RecyclerView recyclerView;
+
     private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(OTHERS);
     private static boolean isSortedAscending = false;
 
-    public TabFragmentOther()
+    private RecyclerView recyclerView;
+    private List<Ad> ads;
+
+    public TabFragmentLiving()
     {
         // Required empty public constructor
     }
@@ -40,10 +41,10 @@ public class TabFragmentOther extends Fragment
     {
         //Inflate the layout for this fragment
 
-
-        View view=inflater.inflate(R.layout.fragment_tab_fragment_other, container, false);
-        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentOther);
-        RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
+        ads = adsSearch.getAllAdsByCategory(ACCOMMODATION);
+        View view=inflater.inflate(R.layout.fragment_tab_fragment_living, container, false);
+        recyclerView = (RecyclerView)view.findViewById(R.id.listView_insideFragmentLiving);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 

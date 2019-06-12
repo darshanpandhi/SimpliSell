@@ -6,8 +6,10 @@ import java.util.List;
 public interface UserPersistence
 {
     List<User> getUsers();
-    User getUser(final String userName);
-    String getPassword(final String userName);
-    User insertUser(final User user);
-    User updatePassword(final String userName, final String newPassword);
+    User getUser(String userName);
+    String getPassword(String userName);
+    String getSecurityQuestion(String userName);
+    String getSecurityAnswer(String userName);
+    User insertUser(User user);
+    User updatePassword(String userName, String newPassword);
 }

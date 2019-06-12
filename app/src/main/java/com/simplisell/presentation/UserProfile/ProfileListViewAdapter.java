@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.UserProfile;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
