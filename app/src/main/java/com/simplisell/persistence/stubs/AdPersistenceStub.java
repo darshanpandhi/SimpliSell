@@ -96,18 +96,33 @@ public class AdPersistenceStub implements AdPersistence
         return requiredAd;
     }
 
-    public final void insertAd(final Ad newAd)
+    public final Ad insertAd(final Ad newAd)
     {
-        ads.add(newAd);
+        Ad insertedAd = null;
+        final int newAdId = newAd.getAdId();
+
+        // verify the presence of an ad with the same ad id
+        if(getAd(newAdId) == null)
+        {
+            ads.add(newAd);
+            insertedAd = newAd;
+
+        }
+
+        return insertedAd;
     }
 
-    public final void removeAd(final Ad adToBeRemoved)
+    public final Ad removeAd(final Ad adToBeRemoved)
     {
+        Ad removedAd = null;
         final int index = ads.indexOf(adToBeRemoved);
 
         if(index >= 0)
         {
             ads.remove(adToBeRemoved);
+            removedAd = adToBeRemoved;
         }
+
+        return removedAd;
     }
 }

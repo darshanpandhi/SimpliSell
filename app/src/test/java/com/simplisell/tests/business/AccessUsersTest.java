@@ -13,7 +13,7 @@ public class AccessUsersTest {
     @Test
     public void testAddUniqueUserName()
     {
-        System.out.println("\nStarting insertNewUser: unique username");
+        System.out.println("Starting insertNewUser: unique username");
 
         AccessUsers userList = new AccessUsers();
         User user = new UserAdvertiser("User1", "1234");

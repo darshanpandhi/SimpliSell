@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Search {
+public class Search
+{
 
     private AdPersistence adPersistence;
 

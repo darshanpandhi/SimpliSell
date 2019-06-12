@@ -17,6 +17,11 @@ public final class AccessAds
     }
 
 
+    public final Ad insertAd(final Ad newAd)
+    {
+        return adPersistence.insertAd(newAd);
+    }
+
     public final Ad getAd(int adId)
     {
         return adPersistence.getAd(adId);
@@ -27,13 +32,8 @@ public final class AccessAds
         return adPersistence.getAds();
     }
 
-    public final void insertAd(final Ad adToBeInserted)
+    public final Ad removeAd(final Ad adToBeRemoved)
     {
-        adPersistence.insertAd(adToBeInserted);
-    }
-
-    public final void removeAd(final Ad adToBeRemoved)
-    {
-        adPersistence.removeAd(adToBeRemoved);
+        return adPersistence.removeAd(adToBeRemoved);
     }
 }

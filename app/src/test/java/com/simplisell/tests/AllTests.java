@@ -8,6 +8,7 @@ import com.simplisell.tests.objects.UserTest;
 import com.simplisell.tests.objects.AdTest;
 import com.simplisell.tests.business.ValidPasswordCheckerTest;
 import com.simplisell.tests.business.SearchTest;
+import com.simplisell.tests.business.AccessAdsTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -15,7 +16,8 @@ import com.simplisell.tests.business.SearchTest;
         ValidPasswordCheckerTest.class,
         AdTest.class,
         SearchTest.class,
-        AccessUsersTest.class
+        AccessUsersTest.class,
+        AccessAdsTest.class
 })
 
 public class AllTests
