@@ -56,12 +56,6 @@ public class PostAd extends AppCompatActivity
 
     public void postBtnClick(View view)
     {
-        //------------------------------------------------------
-        // postBtnClick
-        //
-        // PURPOSE: Performs actions when the post button is clicked.
-        //------------------------------------------------------
-
         String title;
         String description;
         double price;
@@ -75,7 +69,7 @@ public class PostAd extends AppCompatActivity
         // if empty field exists
         if (titleEmpty||descriptionEmpty||priceEmpty||categoryEmpty)
         {
-            Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
         }
         else
         {
@@ -98,20 +92,6 @@ public class PostAd extends AppCompatActivity
 
     public void selectCategoryBtnClick(View view)
     {
-        selectCategory();
-    }
-
-
-
-    private void selectCategory()
-    {
-        //------------------------------------------------------
-        // selectCategory
-        //
-        // PURPOSE: show confirmation dialog for selecting category
-        //
-        //------------------------------------------------------
-
         AlertDialog dialog;
         AlertDialog.Builder builder;
         final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION", "EVENTS", "OTHERS"};
