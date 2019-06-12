@@ -2,12 +2,9 @@ package com.simplisell.tests.business;
 
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-
-import java.util.List;
 
 public class AccessUsersTest {
     @Test
@@ -16,11 +13,11 @@ public class AccessUsersTest {
         System.out.println("\nStarting insertNewUser: unique username");
 
         AccessUsers userList = new AccessUsers();
-        User user = new UserAdvertiser("User1", "1234");
+        User user = new User("User1", "123456", "What is your favourite color", "Red");
         User addedUser = userList.insertNewUser(user);
         assertNotNull(addedUser);
         assertEquals("User1",addedUser.getUserName());
-        assertEquals("1234", addedUser.getPassword());
+        assertEquals("123456", addedUser.getPassword());
 
         System.out.println("Finished insertNewUser: unique username");
     }
@@ -31,7 +28,7 @@ public class AccessUsersTest {
         System.out.println("\nStarting insertNewUser: username exist");
 
         AccessUsers userList = new AccessUsers();
-        User user = new UserAdvertiser("User1", "1234");
+        User user = new User("User1", "123456", "What is your favourite color", "Red");
         User addedUser = userList.insertNewUser(user);
         addedUser = userList.insertNewUser(user);
         assertNull(addedUser);
@@ -45,9 +42,9 @@ public class AccessUsersTest {
         System.out.println("\nStarting testCorrectPassword: correct password for user");
 
         AccessUsers userList = new AccessUsers();
-        User user = new UserAdvertiser("User1", "1234");
+        User user = new User("User1", "123456", "What is your favourite color", "Red");
         User addedUser = userList.insertNewUser(user);
-        String passwordInput = "1234";
+        String passwordInput = "123456";
         assertTrue(userList.correctPassword("User1", passwordInput));
 
         System.out.println("Finished testCorrectPassword: correct password for user");
@@ -59,25 +56,54 @@ public class AccessUsersTest {
         System.out.println("\nStarting testCorrectPassword: incorrect password for user");
 
         AccessUsers userList = new AccessUsers();
-        User user = new UserAdvertiser("User1", "1234");
+        User user = new User("User1", "123456", "What is your favourite color", "Red");
         User addedUser = userList.insertNewUser(user);
         String userNameInput = "User1";
-        String passwordInput = "12345";
+        String passwordInput = "1234567";
         assertFalse(userList.correctPassword(userNameInput, passwordInput));
 
         System.out.println("Finished testCorrectPassword: incorrect password for user");
     }
 
     @Test
+    public void testCorrectSecurityAnswer()
+    {
+        System.out.println("\nStarting testCorrectSecurityAnswer: correct answer for user security question");
+
+        AccessUsers userList = new AccessUsers();
+        User user = new User("User1", "123456", "What is your favourite color", "Red");
+        User addedUser = userList.insertNewUser(user);
+        String userNameInput = "User1";
+        String securityQuestionAnswer = "Red";
+        assertTrue(userList.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
+
+        System.out.println("Finished testCorrectSecurityAnswer: correct answer for user security question");
+    }
+
+    @Test
+    public void testIncorrectSecurityAnswer()
+    {
+        System.out.println("\nStarting testIncorrectSecurityAnswer: incorrect answer for user security question");
+
+        AccessUsers userList = new AccessUsers();
+        User user = new User("User1", "123456", "What is your favourite color", "Red");
+        User addedUser = userList.insertNewUser(user);
+        String userNameInput = "User1";
+        String securityQuestionAnswer = "Green";
+        assertFalse(userList.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
+
+        System.out.println("Finished testIncorrectSecurityAnswer: incorrect answer for user security question");
+    }
+    @Test
     public void userNameNotFound()
     {
         System.out.println("\nStarting testCorrectPassword: username not found");
 
         AccessUsers userList = new AccessUsers();
-        User user = new UserAdvertiser("User1", "1234");
+        User user = new User("User1", "123456", "What is your favourite color", "Red");
         User addedUser = userList.insertNewUser(user);
         String userNameInput = "InvalidUser";
-        String passwordInput = "1234";
+        String passwordInput = "123456";
         assertFalse(userList.correctPassword(userNameInput, passwordInput));
 
         System.out.println("Finished testCorrectPassword: username not found");

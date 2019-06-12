@@ -27,8 +27,6 @@ public class Login extends AppCompatActivity
     private static String uniqueUserName;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -107,29 +105,24 @@ public class Login extends AppCompatActivity
             else    // if authentication is not successful.
             {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "INVALID userName OR PASSWORD", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Invalid userName OR password", Toast.LENGTH_SHORT).show();
 
             }
         }
 
     }
 
+    public void forgetPasswordBtnClick(View view)
+    {
+        Intent forgetPass = new Intent(Login.this, ForgetPassword.class);
+        startActivity(forgetPass);
+    }
+
     public void signUpBtnClick(View view)
     {
-        //------------------------------------------------------
-        // signUpBtnClick
-        //
-        // PURPOSE: Performs actions when the sign up button is clicked on Login activity
-        //
-        // Patameter- View view- is the display view.
-        //------------------------------------------------------
-
-
         // takes to sign in page
         Intent signUp = new Intent(Login.this, SignUp.class);
         startActivity (signUp);
-
-
     }
 
 
@@ -163,5 +156,6 @@ public class Login extends AppCompatActivity
     public void onBackPressed() {
         finish();
         Intent loginPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(loginPage);    }
+        startActivity(loginPage);
+    }
 }

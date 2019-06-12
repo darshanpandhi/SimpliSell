@@ -18,6 +18,7 @@
         <activity android:name=".presentation.PostAd" />
         <activity android:name=".presentation.Login" />
         <activity android:name=".presentation.MainActivity" />
+        <activity android:name=".presentation.ForgetPassword"/>
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

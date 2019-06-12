@@ -11,7 +11,6 @@ import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.ValidPasswordChecker;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 
 
 public class SignUp extends AppCompatActivity
@@ -22,7 +21,9 @@ public class SignUp extends AppCompatActivity
     private EditText name;              // name of user
     private EditText userName;             // firstNLastName of user
     private EditText password;          // password of user
-    private EditText confirmPassword;   // confirm passord of user
+    private EditText confirmPassword;   // confirm password of user
+    private EditText securityQuestion;  // security question of user
+    private EditText securityAnswer;    // security answer of user
     private AccessUsers accessUsers;      // helps  access users
 
     private static String uniqueUserName;
@@ -42,6 +43,8 @@ public class SignUp extends AppCompatActivity
         password = findViewById(R.id.editText_name_registrationPass);
         name = findViewById(R.id.editText_name_registrationName);
         confirmPassword = findViewById(R.id.editText_name_registrationConfirmPass);
+        securityQuestion = findViewById(R.id.editText_name_registrationSecurityQuestion);
+        securityAnswer = findViewById(R.id.editText_name_registrationSecurityAnswer);
 
         accessUsers=new AccessUsers();
 
@@ -63,11 +66,10 @@ public class SignUp extends AppCompatActivity
         String userName = this.userName.getText().toString().trim();
         String userPassword = password.getText().toString();
         String userConfirmPassword = confirmPassword.getText().toString();
+        String userSecurityQuestion = securityQuestion.getText().toString();
+        String userSecurityAnswer = securityAnswer.getText().toString();
 
-
-        validate(firstNLastName,userName,userPassword,userConfirmPassword);
-
-
+        validate(firstNLastName,userName,userPassword,userConfirmPassword, userSecurityQuestion, userSecurityAnswer);
     }
 
     public void backToLoginTextClick(View view)
@@ -87,7 +89,7 @@ public class SignUp extends AppCompatActivity
     }
 
 
-    private void validate(String firstNLastName,String userName,String userPassword, String userConfirmPassword)
+    private void validate(String firstNLastName,String userName,String userPassword, String userConfirmPassword, String userSecurityQuestion, String userSecurityAnswer)
     {
         //------------------------------------------------------
         // validate
@@ -100,7 +102,7 @@ public class SignUp extends AppCompatActivity
         int number;
 
         // are the fields empty
-        boolean empty = (!firstNLastName.isEmpty()&&!userName.isEmpty()&&!userPassword.isEmpty()&&!userConfirmPassword.isEmpty());
+        boolean empty = (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
 
         if(empty)  // if any field is empty
         {
@@ -110,11 +112,9 @@ public class SignUp extends AppCompatActivity
                 if (ValidPasswordChecker.validPassword(userPassword))  // if password meets the standards
                 {
 
-                    User newUser=new UserAdvertiser(userName,userPassword);   // create a new user
+                    User newUser=new User(userName, userPassword, userSecurityQuestion, userSecurityAnswer);   // create a new user
 
                     if(accessUsers.insertNewUser(newUser)!=null){   // check if userName is in the database and insert
-
-
                         String registrationSuccessMessage = "Registration successful";
                         Toast.makeText(this, registrationSuccessMessage, Toast.LENGTH_SHORT).show();
 
@@ -127,35 +127,22 @@ public class SignUp extends AppCompatActivity
                         signedUp.putExtra(USERNAME_TEXT,uniqueUserName);
                         RecyclerViewAdapter.login(userName);
                         startActivity(signedUp);
-
-                    }
-                    else
-                    {
+                    } else
+                        {
                         Toast.makeText(this, "Username has been taken! Please try another", Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-
-                } else {
+                        }
+                } else
                     {
-                        Toast.makeText(this, "Password should have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
                     }
-
+            } else
+                {
+                Toast.makeText(this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
                 }
-            }else{
-                Toast.makeText(this, "Passwords Dont Match!", Toast.LENGTH_SHORT).show();
-
-            }
-
-
-        }else{
-
+        } else
+            {
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
-
-        }
-
+            }
     }
 
 
@@ -163,5 +150,6 @@ public class SignUp extends AppCompatActivity
     public void onBackPressed() {
         finish();
         Intent loginPage = new Intent(getApplicationContext(), Login.class);
-        startActivity(loginPage);    }
+        startActivity(loginPage);
+    }
 }

@@ -1,21 +1,25 @@
 package com.simplisell.objects;
 
-import java.io.Serializable;
-
-public abstract class User
+public class User
 {
     private final String userName;
     private String password;
+    private String securityQuestion;
+    private String securityAnswer;
 
     public User()
     {
-        this.userName = "";
-        this.password = "";
+        userName = "";
+        password = "";
+        securityQuestion = "";
+        securityAnswer = "";
     }
-    public User(final String newUserName, final String newUserPassword)
+    public User(String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer)
     {
-        this.userName = newUserName;
-        this.password = newUserPassword;
+        userName = newUserName;
+        password = newUserPassword;
+        securityQuestion = newSecurityQuestion;
+        securityAnswer = newSecurityAnswer;
     }
 
     public String getUserName()
@@ -28,6 +32,16 @@ public abstract class User
     {
 
         return password;
+    }
+
+    public String getSecurityQuestion()
+    {
+        return securityQuestion;
+    }
+
+    public String getSecurityAnswer()
+    {
+        return securityAnswer;
     }
 
     public void setPassword(final String newPassword)

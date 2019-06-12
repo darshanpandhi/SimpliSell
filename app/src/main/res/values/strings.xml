@@ -5,21 +5,33 @@
 
     <string name="login">Login</string>
 
-    <string name="userName">  USERNAME</string>
+    <string name="userName">USERNAME</string>
 
-    <string name="password">  PASSWORD</string>
+    <string name="password">PASSWORD</string>
 
-    <string name="confirmpassword">  CONFIRM PASSWORD</string>
+    <string name="confirmPassword">CONFIRM PASSWORD</string>
 
-    <string name="Useresname">  FIRST AND LAST NAME</string>
+    <string name="securityQuestion">SECURITY QUESTION</string>
 
-    <string name="signup">  SIGN UP</string>
+    <string name="securityAnswer">SECURITY ANSWER</string>
+
+    <string name="resetPassword">Reset Password</string>
+
+    <string name="username">FIRST AND LAST NAME</string>
+
+    <string name="signup">SIGN UP</string>
 
     <string name="or">OR</string>
 
     <string name="copyright">© 2019 Crazy Eights</string>
 
     <string name="signupTwo">Sign Up</string>
+
+    <string name="forgetPassword">Forget Password?</string>
+
+    <string name="resetMyPassword">Reset My Password</string>
+
+    <string name="getSecurityQuestion">Get Security Question</string>
 
     <string name="backToLogin">Back To Login</string>
 
