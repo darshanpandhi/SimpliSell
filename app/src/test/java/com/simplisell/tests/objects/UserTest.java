@@ -21,7 +21,7 @@ public class UserTest
 		assertEquals("user1",user.getUserName());
 		assertEquals("123456",user.getPassword());
 
-		System.out.println("Finished testStudent");
+		System.out.println("Finished testUser");
 	}
 
 	@Test

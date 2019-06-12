@@ -28,7 +28,7 @@ public class AccessUsersTest {
     @Test
     public void testAddDuplicateUserName()
     {
-        System.out.println("\nStarting insertNewUser: username exist");
+        System.out.println("\nStarting insertNewUser: username exists");
 
         AccessUsers userList = new AccessUsers();
         User user = new UserAdvertiser("User1", "1234");
@@ -36,7 +36,7 @@ public class AccessUsersTest {
         addedUser = userList.insertNewUser(user);
         assertNull(addedUser);
 
-        System.out.println("Finished insertNewUser: username exist");
+        System.out.println("Finished insertNewUser: username exists");
     }
 
     @Test

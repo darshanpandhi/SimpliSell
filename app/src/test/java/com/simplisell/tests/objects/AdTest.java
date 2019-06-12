@@ -23,7 +23,6 @@ public class AdTest
 
         assertNotNull(newAd);
 
-        assertEquals(1, newAd.getAdId());
         assertEquals("AdOwner1", newAd.getAdOwner());
         assertEquals(AdType.OFFERING,newAd.getAdType());
         assertEquals(Category.ACCOMMODATION, newAd.getCategory());
