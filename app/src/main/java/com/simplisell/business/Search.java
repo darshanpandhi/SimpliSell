@@ -11,7 +11,7 @@ import java.util.Comparator;
 public class Search
 {
 
-    AccessAds adInterface;
+    private final AccessAds adInterface;
 
     public Search()
     {

@@ -8,8 +8,8 @@ import com.simplisell.persistence.stubs.AdPersistenceStub;
 public class Services
 {
 
-    public static UserPersistence userPersistence = null;
-    public static AdPersistence adPersistence = null;
+    private static UserPersistence userPersistence = null;
+    private static AdPersistence adPersistence = null;
 
     public static synchronized UserPersistence getUserPersistence()
     {

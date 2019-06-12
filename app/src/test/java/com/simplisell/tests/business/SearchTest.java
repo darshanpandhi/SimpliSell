@@ -1,57 +1,65 @@
 package com.simplisell.tests.business;
 
-import com.simplisell.business.AccessAds;
-import com.simplisell.business.Search;
+import org.junit.Before;
+import org.junit.Test;
+import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import java.util.List;
+
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
-
-import java.util.List;
-
-import org.junit.Test;
-import static org.junit.Assert.*;
+import com.simplisell.business.Search;
+import com.simplisell.business.AccessAds;
 
 public class SearchTest
 {
 
+    private Search search;
+    private AccessAds adPersistence;
+
+    @Before
+    public final void setup()
+    {
+        search = new Search();
+        adPersistence = new AccessAds();
+    }
+
     @Test
     public void testGetAllAds()
     {
-        System.out.println("\nStarting test testGetAllAds");
+        System.out.println("\nStarting testSearch: get all ads");
 
-        Search search = new Search();
         List<Ad> ads = search.getAllAds();
+
         assertNotNull(ads);
 
-        System.out.println("Ending test testGetAllAds");
+        System.out.println("Finished testSearch: get all ads");
     }
 
     @Test
     public void testGetAllAdsByCategory()
     {
-        System.out.println("\nStarting test testGetAllAdsByCategory");
+        System.out.println("\nStarting testSearch: get all ads by category");
 
-        Search search = new Search();
-        AccessAds adPersistence = new AccessAds();
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1));
         List<Ad> ads = search.getAllAdsByCategory(Category.ELECTRONICS);
+
         for (Ad ad : ads)
         {
             assertEquals(ad.getCategory(), Category.ELECTRONICS);
-
         }
 
-        System.out.println("Ending test testGetAllAdsByCategory");
+        System.out.println("Finished testSearch: get all ads by category");
     }
 
     @Test
     public void testSortPriceAsc()
     {
-        System.out.println("\nStarting test testSortPriceAsc");
+        System.out.println("\nStarting testSearch: sort price (ascending)");
 
-        AccessAds adPersistence = new AccessAds();
-        Search search = new Search();
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10));
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
@@ -59,22 +67,21 @@ public class SearchTest
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1000));
         List<Ad> ads = search.sortPriceAsc(search.getAllAds());
+
         for (int i = 0; i < ads.size()-1; i++)
         {
             double priceDiff = ads.get(i+1).getPrice() - ads.get(i).getPrice();
             assertTrue(priceDiff >= 0);
         }
 
-        System.out.println("Ending test testSortPriceAsc");
+        System.out.println("Finished testSearch: sort price (ascending)");
     }
 
     @Test
     public void testSortPriceDesc()
     {
-        System.out.println("\nStarting test testSortPriceDesc");
+        System.out.println("\nStarting testSearch sort price (descending)");
 
-        AccessAds adPersistence = new AccessAds();
-        Search search = new Search();
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10));
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
@@ -88,6 +95,6 @@ public class SearchTest
             assertTrue(priceDiff >= 0);
         }
 
-        System.out.println("Ending test testSortPriceDesc");
+        System.out.println("Finished testSearch: sort price (descending)");
     }
 }

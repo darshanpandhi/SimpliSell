@@ -51,7 +51,6 @@ public class User
 
     public String toString()
     {
-
         return String.format("User: %s %s %s", userName, userName);
     }
 }

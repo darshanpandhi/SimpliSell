@@ -5,13 +5,12 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
-import java.util.List;
 
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
-
 import com.simplisell.business.AccessAds;
+
 
 public class AccessAdsTest
 {
@@ -83,32 +82,6 @@ public class AccessAdsTest
         assertNull(insertedAd);
 
         System.out.println("Finished AccessAdsTest: insert null");
-    }
-
-    @Test
-    public final void testEmptyGetAd()
-    {
-        System.out.println("\nStarting AccessAdsTest: get ad in empty list");
-
-        // testing if getAd function is able to retrieve a non-existent ad
-        Ad ad = accessAds.getAd(5);
-
-        assertNull(ad);
-
-        System.out.println("Finished AccessAdsTest: get ad in empty list");
-    }
-
-    @Test
-    public final void testEmptyGetAllAds()
-    {
-        System.out.println("\nStarting AccessAdsTest: get all ads in empty list");
-
-        // verifying if getAllAds function returns an empty list when the list of ads is indeed empty
-        List<Ad> listOfAds = accessAds.getAllAds();
-
-        assert(listOfAds.isEmpty());
-
-        System.out.println("Finished AccessAdsTest: get all ads in empty list");
     }
 
     @Test

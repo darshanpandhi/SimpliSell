@@ -99,14 +99,18 @@ public class AdPersistenceStub implements AdPersistence
     public final Ad insertAd(final Ad newAd)
     {
         Ad insertedAd = null;
-        final int newAdId = newAd.getAdId();
 
-        // verify the presence of an ad with the same ad id
-        if(getAd(newAdId) == null)
+        if(newAd != null)
         {
-            ads.add(newAd);
-            insertedAd = newAd;
+            final int newAdId = newAd.getAdId();
 
+            // verify the presence of an ad with the same ad id
+            if (getAd(newAdId) == null)
+            {
+                ads.add(newAd);
+                insertedAd = newAd;
+
+            }
         }
 
         return insertedAd;

@@ -3,23 +3,40 @@ package com.simplisell.tests.business;
 import com.simplisell.business.ValidPasswordChecker;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertFalse;
 
 public class ValidPasswordCheckerTest
 {
 	@Test
 	public void testValidPasswordLength()
 	{
-		System.out.println("\nStarting testValidPassword: password has length greater than or equal to 6 and less than or equal to 12");
+		System.out.println("\nStarting testValidPassword: valid password length (length less than 6 or greater than to 12)");
 
 		String password = "123456";
 		boolean isValid = ValidPasswordChecker.validPassword(password);
 		assertTrue(isValid);
+
 		password = "qwertyuiopas";
 		isValid = ValidPasswordChecker.validPassword(password);
 		assertTrue(isValid);
 
-		System.out.println("Finished testValidPassword: password has length greater than or equal to 6 and less than or equal to 12");
+		System.out.println("Finished testValidPassword: valid password length (length less than 6 or greater than to 12)");
+	}
+
+	@Test
+	public void testInvalidPasswordLength()
+	{
+		System.out.println("\nStarting testValidPassword: invalid password length (length should be less than 6 or greater than to 12)");
+
+		String password = "12345";
+		boolean isValid = ValidPasswordChecker.validPassword(password);
+		assertFalse(isValid);
+		password = "abcdefghijklm";
+		isValid = ValidPasswordChecker.validPassword(password);
+		assertFalse(isValid);
+
+		System.out.println("Finished testValidPassword: invalid password length (length should be less than 6 or greater than to 12)");
 	}
 
 	@Test
@@ -43,7 +60,7 @@ public class ValidPasswordCheckerTest
 		boolean isValid = ValidPasswordChecker.validPassword(password);
 		assertTrue(isValid);
 
-		System.out.println("Finished testValidPassword: password has uppsercase letters");
+		System.out.println("Finished testValidPassword: password has uppercase letters");
 	}
 
 	@Test
@@ -55,7 +72,7 @@ public class ValidPasswordCheckerTest
 		boolean isValid = ValidPasswordChecker.validPassword(password);
 		assertTrue(isValid);
 
-		System.out.println("Finished testValidPassword: password has number");
+		System.out.println("Finished testValidPassword: password has numbers");
 	}
 
 	@Test
@@ -68,21 +85,6 @@ public class ValidPasswordCheckerTest
 		assertTrue(isValid);
 
 		System.out.println("Finished testValidPassword: password has letters and numbers");
-	}
-
-	@Test
-	public void testInvalidPasswordLength()
-	{
-		System.out.println("\nStarting testValidPassword: password has length less than 6 or greater than to 12");
-
-		String password = "12345";
-		boolean isValid = ValidPasswordChecker.validPassword(password);
-		assertFalse(isValid);
-		password = "abcdefghijklm";
-		isValid = ValidPasswordChecker.validPassword(password);
-		assertFalse(isValid);
-
-		System.out.println("Finished testValidPassword: password has length less than 6 or greater than to 12");
 	}
 
 	@Test
