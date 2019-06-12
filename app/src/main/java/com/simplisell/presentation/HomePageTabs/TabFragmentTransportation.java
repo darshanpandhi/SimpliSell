@@ -32,6 +32,8 @@ public class TabFragmentTransportation extends Fragment
     public TabFragmentTransportation()
     {
         // Required empty public constructor
+        ads = adsSearch.getAllAdsByCategory(TRANSPORTATION);
+
     }
 
 
@@ -41,7 +43,6 @@ public class TabFragmentTransportation extends Fragment
     {
         //Inflate the layout for this fragment
 
-        ads = adsSearch.getAllAdsByCategory(TRANSPORTATION);
         View view=inflater.inflate(R.layout.fragment_tab_fragment_transportation, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentTransportation);
         RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);

@@ -32,6 +32,8 @@ public class TabFragmentAll extends Fragment
     public TabFragmentAll()
     {
         // Required empty public constructor
+        ads = adsSearch.getAllAds();
+
     }
 
 
@@ -41,7 +43,6 @@ public class TabFragmentAll extends Fragment
     {
         //Inflate the layout for this fragment
 
-        ads = adsSearch.getAllAds();
         View view=inflater.inflate(R.layout.fragment_tab_fragment_all, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentAll);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),ads);
