@@ -98,7 +98,7 @@ public class ForgetPassword extends AppCompatActivity
                 {
                     if (validPasswordChecker.validPassword(newPass))
                     {
-                        user.setPassword(newPass);
+                        accessUsers.updatePassword(user.getUserName(), newPass);
                         Toast.makeText(getApplicationContext(), "Password has been changed", Toast.LENGTH_SHORT).show();
 
                         finish();
