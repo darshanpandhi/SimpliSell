@@ -19,16 +19,16 @@ public class EditAd extends AppCompatActivity {
 
     private final String ADID_TEXT="ADID";
 
-    private Ad currAd;              // holds the curr ad object
-    private int adId;               // id of the current ad
-    private Category category = null;
-    private String title;           // title of the current ad
-    private String description;     // description of the current ad
-    private double price;           // price of the current ad
+    private Ad currAd;                  // holds the curr ad object
+    private int adId;                   // id of the current ad
+    private Category category = null;   // category of the current ad
+    private String title;               // title of the current ad
+    private String description;         // description of the current ad
+    private double price;               // price of the current ad
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
 
-    private String result;
+    private String result;              // helps with displaying the chosen category
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,18 +58,12 @@ public class EditAd extends AppCompatActivity {
         editTextDescription.setText(description);
 
         EditText editTextPrice = findViewById(R.id.editText_editAd_price);
-        editTextPrice.setText(Double.toString(price));
+        String price = String.valueOf(this.price);
+        editTextPrice.setText(price);
     }
 
     public void saveBtnClick(View view)
     {
-        //------------------------------------------------------
-        // saveBtnClick
-        //
-        // PURPOSE: save the edited ad
-        //
-        //------------------------------------------------------
-
         String title;
         String description;
         double price;
@@ -89,7 +83,7 @@ public class EditAd extends AppCompatActivity {
         // if empty field exists
         if (titleEmpty||descriptionEmpty||priceEmpty||categoryEmpty)
         {
-            Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
         }
         else
         {
@@ -114,18 +108,6 @@ public class EditAd extends AppCompatActivity {
 
     public void selectCategoryBtnClick(View view)
     {
-        selectCategory();
-    }
-
-    private void selectCategory()
-    {
-        //------------------------------------------------------
-        // selectCategory
-        //
-        // PURPOSE: show confirmation dialog for selecting category
-        //
-        //------------------------------------------------------
-
         AlertDialog dialog;
         AlertDialog.Builder builder;
         final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION", "EVENTS", "OTHERS"};
@@ -134,6 +116,7 @@ public class EditAd extends AppCompatActivity {
 
         builder.setTitle("Select the Category");
 
+        // set information regarding the chosen category
         builder.setSingleChoiceItems(categories, -1, new DialogInterface.OnClickListener()
         {
             @Override
