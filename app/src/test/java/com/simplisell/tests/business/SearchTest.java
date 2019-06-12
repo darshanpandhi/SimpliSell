@@ -1,11 +1,10 @@
 package com.simplisell.tests.business;
 
+import com.simplisell.business.AccessAds;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
-import com.simplisell.persistence.AdPersistence;
-import com.simplisell.persistence.stubs.AdPersistenceStub;
 
 import java.util.List;
 
@@ -20,8 +19,7 @@ public class SearchTest
     {
         System.out.println("\nStarting test testGetAllAds");
 
-        AdPersistence adPersistence = new AdPersistenceStub();
-        Search search = new Search(adPersistence);
+        Search search = new Search();
         List<Ad> ads = search.getAllAds();
         assertNotNull(ads);
 
@@ -33,8 +31,8 @@ public class SearchTest
     {
         System.out.println("\nStarting test testGetAllAdsByCategory");
 
-        AdPersistence adPersistence = new AdPersistenceStub();
-        Search search = new Search(adPersistence);
+        Search search = new Search();
+        AccessAds adPersistence = new AccessAds();
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1));
         List<Ad> ads = search.getAllAdsByCategory(Category.ELECTRONICS);
@@ -52,8 +50,8 @@ public class SearchTest
     {
         System.out.println("\nStarting test testSortPriceAsc");
 
-        AdPersistence adPersistence = new AdPersistenceStub();
-        Search search = new Search(adPersistence);
+        AccessAds adPersistence = new AccessAds();
+        Search search = new Search();
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10));
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
@@ -75,8 +73,8 @@ public class SearchTest
     {
         System.out.println("\nStarting test testSortPriceDesc");
 
-        AdPersistence adPersistence = new AdPersistenceStub();
-        Search search = new Search(adPersistence);
+        AccessAds adPersistence = new AccessAds();
+        Search search = new Search();
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10));
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,

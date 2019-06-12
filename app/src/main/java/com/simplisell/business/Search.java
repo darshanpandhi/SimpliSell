@@ -1,9 +1,7 @@
 package com.simplisell.business;
 
-import com.simplisell.application.Services;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.Category;
-import com.simplisell.persistence.AdPersistence;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,23 +10,18 @@ import java.util.Comparator;
 
 public class Search {
 
-    private AdPersistence adPersistence;
+    AccessAds adInterface;
 
-    //Constructor used for testing purposes
-    public Search(AdPersistence persistence)
+    public Search()
     {
-        adPersistence = persistence;
-    }
-
-    public Search() {
-        adPersistence = Services.getAdPersistence();
+        adInterface = new AccessAds();
     }
 
     public List<Ad> getAllAdsByCategory(Category category)
     {
         List<Ad> adList = new ArrayList<Ad>();
 
-        List<Ad> allAds = adPersistence.getAds();
+        List<Ad> allAds = adInterface.getAllAds();
 
         for (Ad ad : allAds)
         {
@@ -43,7 +36,7 @@ public class Search {
 
     public List<Ad> getAllAds()
     {
-        return adPersistence.getAds();
+        return adInterface.getAllAds();
     }
 
     public List<Ad> sortPriceAsc(List<Ad> ads)
