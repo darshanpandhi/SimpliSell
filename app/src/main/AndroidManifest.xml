@@ -10,14 +10,15 @@
         android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.ViewAdOfOtherUser"></activity>
-        <activity android:name=".presentation.EditAd" />
-        <activity android:name=".presentation.ViewAdOfCurrentUser" />
-        <activity android:name=".presentation.UserProfileMenu" />
-        <activity android:name=".presentation.SignUp" />
-        <activity android:name=".presentation.PostAd" />
-        <activity android:name=".presentation.Login" />
+        <activity android:name=".presentation.PostingAds.ViewAdOfOtherUser"></activity>
+        <activity android:name=".presentation.PostingAds.EditAd" />
+        <activity android:name=".presentation.PostingAds.ViewAdOfCurrentUser" />
+        <activity android:name=".presentation.UserProfile.UserProfileMenu" />
+        <activity android:name=".presentation.LoginFeature.SignUp" />
+        <activity android:name=".presentation.PostingAds.PostAd" />
+        <activity android:name=".presentation.LoginFeature.Login" />
         <activity android:name=".presentation.MainActivity" />
+        <activity android:name=".presentation.LoginFeature.ForgetPassword"/>
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

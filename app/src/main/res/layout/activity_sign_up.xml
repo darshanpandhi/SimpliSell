@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.SignUp"
+    tools:context=".presentation.LoginFeature.SignUp"
     android:background="@color/colorPrimary">
 
     <TextView
@@ -21,10 +21,10 @@
         android:textSize="75sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168" />
+        app:layout_constraintVertical_bias="0.069" />
 
     <EditText
         android:id="@+id/editText_name_registrationName"
@@ -38,7 +38,7 @@
         android:backgroundTint="@color/colorPrimaryDark"
         android:cursorVisible="true"
         android:ems="10"
-        android:hint="@string/Useresname"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@color/colorAccent"
@@ -46,10 +46,12 @@
         android:textCursorDrawable="@drawable/cursor_colour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_signUp_signUpText"
-        app:layout_constraintVertical_bias="0.071"
-        tools:targetApi="o" />
+        app:layout_constraintVertical_bias="0.049"
+        tools:targetApi="o"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/editText_name_user"
@@ -71,12 +73,13 @@
         android:textCursorDrawable="@drawable/cursor_colour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationName"
 
-        app:layout_constraintVertical_bias="0.059"
-        tools:targetApi="o" />
+        app:layout_constraintVertical_bias="0.04"
+        tools:targetApi="o"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/editText_name_registrationPass"
@@ -99,10 +102,10 @@
         android:textCursorDrawable="@drawable/cursor_colour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name_user"
-        app:layout_constraintVertical_bias="0.064"
+        app:layout_constraintVertical_bias="0.047"
         tools:targetApi="o" />
 
     <EditText
@@ -117,7 +120,7 @@
         android:backgroundTint="@color/colorPrimaryDark"
         android:cursorVisible="true"
         android:ems="10"
-        android:hint="@string/confirmpassword"
+        android:hint="@string/confirmPassword"
         android:inputType="textPassword"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@color/colorAccent"
@@ -125,27 +128,80 @@
         android:textCursorDrawable="@drawable/cursor_colour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationPass"
-        app:layout_constraintVertical_bias="0.101"
+        app:layout_constraintVertical_bias="0.062"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/editText_name_registrationSecurityQuestion"
+        android:layout_width="254dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints=""
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="@string/securityQuestion"
+        android:inputType="text"
+        android:textColor="@android:color/background_light"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        android:textCursorDrawable="@drawable/cursor_colour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationConfirmPass"
+        app:layout_constraintVertical_bias="0.072"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/editText_name_registrationSecurityAnswer"
+        android:layout_width="254dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints=""
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="@string/securityAnswer"
+        android:inputType="text"
+        android:textColor="@android:color/background_light"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        android:textCursorDrawable="@drawable/cursor_colour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationSecurityQuestion"
+        app:layout_constraintVertical_bias="0.11"
         tools:targetApi="o" />
 
     <Button
         android:id="@+id/button_signUp_registerbutton"
         android:layout_width="254dp"
         android:layout_height="wrap_content"
-        android:onClick="signUpBtnClickRegister"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="204dp"
         android:background="@android:drawable/editbox_background"
+        android:onClick="signUpBtnClickRegister"
         android:text="@string/signupTwo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationConfirmPass"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationSecurityAnswer"
+        app:layout_constraintVertical_bias="0.986" />
 
     <TextView
         android:id="@+id/textView_signUp_backtoLogin"
@@ -155,14 +211,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:onClick="backToLoginTextClick"
         android:text="@string/backToLogin"
         android:textColor="@android:color/background_light"
-        android:onClick="backToLoginTextClick"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_signUp_registerbutton"
-        app:layout_constraintVertical_bias="0.267" />
+        app:layout_constraintVertical_bias="0.251" />
+
 </android.support.constraint.ConstraintLayout>

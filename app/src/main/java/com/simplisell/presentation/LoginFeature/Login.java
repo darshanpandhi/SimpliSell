@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.LoginFeature;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
+import com.simplisell.presentation.MainActivity;
+import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
 
 
 public class Login extends AppCompatActivity
@@ -18,14 +20,13 @@ public class Login extends AppCompatActivity
 
     private final String USERNAME_TEXT="USER";
 
+    private static String uniqueUserName;
+
 
     private EditText userName;             // the edit text box for userName of the user
     private EditText password;          // the edit text box for password of the user
     private ProgressDialog progressDialog;  // progress Dialogue
     private AccessUsers accessUsers;      // helps  access users
-
-    private static String uniqueUserName;
-
 
 
 
@@ -49,13 +50,7 @@ public class Login extends AppCompatActivity
 
     public void loginBtnClick(View view)
     {
-        //------------------------------------------------------
-        // loginBtnClick
-        //
-        // PURPOSE: Performs actions when the Login button is clicked on Login activity
-        //
-        // Patameter- View view- is the display view.
-        //------------------------------------------------------
+
 
         String userName;       // The userName in the textbox will be stored here.
         String userPassword;    // The userName in the password will be stored here.
@@ -97,7 +92,7 @@ public class Login extends AppCompatActivity
                 // login and go to homepage
                 finish();
 
-                Intent logIn=new Intent(getApplicationContext(),MainActivity.class);
+                Intent logIn=new Intent(getApplicationContext(), MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT,uniqueUserName);
                 RecyclerViewAdapter.login(userName);
                 startActivity(logIn);
@@ -107,43 +102,29 @@ public class Login extends AppCompatActivity
             else    // if authentication is not successful.
             {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "INVALID userName OR PASSWORD", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Invalid userName OR password", Toast.LENGTH_SHORT).show();
 
             }
         }
 
     }
 
+    public void forgetPasswordBtnClick(View view)
+    {
+        Intent forgetPass = new Intent(Login.this, ForgetPassword.class);
+        startActivity(forgetPass);
+    }
+
     public void signUpBtnClick(View view)
     {
-        //------------------------------------------------------
-        // signUpBtnClick
-        //
-        // PURPOSE: Performs actions when the sign up button is clicked on Login activity
-        //
-        // Patameter- View view- is the display view.
-        //------------------------------------------------------
-
-
         // takes to sign in page
         Intent signUp = new Intent(Login.this, SignUp.class);
         startActivity (signUp);
-
-
     }
 
 
     public User authenticate(String userName, String userPassword)
     {
-        //------------------------------------------------------
-        // authenticate
-        //
-        // PURPOSE: Performs an authentication and returns true if authentication was successful
-        //
-        // Patameter- String userName- the userName of the user
-        //              String userPassword- the userName of the user
-        // Return- True if authentication is successful
-        //------------------------------------------------------
 
         User retValue=null;
 
@@ -163,5 +144,6 @@ public class Login extends AppCompatActivity
     public void onBackPressed() {
         finish();
         Intent loginPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(loginPage);    }
+        startActivity(loginPage);
+    }
 }
