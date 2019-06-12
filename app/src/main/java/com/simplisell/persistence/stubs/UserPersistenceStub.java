@@ -15,11 +15,11 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-        user = new UserAdvertiser("Bob", "1234");
+        user = new UserAdvertiser("Bob", "123456");
         users.add(user);
-        user = new UserAdvertiser("Allice", "4321");
+        user = new UserAdvertiser("Allice", "123456");
         users.add(user);
-        user = new UserAdvertiser("Jay", "abc");
+        user = new UserAdvertiser("Jay", "123456");
         users.add(user);
     }
 
