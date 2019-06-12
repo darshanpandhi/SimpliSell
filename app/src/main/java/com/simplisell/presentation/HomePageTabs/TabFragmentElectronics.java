@@ -1,4 +1,4 @@
-package com.simplisell.presentation.HomePageTabFragments;
+package com.simplisell.presentation.HomePageTabs;
 
 
 import android.os.Bundle;
@@ -9,30 +9,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
-import com.simplisell.presentation.RecyclerViewAdapter;
-
+import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
 import java.util.List;
-
-import static com.simplisell.objects.Category.BOOKS;
+import static com.simplisell.objects.Category.ELECTRONICS;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentBooks extends Fragment
-{
+public class TabFragmentElectronics extends Fragment {
+
+    private static Search adsSearch = new Search();
+    private static boolean isSortedAscending=false;
 
 
     private RecyclerView recyclerView;
-    private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(BOOKS);
-    private static boolean isSortedAscending = false;
+    private List<Ad> ads;
 
-    public TabFragmentBooks()
+    public TabFragmentElectronics()
     {
         // Required empty public constructor
     }
@@ -44,9 +41,9 @@ public class TabFragmentBooks extends Fragment
     {
         //Inflate the layout for this fragment
 
-
-        View view=inflater.inflate(R.layout.fragment_tab_fragment_books, container, false);
-        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentBooks);
+        ads = adsSearch.getAllAdsByCategory(ELECTRONICS);
+        View view=inflater.inflate(R.layout.fragment_tab_fragment_electronics, container, false);
+        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentElectronics);
         RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -60,7 +57,6 @@ public class TabFragmentBooks extends Fragment
     {
 
         super.onCreate(savedInstanceState);
-
 
     }
 

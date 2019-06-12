@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.PostingAds;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +37,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
-
 
         View view ;
 
@@ -112,16 +111,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-
-
     @Override
     public int getItemCount() {
         return myAd.size();
     }
 
-    static void login(String uName){ userName=uName;}
+    public static void login(String uName){ userName=uName;}
 
-    static void logOut(){userName=null;}
+    public static void logOut(){userName=null;}
+
+
+
+    // HELPER CLASS
 
     public class MyViewHolder extends RecyclerView.ViewHolder
     {

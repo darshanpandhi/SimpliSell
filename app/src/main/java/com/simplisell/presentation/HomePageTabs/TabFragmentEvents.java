@@ -1,4 +1,4 @@
-package com.simplisell.presentation.HomePageTabFragments;
+package com.simplisell.presentation.HomePageTabs;
 
 
 import android.os.Bundle;
@@ -9,32 +9,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
-import com.simplisell.presentation.RecyclerViewAdapter;
-
+import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
 import java.util.List;
-
-import static com.simplisell.objects.Category.BOOKS;
-import static com.simplisell.objects.Category.JOBS_SERVICES;
-import static com.simplisell.objects.Category.TRANSPORTATION;
+import static com.simplisell.objects.Category.EVENTS;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentServicesJobs extends Fragment
+public class TabFragmentEvents extends Fragment
 {
+    private static Search adsSearch = new Search();
+    private static boolean isSortedAscending = false;
 
 
     private RecyclerView recyclerView;
-    private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(JOBS_SERVICES);
-    private static boolean isSortedAscending = false;
+    private List<Ad> ads;
 
-    public TabFragmentServicesJobs()
+    public TabFragmentEvents()
     {
         // Required empty public constructor
     }
@@ -46,9 +41,9 @@ public class TabFragmentServicesJobs extends Fragment
     {
         //Inflate the layout for this fragment
 
-
-        View view=inflater.inflate(R.layout.fragment_tab_fragment_servicesjobs, container, false);
-        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentJobs);
+        ads = adsSearch.getAllAdsByCategory(EVENTS);
+        View view=inflater.inflate(R.layout.fragment_tab_fragment_events, container, false);
+        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentEvents);
         RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -62,7 +57,6 @@ public class TabFragmentServicesJobs extends Fragment
     {
 
         super.onCreate(savedInstanceState);
-
 
     }
 

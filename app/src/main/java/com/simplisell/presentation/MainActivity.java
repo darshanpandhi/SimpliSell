@@ -10,17 +10,25 @@ import android.widget.ImageButton;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentAll;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentBooks;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentElectronics;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentEvents;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentLiving;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentOther;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentServicesJobs;
-import com.simplisell.presentation.HomePageTabFragments.TabFragmentTransportation;
+import com.simplisell.presentation.HomePageTabs.TabFragmentAll;
+import com.simplisell.presentation.HomePageTabs.TabFragmentBooks;
+import com.simplisell.presentation.HomePageTabs.TabFragmentElectronics;
+import com.simplisell.presentation.HomePageTabs.TabFragmentEvents;
+import com.simplisell.presentation.HomePageTabs.TabFragmentLiving;
+import com.simplisell.presentation.HomePageTabs.TabFragmentOther;
+import com.simplisell.presentation.HomePageTabs.TabFragmentServicesJobs;
+import com.simplisell.presentation.HomePageTabs.TabFragmentTransportation;
+import com.simplisell.presentation.HomePageTabs.TabPagerAdapter;
+import com.simplisell.presentation.LoginFeature.Login;
+import com.simplisell.presentation.PostingAds.PostAd;
+import com.simplisell.presentation.UserProfile.UserProfileMenu;
 
 public class MainActivity extends AppCompatActivity
 {
+
+    private static User currUser = null;
+    private static String userName = null;
+    private static boolean isSortedAscending = false;
 
     private final String USERNAME_TEXT="USER";
 
@@ -36,14 +44,6 @@ public class MainActivity extends AppCompatActivity
     private TabFragmentEvents tabFragmentEventsObj;
     private TabFragmentElectronics tabFragmentElectronicsObj;
     private TabFragmentOther tabFragmentOtherObj;
-
-
-
-
-    private static User currUser = null;
-    private static String userName = null;
-    private static boolean isSortedAscending = false;
-
 
 
 

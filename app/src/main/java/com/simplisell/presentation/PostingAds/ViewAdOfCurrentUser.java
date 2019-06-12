@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.PostingAds;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
+import com.simplisell.presentation.MainActivity;
 
 public class ViewAdOfCurrentUser extends AppCompatActivity {
 
