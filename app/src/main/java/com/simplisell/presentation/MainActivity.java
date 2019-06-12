@@ -10,6 +10,14 @@ import android.widget.ImageButton;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentAll;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentBooks;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentElectronics;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentEvents;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentLiving;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentOther;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentServicesJobs;
+import com.simplisell.presentation.HomePageTabFragments.TabFragmentTransportation;
 
 public class MainActivity extends AppCompatActivity
 {

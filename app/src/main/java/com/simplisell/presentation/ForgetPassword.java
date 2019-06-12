@@ -2,6 +2,7 @@ package com.simplisell.presentation;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class ForgetPassword extends AppCompatActivity
     private EditText securityAnswer;
     private AccessUsers accessUsers;      // helps  access users
     private ValidPasswordChecker validPasswordChecker;
+    EditText newPassword;
+    EditText confirmNewPassword;
     private boolean securityQuestionDisplayed;
 
     @Override
@@ -61,8 +64,13 @@ public class ForgetPassword extends AppCompatActivity
         builder.setTitle("Reset Password");
 
         // Set up the input
-        final EditText newPassword = new EditText(this);
-        final EditText confirmNewPassword = new EditText(this);
+        newPassword = new EditText(this);
+        confirmNewPassword = new EditText(this);
+
+        newPassword.setHint(" New Password");
+        confirmNewPassword.setHint(" Confirm New Password");
+        newPassword.setHintTextColor(Color.RED);
+        confirmNewPassword.setHintTextColor(Color.RED);
 
 
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
@@ -81,6 +89,10 @@ public class ForgetPassword extends AppCompatActivity
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+
+
+
                 String newPass = newPassword.getText().toString();
                 String confirmNewPass = confirmNewPassword.getText().toString();
                 if (newPass.equals(confirmNewPass))
@@ -89,6 +101,11 @@ public class ForgetPassword extends AppCompatActivity
                     {
                         user.setPassword(newPass);
                         Toast.makeText(getApplicationContext(), "Password has been changed", Toast.LENGTH_SHORT).show();
+
+                        finish();
+                        Intent loginPage = new Intent(getApplicationContext(), Login.class);
+                        startActivity(loginPage);
+
                     } else
                     {
                         Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
@@ -108,6 +125,10 @@ public class ForgetPassword extends AppCompatActivity
 
         builder.show();
     }
+
+
+
+
 
     private void validateUser(String userName)
     {

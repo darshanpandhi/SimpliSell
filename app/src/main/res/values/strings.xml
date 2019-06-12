@@ -27,9 +27,9 @@
 
     <string name="signupTwo">Sign Up</string>
 
-    <string name="forgetPassword">Forget Password?</string>
+    <string name="forgetPassword">Forgot Password?</string>
 
-    <string name="resetMyPassword">Reset My Password</string>
+    <string name="resetMyPassword">Reset Password</string>
 
     <string name="getSecurityQuestion">Get Security Question</string>
 

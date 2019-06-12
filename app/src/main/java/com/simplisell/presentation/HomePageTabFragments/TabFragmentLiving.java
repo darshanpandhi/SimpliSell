@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.HomePageTabFragments;
 
 
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
+import com.simplisell.presentation.RecyclerViewAdapter;
 
 import java.util.List;
 

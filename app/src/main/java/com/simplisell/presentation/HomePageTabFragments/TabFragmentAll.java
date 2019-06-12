@@ -1,6 +1,7 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.HomePageTabFragments;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,29 +10,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
+import com.simplisell.presentation.RecyclerViewAdapter;
 
 import java.util.List;
-
-import static com.simplisell.objects.Category.BOOKS;
-import static com.simplisell.objects.Category.TRANSPORTATION;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentTransportation extends Fragment
+public class TabFragmentAll extends Fragment
 {
 
     private RecyclerView recyclerView;
     private static Search adsSearch = new Search();
-    private List<Ad> ads = adsSearch.getAllAdsByCategory(TRANSPORTATION);
+    private  List<Ad> ads = adsSearch.getAllAds();
     private static boolean isSortedAscending = false;
 
-    public TabFragmentTransportation()
+    public TabFragmentAll()
     {
         // Required empty public constructor
     }
@@ -44,9 +45,9 @@ public class TabFragmentTransportation extends Fragment
         //Inflate the layout for this fragment
 
 
-        View view=inflater.inflate(R.layout.fragment_tab_fragment_transportation, container, false);
-        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentTransportation);
-        RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(getContext(),ads);
+        View view=inflater.inflate(R.layout.fragment_tab_fragment_all, container, false);
+        recyclerView=(RecyclerView)view.findViewById(R.id.listView_insideFragmentAll);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -59,6 +60,8 @@ public class TabFragmentTransportation extends Fragment
     {
 
         super.onCreate(savedInstanceState);
+
+
 
     }
 

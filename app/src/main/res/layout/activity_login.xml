@@ -79,7 +79,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_enterUserName"
-        app:layout_constraintVertical_bias="0.603"
+        app:layout_constraintVertical_bias="0.528"
         tools:targetApi="o" />
 
     <Button
@@ -99,7 +99,7 @@
         app:layout_constraintHorizontal_bias="0.665"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_enterPassword"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.196" />
 
     <TextView
         android:id="@+id/textView_login_or"
@@ -149,13 +149,14 @@
         android:layout_marginBottom="8dp"
         android:onClick="forgetPasswordBtnClick"
         android:text="@string/forgetPassword"
+        android:textColor="@android:color/background_light"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_login_loginButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.374"
+        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_enterPassword"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.576" />
 
 
 </android.support.constraint.ConstraintLayout>
