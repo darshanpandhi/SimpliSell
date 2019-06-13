@@ -14,4 +14,4 @@
 [Iteration 3 User Stories](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/milestones/3)
 
 ## Our Architecture
-[Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/dev/Docs/ARCHITECTURE.md)
+[Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/master/Docs/ARCHITECTURE.md)
