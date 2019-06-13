@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
-import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
+import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
 
 import java.util.List;
 

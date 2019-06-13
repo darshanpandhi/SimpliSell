@@ -1,4 +1,4 @@
-package com.simplisell.presentation.LoginFeature;
+package com.simplisell.presentation.LoginActivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
-import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
+import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
 
 public class SignUp extends AppCompatActivity
 {

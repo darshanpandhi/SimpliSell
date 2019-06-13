@@ -1,4 +1,4 @@
-package com.simplisell.presentation.PostingAds;
+package com.simplisell.presentation.PostingAdActivity;
 
 import android.content.Context;
 import android.content.Intent;

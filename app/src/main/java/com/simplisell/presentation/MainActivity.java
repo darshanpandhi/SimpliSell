@@ -20,9 +20,9 @@ import com.simplisell.presentation.HomePageTabs.TabFragmentOther;
 import com.simplisell.presentation.HomePageTabs.TabFragmentServicesJobs;
 import com.simplisell.presentation.HomePageTabs.TabFragmentTransportation;
 import com.simplisell.presentation.HomePageTabs.TabPagerAdapter;
-import com.simplisell.presentation.LoginFeature.Login;
-import com.simplisell.presentation.PostingAds.PostAd;
-import com.simplisell.presentation.UserProfile.UserProfileMenu;
+import com.simplisell.presentation.LoginActivity.Login;
+import com.simplisell.presentation.PostingAdActivity.PostAd;
+import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
 
 public class MainActivity extends AppCompatActivity
 {

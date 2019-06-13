@@ -1,4 +1,4 @@
-package com.simplisell.presentation.LoginFeature;
+package com.simplisell.presentation.LoginActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
