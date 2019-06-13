@@ -48,5 +48,6 @@
         Password: 123456
       
         Security Question Answer: Blue
-- You can create new accounts in the log in page
-- For the security question field, input your own security question
+- To access the log-in page, either click the Profile button at the top left, or the "Post An Ad" button
+- You can create new accounts using the sign-up button at the bottom of the log-in page  
+- For the security question field in the registration screen, please input your own security question
