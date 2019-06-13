@@ -63,7 +63,7 @@
 
 **Credentials**
 
-*   Authenticate users, and validates that the password meets password standards
+*   Authenticate users, and validates that a password meets the password standard
 
 ##  Persistence Layer
 *   Information is stored and retrived from a database or file system
