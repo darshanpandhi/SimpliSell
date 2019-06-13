@@ -17,8 +17,8 @@
 [Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/dev/Docs/ARCHITECTURE.md)
 
 ## Release notes - June 13, 2019
-- Login System is now complete!  Users can create a new account, reset their password and log into an app
+- Login System is now complete!  Users can create a new account, reset their password and log into the app
 - All advertisements display in the homepage, and users can filter these advertisements based on 7 categories: Books, Electronics, Events, Living, ServiceJobs, Transportation and Other  
 - Users can sort advertisements based on price
 - Users that are logged in can post, edit, and delete advertisements
-- Search and Ad Posting features are not yet complete and so we have moved it to iteration 2 as certain things must first be implemented before these features can be fully completed
+- The Search and Ad Posting features are not yet complete and so we have moved it to iteration 2.  Certain things must first be implemented before these features can be fully completed
