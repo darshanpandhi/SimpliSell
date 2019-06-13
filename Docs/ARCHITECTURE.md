@@ -6,11 +6,11 @@
 *   Purpose of the interface is to translate tasks and results to something the user can understand
 
 **MainActivity**
-
+*   Includes the homepage UI which views all the Ads and has a post Ad button and a profile Button for easy navgation for the user.
 *    
 
 **SpashActivity**
-
+*   When the app starts the splash screen stays for about 2 seconds.
 *   
 
 **HomePageTabs**
@@ -26,16 +26,13 @@
 *   TabFragmentAdapter
 
 **Login**
-
+*   Responsible for User Login and helps the user witb a forgot password link in case they need to reset the password.
 *   
 
 **SignUp**
-
+*   Sign Up helps the user create a new account and they will be able to post Ads. 
 *   
 
-**Registration**
-
-*   
 
 **EditAd**
 
