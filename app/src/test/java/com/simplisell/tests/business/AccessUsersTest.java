@@ -52,6 +52,4 @@ public class AccessUsersTest
 
         System.out.println("Finished insertNewUser: username exist");
     }
-=======
->>>>>>> credentials
 }
