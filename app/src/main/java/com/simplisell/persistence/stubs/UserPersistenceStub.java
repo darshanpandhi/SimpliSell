@@ -10,6 +10,7 @@ public class UserPersistenceStub implements UserPersistence
 {
     private List<User> users;
 
+
     public UserPersistenceStub()
     {
         this.users = new ArrayList<>();
@@ -22,11 +23,13 @@ public class UserPersistenceStub implements UserPersistence
         users.add(user);
     }
 
+
     @Override
     public List<User> getUsers()
     {
         return users;
     }
+
 
     @Override
     public User getUser(final String userName)
@@ -34,6 +37,7 @@ public class UserPersistenceStub implements UserPersistence
         User user = findUser(userName);
         return user;
     }
+
 
     @Override
     public String getPassword(final String userName)
@@ -47,6 +51,7 @@ public class UserPersistenceStub implements UserPersistence
         return password;
     }
 
+
     @Override
     public String getSecurityQuestion(String userName)
     {
@@ -58,6 +63,7 @@ public class UserPersistenceStub implements UserPersistence
         }
         return securityQuestion;
     }
+
 
     @Override
     public String getSecurityAnswer(String userName)
@@ -71,12 +77,14 @@ public class UserPersistenceStub implements UserPersistence
         return securityQuestion;
     }
 
+
     @Override
     public User insertUser(final User user)
     {
         users.add(user);
         return user;
     }
+
 
     @Override
     public User updatePassword(final String userName, final String newPassword)
@@ -94,20 +102,22 @@ public class UserPersistenceStub implements UserPersistence
     {
         User user = null;
 
-        if(userName!=null)
+        if (userName != null)
         {
 
             boolean foundUser = false;
-            for (int i = 0; i < users.size() && !foundUser; i++) {
+            for (int i = 0; i < users.size() && !foundUser; i++)
+            {
                 user = users.get(i);
-                if (user.getUserName().equals(userName)) {
+                if (user.getUserName().equals(userName))
+                {
                     foundUser = true;
                 }
             }
-            if (!foundUser) {
+            if (!foundUser)
+            {
                 user = null;
             }
-
         }
 
         return user;

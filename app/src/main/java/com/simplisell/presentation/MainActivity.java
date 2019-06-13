@@ -1,4 +1,5 @@
 package com.simplisell.presentation;
+
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     private static String userName = null;
     private static boolean isSortedAscending = false;
 
-    private final String USERNAME_TEXT="USER";
+    private final String USERNAME_TEXT = "USER";
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity
     private TabFragmentEvents tabFragmentEventsObj;
     private TabFragmentElectronics tabFragmentElectronicsObj;
     private TabFragmentOther tabFragmentOtherObj;
-
 
 
     @Override
@@ -68,35 +68,35 @@ public class MainActivity extends AppCompatActivity
 
         accessUsers = new AccessUsers();
 
-        if(userName == null)  // if there is no logged in user
+        if (userName == null)  // if there is no logged in user
         {
             try
             {
 
                 userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
 
-                if (userName!=null)
+                if (userName != null)
                 {
 
-                    currUser=accessUsers.getUser(userName);
+                    currUser = accessUsers.getUser(userName);
                 }
-
-            }
-            catch (Exception e) {
+            } catch (Exception e)
+            {
 
                 userName = null;
-                currUser=null;
+                currUser = null;
             }
         }
         tabSetUp();
     }
+
 
     private void tabSetUp()
     {
 
         tabLayout = findViewById(R.id.tabview_mainActivity);
         viewPager = findViewById(R.id.view_pager_mainActivity);
-        profileBtn =findViewById(R.id.imageButton_mainActivty_accountButton);
+        profileBtn = findViewById(R.id.imageButton_mainActivty_accountButton);
 
         TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
 
@@ -118,12 +118,12 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     public static void logOutUser()
     {   // logs out user
-        currUser=null;
-        userName=null;
+        currUser = null;
+        userName = null;
     }
+
 
     @Override
     public void onBackPressed()
@@ -141,23 +141,22 @@ public class MainActivity extends AppCompatActivity
         if (userName == null)
         {   // not logged in
 
-            startActivity(new Intent(getApplicationContext() , Login.class));
-
+            startActivity(new Intent(getApplicationContext(), Login.class));
         }
         else   // already logged in
         {
 
-            Intent intent=new Intent(getApplicationContext() , UserProfileMenu.class);
-            intent.putExtra(USERNAME_TEXT,userName);
+            Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
+            intent.putExtra(USERNAME_TEXT, userName);
             startActivity(intent);
         }
     }
 
 
-    public  void sortBtnClick(View view)
+    public void sortBtnClick(View view)
     {
 
-        int position= tabLayout.getSelectedTabPosition();   // get position of current tab layout
+        int position = tabLayout.getSelectedTabPosition();   // get position of current tab layout
 
 
 
@@ -173,19 +172,18 @@ public class MainActivity extends AppCompatActivity
         tabSetUp();                 // set up all tabs again
 
         viewPager.setCurrentItem(position); // set it to the position user wanted
-
-
     }
+
 
     public void postAdBtnClick(View view)
     {
         if (userName == null)
         {
-            startActivity(new Intent(getApplicationContext() , Login.class));
+            startActivity(new Intent(getApplicationContext(), Login.class));
         }
         else
         {
-            Intent postAd=new Intent(getApplicationContext(), PostAd.class);
+            Intent postAd = new Intent(getApplicationContext(), PostAd.class);
             postAd.putExtra(USERNAME_TEXT, userName);
             startActivity(postAd);
         }

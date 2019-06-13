@@ -11,6 +11,7 @@ public class Services
     private static UserPersistence userPersistence = null;
     private static AdPersistence adPersistence = null;
 
+
     public static synchronized UserPersistence getUserPersistence()
     {
         if (userPersistence == null)
@@ -21,6 +22,7 @@ public class Services
         return userPersistence;
     }
 
+
     public static synchronized AdPersistence getAdPersistence()
     {
         if (adPersistence == null)
@@ -30,5 +32,4 @@ public class Services
 
         return adPersistence;
     }
-
 }

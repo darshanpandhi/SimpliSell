@@ -17,11 +17,10 @@ import com.simplisell.R;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 
-
 public class PostAd extends AppCompatActivity
 {
-    private final String USERNAME_TEXT="USER";
-    private final String ADID_TEXT="ADID";
+    private final String USERNAME_TEXT = "USER";
+    private final String ADID_TEXT = "ADID";
 
     private String userName;
 
@@ -37,6 +36,7 @@ public class PostAd extends AppCompatActivity
     private AccessAds accessAds;
 
     private String result;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,6 +54,7 @@ public class PostAd extends AppCompatActivity
         accessAds = new AccessAds();
     }
 
+
     public void postBtnClick(View view)
     {
         String title;
@@ -64,10 +65,10 @@ public class PostAd extends AppCompatActivity
         boolean titleEmpty = this.title.getText().toString().isEmpty();
         boolean descriptionEmpty = this.description.getText().toString().isEmpty();
         boolean priceEmpty = this.price.getText().toString().isEmpty();
-        boolean categoryEmpty = (category==null);
+        boolean categoryEmpty = (category == null);
 
         // if empty field exists
-        if (titleEmpty||descriptionEmpty||priceEmpty||categoryEmpty)
+        if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty)
         {
             Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
         }
@@ -89,6 +90,7 @@ public class PostAd extends AppCompatActivity
             startActivity(viewAd);
         }
     }
+
 
     public void selectCategoryBtnClick(View view)
     {
@@ -123,7 +125,9 @@ public class PostAd extends AppCompatActivity
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener()
         {
             @Override
-            public void onClick(DialogInterface dialog, int which) { }
+            public void onClick(DialogInterface dialog, int which)
+            {
+            }
         });
 
         dialog = builder.create();

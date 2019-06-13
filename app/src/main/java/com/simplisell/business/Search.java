@@ -13,10 +13,12 @@ public class Search
 
     private final AccessAds adInterface;
 
+
     public Search()
     {
         adInterface = new AccessAds();
     }
+
 
     public List<Ad> getAllAdsByCategory(Category category)
     {
@@ -35,10 +37,12 @@ public class Search
         return adList;
     }
 
+
     public List<Ad> getAllAds()
     {
         return adInterface.getAllAds();
     }
+
 
     public List<Ad> sortPriceAsc(List<Ad> ads)
     {
@@ -47,6 +51,7 @@ public class Search
         return ads;
     }
 
+
     public List<Ad> sortPriceDesc(List<Ad> ads)
     {
         Collections.sort(ads, compareByPriceDesc);
@@ -54,19 +59,23 @@ public class Search
         return ads;
     }
 
+
     //Need multiple comparator functions per asc or desc sort due to API level 23
-    Comparator<Ad> compareByPriceDesc = new Comparator<Ad>() {
+    Comparator<Ad> compareByPriceDesc = new Comparator<Ad>()
+    {
         @Override
-        public int compare(Ad o1, Ad o2) {
+        public int compare(Ad o1, Ad o2)
+        {
             return o1.getPrice() > o2.getPrice() ? -1 : o1.getPrice() < o2.getPrice() ? 1 : 0;
         }
     };
 
-    Comparator<Ad> compareByPriceAsc = new Comparator<Ad>() {
+    Comparator<Ad> compareByPriceAsc = new Comparator<Ad>()
+    {
         @Override
-        public int compare(Ad o1, Ad o2) {
+        public int compare(Ad o1, Ad o2)
+        {
             return o1.getPrice() > o2.getPrice() ? 1 : o1.getPrice() < o2.getPrice() ? -1 : 0;
         }
     };
-
 }

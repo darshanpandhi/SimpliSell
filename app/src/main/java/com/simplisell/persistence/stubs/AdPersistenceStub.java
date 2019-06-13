@@ -4,12 +4,14 @@ import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.persistence.AdPersistence;
 import com.simplisell.objects.Ad;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdPersistenceStub implements AdPersistence
 {
     private List<Ad> ads;
+
 
     public AdPersistenceStub()
     {
@@ -68,10 +70,12 @@ public class AdPersistenceStub implements AdPersistence
         ads.add(newAd);
     }
 
+
     public List<Ad> getAds()
     {
         return ads;
     }
+
 
     public final Ad getAd(int adId)
     {
@@ -80,11 +84,11 @@ public class AdPersistenceStub implements AdPersistence
         boolean adFound = false;
         int currentIndex = 0;
 
-        while(!adFound && currentIndex < ads.size())
+        while (!adFound && currentIndex < ads.size())
         {
             currentAd = ads.get(currentIndex);
 
-            if(currentAd.getAdId() == adId)
+            if (currentAd.getAdId() == adId)
             {
                 requiredAd = currentAd;
                 adFound = true;
@@ -96,11 +100,12 @@ public class AdPersistenceStub implements AdPersistence
         return requiredAd;
     }
 
+
     public final Ad insertAd(final Ad newAd)
     {
         Ad insertedAd = null;
 
-        if(newAd != null)
+        if (newAd != null)
         {
             final int newAdId = newAd.getAdId();
 
@@ -109,19 +114,19 @@ public class AdPersistenceStub implements AdPersistence
             {
                 ads.add(newAd);
                 insertedAd = newAd;
-
             }
         }
 
         return insertedAd;
     }
 
+
     public final Ad removeAd(final Ad adToBeRemoved)
     {
         Ad removedAd = null;
         final int index = ads.indexOf(adToBeRemoved);
 
-        if(index >= 0)
+        if (index >= 0)
         {
             ads.remove(adToBeRemoved);
             removedAd = adToBeRemoved;

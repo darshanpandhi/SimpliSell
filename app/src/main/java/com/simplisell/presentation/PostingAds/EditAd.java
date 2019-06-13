@@ -15,9 +15,10 @@ import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.Category;
 
-public class EditAd extends AppCompatActivity {
+public class EditAd extends AppCompatActivity
+{
 
-    private final String ADID_TEXT="ADID";
+    private final String ADID_TEXT = "ADID";
 
     private Ad currAd;                  // holds the curr ad object
     private int adId;                   // id of the current ad
@@ -29,6 +30,7 @@ public class EditAd extends AppCompatActivity {
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
 
     private String result;              // helps with displaying the chosen category
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +64,7 @@ public class EditAd extends AppCompatActivity {
         editTextPrice.setText(price);
     }
 
+
     public void saveBtnClick(View view)
     {
         String title;
@@ -78,10 +81,10 @@ public class EditAd extends AppCompatActivity {
         EditText editTextPrice = findViewById(R.id.editText_editAd_price);
         boolean priceEmpty = editTextPrice.getText().toString().isEmpty();
 
-        boolean categoryEmpty = (category==null);
+        boolean categoryEmpty = (category == null);
 
         // if empty field exists
-        if (titleEmpty||descriptionEmpty||priceEmpty||categoryEmpty)
+        if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty)
         {
             Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
         }
@@ -103,8 +106,8 @@ public class EditAd extends AppCompatActivity {
             viewAd.putExtra(ADID_TEXT, currAd.getAdId());
             startActivity(viewAd);
         }
-
     }
+
 
     public void selectCategoryBtnClick(View view)
     {
@@ -140,7 +143,9 @@ public class EditAd extends AppCompatActivity {
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener()
         {
             @Override
-            public void onClick(DialogInterface dialog, int which) { }
+            public void onClick(DialogInterface dialog, int which)
+            {
+            }
         });
 
         dialog = builder.create();

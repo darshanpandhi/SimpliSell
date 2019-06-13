@@ -8,9 +8,10 @@ import com.simplisell.R;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 
-public class ViewAdOfOtherUser extends AppCompatActivity {
+public class ViewAdOfOtherUser extends AppCompatActivity
+{
 
-    private final String ADID_TEXT="ADID";
+    private final String ADID_TEXT = "ADID";
 
     private Ad currAd;              // holds the curr ad object
     private int adId;               // id of the current ad
@@ -20,8 +21,10 @@ public class ViewAdOfOtherUser extends AppCompatActivity {
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_ad_other_user);
 

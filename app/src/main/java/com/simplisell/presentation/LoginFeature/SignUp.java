@@ -14,11 +14,10 @@ import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
 
-
 public class SignUp extends AppCompatActivity
 {
 
-    private final String USERNAME_TEXT="USER";
+    private final String USERNAME_TEXT = "USER";
 
     private static String uniqueUserName;
     private EditText name;              // name of user
@@ -30,13 +29,14 @@ public class SignUp extends AppCompatActivity
     private AccessUsers accessUsers;      // helps  access users
     private Credentials credentials;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        uniqueUserName=null;
+        uniqueUserName = null;
 
         // initializing the buttons and edit textboxes
         userName = findViewById(R.id.editText_name_user);
@@ -48,8 +48,8 @@ public class SignUp extends AppCompatActivity
 
         accessUsers = new AccessUsers();
         credentials = new Credentials();
-
     }
+
 
     public void signUpBtnClickRegister(View view)
     {
@@ -63,8 +63,9 @@ public class SignUp extends AppCompatActivity
         String userSecurityQuestion = securityQuestion.getText().toString();
         String userSecurityAnswer = securityAnswer.getText().toString();
 
-        validate(firstNLastName,userName,userPassword,userConfirmPassword, userSecurityQuestion, userSecurityAnswer);
+        validate(firstNLastName, userName, userPassword, userConfirmPassword, userSecurityQuestion, userSecurityAnswer);
     }
+
 
     public void backToLoginTextClick(View view)
     {
@@ -72,11 +73,10 @@ public class SignUp extends AppCompatActivity
         // takes to sign in page
         Intent loginPage = new Intent(getApplicationContext(), Login.class);
         startActivity(loginPage);
-
     }
 
 
-    private void validate(String firstNLastName,String userName,String userPassword, String userConfirmPassword, String userSecurityQuestion, String userSecurityAnswer)
+    private void validate(String firstNLastName, String userName, String userPassword, String userConfirmPassword, String userSecurityQuestion, String userSecurityAnswer)
     {
 
 
@@ -85,17 +85,17 @@ public class SignUp extends AppCompatActivity
         // are the fields empty
         boolean empty = (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
 
-        if(empty)  // if any field is empty
+        if (empty)  // if any field is empty
         {
 
-            if(userConfirmPassword.equals(userPassword))  // if both fields have the same password
+            if (userConfirmPassword.equals(userPassword))  // if both fields have the same password
             {
                 if (credentials.validPassword(userPassword))  // if password meets the standards
                 {
 
-                    User newUser=new User(userName, userPassword, userSecurityQuestion, userSecurityAnswer);   // create a new user
+                    User newUser = new User(userName, userPassword, userSecurityQuestion, userSecurityAnswer);   // create a new user
 
-                    if(accessUsers.insertNewUser(newUser) != null)
+                    if (accessUsers.insertNewUser(newUser) != null)
                     {   // check if userName is in the database and insert
 
                         String registrationSuccessMessage = "Registration successful";
@@ -103,29 +103,33 @@ public class SignUp extends AppCompatActivity
 
                         String successMessage = "Logged in as " + userName;
                         Toast.makeText(this, successMessage, Toast.LENGTH_SHORT).show();
-                        uniqueUserName=userName;
+                        uniqueUserName = userName;
 
                         // Pass this domain object across activities
-                        Intent signedUp=new Intent(getApplicationContext(), MainActivity.class);
-                        signedUp.putExtra(USERNAME_TEXT,uniqueUserName);
+                        Intent signedUp = new Intent(getApplicationContext(), MainActivity.class);
+                        signedUp.putExtra(USERNAME_TEXT, uniqueUserName);
                         RecyclerViewAdapter.login(userName);
                         startActivity(signedUp);
-                    } else
-                        {
-                        Toast.makeText(this, "Username has been taken! Please try another", Toast.LENGTH_SHORT).show();
-                        }
-                } else
-                    {
-                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
                     }
-            } else
-                {
-                Toast.makeText(this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
+                    else
+                    {
+                        Toast.makeText(this, "Username has been taken! Please try another", Toast.LENGTH_SHORT).show();
+                    }
                 }
-        } else
-            {
-            Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
+                }
             }
+            else
+            {
+                Toast.makeText(this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

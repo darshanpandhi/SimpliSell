@@ -29,6 +29,7 @@ public class ForgetPassword extends AppCompatActivity
     EditText confirmNewPassword;
     private boolean securityQuestionDisplayed;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -44,6 +45,7 @@ public class ForgetPassword extends AppCompatActivity
         credentials = new Credentials();
     }
 
+
     public void getSecurityQuestionBtnClick(View view)
     {
         // get the input from user
@@ -51,12 +53,14 @@ public class ForgetPassword extends AppCompatActivity
         validateUser(userName);
     }
 
+
     public void resetBtnClick(View view)
     {
         String userName = this.userName.getText().toString().trim();
         String answer = this.securityAnswer.getText().toString().trim();
         validateSecurityAnswer(userName, answer);
     }
+
 
     public void alertResetPassword(final User user)
     {
@@ -78,7 +82,7 @@ public class ForgetPassword extends AppCompatActivity
         confirmNewPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
 
-        LinearLayout ll=new LinearLayout(this);
+        LinearLayout ll = new LinearLayout(this);
         ll.setOrientation(LinearLayout.VERTICAL);
         ll.addView(newPassword);
         ll.addView(confirmNewPassword);
@@ -86,9 +90,11 @@ public class ForgetPassword extends AppCompatActivity
         builder.setView(ll);
 
         // Set up the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                 String newPass = newPassword.getText().toString();
                 String confirmNewPass = confirmNewPassword.getText().toString();
                 if (newPass.equals(confirmNewPass))
@@ -101,20 +107,23 @@ public class ForgetPassword extends AppCompatActivity
                         finish();
                         Intent loginPage = new Intent(getApplicationContext(), Login.class);
                         startActivity(loginPage);
-
-                    } else
+                    }
+                    else
                     {
                         Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
                     }
-                } else
+                }
+                else
                 {
                     Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                 dialog.cancel();
             }
         });
@@ -122,12 +131,13 @@ public class ForgetPassword extends AppCompatActivity
         builder.show();
     }
 
+
     private void validateUser(String userName)
     {
         // are the fields empty
         boolean empty = !userName.isEmpty();
 
-        if(empty)  // if any field is empty
+        if (empty)  // if any field is empty
         {
             User user = accessUsers.getUser(userName);
             if (user != null)
@@ -135,17 +145,20 @@ public class ForgetPassword extends AppCompatActivity
                 String question = user.getSecurityQuestion();
                 this.securityQuestion.setText(question);
                 securityQuestionDisplayed = true;
-            } else
+            }
+            else
             {
                 Toast.makeText(this, "Username not found", Toast.LENGTH_SHORT).show();
                 this.securityQuestion.setText("SECURITY QUESTION");
             }
-        } else
+        }
+        else
         {
             Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
             this.securityQuestion.setText("SECURITY QUESTION");
         }
     }
+
 
     private void validateSecurityAnswer(String userName, String answer)
     {
@@ -153,7 +166,7 @@ public class ForgetPassword extends AppCompatActivity
 
         if (securityQuestionDisplayed)
         {
-            if(empty)  // if any field is empty
+            if (empty)  // if any field is empty
             {
                 User user = accessUsers.getUser(userName);
                 if (user != null)
@@ -162,26 +175,32 @@ public class ForgetPassword extends AppCompatActivity
                     if (correct)
                     {
                         alertResetPassword(user);
-                    } else
+                    }
+                    else
                     {
                         Toast.makeText(this, "Incorrect answer", Toast.LENGTH_SHORT).show();
                     }
-                } else
+                }
+                else
                 {
                     Toast.makeText(this, "Username not found", Toast.LENGTH_SHORT).show();
                 }
-            } else
+            }
+            else
             {
                 Toast.makeText(this, "Please enter an answer to the security question", Toast.LENGTH_SHORT).show();
             }
-        } else
+        }
+        else
         {
             Toast.makeText(this, "Please retrieve a security question", Toast.LENGTH_SHORT).show();
         }
     }
 
+
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         finish();
         Intent loginPage = new Intent(getApplicationContext(), Login.class);
         startActivity(loginPage);

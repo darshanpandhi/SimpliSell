@@ -12,9 +12,10 @@ import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.presentation.MainActivity;
 
-public class ViewAdOfCurrentUser extends AppCompatActivity {
+public class ViewAdOfCurrentUser extends AppCompatActivity
+{
 
-    private final String ADID_TEXT="ADID";
+    private final String ADID_TEXT = "ADID";
 
     private Ad currAd;              // holds the curr ad object
     private int adId;               // id of the current ad
@@ -23,6 +24,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity {
     private double price;           // price of the current ad
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,12 +54,14 @@ public class ViewAdOfCurrentUser extends AppCompatActivity {
         textViewPrice.setText(price);
     }
 
+
     public void editBtnClick(View view)
     {
         Intent editAd = new Intent(getApplicationContext(), EditAd.class);
         editAd.putExtra(ADID_TEXT, adId);
         startActivity(editAd);
     }
+
 
     public void deleteBtnClick(View view)
     {
@@ -68,6 +72,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity {
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainPage);
     }
+
 
     public void onBackPressed()
     {

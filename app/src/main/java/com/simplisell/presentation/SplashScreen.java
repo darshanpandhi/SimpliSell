@@ -18,9 +18,11 @@ public class SplashScreen extends AppCompatActivity
         setContentView(R.layout.activity_splash_screen);
 
 
-        Thread thread = new Thread(){   // create a new thread
+        Thread thread = new Thread()
+        {   // create a new thread
             @Override
-            public void run() {
+            public void run()
+            {
 
                 try
                 {
@@ -28,9 +30,8 @@ public class SplashScreen extends AppCompatActivity
                     Thread.sleep(1200); // As I am using LENGTH_LONG in Toast
 
                     // move to the main activity
-                    startActivity(new Intent(getApplicationContext() , MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
-
                 } catch (Exception e)
                 {
 
@@ -42,6 +43,4 @@ public class SplashScreen extends AppCompatActivity
 
         thread.start();     // start the thread for the transition to mainActivity
     }
-
-
 }

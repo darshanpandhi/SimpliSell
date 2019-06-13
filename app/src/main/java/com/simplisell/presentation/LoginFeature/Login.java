@@ -15,10 +15,9 @@ import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
 
-
 public class Login extends AppCompatActivity
 {
-    private final String USERNAME_TEXT="USER";
+    private final String USERNAME_TEXT = "USER";
 
     private static String uniqueUserName;
 
@@ -27,13 +26,14 @@ public class Login extends AppCompatActivity
     private ProgressDialog progressDialog;  // progress Dialogue
     private Credentials credentials;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        uniqueUserName=null;
+        uniqueUserName = null;
 
         // initializing the buttons and edit textboxes
         userName = findViewById(R.id.editText_login_enterUserName);
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity
         boolean userNameEmpty = this.userName.getText().toString().isEmpty();
         boolean passwordEmpty = password.getText().toString().isEmpty();
 
-        if (userNameEmpty||passwordEmpty)   // if userName or password field is empty
+        if (userNameEmpty || passwordEmpty)   // if userName or password field is empty
         {
 
             // Make a toast to display error message
@@ -69,22 +69,22 @@ public class Login extends AppCompatActivity
             progressDialog.setMessage("Logging In");
             progressDialog.show();
 
-            User loggedInUser = credentials.authenticate(userName,userPassword);
+            User loggedInUser = credentials.authenticate(userName, userPassword);
 
-            if (loggedInUser!=null)
+            if (loggedInUser != null)
             {  // if logging in is successful
 
                 progressDialog.dismiss();   // dismiss the progress bar
 
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                uniqueUserName=userName;
+                uniqueUserName = userName;
 
                 // login and go to homepage
                 finish();
 
-                Intent logIn=new Intent(getApplicationContext(), MainActivity.class);
-                logIn.putExtra(USERNAME_TEXT,uniqueUserName);
+                Intent logIn = new Intent(getApplicationContext(), MainActivity.class);
+                logIn.putExtra(USERNAME_TEXT, uniqueUserName);
                 RecyclerViewAdapter.login(userName);
                 startActivity(logIn);
             }
@@ -92,11 +92,10 @@ public class Login extends AppCompatActivity
             {
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Invalid userName OR password", Toast.LENGTH_SHORT).show();
-
             }
         }
-
     }
+
 
     public void forgetPasswordBtnClick(View view)
     {
@@ -104,15 +103,18 @@ public class Login extends AppCompatActivity
         startActivity(forgetPass);
     }
 
+
     public void signUpBtnClick(View view)
     {
         // takes to sign in page
         Intent signUp = new Intent(Login.this, SignUp.class);
-        startActivity (signUp);
+        startActivity(signUp);
     }
 
+
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         finish();
         Intent loginPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(loginPage);

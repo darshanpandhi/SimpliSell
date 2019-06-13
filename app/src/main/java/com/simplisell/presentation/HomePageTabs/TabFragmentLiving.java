@@ -1,6 +1,5 @@
 package com.simplisell.presentation.HomePageTabs;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,9 +12,10 @@ import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
 import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
-import java.util.List;
-import static com.simplisell.objects.Category.ACCOMMODATION;
 
+import java.util.List;
+
+import static com.simplisell.objects.Category.ACCOMMODATION;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,11 +29,11 @@ public class TabFragmentLiving extends Fragment
     private RecyclerView recyclerView;
     private List<Ad> ads;
 
+
     public TabFragmentLiving()
     {
         // Required empty public constructor
         ads = adsSearch.getAllAdsByCategory(ACCOMMODATION);
-
     }
 
 
@@ -43,9 +43,9 @@ public class TabFragmentLiving extends Fragment
     {
         //Inflate the layout for this fragment
 
-        View view=inflater.inflate(R.layout.fragment_tab_fragment_living, container, false);
-        recyclerView = (RecyclerView)view.findViewById(R.id.listView_insideFragmentLiving);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),ads);
+        View view = inflater.inflate(R.layout.fragment_tab_fragment_living, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragmentLiving);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -56,24 +56,21 @@ public class TabFragmentLiving extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
-
     }
+
 
     public void sort()
     {
-
-
-        if(isSortedAscending)       // if its already sorted in ascending
+        if (isSortedAscending)       // if its already sorted in ascending
         {
-            ads=adsSearch.sortPriceDesc(ads);
-            isSortedAscending=false;
+            ads = adsSearch.sortPriceDesc(ads);
+            isSortedAscending = false;
         }
         else
         {
-            ads=adsSearch.sortPriceAsc(ads);
-            isSortedAscending=true;
+            ads = adsSearch.sortPriceAsc(ads);
+            isSortedAscending = true;
         }
     }
 }

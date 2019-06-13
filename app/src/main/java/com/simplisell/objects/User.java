@@ -7,6 +7,7 @@ public class User
     private String securityQuestion;
     private String securityAnswer;
 
+
     public User()
     {
         userName = "";
@@ -14,6 +15,8 @@ public class User
         securityQuestion = "";
         securityAnswer = "";
     }
+
+
     public User(String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer)
     {
         userName = newUserName;
@@ -22,11 +25,13 @@ public class User
         securityAnswer = newSecurityAnswer;
     }
 
+
     public String getUserName()
     {
 
         return userName;
     }
+
 
     public String getPassword()
     {
@@ -34,20 +39,24 @@ public class User
         return password;
     }
 
+
     public String getSecurityQuestion()
     {
         return securityQuestion;
     }
+
 
     public String getSecurityAnswer()
     {
         return securityAnswer;
     }
 
+
     public void setPassword(final String newPassword)
     {
         this.password = newPassword;
     }
+
 
     public String toString()
     {
