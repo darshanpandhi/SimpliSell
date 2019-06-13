@@ -17,7 +17,7 @@ public class AdPersistenceStub implements AdPersistence
     {
         ads = new ArrayList<>();
 
-        String adOwner = "bob";
+        String adOwner = "Bob";
         AdType adType = AdType.OFFERING;
         Category category = Category.ELECTRONICS;
         String title = "iPad 6th Gen";
@@ -48,7 +48,7 @@ public class AdPersistenceStub implements AdPersistence
         ads.add(newAd);
 
 
-        adOwner = "Ann";
+        adOwner = "Bob";
         adType = AdType.OFFERING;
         category = Category.BOOKS;
         title = "Transcendence- A spiritual journey with pramukh swami maharaj";
@@ -59,7 +59,7 @@ public class AdPersistenceStub implements AdPersistence
         ads.add(newAd);
 
 
-        adOwner = "Mahant";
+        adOwner = "Allice";
         adType = AdType.OFFERING;
         category = Category.BOOKS;
         title = "Analysis of Algorithms";
