@@ -48,16 +48,16 @@
         android:id="@+id/tabview_mainActivity"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/whiteBtn"
         android:contextClickable="true"
         app:tabIconTint="@color/colorPrimary"
         app:tabIndicatorColor="@color/black_overlay"
         app:tabIndicatorHeight="6dp"
         app:tabMode="scrollable"
         app:tabRippleColor="@color/colorAccent"
-        app:tabSelectedTextColor="@android:color/black"
+        app:tabSelectedTextColor="@color/black_overlay"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
-        app:tabTextColor="@android:color/background_light">
+        app:tabTextColor="@android:color/background_dark">
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabItem_mainActivity_all"
@@ -145,7 +145,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/whiteBtn">
 
 
         <Button
@@ -168,9 +168,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="sortBtnClick"
             android:layout_marginEnd="8dp"
             android:background="@drawable/baseline_sort_white_18"
+            android:onClick="sortBtnClick"
             tools:ignore="contentDescription" />
 
 
