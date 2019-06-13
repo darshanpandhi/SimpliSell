@@ -1,4 +1,6 @@
 #   Architecture
+The architecture for SimpliSell is 3-tier architecture, consisting of the presentation, logic and the persistence layer.
+
 ![Architecture](Architecture_Diagram.png)
 
 ##  Presentation Layer
