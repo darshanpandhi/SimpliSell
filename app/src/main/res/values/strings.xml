@@ -1,3 +1,88 @@
 <resources>
     <string name="app_name">SimpliSell</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <string name="login">Login</string>
+
+    <string name="userName">USERNAME</string>
+
+    <string name="password">PASSWORD</string>
+
+    <string name="confirmPassword">CONFIRM PASSWORD</string>
+
+    <string name="securityQuestion">SECURITY QUESTION</string>
+
+    <string name="securityAnswer">SECURITY ANSWER</string>
+
+    <string name="resetPassword">Reset Password</string>
+
+    <string name="username">FIRST AND LAST NAME</string>
+
+    <string name="signup">SIGN UP</string>
+
+    <string name="or">OR</string>
+
+    <string name="copyright">© 2019 Crazy Eights</string>
+
+    <string name="signupTwo">Sign Up</string>
+
+    <string name="forgetPassword">Forgot Password?</string>
+
+    <string name="resetMyPassword">Reset Password</string>
+
+    <string name="getSecurityQuestion">Get Security Question</string>
+
+    <string name="backToLogin">Back To Login</string>
+
+    <string name="tabTextAll">All</string>
+
+    <string name="tabTextArrangement">Arrangement</string>
+
+    <string name="tabTextBooks">Books</string>
+
+    <string name="tabTextElectronics">Electronics</string>
+
+    <string name="tabTextEvents">Events</string>
+
+    <string name="tabTextHobbiesGames">Hobbies &amp; Games</string>
+
+    <string name="tabTextLiving">Living</string>
+
+    <string name="tabTextOther">Other</string>
+
+    <string name="tabTextServiceJobs">Services &amp; Jobs</string>
+
+    <string name="tabTextTransportation">Transportation</string>
+
+    <string name="postAnAd">Post An Ad</string>
+
+    <string name="sort">Sort</string>
+
+    <string name="menu">Menu</string>
+
+    <string name="post">Post</string>
+
+    <string name="title">Title</string>
+
+    <string name="description">Description</string>
+
+    <string name="price">Price</string>
+
+    <string name="postAd">Post Ad</string>
+
+    <string name="selectCategory">Select Category</string>
+
+    <string name="category">Category</string>
+
+    <string name="edit">Edit</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="save">Save</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

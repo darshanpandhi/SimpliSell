@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/adPostGreyBackground"
+    tools:context=".presentation.PostingAdActivity.ViewAdOfCurrentUser">
+
+    <TextView
+        android:id="@+id/textView_viewAdCU_header"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_viewAdCU_top"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_viewAdCU_header">
+
+        <TextView
+            android:id="@+id/textView_viewAdCU_title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/whiteBtn"
+            android:hint="@string/title"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/textView_viewAdCU_price"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/whiteBtn"
+            android:hint="@string/price"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_viewAdCU_bot"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdCU_top">
+
+        <TextView
+            android:id="@+id/textView_viewAdCU_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/whiteBtn"
+            android:hint="@string/description"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_viewAdCU_edit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/colorPrimary"
+        android:onClick="editBtnClick"
+        android:text="@string/edit"
+        android:textAllCaps="false"
+        android:textColor="@color/whiteBtn"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdCU_bot"
+        app:layout_constraintVertical_bias="0.464" />
+
+    <Button
+        android:id="@+id/button_viewAdCU_delete"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/black_overlay"
+        android:onClick="deleteBtnClick"
+        android:text="@string/delete"
+        android:textAllCaps="false"
+        android:textColor="@color/whiteBtn"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdCU_bot"
+        app:layout_constraintVertical_bias="0.464" />
+</android.support.constraint.ConstraintLayout>
