@@ -24,3 +24,27 @@
 - Logged in users can post new advertisments or even edit and delete their own advertisements
 - The Search and Ad Posting features are not yet complete and so we have moved it to iteration 2.  Certain things must first be implemented before these features can 
   be fully completed
+## Special Instructions
+- To log in, use any of the following login credentials:
+ 
+        Username: Bob
+    
+        Password: 123456
+
+        Security Question Answer: Red
+        
+        -----------------------------------
+        
+        Username: Allice
+    
+        Password: 123456
+      
+        Security Question Answer: Green
+        
+        -----------------------------------
+        
+        Username: Jay
+    
+        Password: 123456
+      
+        Security Question Answer: Blue
