@@ -1,4 +1,5 @@
 #   Architecture
+![Architecture](Architecture.jpg)
 
 ##  Presentation Layer
 *   Includes the user interface
