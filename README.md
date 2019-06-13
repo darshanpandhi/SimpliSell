@@ -15,39 +15,3 @@
 
 ## Our Architecture
 [Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/dev/Docs/ARCHITECTURE.md)
-
-## Release notes - June 13, 2019
-- Login System is now complete!  Users can create a new account, reset their password and log into the app
-- All advertisements display in the homepage, and users can filter these advertisements based on 7 categories: Books, Electronics, Events, Living, Service & Jobs, 
-  Transportation and Others  
-- Users can sort advertisements based on price
-- Logged in users can post new advertisments and edit or delete their own advertisements
-- The Search and Ad Posting features are not yet complete and so we have moved it to iteration 2.  Certain things must first be implemented before these features can 
-  be fully completed
-## Special Instructions
-- To log in, use any of the following login credentials:
- 
-        Username: Bob
-    
-        Password: 123456
-
-        Security Question Answer: Red
-        
-        -----------------------------------
-        
-        Username: Allice
-    
-        Password: 123456
-      
-        Security Question Answer: Green
-        
-        -----------------------------------
-        
-        Username: Jay
-    
-        Password: 123456
-      
-        Security Question Answer: Blue
-- To access the log-in page, either click the Profile button at the top left, or the "Post An Ad" button
-- You can create new accounts using the sign-up button at the bottom of the log-in page  
-- For the security question field in the registration screen, please input your own security question
