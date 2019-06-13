@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity
             else    // if authentication is not successful.
             {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Invalid userName OR password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
         }
     }
