@@ -1,7 +1,5 @@
 package com.simplisell.tests.business;
 
-import com.simplisell.business.ValidPasswordChecker;
-
 import org.junit.Test;
 import static org.junit.Assert.*;
 

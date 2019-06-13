@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.ValidPasswordChecker;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
@@ -21,8 +20,6 @@ public class SignUp extends AppCompatActivity
     private final String USERNAME_TEXT="USER";
 
     private static String uniqueUserName;
-
-
     private EditText name;              // name of user
     private EditText userName;             // firstNLastName of user
     private EditText password;          // password of user
@@ -30,9 +27,6 @@ public class SignUp extends AppCompatActivity
     private EditText securityQuestion;  // security question of user
     private EditText securityAnswer;    // security answer of user
     private AccessUsers accessUsers;      // helps  access users
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
