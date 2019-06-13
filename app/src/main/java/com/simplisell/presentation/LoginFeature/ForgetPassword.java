@@ -18,7 +18,6 @@ import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
 
-
 public class ForgetPassword extends AppCompatActivity
 {
     private EditText userName;             // firstNLastName of user
@@ -34,11 +33,13 @@ public class ForgetPassword extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_forget_password);
         userName = findViewById(R.id.editText_forgetPassword_userName);
         securityAnswer = findViewById(R.id.editText_forgetPassword_securityAnswer);
         securityQuestion = findViewById(R.id.textView_forgetPassword_securityQuestion);
         securityQuestionDisplayed = false;
+
         accessUsers = new AccessUsers();
         credentials = new Credentials();
     }
@@ -88,10 +89,6 @@ public class ForgetPassword extends AppCompatActivity
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-
-
-
                 String newPass = newPassword.getText().toString();
                 String confirmNewPass = confirmNewPassword.getText().toString();
                 if (newPass.equals(confirmNewPass))
@@ -124,10 +121,6 @@ public class ForgetPassword extends AppCompatActivity
 
         builder.show();
     }
-
-
-
-
 
     private void validateUser(String userName)
     {
@@ -185,7 +178,6 @@ public class ForgetPassword extends AppCompatActivity
         {
             Toast.makeText(this, "Please retrieve a security question", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override

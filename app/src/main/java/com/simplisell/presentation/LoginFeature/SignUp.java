@@ -110,7 +110,6 @@ public class SignUp extends AppCompatActivity
                         signedUp.putExtra(USERNAME_TEXT,uniqueUserName);
                         RecyclerViewAdapter.login(userName);
                         startActivity(signedUp);
-
                     } else
                         {
                         Toast.makeText(this, "Username has been taken! Please try another", Toast.LENGTH_SHORT).show();

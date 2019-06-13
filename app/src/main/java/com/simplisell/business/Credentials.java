@@ -12,7 +12,8 @@ public class Credentials {
         userPersistence = Services.getUserPersistence();
     }
 
-    public User authenticate(String userName, String password) {
+    public User authenticate(String userName, String password)
+    {
         User user = userPersistence.getUser(userName);
         boolean validUser = user != null && correctPassword(userName, password);
         if (!validUser) {
@@ -34,7 +35,8 @@ public class Credentials {
         return correctAnswer;
     }
 
-    public void updatePassword(String userName, String newPassword) {
+    public void updatePassword(String userName, String newPassword)
+    {
         userPersistence.updatePassword(userName, newPassword);
     }
 

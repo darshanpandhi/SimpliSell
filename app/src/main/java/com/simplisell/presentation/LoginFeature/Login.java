@@ -18,17 +18,14 @@ import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
 
 public class Login extends AppCompatActivity
 {
-
     private final String USERNAME_TEXT="USER";
 
     private static String uniqueUserName;
-
 
     private EditText userName;             // the edit text box for userName of the user
     private EditText password;          // the edit text box for password of the user
     private ProgressDialog progressDialog;  // progress Dialogue
     private Credentials credentials;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,15 +46,12 @@ public class Login extends AppCompatActivity
     public void loginBtnClick(View view)
     {
 
-
         String userName;       // The userName in the textbox will be stored here.
         String userPassword;    // The userName in the password will be stored here.
-
 
         // check if these fields are empty
         boolean userNameEmpty = this.userName.getText().toString().isEmpty();
         boolean passwordEmpty = password.getText().toString().isEmpty();
-
 
         if (userNameEmpty||passwordEmpty)   // if userName or password field is empty
         {
@@ -69,7 +63,6 @@ public class Login extends AppCompatActivity
         {
             userName = this.userName.getText().toString();
             userPassword = password.getText().toString();
-
 
             // Show a progress Dialog while the authentication is loading
             progressDialog = new ProgressDialog(this);
@@ -94,8 +87,6 @@ public class Login extends AppCompatActivity
                 logIn.putExtra(USERNAME_TEXT,uniqueUserName);
                 RecyclerViewAdapter.login(userName);
                 startActivity(logIn);
-
-
             }
             else    // if authentication is not successful.
             {
