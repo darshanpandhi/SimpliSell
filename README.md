@@ -18,10 +18,10 @@
 
 ## Release notes - June 13, 2019
 - Login System is now complete!  Users can create a new account, reset their password and log into the app
-- All Advertisements display in the homepage, and users can filter these advertisements based on 7 categories: Books, Electronics, Events, Living, Service & Jobs, 
+- All advertisements display in the homepage, and users can filter these advertisements based on 7 categories: Books, Electronics, Events, Living, Service & Jobs, 
   Transportation and Others  
 - Users can sort advertisements based on price
-- Logged in users can post new advertisments or even edit and delete their own advertisements
+- Logged in users can post new advertisments and edit or delete their own advertisements
 - The Search and Ad Posting features are not yet complete and so we have moved it to iteration 2.  Certain things must first be implemented before these features can 
   be fully completed
 ## Special Instructions
@@ -48,3 +48,5 @@
         Password: 123456
       
         Security Question Answer: Blue
+- You can create new accounts in the log in page
+- For the security question field, input your own security question
