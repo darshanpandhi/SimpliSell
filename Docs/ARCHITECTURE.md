@@ -27,20 +27,16 @@
 
 **Login**
 *   Responsible for User Login and helps the user witb a forgot password link in case they need to reset the password.
-*   
 
 **SignUp**
 *   Sign Up helps the user create a new account and they will be able to post Ads. 
-*   
 
 
 **EditAd**
-
-*   
+*   The user can edit an Ad that they posted already.
 
 **PostAd**
-
-*   
+*   The user can post an Ad.
 
 
 ##  Business Layer
