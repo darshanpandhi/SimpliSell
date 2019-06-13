@@ -14,15 +14,15 @@
 
 **HomePageTabs**
 
-*   
-*   
-*   
-*
-*
-*
-*
-*
-*
+*   TabFragmentAll
+*   TabFragmentBooks
+*   TabFragmentElectronics
+*   TabFragmentEvents
+*   TabFragmentLiving
+*   TabFragmentServiceJobs
+*   TabFragmentTransportation
+*   TabFragmentOther
+*   TabFragmentAdapter
 
 **Login**
 
@@ -49,21 +49,21 @@
 *   Coordinates our application, processes commands, and makes logical decisions and evaluations, and performs calculations.
 *   Also moves and processes data between TWO surrounding layers
 
-**AccessUsers**
-
-*     
-
 **AccessAds**
 
-*   
+*   Insert, get and delete advertisements from the database
+
+**AccessUsers**
+
+*   Insert, and get users from the database
 
 **Search**
 
-*   
+*   Filters out advertisements based on categories, and sorts the advertisements by price
 
 **Credentials**
 
-*   
+*   Authenticate users, and validates that the password meets password standards
 
 ##  Persistence Layer
 *   Information is stored and retrived from a database or file system
@@ -71,25 +71,25 @@
 
 **AdPersistence**
 
-*   
+*   Interface for advertisements in the database
 
 **UserPersistence**
 
-*   
+*   Interface for users in the database
 
 **AdPersistenceStub**
 
-*   
+*   Stub implementation for advertisements in the database
 
 **UserPersistenceStub**
 
-*   
+*   Stub implementation for users in the database
 
 ##   Domain Objects
 **Ad**
 
-*   
+*   The object for advertisements posted by a user.
 
 **User**
 
-*   
+*   The object for users
