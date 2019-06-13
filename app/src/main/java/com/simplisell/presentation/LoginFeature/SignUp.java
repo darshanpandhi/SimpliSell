@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.ValidPasswordChecker;
+import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.PostingAds.RecyclerViewAdapter;
@@ -21,8 +21,6 @@ public class SignUp extends AppCompatActivity
     private final String USERNAME_TEXT="USER";
 
     private static String uniqueUserName;
-
-
     private EditText name;              // name of user
     private EditText userName;             // firstNLastName of user
     private EditText password;          // password of user
@@ -30,9 +28,7 @@ public class SignUp extends AppCompatActivity
     private EditText securityQuestion;  // security question of user
     private EditText securityAnswer;    // security answer of user
     private AccessUsers accessUsers;      // helps  access users
-
-
-
+    private Credentials credentials;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,7 +46,8 @@ public class SignUp extends AppCompatActivity
         securityQuestion = findViewById(R.id.editText_name_registrationSecurityQuestion);
         securityAnswer = findViewById(R.id.editText_name_registrationSecurityAnswer);
 
-        accessUsers=new AccessUsers();
+        accessUsers = new AccessUsers();
+        credentials = new Credentials();
 
     }
 
@@ -93,12 +90,13 @@ public class SignUp extends AppCompatActivity
 
             if(userConfirmPassword.equals(userPassword))  // if both fields have the same password
             {
-                if (ValidPasswordChecker.validPassword(userPassword))  // if password meets the standards
+                if (credentials.validPassword(userPassword))  // if password meets the standards
                 {
 
                     User newUser=new User(userName, userPassword, userSecurityQuestion, userSecurityAnswer);   // create a new user
 
-                    if(accessUsers.insertNewUser(newUser)!=null){   // check if userName is in the database and insert
+                    if(accessUsers.insertNewUser(newUser) != null)
+                    {   // check if userName is in the database and insert
 
                         String registrationSuccessMessage = "Registration successful";
                         Toast.makeText(this, registrationSuccessMessage, Toast.LENGTH_SHORT).show();
@@ -112,7 +110,6 @@ public class SignUp extends AppCompatActivity
                         signedUp.putExtra(USERNAME_TEXT,uniqueUserName);
                         RecyclerViewAdapter.login(userName);
                         startActivity(signedUp);
-
                     } else
                         {
                         Toast.makeText(this, "Username has been taken! Please try another", Toast.LENGTH_SHORT).show();

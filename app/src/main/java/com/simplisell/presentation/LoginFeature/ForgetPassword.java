@@ -15,9 +15,8 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.ValidPasswordChecker;
+import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
-
 
 public class ForgetPassword extends AppCompatActivity
 {
@@ -25,7 +24,7 @@ public class ForgetPassword extends AppCompatActivity
     private TextView securityQuestion;
     private EditText securityAnswer;
     private AccessUsers accessUsers;      // helps  access users
-    private ValidPasswordChecker validPasswordChecker;
+    private Credentials credentials;
     EditText newPassword;
     EditText confirmNewPassword;
     private boolean securityQuestionDisplayed;
@@ -34,13 +33,15 @@ public class ForgetPassword extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_forget_password);
         userName = findViewById(R.id.editText_forgetPassword_userName);
         securityAnswer = findViewById(R.id.editText_forgetPassword_securityAnswer);
         securityQuestion = findViewById(R.id.textView_forgetPassword_securityQuestion);
         securityQuestionDisplayed = false;
-        accessUsers=new AccessUsers();
-        validPasswordChecker = new ValidPasswordChecker();
+
+        accessUsers = new AccessUsers();
+        credentials = new Credentials();
     }
 
     public void getSecurityQuestionBtnClick(View view)
@@ -88,17 +89,13 @@ public class ForgetPassword extends AppCompatActivity
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-
-
-
                 String newPass = newPassword.getText().toString();
                 String confirmNewPass = confirmNewPassword.getText().toString();
                 if (newPass.equals(confirmNewPass))
                 {
-                    if (validPasswordChecker.validPassword(newPass))
+                    if (credentials.validPassword(newPass))
                     {
-                        accessUsers.updatePassword(user.getUserName(), newPass);
+                        credentials.updatePassword(user.getUserName(), newPass);
                         Toast.makeText(getApplicationContext(), "Password has been changed", Toast.LENGTH_SHORT).show();
 
                         finish();
@@ -124,10 +121,6 @@ public class ForgetPassword extends AppCompatActivity
 
         builder.show();
     }
-
-
-
-
 
     private void validateUser(String userName)
     {
@@ -165,7 +158,7 @@ public class ForgetPassword extends AppCompatActivity
                 User user = accessUsers.getUser(userName);
                 if (user != null)
                 {
-                    boolean correct = accessUsers.correctSecurityAnswer(userName, answer);
+                    boolean correct = credentials.correctSecurityAnswer(userName, answer);
                     if (correct)
                     {
                         alertResetPassword(user);
@@ -185,7 +178,6 @@ public class ForgetPassword extends AppCompatActivity
         {
             Toast.makeText(this, "Please retrieve a security question", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
