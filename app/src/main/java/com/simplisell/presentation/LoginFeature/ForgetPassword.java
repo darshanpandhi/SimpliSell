@@ -25,6 +25,7 @@ public class ForgetPassword extends AppCompatActivity
     private TextView securityQuestion;
     private EditText securityAnswer;
     private AccessUsers accessUsers;      // helps  access users
+    private Credentials credentials;
     EditText newPassword;
     EditText confirmNewPassword;
     private boolean securityQuestionDisplayed;
@@ -38,7 +39,8 @@ public class ForgetPassword extends AppCompatActivity
         securityAnswer = findViewById(R.id.editText_forgetPassword_securityAnswer);
         securityQuestion = findViewById(R.id.textView_forgetPassword_securityQuestion);
         securityQuestionDisplayed = false;
-        accessUsers=new AccessUsers();
+        accessUsers = new AccessUsers();
+        credentials = new Credentials();
     }
 
     public void getSecurityQuestionBtnClick(View view)
@@ -94,9 +96,9 @@ public class ForgetPassword extends AppCompatActivity
                 String confirmNewPass = confirmNewPassword.getText().toString();
                 if (newPass.equals(confirmNewPass))
                 {
-                    if (Credentials.validPassword(newPass))
+                    if (credentials.validPassword(newPass))
                     {
-                        Credentials.updatePassword(user.getUserName(), newPass);
+                        credentials.updatePassword(user.getUserName(), newPass);
                         Toast.makeText(getApplicationContext(), "Password has been changed", Toast.LENGTH_SHORT).show();
 
                         finish();
@@ -163,7 +165,7 @@ public class ForgetPassword extends AppCompatActivity
                 User user = accessUsers.getUser(userName);
                 if (user != null)
                 {
-                    boolean correct = accessUsers.correctSecurityAnswer(userName, answer);
+                    boolean correct = credentials.correctSecurityAnswer(userName, answer);
                     if (correct)
                     {
                         alertResetPassword(user);
