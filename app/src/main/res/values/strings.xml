@@ -63,11 +63,11 @@
 
     <string name="post">Post</string>
 
-    <string name="title">Title</string>
+    <string name="title">    Title</string>
 
-    <string name="description">Description</string>
+    <string name="description">  Description</string>
 
-    <string name="price">Price</string>
+    <string name="price">  Price</string>
 
     <string name="postAd">Post Ad</string>
 

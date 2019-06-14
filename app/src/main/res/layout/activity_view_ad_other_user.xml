@@ -8,63 +8,62 @@
     tools:context=".presentation.PostingAdActivity.ViewAdOfOtherUser">
 
     <TextView
-        android:id="@+id/textView_viewAdOU_header"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout_viewAdOU_top"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:id="@+id/textView_viewAdOU_title"
+        android:layout_width="510dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="@string/title"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_viewAdOU_header">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.012" />
 
-        <TextView
-            android:id="@+id/textView_viewAdOU_title"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/whiteBtn"
-            android:hint="@string/title"
-            android:textSize="36sp" />
-
-        <TextView
-            android:id="@+id/textView_viewAdOU_price"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/whiteBtn"
-            android:hint="@string/price"
-            android:textSize="36sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout_viewAdOU_bot"
-        android:layout_width="0dp"
-        android:layout_height="400dp"
+    <TextView
+        android:id="@+id/textView_viewAdOU_price"
+        android:layout_width="510dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="@string/price"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdOU_top">
+        app:layout_constraintTop_toBottomOf="@+id/textView_viewAdOU_title"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView_viewAdOU_description"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/whiteBtn"
-            android:hint="@string/description"
-            android:textSize="30sp" />
-    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_viewAdOU_description"
+        android:layout_width="510dp"
+        android:layout_height="646dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="48dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="@string/description"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_viewAdOU_price"
+        app:layout_constraintVertical_bias="0.425" />
+
 
 </android.support.constraint.ConstraintLayout>
