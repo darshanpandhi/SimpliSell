@@ -10,7 +10,7 @@
         android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"></activity>
+        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser" />
         <activity android:name=".presentation.PostingAdActivity.EditAd" />
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
         <activity android:name=".presentation.UserProfileActivity.UserProfileMenu" />
@@ -18,7 +18,7 @@
         <activity android:name=".presentation.PostingAdActivity.PostAd" />
         <activity android:name=".presentation.LoginActivity.Login" />
         <activity android:name=".presentation.MainActivity" />
-        <activity android:name=".presentation.LoginActivity.ForgetPassword"/>
+        <activity android:name=".presentation.LoginActivity.ForgetPassword" />
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
