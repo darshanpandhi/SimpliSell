@@ -10,6 +10,7 @@
         android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".presentation.UserProfileActivity.UsersOwnAds"></activity>
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser" />
         <activity android:name=".presentation.PostingAdActivity.EditAd" />
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
