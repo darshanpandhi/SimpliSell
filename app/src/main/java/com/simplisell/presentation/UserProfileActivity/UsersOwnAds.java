@@ -19,9 +19,12 @@ import static com.simplisell.objects.Category.BOOKS;
 public class UsersOwnAds extends AppCompatActivity
 {
 
+    private final String USERNAME_TEXT="USER";
+
     private List<Ad> ads;
     private Search adsSearch;
     private RecyclerView recyclerView;
+    private String userName;
 
 
 
@@ -30,9 +33,12 @@ public class UsersOwnAds extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_own_ads);
+        userName = getIntent().getStringExtra(USERNAME_TEXT);
+
 
         adsSearch = new Search();
-        ads = adsSearch.getAllAdsByCategory(BOOKS);
+        ads = adsSearch.getUserSpecificAds(userName);
+
 
         recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, ads);
@@ -41,10 +47,4 @@ public class UsersOwnAds extends AppCompatActivity
     }
 
 
-    public void backButtonClick(View view)
-    {
-
-        finish();
-        startActivity(new Intent(getApplicationContext() , UserProfileMenu.class));
-    }
 }

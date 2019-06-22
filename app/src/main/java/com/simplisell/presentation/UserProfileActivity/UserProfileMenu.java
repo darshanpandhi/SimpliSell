@@ -92,8 +92,9 @@ public class UserProfileMenu extends AppCompatActivity {
                 if(position==0)
                 {
 
-                    startActivity(new Intent(getApplicationContext() , UsersOwnAds.class));
-
+                    Intent postAd=new Intent(getApplicationContext(), UsersOwnAds.class);
+                    postAd.putExtra(USERNAME_TEXT, userName);
+                    startActivity(postAd);
                 }
                 else if (position==1)
                 {
@@ -101,7 +102,7 @@ public class UserProfileMenu extends AppCompatActivity {
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
                 }
-                else if (position==3)
+                else if (position==2)
                 {
                     logout();
                 }
@@ -124,5 +125,13 @@ public class UserProfileMenu extends AppCompatActivity {
         RecyclerViewAdapter.logOut();
         finish();
         startActivity(new Intent(getApplicationContext() , MainActivity.class));
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+        Intent loginPage = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(loginPage);
     }
 }

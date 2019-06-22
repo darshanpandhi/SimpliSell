@@ -73,11 +73,4 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         startActivity(mainPage);
     }
 
-
-    public void onBackPressed()
-    {
-        finish();
-        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainPage);
-    }
 }

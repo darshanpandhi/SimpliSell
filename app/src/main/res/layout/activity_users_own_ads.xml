@@ -20,18 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageButton
-            android:id="@+id/imageButton_profile_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:onClick="backButtonClick"
-            android:src="@drawable/round_arrow_back_white_24"
-
-            tools:ignore="ContentDescription" />
 
 
         <TextView
@@ -39,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="23dp"
             android:fontFamily="@font/orbitron"
             android:text="@string/myAds"
             android:textColor="@android:color/background_light"

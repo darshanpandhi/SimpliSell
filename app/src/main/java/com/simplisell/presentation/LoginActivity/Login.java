@@ -80,11 +80,12 @@ public class Login extends AppCompatActivity
                 uniqueUserName = userName;
 
                 // login and go to homepage
-                finish();
+
 
                 Intent logIn = new Intent(getApplicationContext(), MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT, uniqueUserName);
                 RecyclerViewAdapter.login(userName);
+                finish();
                 startActivity(logIn);
             }
             else    // if authentication is not successful.

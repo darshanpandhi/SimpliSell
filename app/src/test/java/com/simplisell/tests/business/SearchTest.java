@@ -97,4 +97,6 @@ public class SearchTest
 
         System.out.println("Finished testSearch: sort price (descending)");
     }
+
+    
 }
