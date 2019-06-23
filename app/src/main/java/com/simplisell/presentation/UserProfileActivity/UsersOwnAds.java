@@ -19,7 +19,7 @@ import static com.simplisell.objects.Category.BOOKS;
 public class UsersOwnAds extends AppCompatActivity
 {
 
-    private final String USERNAME_TEXT="USER";
+    private static final String USERNAME_TEXT="USER";
 
     private List<Ad> ads;
     private Search adsSearch;
@@ -45,6 +45,16 @@ public class UsersOwnAds extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
+
+    @Override
+    public void onBackPressed()
+    {   // if anytime the back is pressed. Go back
+
+        Intent i = new Intent(this,UserProfileMenu.class);
+        startActivity(i);
+    }
+
 
 
 }
