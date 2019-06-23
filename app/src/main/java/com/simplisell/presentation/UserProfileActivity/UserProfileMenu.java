@@ -17,12 +17,12 @@ import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
 
 public class UserProfileMenu extends AppCompatActivity {
 
-    private final String USERNAME_TEXT="USER";
+    private final String USERNAME_TEXT = "USER";
 
-    private static String userName=null;
-    private static User currUser=null;
+    private static String userName = null;
+    private static User currUser = null;
     private static ListView listView;
-    private static String[] titles={"My profile","My Ads","Post an Ad","Logout"};
+    private static String[] titles = {"My profile","My Ads","Post an Ad","Logout"};
 
     private AccessUsers accessUsers;
 
@@ -32,7 +32,7 @@ public class UserProfileMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        accessUsers=new AccessUsers();
+        accessUsers = new AccessUsers();
 
 
         try
@@ -40,11 +40,11 @@ public class UserProfileMenu extends AppCompatActivity {
 
             userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
 
-            if(userName!=null)
+            if(userName != null)
             {
 
-                currUser=accessUsers.getUser(userName);
-                if(currUser==null)
+                currUser = accessUsers.getUser(userName);
+                if(currUser == null)
                 {
                     finish();
                     startActivity(new Intent(getApplicationContext() , Login.class));
@@ -89,27 +89,27 @@ public class UserProfileMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                if(position==0)
+                if (position == 0)
                 {
                     Intent postAd=new Intent(getApplicationContext(), ProfileInformation.class);
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
 
                 }
-                else if(position==1)
+                else if (position == 1)
                 {
 
                     Intent postAd=new Intent(getApplicationContext(), UsersOwnAds.class);
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
                 }
-                else if (position==2)
+                else if (position == 2)
                 {
                     Intent postAd=new Intent(getApplicationContext(), PostAd.class);
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
                 }
-                else if (position==3)
+                else if (position == 3)
                 {
                     logout();
                 }

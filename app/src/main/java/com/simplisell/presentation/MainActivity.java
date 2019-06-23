@@ -1,6 +1,8 @@
 package com.simplisell.presentation;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.widget.ImageButton;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
+import com.simplisell.objects.EncoderDecoder;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.HomePageTabs.TabFragmentAll;
 import com.simplisell.presentation.HomePageTabs.TabFragmentBooks;
@@ -62,11 +65,12 @@ public class MainActivity extends AppCompatActivity
         tabFragmentOtherObj = new TabFragmentOther();
 
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         accessUsers = new AccessUsers();
+        profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
+
 
         if (userName == null)  // if there is no logged in user
         {
@@ -87,6 +91,18 @@ public class MainActivity extends AppCompatActivity
                 currUser = null;
             }
         }
+
+
+        if(currUser != null) {
+
+            String profilePhoto = currUser.getProfilePhoto();
+
+            if (profilePhoto != null) {
+
+                profileBtn.setImageBitmap(EncoderDecoder.stringToBitMap(profilePhoto));
+            }
+        }
+
         tabSetUp();
     }
 
@@ -96,7 +112,7 @@ public class MainActivity extends AppCompatActivity
 
         tabLayout = findViewById(R.id.tabview_mainActivity);
         viewPager = findViewById(R.id.view_pager_mainActivity);
-        profileBtn = findViewById(R.id.imageButton_mainActivty_accountButton);
+
 
         TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
 
@@ -146,6 +162,7 @@ public class MainActivity extends AppCompatActivity
         else   // already logged in
         {
 
+            finish();
             Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
             intent.putExtra(USERNAME_TEXT, userName);
             startActivity(intent);
@@ -183,6 +200,7 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
+            finish();
             Intent postAd = new Intent(getApplicationContext(), PostAd.class);
             postAd.putExtra(USERNAME_TEXT, userName);
             startActivity(postAd);

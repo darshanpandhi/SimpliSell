@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity
                 // login and go to homepage
 
 
-                Intent logIn = new Intent(getApplicationContext(), MainActivity.class);
+                Intent logIn = new Intent(this, MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT, uniqueUserName);
                 RecyclerViewAdapter.login(userName);
                 finish();

@@ -87,23 +87,23 @@ public class ProfileInformation extends AppCompatActivity
     {
         User currUser = accessUsers.getUser(userName);
 
-        if(currUser.getProfilePhoto()!=null)
+        if (currUser.getProfilePhoto() != null)
         {
             profileImage.setImageBitmap(EncoderDecoder.stringToBitMap(currUser.getProfilePhoto()));
             photoTextView.setText("");
         }
 
-        if(currUser.getFirstAndLastName()!=null)
+        if (currUser.getFirstAndLastName() != null)
         {
             firstAndLastName.setHint(currUser.getFirstAndLastName());
         }
 
-        if(currUser.getEmail()!=null)
+        if (currUser.getEmail() != null)
         {
             email.setHint(currUser.getEmail());
         }
 
-        if(currUser.getPhoneNumber()!=null)
+        if (currUser.getPhoneNumber() != null)
         {
             phoneNumber.setHint(currUser.getPhoneNumber());
 
@@ -124,35 +124,35 @@ public class ProfileInformation extends AppCompatActivity
         User currUser = accessUsers.getUser(userName);
 
 
-        if(!(firstAndLastName.getText().toString()).isEmpty())
+        if (!(firstAndLastName.getText().toString()).isEmpty())
         {
             currUser.setFirstAndLastName(firstAndLastName.getText().toString());
 
         }
 
 
-        if(!(email.getText().toString()).isEmpty())
+        if (!(email.getText().toString()).isEmpty())
         {
             currUser.setEmail(email.getText().toString());
         }
 
-        if(!(phoneNumber.getText().toString()).isEmpty())
+        if (!(phoneNumber.getText().toString()).isEmpty())
         {
             currUser.setPhoneNumber(phoneNumber.getText().toString());
         }
 
 
-        if(!(securityQuestion.getText().toString()).isEmpty())
+        if (!(securityQuestion.getText().toString()).isEmpty())
         {
             currUser.setSecurityQuestion(securityQuestion.getText().toString());
         }
 
-        if(!(securityAnswer.getText().toString()).isEmpty())
+        if (!(securityAnswer.getText().toString()).isEmpty())
         {
             currUser.setSecurityAnswer(securityAnswer.getText().toString());
         }
 
-        if(!(password.getText().toString()).isEmpty())
+        if (!(password.getText().toString()).isEmpty())
         {
             currUser.setPassword(password.getText().toString());
         }
