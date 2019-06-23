@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
+import com.simplisell.objects.EncoderDecoder;
 import com.simplisell.objects.User;
 
 public class ProfileInformation extends AppCompatActivity
@@ -47,7 +48,6 @@ public class ProfileInformation extends AppCompatActivity
         accessUsers = new AccessUsers();
 
 
-
         profileImage = findViewById(R.id.profileImage);
         password = findViewById(R.id.profileEditBoxPassword);
         firstAndLastName = findViewById(R.id.profileEditBoxName6);
@@ -56,6 +56,8 @@ public class ProfileInformation extends AppCompatActivity
         phoneNumber = findViewById(R.id.profileEditBoxNumber);
         email = findViewById(R.id.profileEditBoxEmail);
 
+
+        setUp();
 
 
 
@@ -84,7 +86,7 @@ public class ProfileInformation extends AppCompatActivity
 
         if(currUser.getProfilePhoto()!=null)
         {
-            // TODO
+            profileImage.setImageBitmap(EncoderDecoder.stringToBitMap(currUser.getProfilePhoto()));
         }
 
         if(currUser.getFirstAndLastName()!=null)
@@ -109,6 +111,50 @@ public class ProfileInformation extends AppCompatActivity
 
 
     }
+
+
+
+    public void profileInformationSaveClick(View view)
+    {
+
+        User currUser = accessUsers.getUser(userName);
+
+
+        if(!(firstAndLastName.getText().toString()).isEmpty())
+        {
+            currUser.setFirstAndLastName(firstAndLastName.getText().toString());
+        }
+
+
+        if(!(email.getText().toString()).isEmpty())
+        {
+            currUser.setEmail(email.getText().toString());
+        }
+
+        if(!(phoneNumber.getText().toString()).isEmpty())
+        {
+            currUser.setPhoneNumber(phoneNumber.getText().toString());
+        }
+
+
+        if(!(securityQuestion.getText().toString()).isEmpty())
+        {
+            currUser.setSecurityQuestion(securityQuestion.getText().toString());
+        }
+
+        if(!(securityAnswer.getText().toString()).isEmpty())
+        {
+            currUser.setSecurityAnswer(securityAnswer.getText().toString());
+        }
+
+        if(!(password.getText().toString()).isEmpty())
+        {
+            currUser.setPassword(password.getText().toString());
+        }
+
+    }
+
+
 
 
 
@@ -140,6 +186,10 @@ public class ProfileInformation extends AppCompatActivity
         {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             profileImage.setImageBitmap(photo);
+
+            User currUser = accessUsers.getUser(userName);
+
+            currUser.setProfilePhoto(EncoderDecoder.bitMapToString(photo));
         }
     }
 
@@ -151,5 +201,6 @@ public class ProfileInformation extends AppCompatActivity
         Intent i = new Intent(this,UserProfileMenu.class);
         startActivity(i);
     }
+
 
 }
