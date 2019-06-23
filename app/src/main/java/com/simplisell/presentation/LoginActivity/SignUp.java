@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
-import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
 
@@ -93,7 +93,8 @@ public class SignUp extends AppCompatActivity
                 if (credentials.validPassword(userPassword))  // if password meets the standards
                 {
 
-                    User newUser = new User(userName, userPassword, userSecurityQuestion, userSecurityAnswer);   // create a new user
+                    // sign up button always creates a new user
+                    UserAdvertiser newUser = new UserAdvertiser(userName, userPassword, userSecurityQuestion, userSecurityAnswer);
 
                     if (accessUsers.insertNewUser(newUser) != null)
                     {   // check if userName is in the database and insert

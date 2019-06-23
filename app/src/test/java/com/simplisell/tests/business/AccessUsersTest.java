@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 
 
 public class AccessUsersTest
@@ -27,7 +28,7 @@ public class AccessUsersTest
     {
         System.out.println("\nStarting AccessUsersTest: insert unique username");
 
-        User user = new User("UniqueUser", "123456", "What is your favourite " +
+        User user = new UserAdvertiser("UniqueUser", "123456", "What is your favourite " +
                 "color", "Red");
         User addedUser = userList.insertNewUser(user);
 
@@ -43,7 +44,7 @@ public class AccessUsersTest
     {
         System.out.println("\nStarting AccessUsersTest: insert duplicate username");
 
-        User user = new User("User1", "123456", "What is your favourite " +
+        User user = new UserAdvertiser("User1", "123456", "What is your favourite " +
                 "color", "Red");
         User addedUser = userList.insertNewUser(user);
         addedUser = userList.insertNewUser(user);

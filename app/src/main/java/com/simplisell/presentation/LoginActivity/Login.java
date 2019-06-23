@@ -44,7 +44,6 @@ public class Login extends AppCompatActivity
 
     public void loginBtnClick(View view)
     {
-
         String userName;       // The userName in the textbox will be stored here.
         String userPassword;    // The userName in the password will be stored here.
 
@@ -54,7 +53,6 @@ public class Login extends AppCompatActivity
 
         if (userNameEmpty || passwordEmpty)   // if userName or password field is empty
         {
-
             // Make a toast to display error message
             Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
         }

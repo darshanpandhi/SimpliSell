@@ -1,6 +1,8 @@
 package com.simplisell.persistence.stubs;
 
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
+import com.simplisell.objects.UserAdmin;
 import com.simplisell.persistence.UserPersistence;
 
 import java.util.ArrayList;
@@ -15,11 +17,15 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-        user = new User("Bob", "123456", "What is your favourite color", "Red");
+
+        user = new UserAdvertiser("Bob", "123456", "What is your favourite color", "Red");
         users.add(user);
-        user = new User("Allice", "123456", "What is your favourite color", "Green");
+        user = new UserAdvertiser("Allice", "123456", "What is your favourite color", "Green");
         users.add(user);
-        user = new User("Jay", "123456", "What is your favourite color", "Blue");
+        user = new UserAdvertiser("Jay", "123456", "What is your favourite color", "Blue");
+        users.add(user);
+
+        user = new UserAdmin("Ronak", "admin", "What is your favourite color", "Black");
         users.add(user);
     }
 

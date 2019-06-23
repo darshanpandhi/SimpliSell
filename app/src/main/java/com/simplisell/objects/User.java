@@ -1,20 +1,11 @@
 package com.simplisell.objects;
 
-public class User
+public abstract class User
 {
     private final String userName;
     private String password;
     private String securityQuestion;
     private String securityAnswer;
-
-
-    public User()
-    {
-        userName = "";
-        password = "";
-        securityQuestion = "";
-        securityAnswer = "";
-    }
 
 
     public User(String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer)
@@ -28,14 +19,12 @@ public class User
 
     public String getUserName()
     {
-
         return userName;
     }
 
 
     public String getPassword()
     {
-
         return password;
     }
 

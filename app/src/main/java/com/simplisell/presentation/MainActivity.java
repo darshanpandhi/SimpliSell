@@ -26,7 +26,6 @@ import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
 
 public class MainActivity extends AppCompatActivity
 {
-
     private static User currUser = null;
     private static String userName = null;
     private static boolean isSortedAscending = false;
@@ -50,8 +49,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
-
         tabFragmentAllObj = new TabFragmentAll();
         tabFragmentBooksObj = new TabFragmentBooks();
         tabFragmentTransportationObj = new TabFragmentTransportation();
@@ -60,8 +57,6 @@ public class MainActivity extends AppCompatActivity
         tabFragmentEventsObj = new TabFragmentEvents();
         tabFragmentElectronicsObj = new TabFragmentElectronics();
         tabFragmentOtherObj = new TabFragmentOther();
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -93,7 +88,6 @@ public class MainActivity extends AppCompatActivity
 
     private void tabSetUp()
     {
-
         tabLayout = findViewById(R.id.tabview_mainActivity);
         viewPager = findViewById(R.id.view_pager_mainActivity);
         profileBtn = findViewById(R.id.imageButton_mainActivty_accountButton);
@@ -112,7 +106,6 @@ public class MainActivity extends AppCompatActivity
 
 
         // adapter setup
-
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }
