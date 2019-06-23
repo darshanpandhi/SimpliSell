@@ -93,7 +93,7 @@ public class SignUp extends AppCompatActivity
                 if (credentials.validPassword(userPassword))  // if password meets the standards
                 {
 
-                    User newUser = new User(userName, userPassword, userSecurityQuestion, userSecurityAnswer);   // create a new user
+                    User newUser = new User(firstNLastName,userName, userPassword, userSecurityQuestion, userSecurityAnswer);   // create a new user
 
                     if (accessUsers.insertNewUser(newUser) != null)
                     {   // check if userName is in the database and insert

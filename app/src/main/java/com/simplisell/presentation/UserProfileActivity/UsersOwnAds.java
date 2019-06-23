@@ -51,7 +51,9 @@ public class UsersOwnAds extends AppCompatActivity
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
 
+        finish();
         Intent i = new Intent(this,UserProfileMenu.class);
+        i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
 

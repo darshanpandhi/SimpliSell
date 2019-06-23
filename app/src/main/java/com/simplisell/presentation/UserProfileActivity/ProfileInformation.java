@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
@@ -35,6 +36,7 @@ public class ProfileInformation extends AppCompatActivity
     private EditText securityAnswer;    // security answer of user
     private EditText phoneNumber;    // security answer of user
     private EditText email;
+    private TextView photoTextView;
     private AccessUsers accessUsers;      // helps  access users
 
 
@@ -55,6 +57,7 @@ public class ProfileInformation extends AppCompatActivity
         securityAnswer = findViewById(R.id.profileEditBoxAnswer);
         phoneNumber = findViewById(R.id.profileEditBoxNumber);
         email = findViewById(R.id.profileEditBoxEmail);
+        photoTextView = findViewById(R.id.textView);
 
 
         setUp();
@@ -87,6 +90,7 @@ public class ProfileInformation extends AppCompatActivity
         if(currUser.getProfilePhoto()!=null)
         {
             profileImage.setImageBitmap(EncoderDecoder.stringToBitMap(currUser.getProfilePhoto()));
+            photoTextView.setText("");
         }
 
         if(currUser.getFirstAndLastName()!=null)
@@ -123,6 +127,7 @@ public class ProfileInformation extends AppCompatActivity
         if(!(firstAndLastName.getText().toString()).isEmpty())
         {
             currUser.setFirstAndLastName(firstAndLastName.getText().toString());
+
         }
 
 
@@ -152,6 +157,13 @@ public class ProfileInformation extends AppCompatActivity
             currUser.setPassword(password.getText().toString());
         }
 
+
+        Toast.makeText(this, "PROFILE INFORMATION UPDATED", Toast.LENGTH_LONG).show();
+
+        finish();
+        Intent i = new Intent(getApplicationContext(),UserProfileMenu.class);
+        i.putExtra(USERNAME_TEXT, userName);
+        startActivity(i);
     }
 
 
@@ -186,6 +198,7 @@ public class ProfileInformation extends AppCompatActivity
         {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             profileImage.setImageBitmap(photo);
+            photoTextView.setText("");
 
             User currUser = accessUsers.getUser(userName);
 
@@ -196,9 +209,9 @@ public class ProfileInformation extends AppCompatActivity
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
-
-        fileList();
+        finish();
         Intent i = new Intent(this,UserProfileMenu.class);
+        i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
 

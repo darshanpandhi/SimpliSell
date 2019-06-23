@@ -138,7 +138,8 @@ public class UserProfileMenu extends AppCompatActivity {
     public void onBackPressed()
     {
         finish();
-        Intent loginPage = new Intent(this, MainActivity.class);
-        startActivity(loginPage);
+        Intent i = new Intent(this,MainActivity.class);
+        i.putExtra(USERNAME_TEXT, userName);
+        startActivity(i);
     }
 }

@@ -21,32 +21,22 @@ public class User
     }
 
 
-    public User(String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer)
+    public User(String firstAndLastName, String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer)
     {
         userName = newUserName;
         password = newUserPassword;
         securityQuestion = newSecurityQuestion;
         securityAnswer = newSecurityAnswer;
-        email = null;
-        password = null;
-        firstAndLastName = null;
+        this.firstAndLastName = firstAndLastName;
         profilePhoto = null;
+        email = null;
+        phoneNumber = null;
     }
 
 
-    public String getUserName()
-    {
+    public String getUserName() { return userName; }
 
-        return userName;
-    }
-
-
-    public String getPassword()
-    {
-
-        return password;
-    }
-
+    public String getPassword() { return password; }
 
     public String getSecurityQuestion()
     {
