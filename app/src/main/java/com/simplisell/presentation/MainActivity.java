@@ -132,13 +132,13 @@ public class MainActivity extends AppCompatActivity
     {
 
         if (userName == null)
-        {   // not logged in
-
+        {
+            // not logged in
             startActivity(new Intent(getApplicationContext(), Login.class));
         }
-        else   // already logged in
+        else
         {
-
+            // already logged in
             Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
             intent.putExtra(USERNAME_TEXT, userName);
             startActivity(intent);
