@@ -10,7 +10,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser"></activity>
+        <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser" />
         <activity android:name=".presentation.postingadactivity.EditAd" />
         <activity android:name=".presentation.postingadactivity.ViewAdOfCurrentUser" />
         <activity android:name=".presentation.userprofileactivity.UserProfileMenu" />
