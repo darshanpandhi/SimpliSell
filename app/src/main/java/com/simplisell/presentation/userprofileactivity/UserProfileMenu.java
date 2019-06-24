@@ -1,4 +1,4 @@
-package com.simplisell.presentation.UserProfileActivity;
+package com.simplisell.presentation.userprofileactivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +10,10 @@ import android.widget.ListView;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
-import com.simplisell.presentation.LoginActivity.Login;
+import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.MainActivity;
-import com.simplisell.presentation.PostingAdActivity.PostAd;
-import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
+import com.simplisell.presentation.postingadactivity.PostAd;
+import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 public class UserProfileMenu extends AppCompatActivity {
 

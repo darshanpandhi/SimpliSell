@@ -1,4 +1,4 @@
-package com.simplisell.presentation.HomePageTabs;
+package com.simplisell.presentation.homepagetabs;
 
         import android.support.annotation.Nullable;
         import android.support.v4.app.Fragment;

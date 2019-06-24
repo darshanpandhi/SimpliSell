@@ -1,4 +1,4 @@
-package com.simplisell.presentation.HomePageTabs;
+package com.simplisell.presentation.homepagetabs;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,18 +11,17 @@ import android.view.ViewGroup;
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
-import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
+import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 import java.util.List;
 
-import static com.simplisell.objects.Category.ELECTRONICS;
+import static com.simplisell.objects.Category.BOOKS;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentElectronics extends Fragment
+public class TabFragmentBooks extends Fragment
 {
-
     private static Search adsSearch = new Search();
     private static boolean isSortedAscending = false;
 
@@ -30,10 +29,10 @@ public class TabFragmentElectronics extends Fragment
     private List<Ad> ads;
 
 
-    public TabFragmentElectronics()
+    public TabFragmentBooks()
     {
         // Required empty public constructor
-        ads = adsSearch.getAllAdsByCategory(ELECTRONICS);
+        ads = adsSearch.getAllAdsByCategory(BOOKS);
     }
 
 
@@ -43,8 +42,8 @@ public class TabFragmentElectronics extends Fragment
     {
         //Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_tab_fragment_electronics, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragmentElectronics);
+        View view = inflater.inflate(R.layout.fragment_tab_fragment_books, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragmentBooks);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);

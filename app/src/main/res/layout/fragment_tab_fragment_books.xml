@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.HomePageTabs.TabFragmentBooks">
+    tools:context=".presentation.homepagetabs.TabFragmentBooks">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listView_insideFragmentBooks"

@@ -1,4 +1,4 @@
-package com.simplisell.presentation.PostingAdActivity;
+package com.simplisell.presentation.postingadactivity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -11,18 +11,18 @@ import android.widget.ImageButton;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
-import com.simplisell.presentation.HomePageTabs.TabFragmentAll;
-import com.simplisell.presentation.HomePageTabs.TabFragmentBooks;
-import com.simplisell.presentation.HomePageTabs.TabFragmentElectronics;
-import com.simplisell.presentation.HomePageTabs.TabFragmentEvents;
-import com.simplisell.presentation.HomePageTabs.TabFragmentLiving;
-import com.simplisell.presentation.HomePageTabs.TabFragmentOther;
-import com.simplisell.presentation.HomePageTabs.TabFragmentServicesJobs;
-import com.simplisell.presentation.HomePageTabs.TabFragmentTransportation;
-import com.simplisell.presentation.HomePageTabs.TabPagerAdapter;
-import com.simplisell.presentation.LoginActivity.Login;
-import com.simplisell.presentation.PostingAdActivity.PostAd;
-import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
+import com.simplisell.presentation.homepagetabs.TabFragmentAll;
+import com.simplisell.presentation.homepagetabs.TabFragmentBooks;
+import com.simplisell.presentation.homepagetabs.TabFragmentElectronics;
+import com.simplisell.presentation.homepagetabs.TabFragmentEvents;
+import com.simplisell.presentation.homepagetabs.TabFragmentLiving;
+import com.simplisell.presentation.homepagetabs.TabFragmentOther;
+import com.simplisell.presentation.homepagetabs.TabFragmentServicesJobs;
+import com.simplisell.presentation.homepagetabs.TabFragmentTransportation;
+import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
+import com.simplisell.presentation.loginactivity.Login;
+import com.simplisell.presentation.postingadactivity.PostAd;
+import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
 public class MainActivity extends AppCompatActivity
 {
