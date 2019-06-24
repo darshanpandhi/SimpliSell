@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.simplisell">
+          package="com.simplisell">
 
     <application
             android:allowBackup="true"
@@ -12,17 +12,15 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".presentation.AdminHomeScreen">
         </activity>
-        <activity android:name=".adminHomeScreen">
-        </activity>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"/>
-        <activity android:name=".presentation.PostingAdActivity.EditAd"/>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser"/>
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu"/>
-        <activity android:name=".presentation.LoginActivity.SignUp"/>
-        <activity android:name=".presentation.PostingAdActivity.PostAd"/>
-        <activity android:name=".presentation.LoginActivity.Login"/>
+        <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser"/>
+        <activity android:name=".presentation.postingadactivity.EditAd"/>
+        <activity android:name=".presentation.postingadactivity.ViewAdOfCurrentUser"/>
+        <activity android:name=".presentation.userprofileactivity.UserProfileMenu"/>
+        <activity android:name=".presentation.loginactivity.SignUp"/>
+        <activity android:name=".presentation.postingadactivity.PostAd"/>
+        <activity android:name=".presentation.loginactivity.Login"/>
         <activity android:name=".presentation.MainActivity"/>
-        <activity android:name=".presentation.LoginActivity.ForgetPassword"/>
+        <activity android:name=".presentation.loginactivity.ForgetPassword"/>
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
