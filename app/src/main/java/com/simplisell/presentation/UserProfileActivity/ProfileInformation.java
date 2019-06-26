@@ -89,7 +89,9 @@ public class ProfileInformation extends AppCompatActivity
 
         if (currUser.getProfilePhoto() != null)
         {
-            profileImage.setImageBitmap(EncoderDecoder.stringToBitMap(currUser.getProfilePhoto()));
+            Bitmap photo = EncoderDecoder.stringToBitMap(currUser.getProfilePhoto());
+            Bitmap displayProfile = Bitmap.createScaledBitmap(photo,(int)(photo.getWidth()*2.8),(int)(photo.getHeight()*2.8),true);
+            profileImage.setImageBitmap(displayProfile);
             photoTextView.setText("");
         }
 
@@ -197,7 +199,8 @@ public class ProfileInformation extends AppCompatActivity
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK)
         {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            profileImage.setImageBitmap(photo);
+            Bitmap displayProfile = Bitmap.createScaledBitmap(photo,(int)(photo.getWidth()*2.8),(int)(photo.getHeight()*2.8),true);
+            profileImage.setImageBitmap(displayProfile);
             photoTextView.setText("");
 
             User currUser = accessUsers.getUser(userName);
