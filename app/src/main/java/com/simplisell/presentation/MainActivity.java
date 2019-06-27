@@ -99,7 +99,11 @@ public class MainActivity extends AppCompatActivity
 
             if (profilePhoto != null) {
 
-                profileBtn.setImageBitmap(EncoderDecoder.stringToBitMap(profilePhoto));
+                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
+
+                Bitmap displayProfile = Bitmap.createScaledBitmap(photo,(int)(photo.getWidth()*0.7),(int)(photo.getHeight()*0.7),true);
+
+                profileBtn.setImageBitmap(displayProfile);
             }
         }
 
