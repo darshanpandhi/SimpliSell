@@ -2,7 +2,6 @@ package com.simplisell.presentation;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,16 +11,11 @@ import android.widget.ImageButton;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
+import com.simplisell.business.Search;
+import com.simplisell.objects.Category;
 import com.simplisell.objects.EncoderDecoder;
 import com.simplisell.objects.User;
-import com.simplisell.presentation.HomePageTabs.TabFragmentAll;
-import com.simplisell.presentation.HomePageTabs.TabFragmentBooks;
-import com.simplisell.presentation.HomePageTabs.TabFragmentElectronics;
-import com.simplisell.presentation.HomePageTabs.TabFragmentEvents;
-import com.simplisell.presentation.HomePageTabs.TabFragmentLiving;
-import com.simplisell.presentation.HomePageTabs.TabFragmentOther;
-import com.simplisell.presentation.HomePageTabs.TabFragmentServicesJobs;
-import com.simplisell.presentation.HomePageTabs.TabFragmentTransportation;
+import com.simplisell.presentation.HomePageTabs.TabFragment;
 import com.simplisell.presentation.HomePageTabs.TabPagerAdapter;
 import com.simplisell.presentation.LoginActivity.Login;
 import com.simplisell.presentation.PostingAdActivity.PostAd;
@@ -39,30 +33,32 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private AccessUsers accessUsers;      // helps  access users
+    private Search search;
     private ImageButton profileBtn;
-    private TabFragmentAll tabFragmentAllObj;
-    private TabFragmentBooks tabFragmentBooksObj;
-    private TabFragmentTransportation tabFragmentTransportationObj;
-    private TabFragmentServicesJobs tabFragmentServicesJobsObj;
-    private TabFragmentLiving tabFragmentLivingObj;
-    private TabFragmentEvents tabFragmentEventsObj;
-    private TabFragmentElectronics tabFragmentElectronicsObj;
-    private TabFragmentOther tabFragmentOtherObj;
+    private TabFragment tabFragmentAllObj;
+    private TabFragment tabFragmentBooksObj;
+    private TabFragment tabFragmentTransportationObj;
+    private TabFragment tabFragmentServicesJobsObj;
+    private TabFragment tabFragmentLivingObj;
+    private TabFragment tabFragmentEventsObj;
+    private TabFragment tabFragmentElectronicsObj;
+    private TabFragment tabFragmentOtherObj;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 
+        search = new Search();
 
-        tabFragmentAllObj = new TabFragmentAll();
-        tabFragmentBooksObj = new TabFragmentBooks();
-        tabFragmentTransportationObj = new TabFragmentTransportation();
-        tabFragmentServicesJobsObj = new TabFragmentServicesJobs();
-        tabFragmentLivingObj = new TabFragmentLiving();
-        tabFragmentEventsObj = new TabFragmentEvents();
-        tabFragmentElectronicsObj = new TabFragmentElectronics();
-        tabFragmentOtherObj = new TabFragmentOther();
+        tabFragmentAllObj = new TabFragment(search.getAllAds());
+        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS));
+        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION));
+        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES));
+        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION));
+        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS));
+        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS));
+        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS));
 
 
         super.onCreate(savedInstanceState);

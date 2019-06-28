@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.HomePageTabs.TabFragmentAll">
+    tools:context=".presentation.HomePageTabs.TabFragment">
 
    <android.support.v7.widget.RecyclerView
-       android:id="@+id/listView_insideFragmentAll"
+       android:id="@+id/listView_insideFragment"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
