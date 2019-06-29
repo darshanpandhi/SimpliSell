@@ -27,9 +27,6 @@ public class AdPersistenceHSQLDB implements AdPersistence
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-    //    public Ad(final String adOwner, final AdType adType, final Category category, final
-    //    String title, final String description, final double price)
-
     private Ad fromResultSet(final ResultSet rs) throws SQLException {
         final int adId = Integer.parseInt(rs.getString("adId"));
         final String adOwner = rs.getString("adOwner");
@@ -44,7 +41,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
     @Override
     public List<Ad> getAds()
     {
-        List ads = new ArrayList<>();
+        List<Ad> ads = new ArrayList<>();
 
         try (final Connection c = connection())
         {
@@ -64,8 +61,6 @@ public class AdPersistenceHSQLDB implements AdPersistence
         {
             throw new PersistenceException(e);
         }
-
-        return ads;
     }
 
     @Override
