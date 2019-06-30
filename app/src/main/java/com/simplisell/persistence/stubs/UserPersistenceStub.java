@@ -15,11 +15,11 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-        user = new User("Bob", "123456", "What is your favourite color?", "Red");
+        user = new User("Bob Saget", "Bob", "123456", "What is your favourite color?", "Red");
         users.add(user);
-        user = new User("Allice", "123456", "What is your favourite color?",  "Green");
+        user = new User("Allice Wonderland","Allice", "123456", "What is your favourite color?",  "Green");
         users.add(user);
-        user = new User("Jay", "123456", "What is your favourite color?",  "Blue");
+        user = new User("Jay Z", "Jay", "123456", "What is your favourite color?",  "Blue");
         users.add(user);
     }
 

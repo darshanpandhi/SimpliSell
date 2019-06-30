@@ -6,7 +6,7 @@ public class User
     private String email;
     private String phoneNumber;
     private String password;
-    private String secuirtyQuestion;
+    private String securityQuestion;
     private String securityAnswer;
     private String firstAndLastName;
     private String profilePhoto;
@@ -15,7 +15,7 @@ public class User
     {
         userName = "";
         password = "";
-        secuirtyQuestion = "";
+        securityQuestion = "";
         securityAnswer = "";
     }
 
@@ -24,9 +24,9 @@ public class User
     {
         userName = newUserName;
         password = newUserPassword;
-        secuirtyQuestion = newSecurityQuestion;
+        securityQuestion = newSecurityQuestion;
         securityAnswer = newSecurityAnswer;
-        this.firstAndLastName = firstAndLastName;
+        firstAndLastName = firstAndLastName;
         profilePhoto = null;
         email = null;
         phoneNumber = null;
@@ -37,7 +37,7 @@ public class User
 
     public String getPassword() { return password; }
 
-    public String getSecurityQuestion() { return secuirtyQuestion;}
+    public String getSecurityQuestion() { return securityQuestion;}
 
 
     public String getSecurityAnswer()
