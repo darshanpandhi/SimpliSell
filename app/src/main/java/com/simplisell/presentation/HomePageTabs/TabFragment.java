@@ -1,5 +1,6 @@
 package com.simplisell.presentation.HomePageTabs;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,24 +16,29 @@ import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
 
 import java.util.List;
 
-import static com.simplisell.objects.Category.BOOKS;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabFragmentBooks extends Fragment
+public class TabFragment extends Fragment
 {
-    private static Search adsSearch = new Search();
-    private static boolean isSortedAscending = false;
+
+    private Search adsSearch = new Search();
+    private boolean isSortedAscending = false;
 
     private RecyclerView recyclerView;
     private List<Ad> ads;
 
 
-    public TabFragmentBooks()
+    public TabFragment()
     {
         // Required empty public constructor
-        ads = adsSearch.getAllAdsByCategory(BOOKS);
+    }
+
+
+    @SuppressLint("ValidFragment")
+    public TabFragment(List<Ad> ads)
+    {
+        this.ads = ads;
     }
 
 
@@ -42,8 +48,8 @@ public class TabFragmentBooks extends Fragment
     {
         //Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_tab_fragment_books, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragmentBooks);
+        View view = inflater.inflate(R.layout.fragment_tab_fragment, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragment);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);

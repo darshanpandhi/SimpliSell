@@ -80,11 +80,12 @@ public class Login extends AppCompatActivity
                 uniqueUserName = userName;
 
                 // login and go to homepage
-                finish();
 
-                Intent logIn = new Intent(getApplicationContext(), MainActivity.class);
+
+                Intent logIn = new Intent(this, MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT, uniqueUserName);
                 RecyclerViewAdapter.login(userName);
+                finish();
                 startActivity(logIn);
             }
             else    // if authentication is not successful.
@@ -98,7 +99,7 @@ public class Login extends AppCompatActivity
 
     public void forgetPasswordBtnClick(View view)
     {
-        Intent forgetPass = new Intent(Login.this, ForgetPassword.class);
+        Intent forgetPass = new Intent(getApplicationContext(), ForgetPassword.class);
         startActivity(forgetPass);
     }
 
@@ -106,7 +107,7 @@ public class Login extends AppCompatActivity
     public void signUpBtnClick(View view)
     {
         // takes to sign in page
-        Intent signUp = new Intent(Login.this, SignUp.class);
+        Intent signUp = new Intent(getApplicationContext(), SignUp.class);
         startActivity(signUp);
     }
 

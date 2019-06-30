@@ -11,6 +11,7 @@ import com.simplisell.R;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.presentation.MainActivity;
+import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
 
 public class ViewAdOfCurrentUser extends AppCompatActivity
 {
@@ -57,6 +58,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
 
     public void editBtnClick(View view)
     {
+
         Intent editAd = new Intent(getApplicationContext(), EditAd.class);
         editAd.putExtra(ADID_TEXT, adId);
         startActivity(editAd);
@@ -74,10 +76,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     }
 
 
-    public void onBackPressed()
-    {
-        finish();
-        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainPage);
-    }
+
+
+
 }

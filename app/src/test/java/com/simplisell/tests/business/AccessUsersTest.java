@@ -27,7 +27,7 @@ public class AccessUsersTest
     {
         System.out.println("\nStarting AccessUsersTest: insert unique username");
 
-        User user = new User("UniqueUser", "123456", "What is your favourite " +
+        User user = new User("bo bo","UniqueUser", "123456", "What is your favourite " +
                 "color", "Red");
         User addedUser = userList.insertNewUser(user);
 
@@ -43,7 +43,7 @@ public class AccessUsersTest
     {
         System.out.println("\nStarting AccessUsersTest: insert duplicate username");
 
-        User user = new User("User1", "123456", "What is your favourite " +
+        User user = new User("ba ba","User1", "123456", "What is your favourite " +
                 "color", "Red");
         User addedUser = userList.insertNewUser(user);
         addedUser = userList.insertNewUser(user);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0091EA</color>
-    <color name="colorPrimaryDark">#0071D1</color>
+    <color name="colorPrimary">#3C3C3C</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="adPostGreyBackground">#FFD7D7DB</color>
+    <color name="adPostGreyBackground">#D7D7DB</color>
     <color name="black_overlay">#EC1C24</color>
-    <color name="whiteBtn">#FAFAFA</color>
+    <color name="whiteBtn">#C0C0C0</color>
 </resources>

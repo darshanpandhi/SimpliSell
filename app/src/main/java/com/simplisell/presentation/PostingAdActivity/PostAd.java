@@ -16,6 +16,7 @@ import com.simplisell.business.AccessAds;
 import com.simplisell.R;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
+import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
 
 public class PostAd extends AppCompatActivity
 {
@@ -133,4 +134,15 @@ public class PostAd extends AppCompatActivity
         dialog = builder.create();
         dialog.show();
     }
+
+    @Override
+    public void onBackPressed()
+    {   // if anytime the back is pressed. Go back
+
+        finish();
+        Intent i = new Intent(this, UserProfileMenu.class);
+        i.putExtra(USERNAME_TEXT, userName);
+        startActivity(i);
+    }
+
 }

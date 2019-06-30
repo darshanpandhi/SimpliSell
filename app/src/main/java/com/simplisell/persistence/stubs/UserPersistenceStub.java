@@ -69,12 +69,12 @@ public class UserPersistenceStub implements UserPersistence
     public String getSecurityAnswer(String userName)
     {
         User user = findUser(userName);
-        String securityAnswer = null;
+        String securityQuestion = null;
         if (user != null)
         {
-            securityAnswer = user.getSecurityAnswer();
+            securityQuestion = user.getSecurityQuestion();
         }
-        return securityAnswer;
+        return securityQuestion;
     }
 
 

@@ -97,4 +97,23 @@ public class SearchTest
 
         System.out.println("Finished testSearch: sort price (descending)");
     }
+
+
+
+    @Test
+    public void testgetUserSpecificAds()
+    {
+        System.out.println("\nStarting testSearch: get all ads for specific user");
+
+        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1));
+        List<Ad> ads = search.getUserSpecificAds("test");
+
+        for (Ad ad : ads)
+        {
+            assertEquals(ad.getAdOwner(), "test");
+        }
+
+        System.out.println("Finished testSearch: get all ads for specific user");
+    }
 }

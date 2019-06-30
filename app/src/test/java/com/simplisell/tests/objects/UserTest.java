@@ -16,7 +16,7 @@ public class UserTest
 
 		System.out.println("\nStarting testUser");
 
-		user = new User("user1", "123456", "What is your favourite color", "Red") {};
+		user = new User("go as","user1", "123456", "What is your favourite color", "Red") {};
 		assertNotNull(user);
 		assertEquals("user1",user.getUserName());
 		assertEquals("123456",user.getPassword());
