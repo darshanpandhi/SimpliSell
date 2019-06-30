@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".presentation.MainActivity"
-    tools:visibility="visible">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".presentation.MainActivity"
+              tools:visibility="visible">
 
 
     <LinearLayout
@@ -16,11 +16,13 @@
             android:background="@color/colorPrimaryDark">
 
         <ImageButton
+                android:id="@+id/imageButton_mainActivty_accountButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/baseline_account_box_white_18"/>
+                android:src="@drawable/baseline_account_box_white_18"
+                android:onClick="accountBtnClick"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -33,97 +35,97 @@
     </LinearLayout>
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tabview_mainActivity"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/whiteBtn"
-        android:contextClickable="true"
-        app:tabIconTint="@color/colorPrimary"
-        app:tabIndicatorColor="@color/black_overlay"
-        app:tabIndicatorHeight="6dp"
-        app:tabMode="scrollable"
-        app:tabRippleColor="@color/colorAccent"
-        app:tabSelectedTextColor="@color/black_overlay"
-        app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
-        app:tabTextColor="@android:color/background_dark">
+            android:id="@+id/tabview_mainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/whiteBtn"
+            android:contextClickable="true"
+            app:tabIconTint="@color/colorPrimary"
+            app:tabIndicatorColor="@color/black_overlay"
+            app:tabIndicatorHeight="6dp"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@color/colorAccent"
+            app:tabSelectedTextColor="@color/black_overlay"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
+            app:tabTextColor="@android:color/background_dark">
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
+                android:id="@+id/tabItem_mainActivity_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
 
-            android:text="@string/tabTextAll" />
-
-        <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_books"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
-
-            android:text="@string/tabTextBooks" />
+                android:text="@string/tabTextAll"/>
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_events"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
+                android:id="@+id/tabItem_mainActivity_books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
 
-            android:text="@string/tabTextEvents" />
-
-        <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_servicesJobs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
-
-            android:text="@string/tabTextServiceJobs" />
+                android:text="@string/tabTextBooks"/>
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_electronics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:id="@+id/tabItem_mainActivity_events"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
 
-            android:contextClickable="true"
-            android:text="@string/tabTextElectronics" />
-
-        <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_hobbiesGames"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
-
-            android:text="@string/tabTextHobbiesGames" />
+                android:text="@string/tabTextEvents"/>
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_living"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:id="@+id/tabItem_mainActivity_servicesJobs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
 
-            android:contextClickable="true"
-            android:text="@string/tabTextLiving" />
-
-        <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_transportation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
-            android:text="@string/tabTextTransportation" />
+                android:text="@string/tabTextServiceJobs"/>
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_arrangement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
-            android:text="@string/tabTextArrangement" />
+                android:id="@+id/tabItem_mainActivity_electronics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:contextClickable="true"
+                android:text="@string/tabTextElectronics"/>
+
+        <android.support.design.widget.TabItem
+                android:id="@+id/tabItem_mainActivity_hobbiesGames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
+
+                android:text="@string/tabTextHobbiesGames"/>
+
+        <android.support.design.widget.TabItem
+                android:id="@+id/tabItem_mainActivity_living"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:contextClickable="true"
+                android:text="@string/tabTextLiving"/>
+
+        <android.support.design.widget.TabItem
+                android:id="@+id/tabItem_mainActivity_transportation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
+                android:text="@string/tabTextTransportation"/>
+
+        <android.support.design.widget.TabItem
+                android:id="@+id/tabItem_mainActivity_arrangement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
+                android:text="@string/tabTextArrangement"/>
 
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabItem_mainActivity_other"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
-            android:text="@string/tabTextOther" />
+                android:id="@+id/tabItem_mainActivity_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
+                android:text="@string/tabTextOther"/>
 
 
     </android.support.design.widget.TabLayout>
@@ -131,50 +133,45 @@
 
     <LinearLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/whiteBtn">
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/whiteBtn">
 
 
         <Button
-            android:id="@+id/postAdBtn"
-            android:layout_width="289dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="150dp"
-            android:layout_marginEnd="90dp"
-            android:background="@android:drawable/editbox_background"
-            android:backgroundTint="@color/black_overlay"
-            android:fontFamily="@font/candal"
-            android:onClick="postAdBtnClick"
-            android:text="@string/postAnAd"
-            android:textColor="@color/whiteBtn" />
+                android:id="@+id/postAdBtn"
+                android:layout_width="289dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="150dp"
+                android:layout_marginEnd="90dp"
+                android:background="@android:drawable/editbox_background"
+                android:backgroundTint="@color/black_overlay"
+                android:fontFamily="@font/candal"
+                android:onClick="postAdBtnClick"
+                android:text="@string/postAnAd"
+                android:textColor="@color/whiteBtn"/>
 
 
         <ImageButton
-            android:id="@+id/sortBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/baseline_sort_white_18"
-            android:onClick="sortBtnClick"
-            tools:ignore="contentDescription" />
+                android:id="@+id/sortBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/baseline_sort_white_18"
+                android:onClick="sortBtnClick"
+                tools:ignore="contentDescription"/>
 
 
     </LinearLayout>
 
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager_mainActivity"
-        android:layout_width="match_parent"
-        android:layout_height="776dp"
-        android:layout_gravity="end"
-        android:outlineAmbientShadowColor="@color/colorPrimary"
-        android:outlineSpotShadowColor="@color/colorPrimary"
-
-        />
-
-
-
+            android:id="@+id/view_pager_mainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="776dp"
+            android:layout_gravity="end"
+            android:outlineAmbientShadowColor="@color/colorPrimary"
+            android:outlineSpotShadowColor="@color/colorPrimary"/>
 </LinearLayout>
