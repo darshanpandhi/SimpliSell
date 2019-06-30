@@ -14,6 +14,8 @@ import com.simplisell.R;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.Category;
+import com.simplisell.presentation.MainActivity;
+import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
 
 public class EditAd extends AppCompatActivity
 {
@@ -151,4 +153,14 @@ public class EditAd extends AppCompatActivity
         dialog = builder.create();
         dialog.show();
     }
+
+    @Override
+    public void onBackPressed()
+    {   // if anytime the back is pressed. Go back
+
+        finish();
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
 }
