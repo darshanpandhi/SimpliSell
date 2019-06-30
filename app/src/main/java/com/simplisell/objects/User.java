@@ -4,15 +4,14 @@ public class User
 {
     private final String userName;
     private String password;
-    private String securityQuestion;
+    private String secuirtyQuestion;
     private String securityAnswer;
-
 
     public User()
     {
         userName = "";
         password = "";
-        securityQuestion = "";
+        secuirtyQuestion = "";
         securityAnswer = "";
     }
 
@@ -21,7 +20,7 @@ public class User
     {
         userName = newUserName;
         password = newUserPassword;
-        securityQuestion = newSecurityQuestion;
+        secuirtyQuestion = newSecurityQuestion;
         securityAnswer = newSecurityAnswer;
     }
 
@@ -40,11 +39,7 @@ public class User
     }
 
 
-    public String getSecurityQuestion()
-    {
-        return securityQuestion;
-    }
-
+    public String getSecurityQuestion() { return secuirtyQuestion;}
 
     public String getSecurityAnswer()
     {

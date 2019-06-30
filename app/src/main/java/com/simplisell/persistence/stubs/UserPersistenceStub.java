@@ -15,11 +15,11 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-        user = new User("Bob", "123456", "What is your favourite color", "Red");
+        user = new User("Bob", "123456", "What is your favourite color?", "Red");
         users.add(user);
-        user = new User("Allice", "123456", "What is your favourite color", "Green");
+        user = new User("Allice", "123456", "What is your favourite color?",  "Green");
         users.add(user);
-        user = new User("Jay", "123456", "What is your favourite color", "Blue");
+        user = new User("Jay", "123456", "What is your favourite color?",  "Blue");
         users.add(user);
     }
 
@@ -69,12 +69,12 @@ public class UserPersistenceStub implements UserPersistence
     public String getSecurityAnswer(String userName)
     {
         User user = findUser(userName);
-        String securityQuestion = null;
+        String securityAnswer = null;
         if (user != null)
         {
-            securityQuestion = user.getSecurityQuestion();
+            securityAnswer = user.getSecurityAnswer();
         }
-        return securityQuestion;
+        return securityAnswer;
     }
 
 
