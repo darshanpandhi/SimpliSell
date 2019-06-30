@@ -13,10 +13,12 @@ public class Search
 
     private final AccessAds adInterface;
 
+    private final AccessUsers userInterface;
 
     public Search()
     {
         adInterface = new AccessAds();
+        userInterface = new AccessUsers();
     }
 
 
@@ -54,6 +56,24 @@ public class Search
         return adList;
     }
 
+    public List<Ad> getReportedAds()
+    {
+        List<Ad> adList = new ArrayList<Ad>();
+
+        List<Ad> allAds = adInterface.getAllAds();
+
+        int minNumberOfReports = 2;
+
+        for (Ad ad: allAds)
+        {
+            if (ad.getNumberOfReports() >= minNumberOfReports)
+            {
+                adList.add(ad);
+            }
+        }
+
+        return adList;
+    }
 
     public List<Ad> getAllAds()
     {

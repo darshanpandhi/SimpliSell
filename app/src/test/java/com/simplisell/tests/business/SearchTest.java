@@ -5,6 +5,8 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 import java.util.List;
 
 import com.simplisell.objects.Ad;
@@ -99,9 +101,8 @@ public class SearchTest
     }
 
 
-
     @Test
-    public void testgetUserSpecificAds()
+    public void testGetUserSpecificAds()
     {
         System.out.println("\nStarting testSearch: get all ads for specific user");
 
@@ -115,5 +116,49 @@ public class SearchTest
         }
 
         System.out.println("Finished testSearch: get all ads for specific user");
+    }
+
+    @Test
+    public void testGetReportedAdsMoreThan2Reports()
+    {
+        System.out.println("\nStarting testSearch: get all reported ads (more than 2 reports)");
+
+        Ad reportedAd = adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.BOOKS,
+                "reportedAd3Reports", "reportedAd3Reports", 1));
+        reportedAd.incrementNumberOfReports();
+        reportedAd.incrementNumberOfReports();
+
+        reportedAd = adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.BOOKS,
+                "reportedAd4Reports", "reportedAd4Reports", 1));        List<Ad> ads = search.getReportedAds();
+        reportedAd.incrementNumberOfReports();
+        reportedAd.incrementNumberOfReports();
+        reportedAd.incrementNumberOfReports();
+        reportedAd.incrementNumberOfReports();
+
+        int minNumberReports = 2;
+
+        for (Ad ad : ads)
+        {
+            assertTrue(ad.getNumberOfReports() >= minNumberReports);
+        }
+
+        System.out.println("Finished testSearch: get all reported ads (more than 2 reports)");
+    }
+
+    @Test
+    public void testGetReportedAdsLessThan2Reports()
+    {
+        System.out.println("\nStarting testSearch: get all reported ads (less than 2 reports)");
+
+        List<Ad> ads = search.getReportedAds();
+
+        int minNumberReports = 2;
+
+        for (Ad ad : ads)
+        {
+            assertFalse(ad.getNumberOfReports() < minNumberReports);
+        }
+
+        System.out.println("Finished testSearch: get all reported ads (less than 2 reports)");
     }
 }
