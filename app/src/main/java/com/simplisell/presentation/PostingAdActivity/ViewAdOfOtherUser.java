@@ -1,12 +1,16 @@
 package com.simplisell.presentation.PostingAdActivity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
+import com.simplisell.presentation.MainActivity;
 
 public class ViewAdOfOtherUser extends AppCompatActivity
 {
@@ -18,6 +22,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     private String title;           // title of the current ad
     private String description;     // description of the current ad
     private double price;           // price of the current ad
+    private int numReports;
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
 
@@ -49,4 +54,15 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         String price = "$" + this.price;
         textViewPrice.setText(price);
     }
+
+    public void reportBtnClick(View view)
+    {
+        currAd.incrementNumberOfReports();
+        Toast.makeText(getApplicationContext(), "Advertisement Reported " + currAd.getNumberOfReports(), Toast.LENGTH_LONG).show();
+
+        // go back to main page after deletion
+        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainPage);
+    }
+
 }

@@ -11,6 +11,7 @@ public final class Ad
     private String title;
     private String description;
     private double price;
+    private int numberOfReports;
 
 
     public Ad(final String adOwner, final AdType adType, final Category category, final
@@ -100,6 +101,16 @@ public final class Ad
     public void setPrice(double price)
     {
         this.price = price;
+    }
+
+    public int getNumberOfReports()
+    {
+        return numberOfReports;
+    }
+
+    public void incrementNumberOfReports()
+    {
+        numberOfReports++;
     }
 }
 

@@ -67,4 +67,27 @@
             android:textSize="30sp" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_viewAdCU_delete"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/black_overlay"
+        android:onClick="reportBtnClick"
+        android:text="@string/report_ad"
+        android:textAllCaps="false"
+        android:textColor="@color/whiteBtn"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdOU_bot"
+        app:layout_constraintVertical_bias="0.385" />
+
 </android.support.constraint.ConstraintLayout>

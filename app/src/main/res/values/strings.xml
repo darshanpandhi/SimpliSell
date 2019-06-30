@@ -90,4 +90,5 @@
         <item>What is your mother\'s maiden name?</item>
     </string-array>
 
+    <string name="report_ad">Report Ad</string>
 </resources>
