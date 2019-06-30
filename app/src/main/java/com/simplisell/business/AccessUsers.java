@@ -15,6 +15,9 @@ public class AccessUsers
     }
 
 
+    public AccessUsers(UserPersistence userp) { userPersistence = userp; }
+
+
     public User getUser(String userName)
     {
         return userPersistence.getUser(userName);

@@ -30,8 +30,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         final String userName = rs.getString("username");
         final String userPassword = rs.getString("password");
-        final String userSQ = rs.getString("securityQ");
-        final String userSA = rs.getString("securityA");
+        final String userSQ = rs.getString("securityQuestion");
+        final String userSA = rs.getString("securityAnswer");
 
         return new User(userName, userPassword, userSQ, userSA);
     }
@@ -106,7 +106,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(1, userName);
             final ResultSet rs = st.executeQuery();
             rs.next();
-            final String securityQ = rs.getString("securityQ");
+            final String securityQ = rs.getString("securityQuestion");
             st.close();
             rs.close();
             return securityQ;
@@ -126,7 +126,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(1, userName);
             final ResultSet rs = st.executeQuery();
             rs.next();
-            final String securityA = rs.getString("securityA");
+            final String securityA = rs.getString("securityAnswer");
             st.close();
             rs.close();
             return securityA;

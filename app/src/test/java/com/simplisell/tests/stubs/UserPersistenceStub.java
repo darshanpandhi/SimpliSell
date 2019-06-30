@@ -1,4 +1,4 @@
-package com.simplisell.persistence.stubs;
+package com.simplisell.tests.stubs;
 
 import com.simplisell.objects.User;
 import com.simplisell.persistence.UserPersistence;

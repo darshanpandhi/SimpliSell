@@ -16,6 +16,7 @@ public final class AccessAds
         adPersistence = Services.getAdPersistence();
     }
 
+    public AccessAds(AdPersistence adp) { adPersistence = adp; }
 
     public final Ad insertAd(final Ad newAd)
     {

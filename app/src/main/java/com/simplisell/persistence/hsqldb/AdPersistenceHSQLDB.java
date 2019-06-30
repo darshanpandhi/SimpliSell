@@ -24,6 +24,9 @@ public class AdPersistenceHSQLDB implements AdPersistence
     }
 
     private Connection connection() throws SQLException {
+        //TODO
+        System.out.println("before connection");
+        System.out.println(dbPath);
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
@@ -42,11 +45,15 @@ public class AdPersistenceHSQLDB implements AdPersistence
     public List<Ad> getAds()
     {
         List<Ad> ads = new ArrayList<>();
-
+        //TODO
+        System.out.println("Getting ads");
         try (final Connection c = connection())
         {
+            System.out.println("before statement");
             final Statement st = c.createStatement();
+            System.out.println("before query");
             final ResultSet rs = st.executeQuery("SELECT * FROM ads");
+            System.out.println("executed query");
             while (rs.next())
             {
                 final Ad ad = fromResultSet(rs);
@@ -54,6 +61,9 @@ public class AdPersistenceHSQLDB implements AdPersistence
             }
             rs.close();
             st.close();
+
+            //TODO
+            System.out.println("Returning ads");
 
             return ads;
         }

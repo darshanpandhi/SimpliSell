@@ -1,9 +1,10 @@
 package com.simplisell.application;
 
 import com.simplisell.persistence.UserPersistence;
-import com.simplisell.persistence.stubs.UserPersistenceStub;
+import com.simplisell.persistence.hsqldb.AdPersistenceHSQLDB;
+import com.simplisell.persistence.hsqldb.UserPersistenceHSQLDB;
 import com.simplisell.persistence.AdPersistence;
-import com.simplisell.persistence.stubs.AdPersistenceStub;
+
 
 public class Services
 {
@@ -16,7 +17,7 @@ public class Services
     {
         if (userPersistence == null)
         {
-            userPersistence = new UserPersistenceStub();
+            userPersistence = new UserPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return userPersistence;
@@ -27,9 +28,10 @@ public class Services
     {
         if (adPersistence == null)
         {
-            adPersistence = new AdPersistenceStub();
+            adPersistence = new AdPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return adPersistence;
     }
+
 }
