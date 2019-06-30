@@ -98,6 +98,8 @@
     </string-array>
 
     <string name="report_ad">Report Ad</string>
+    <string name="report_user">Report User</string>
 
     <string name="reported_ads">Reported Advertisements</string>
+    <string name="reported_users">Reported Users</string>
 </resources>

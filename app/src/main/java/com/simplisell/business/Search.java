@@ -2,6 +2,7 @@ package com.simplisell.business;
 
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.Category;
+import com.simplisell.objects.User;
 
 import java.util.Collections;
 import java.util.List;
@@ -62,11 +63,11 @@ public class Search
 
         List<Ad> allAds = adInterface.getAllAds();
 
-        int minNumberOfReports = 2;
+        int minNumberOfReports = 3;
 
         for (Ad ad: allAds)
         {
-            if (ad.getNumberOfReports() >= minNumberOfReports)
+            if (ad.getNumReports() >= minNumberOfReports)
             {
                 adList.add(ad);
             }
@@ -75,9 +76,32 @@ public class Search
         return adList;
     }
 
+    public List<User> getReportedUsers()
+    {
+        List<User> userList = new ArrayList<User>();
+
+        List<User> allUsers = userInterface.getAllUsers();
+
+        int minNumberOfReports = 3;
+
+        for (User user: allUsers)
+        {
+            if (user.getNumReports() >= minNumberOfReports)
+            {
+                userList.add(user);
+            }
+        }
+        return userList;
+    }
+
     public List<Ad> getAllAds()
     {
         return adInterface.getAllAds();
+    }
+
+    public List<User> getAllUsers()
+    {
+        return userInterface.getAllUsers();
     }
 
 

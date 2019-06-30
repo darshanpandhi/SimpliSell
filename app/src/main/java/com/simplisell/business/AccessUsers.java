@@ -4,6 +4,8 @@ import com.simplisell.application.Services;
 import com.simplisell.objects.User;
 import com.simplisell.persistence.UserPersistence;
 
+import java.util.List;
+
 public class AccessUsers
 {
     private UserPersistence userPersistence;
@@ -20,6 +22,10 @@ public class AccessUsers
         return userPersistence.getUser(userName);
     }
 
+    public List<User> getAllUsers()
+    {
+        return userPersistence.getUsers();
+    }
 
     public User insertNewUser(User currentUser)
     {

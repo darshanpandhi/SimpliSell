@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessAds;
+import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 
 public class ViewAdOfOtherUser extends AppCompatActivity
@@ -24,8 +26,8 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     private double price;           // price of the current ad
     private int numReports;
 
-    private AccessAds accessAds = new AccessAds();    // helps with accessing ads
-
+    private AccessAds accessAds = new AccessAds();    // helps with accessing ad
+    private AccessUsers accessUsers = new AccessUsers();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,10 +57,22 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         textViewPrice.setText(price);
     }
 
-    public void reportBtnClick(View view)
+    public void reportAdBtnClick(View view)
     {
-        currAd.incrementNumberOfReports();
-        Toast.makeText(getApplicationContext(), "Advertisement Reported " + currAd.getNumberOfReports(), Toast.LENGTH_LONG).show();
+        currAd.incrementNumReports();
+        Toast.makeText(getApplicationContext(), "Advertisement Reported", Toast.LENGTH_SHORT).show();
+
+        // go back to main page after deletion
+        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainPage);
+    }
+
+    public void reportUserBtnClick(View view)
+    {
+        String adOwner = currAd.getAdOwner();
+        User reportedUser = accessUsers.getUser(adOwner);
+        reportedUser.incrementNumReports();
+        Toast.makeText(getApplicationContext(), "User Reported " + reportedUser.getNumReports(), Toast.LENGTH_SHORT).show();
 
         // go back to main page after deletion
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);

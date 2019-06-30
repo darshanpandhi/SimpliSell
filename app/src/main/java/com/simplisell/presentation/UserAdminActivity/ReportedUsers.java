@@ -10,21 +10,21 @@ import android.view.View;
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.User;
 import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
 import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
 
 import java.util.List;
 
-public class ReportedAds extends AppCompatActivity
+public class ReportedUsers extends AppCompatActivity
 {
 
     private static final String USERNAME_TEXT="USER";
 
-    private List<Ad> reportedAds;
+    private List<User> reportedUsers;
     private Search adsSearch;
     private RecyclerView recyclerView;
     private String userName;
-
 
 
     @Override
@@ -36,12 +36,11 @@ public class ReportedAds extends AppCompatActivity
 
 
         adsSearch = new Search();
-        reportedAds = adsSearch.getReportedAds();
-
+        reportedUsers = adsSearch.getReportedUsers();
 
         recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
-        recyclerViewAdapter.setMyAd(reportedAds);
+        recyclerViewAdapter.setMyUser(reportedUsers);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
     }

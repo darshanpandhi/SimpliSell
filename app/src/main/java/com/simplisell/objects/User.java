@@ -10,6 +10,7 @@ public class User
     private String securityAnswer;
     private String firstAndLastName;
     private String profilePhoto;
+    private int numReports;
 
     public User()
     {
@@ -17,6 +18,7 @@ public class User
         password = "";
         securityQuestion = "";
         securityAnswer = "";
+        numReports = 0;
     }
 
 
@@ -30,6 +32,7 @@ public class User
         profilePhoto = null;
         email = null;
         phoneNumber = null;
+        numReports = 0;
     }
 
 
@@ -38,7 +41,6 @@ public class User
     public String getPassword() { return password; }
 
     public String getSecurityQuestion() { return securityQuestion;}
-
 
     public String getSecurityAnswer()
     {
@@ -52,6 +54,11 @@ public class User
     public String getEmail() { return email; }
 
     public String getProfilePhoto() { return profilePhoto; }
+
+    public int getNumReports()
+    {
+        return numReports;
+    }
 
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
@@ -68,6 +75,11 @@ public class User
     public void setPassword(final String newPassword)
     {
         this.password = newPassword;
+    }
+
+    public void incrementNumReports()
+    {
+        numReports++;
     }
 
     public String toString()
