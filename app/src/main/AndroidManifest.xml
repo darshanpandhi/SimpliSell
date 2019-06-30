@@ -10,8 +10,6 @@
             android:roundIcon="@drawable/logo"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.AdminHomeScreen">
-        </activity>
         <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser"/>
         <activity android:name=".presentation.postingadactivity.EditAd"/>
         <activity android:name=".presentation.postingadactivity.ViewAdOfCurrentUser"/>
@@ -29,6 +27,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".presentation.AdminHomeScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.AdminHomeScreen"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
 
         <meta-data
                 android:name="preloaded_fonts"
