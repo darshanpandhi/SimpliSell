@@ -95,6 +95,7 @@ public class Login extends AppCompatActivity
                     if (loggedInUser instanceof UserAdmin)
                     {
                         Intent logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
+                        startActivity(logIn);
                     }
                 }
             }
