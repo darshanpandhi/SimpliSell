@@ -81,6 +81,12 @@
 
     <string name="save">Save</string>
 
+    <string name="reportedUsers">View Reported Users</string>
+
+    <string name="reportedAds">View Reported Ads</string>
+
+    <string name="adminControl">Admin Control</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

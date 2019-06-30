@@ -82,23 +82,10 @@ public class Login extends AppCompatActivity
 
                 finish();
 
-                Intent logIn;
-
-                if (loggedInUser instanceof UserAdvertiser)
-                {
-                    logIn = new Intent(getApplicationContext(), MainActivity.class);
-                    logIn.putExtra(USERNAME_TEXT, uniqueUserName);
-                    RecyclerViewAdapter.login(userName);
-                    startActivity(logIn);
-                }
-                else
-                {
-                    if (loggedInUser instanceof UserAdmin)
-                    {
-                        logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
-                        startActivity(logIn);
-                    }
-                }
+                Intent logIn = new Intent(getApplicationContext(), loggedInUser.logIn());
+                logIn.putExtra(USERNAME_TEXT, uniqueUserName);
+                RecyclerViewAdapter.login(userName);
+                startActivity(logIn);
             }
             else
             {
