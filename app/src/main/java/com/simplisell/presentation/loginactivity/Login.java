@@ -80,12 +80,13 @@ public class Login extends AppCompatActivity
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
                 uniqueUserName = userName;
 
-                // login and go to homepage
                 finish();
+
+                Intent logIn;
 
                 if (loggedInUser instanceof UserAdvertiser)
                 {
-                    Intent logIn = new Intent(getApplicationContext(), MainActivity.class);
+                    logIn = new Intent(getApplicationContext(), MainActivity.class);
                     logIn.putExtra(USERNAME_TEXT, uniqueUserName);
                     RecyclerViewAdapter.login(userName);
                     startActivity(logIn);
@@ -94,7 +95,7 @@ public class Login extends AppCompatActivity
                 {
                     if (loggedInUser instanceof UserAdmin)
                     {
-                        Intent logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
+                        logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
                         startActivity(logIn);
                     }
                 }
