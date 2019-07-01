@@ -58,7 +58,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v)
             {
-
                 int adId = myAd.get(viewHolder.getAdapterPosition()).getAdId();
                 String adUserName = myAd.get(viewHolder.getAdapterPosition()).getAdOwner();
 
