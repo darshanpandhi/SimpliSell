@@ -1,7 +1,10 @@
 package com.simplisell.presentation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.simplisell.R;
+import com.simplisell.application.Main;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Category;
@@ -20,6 +24,11 @@ import com.simplisell.presentation.HomePageTabs.TabPagerAdapter;
 import com.simplisell.presentation.LoginActivity.Login;
 import com.simplisell.presentation.PostingAdActivity.PostAd;
 import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -48,7 +57,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        copyDatabaseToDevice();
+        accessUsers = new AccessUsers();
+        User user = accessUsers.getUser("bob");
+        System.out.println(user.getPassword());
+//        User user = accessUsers.getUser("Bob");
+//        System.out.println(accessUsers);
         search = new Search();
 
         tabFragmentAllObj = new TabFragment(search.getAllAds());
@@ -61,10 +77,6 @@ public class MainActivity extends AppCompatActivity
         tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS));
 
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        accessUsers = new AccessUsers();
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 
 
@@ -161,7 +173,6 @@ public class MainActivity extends AppCompatActivity
         }
         else   // already logged in
         {
-
             finish();
             Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
             intent.putExtra(USERNAME_TEXT, userName);
@@ -206,4 +217,63 @@ public class MainActivity extends AppCompatActivity
             startActivity(postAd);
         }
     }
+
+    private void copyDatabaseToDevice() {
+        final String DB_PATH = "db";
+
+        String[] assetNames;
+        Context context = getApplicationContext();
+        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
+        AssetManager assetManager = getAssets();
+
+        try {
+            //load in all asset file
+            assetNames = assetManager.list(DB_PATH);
+
+            if (assetNames != null) {
+                for (int i = 0; i < assetNames.length; i++) {
+                    assetNames[i] = DB_PATH + "/" + assetNames[i];
+                }
+
+                copyAssetsToDirectory(assetNames, dataDirectory);
+
+                Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
+            }
+        } catch (final IOException ioe) {
+            Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
+        }
+    }
+
+
+    private void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+        AssetManager assetManager = getAssets();
+
+        for (String asset : assets) {
+            String[] components = asset.split("/");
+            String copyPath = directory.toString() + "/" + components[components.length - 1];
+
+            char[] buffer = new char[1024];
+            int count;
+
+            File outFile = new File(copyPath);
+            System.out.println("FAWJFALKJF" + outFile);
+
+            //check if database file already exit?
+            if (!outFile.exists()) {
+                InputStreamReader in = new InputStreamReader(assetManager.open(asset));
+                FileWriter out = new FileWriter(outFile);
+
+                count = in.read(buffer);
+                while (count != -1) {
+                    out.write(buffer, 0, count);
+                    count = in.read(buffer);
+                }
+
+                out.close();
+                in.close();
+            }
+        }
+    }
+
+
 }

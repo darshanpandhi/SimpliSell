@@ -10,13 +10,7 @@ public interface UserPersistence
 
     User getUser(String userName);
 
-    String getPassword(String userName);
-
-    String getSecurityQuestion(String userName);
-
-    String getSecurityAnswer(String userName);
-
     User insertUser(User user);
 
-    User updatePassword(String userName, String newPassword);
+    void updatePassword(String userName, String newPassword);
 }

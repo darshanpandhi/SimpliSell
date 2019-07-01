@@ -102,4 +102,7 @@
 
     <string name="reported_ads">Reported Advertisements</string>
     <string name="reported_users">Reported Users</string>
+
+    <string name="fatalError">Fatal error</string>
+    <string name="warning">Warning</string>
 </resources>

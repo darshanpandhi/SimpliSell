@@ -6,7 +6,6 @@
     <uses-feature android:name="android.hardware.camera"></uses-feature>
 
 
-
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -17,7 +16,6 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <activity android:name=".presentation.UserProfileActivity.ProfileInformation">
-
         </activity>
         <activity android:name=".presentation.UserProfileActivity.UsersOwnAds" />
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser" />
@@ -31,6 +29,7 @@
         <activity android:name=".presentation.LoginActivity.ForgetPassword" />
         <activity android:name=".presentation.UserAdminActivity.ReportedAds" />
         <activity android:name=".presentation.UserAdminActivity.ReportedUsers" />
+        <activity android:name=".presentation.Messages" />
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +42,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
 
 
     </application>

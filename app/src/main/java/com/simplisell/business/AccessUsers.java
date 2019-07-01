@@ -11,11 +11,16 @@ public class AccessUsers
     private UserPersistence userPersistence;
 
 
+
     public AccessUsers()
     {
         userPersistence = Services.getUserPersistence();
     }
 
+    public AccessUsers(final UserPersistence userPersistence)
+    {
+        this.userPersistence = userPersistence;
+    }
 
     public User getUser(String userName)
     {
