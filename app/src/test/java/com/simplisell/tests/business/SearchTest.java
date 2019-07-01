@@ -188,12 +188,12 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch: get all reported users (3 or more reports)");
 
-        User reportedUser = userPersistence.insertNewUser(new User("Bad User", "testUser", "123456", "What is your favourite color", "Black"));
+        User reportedUser = userPersistence.insertNewUser(new User("Bad User", "testUser", "123456", "What is your favourite color", "Black", 0));
         reportedUser.incrementNumReports();
         reportedUser.incrementNumReports();
         reportedUser.incrementNumReports();
 
-        reportedUser = userPersistence.insertNewUser(new User("Worst User", "testUser1", "123456", "What is your favourite color", "Black"));
+        reportedUser = userPersistence.insertNewUser(new User("Worst User", "testUser1", "123456", "What is your favourite color", "Black", 0));
         reportedUser.incrementNumReports();
         reportedUser.incrementNumReports();
         reportedUser.incrementNumReports();

@@ -39,7 +39,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
         final String password = rs.getString("PASSWORD");
         final String securityQuestion = rs.getString("SECURITYQUESTION");
         final String securityAnswer = rs.getString("SECURITYANSWER");
-        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer);
+        final int numReports = rs.getInt("NUMREPORTS");
+        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, numReports);
     }
 
     @Override
@@ -113,7 +114,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
     public void updatePassword(final String userName, final String newPassword)
     {
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET password = ? WHERE userName = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE users SET PASSWORD = ? WHERE USERNAME = ?");
             st.setString(1, newPassword );
             st.setString(2, userName);
             st.executeUpdate();
@@ -121,7 +122,22 @@ public class UserPersistenceHSQLDB implements UserPersistence
         catch (final SQLException e) {
             throw new PersistenceException(e);
         }
-
     }
 
+    //TODO test
+    @Override
+    public void reportUser(final String userName)
+    {
+        try (final Connection c = connection()) {
+            User reportedUser = getUser(userName);
+            int numReports = reportedUser.getNumReports() + 1;
+            final PreparedStatement st = c.prepareStatement("UPDATE users SET NUMREPORTS = ? WHERE USERNAME = ?");
+            st.setInt(1, numReports );
+            st.setString(2, userName);
+            st.executeUpdate();
+        }
+        catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
 }

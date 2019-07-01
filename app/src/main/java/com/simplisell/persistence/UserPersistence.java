@@ -13,4 +13,6 @@ public interface UserPersistence
     User insertUser(User user);
 
     void updatePassword(String userName, String newPassword);
+
+    void reportUser(String userName);
 }

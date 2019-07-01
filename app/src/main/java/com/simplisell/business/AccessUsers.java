@@ -44,4 +44,9 @@ public class AccessUsers
         }
         return newUser;
     }
+
+    public void reportUser(String userName)
+    {
+        userPersistence.reportUser(userName);
+    }
 }
