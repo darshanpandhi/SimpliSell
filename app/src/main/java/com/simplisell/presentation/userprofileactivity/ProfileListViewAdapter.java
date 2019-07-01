@@ -16,7 +16,7 @@ public class ProfileListViewAdapter extends ArrayAdapter<String> {
     private Context context;
     private String[] titles;
 
-    public ProfileListViewAdapter(Context c,String[] t)
+    ProfileListViewAdapter(Context c,String[] t)
     {
         super(c, R.layout.profile_row,R.id.profile_row_title,t);
         titles=t;

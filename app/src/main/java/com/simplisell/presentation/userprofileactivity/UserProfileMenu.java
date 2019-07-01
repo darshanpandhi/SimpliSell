@@ -16,33 +16,21 @@ import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 public class UserProfileMenu extends AppCompatActivity
 {
-    private static String userName = null;
-    private static User currUser = null;
-    private ListView listView;
-    private static String[] titles = {"Post an Ad", "Logout"};
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        if (Login.isLoggedIn())
-        {
-            setContentView(R.layout.activity_user_profile_menu);
-            initialize();
-        }
-        else
-        {
-            finish();
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
+        setContentView(R.layout.activity_user_profile_menu);
+
+        initialize();
     }
 
 
     public void initialize()
     {
-        listView = findViewById(R.id.profile_list_view);
+        ListView listView = findViewById(R.id.profile_list_view);
+        String[] titles = {"Logout"};
 
         ProfileListViewAdapter profileListViewAdapter = new ProfileListViewAdapter(this, titles);
 
@@ -56,26 +44,16 @@ public class UserProfileMenu extends AppCompatActivity
             {
                 if (position == 0)
                 {
-                    Intent postAd = new Intent(getApplicationContext(), PostAd.class);
-                    postAd.putExtra(Intent.EXTRA_TEXT, userName);
-                    startActivity(postAd);
-                }
-                else
-                {
-                    if (position == 1)
-                    {
-                        logout();
-                    }
+                    logout();
                 }
             }
         });
     }
 
 
-    public void logout()
+    private void logout()
     {
-        userName = null;
-        RecyclerViewAdapter.logOut();
+       RecyclerViewAdapter.logOut();
         finish();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
