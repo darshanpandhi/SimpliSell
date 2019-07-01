@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
+import com.simplisell.tests.persistence.UserPersistenceStub;
 
 
 public class AccessUsersTest
@@ -19,7 +20,7 @@ public class AccessUsersTest
     @Before
     public final void setup()
     {
-        userList = new AccessUsers();
+        userList = new AccessUsers(new UserPersistenceStub());
     }
 
     @Test
@@ -27,14 +28,14 @@ public class AccessUsersTest
     {
         System.out.println("\nStarting AccessUsersTest: insert unique username");
 
-        User user = new User("bo bo","UniqueUser", "123456", "What is your favourite " +
-                "color", "Red");
+        User user = new User("Bob Saget","UniqueUser", "123456", "What is your favourite " +
+                "color", "Red", 0);
         User addedUser = userList.insertNewUser(user);
 
         assertNotNull(addedUser);
         assertEquals("UniqueUser",addedUser.getUserName());
         assertEquals("123456", addedUser.getPassword());
-
+        assertEquals(0, addedUser.getNumReports());
         System.out.println("Finished AccessUsersTest: insert unique username");
     }
 
@@ -44,7 +45,7 @@ public class AccessUsersTest
         System.out.println("\nStarting AccessUsersTest: insert duplicate username");
 
         User user = new User("ba ba","User1", "123456", "What is your favourite " +
-                "color", "Red");
+                "color", "Red", 0);
         User addedUser = userList.insertNewUser(user);
         addedUser = userList.insertNewUser(user);
 

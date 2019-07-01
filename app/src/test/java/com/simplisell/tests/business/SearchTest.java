@@ -16,6 +16,9 @@ import com.simplisell.objects.Category;
 import com.simplisell.business.Search;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.User;
+import com.simplisell.persistence.UserPersistence;
+import com.simplisell.tests.persistence.AdPersistenceStub;
+import com.simplisell.tests.persistence.UserPersistenceStub;
 
 public class SearchTest
 {
@@ -27,9 +30,11 @@ public class SearchTest
     @Before
     public final void setup()
     {
-        search = new Search();
-        adPersistence = new AccessAds();
-        userPersistence = new AccessUsers();
+        AdPersistenceStub adStub = new AdPersistenceStub();
+        UserPersistenceStub userStub = new UserPersistenceStub();
+        search = new Search(adStub, userStub);
+        adPersistence = new AccessAds(adStub);
+        userPersistence = new AccessUsers(userStub);
     }
 
     @Test
@@ -100,12 +105,12 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch sort price (descending)");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 10));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
-                "test", "test", 100));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1000));
+        adPersistence.insertAd(new Ad(1, "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 10, 0));
+        adPersistence.insertAd(new Ad(2, "test", AdType.OFFERING, Category.OTHERS,
+                "test", "test", 100, 0));
+        adPersistence.insertAd(new Ad(3, "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1000, 0));
         List<Ad> ads = search.sortPriceDesc(search.getAllAds());
         for (int i = 0; i < ads.size()-1; i++)
         {
@@ -122,8 +127,8 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch: get all ads for specific user");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1));
+        adPersistence.insertAd(new Ad(4, "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1, 0));
         List<Ad> ads = search.getUserSpecificAds("test");
 
         for (Ad ad : ads)
@@ -139,18 +144,11 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch: get all reported ads (3 or more reports)");
 
-        Ad reportedAd = adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.BOOKS,
-                "reportedAd3Reports", "reportedAd3Reports", 1));
-        reportedAd.incrementNumReports();
-        reportedAd.incrementNumReports();
-        reportedAd.incrementNumReports();
+        Ad reportedAd = adPersistence.insertAd(new Ad(5, "test", AdType.OFFERING, Category.BOOKS,
+                "reportedAd3Reports", "reportedAd3Reports", 1, 3));
 
-        reportedAd = adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.BOOKS,
-                "reportedAd4Reports", "reportedAd4Reports", 1));
-        reportedAd.incrementNumReports();
-        reportedAd.incrementNumReports();
-        reportedAd.incrementNumReports();
-        reportedAd.incrementNumReports();
+        Ad reportedAd2 = adPersistence.insertAd(new Ad(6, "test", AdType.OFFERING, Category.BOOKS,
+                "reportedAd4Reports", "reportedAd4Reports", 1, 4));
 
         List<Ad> ads = search.getReportedAds();
 
@@ -188,16 +186,8 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch: get all reported users (3 or more reports)");
 
-        User reportedUser = userPersistence.insertNewUser(new User("Bad User", "testUser", "123456", "What is your favourite color", "Black", 0));
-        reportedUser.incrementNumReports();
-        reportedUser.incrementNumReports();
-        reportedUser.incrementNumReports();
-
-        reportedUser = userPersistence.insertNewUser(new User("Worst User", "testUser1", "123456", "What is your favourite color", "Black", 0));
-        reportedUser.incrementNumReports();
-        reportedUser.incrementNumReports();
-        reportedUser.incrementNumReports();
-        reportedUser.incrementNumReports();
+        User reportedUser = userPersistence.insertNewUser(new User("Bad User", "testUser", "123456", "What is your favourite color", "Black", 3));
+        reportedUser = userPersistence.insertNewUser(new User("Worst User", "testUser1", "123456", "What is your favourite color", "Black", 4));
 
         List<User> users = search.getReportedUsers();
 

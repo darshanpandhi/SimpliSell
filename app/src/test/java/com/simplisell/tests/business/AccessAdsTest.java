@@ -10,6 +10,7 @@ import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.business.AccessAds;
+import com.simplisell.tests.persistence.AdPersistenceStub;
 
 
 public class AccessAdsTest
@@ -19,7 +20,7 @@ public class AccessAdsTest
     @Before
     public final void setup()
     {
-        accessAds = new AccessAds();
+        accessAds = new AccessAds(new AdPersistenceStub());
     }
 
     @Test
@@ -27,14 +28,14 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: insert unique ad");
 
-        String userName = "Bob";
+        String userName = "Marley";
         AdType adType = AdType.OFFERING;
         Category category = Category.JOBS_SERVICES;
         String title = "Test Title";
         String description = "Test Description";
         double price = 200;
 
-        Ad uniqueAd = new Ad(userName, adType, category, title, description, price);
+        Ad uniqueAd = new Ad(1000, userName, adType, category, title, description, price, 0);
 
         Ad insertedAd = accessAds.insertAd(uniqueAd);
 
@@ -89,14 +90,14 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: get deleted ad");
 
-        String userName = "Bob";
+        String userName = "John";
         AdType adType = AdType.OFFERING;
         Category category = Category.JOBS_SERVICES;
         String title = "Test Title";
         String description = "Test Description";
         double price = 200;
 
-        Ad uniqueAd = new Ad(userName, adType, category, title, description, price);
+        Ad uniqueAd = new Ad(12121, userName, adType, category, title, description, price, 10);
 
         // verifying if we are able to get a deleted ad from the list
         Ad insertedAd = accessAds.insertAd(uniqueAd);
