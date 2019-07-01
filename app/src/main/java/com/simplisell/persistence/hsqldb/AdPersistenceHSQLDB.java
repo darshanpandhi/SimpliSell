@@ -7,6 +7,7 @@ import com.simplisell.objects.Ad;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,134 +17,67 @@ import java.util.List;
 public class AdPersistenceHSQLDB implements AdPersistence
 {
     private List<Ad> ads;
-//
-//    public AdPersistenceHSQLDB(String dbPath) {
-//        this.dbPath = dbPath;
-//    }
-//
-//    private Connection connectizon() throws SQLException {
-//        return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
-//    }
+    private final String dbPath;
 
+    public AdPersistenceHSQLDB(String dbPath) {
+        this.dbPath = dbPath;
+    }
 
-//    private Ad fromResultSet(final ResultSet rs) throws SQLException {
-//        final String adOwner = rs.getString("adOwner");
-//        final String adTypeTitle = rs.getString("adType");
-//        final AdType adType = AdType.valueOf(AdType.class, adTypeTitle);
-//        final String categoryTitle = rs.getString("category");
-//        final Category category = Category.valueOf(Category.class, categoryTitle);
-//        final String title = rs.getString("title");
-//        final String description = rs.getString("description");
-//        final double price = rs.getDouble("price");
-//        return new Ad(adOwner, adType, category, title, description, price);
-//    }
+    private Connection connection() throws SQLException {
+        return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
+    }
 
-    public AdPersistenceHSQLDB()
-    {
-        ads = new ArrayList<>();
-
-        String adOwner = "Bob";
-        AdType adType = AdType.OFFERING;
-        Category category = Category.ELECTRONICS;
-        String title = "iPad 6th Gen";
-        String description = "iPad Ad description";
-        double price = 554.99;
-
-        Ad newAd = new Ad(adOwner, adType, category, title, description, price);
-        ads.add(newAd);
-
-        adOwner = "Allice";
-        adType = AdType.WANT;
-        category = Category.JOBS_SERVICES;
-        title = "Wanted Tutoring Services";
-        description = "Tutoring Services Description";
-        price = 40;
-
-        newAd = new Ad(adOwner, adType, category, title, description, price);
-        ads.add(newAd);
-
-        adOwner = "Jay";
-        adType = AdType.OFFERING;
-        category = Category.TRANSPORTATION;
-        title = "CarPooling Ad Title";
-        description = "CarPooling Ad Description";
-        price = 100;
-
-        newAd = new Ad(adOwner, adType, category, title, description, price);
-        ads.add(newAd);
-
-
-        adOwner = "Bob";
-        adType = AdType.OFFERING;
-        category = Category.BOOKS;
-        title = "Transcendence- A spiritual journey with pramukh swami maharaj";
-        description = "A nice book by Dr APJ abdul kalaam";
-        price = 0;
-
-        newAd = new Ad(adOwner, adType, category, title, description, price);
-        ads.add(newAd);
-
-
-        adOwner = "Allice";
-        adType = AdType.OFFERING;
-        category = Category.BOOKS;
-        title = "Analysis of Algorithms";
-        description = "Book for COMP2080 and COMP3170";
-        price = 20;
-
-        newAd = new Ad(adOwner, adType, category, title, description, price);
-        ads.add(newAd);
+    private Ad fromResultSet(final ResultSet rs) throws SQLException {
+        final int adID = rs.getInt("ADID");
+        final String adOwner = rs.getString("ADOWNER");
+        final int adTypeNum = rs.getInt("ADTYPE");
+        final AdType adType = AdType.values()[adTypeNum];
+        final int categoryNum = rs.getInt("CATEGORY");
+        final Category category = Category.values()[categoryNum];
+        final String title = rs.getString("TITLE");
+        final String description = rs.getString("DESCRIPTION");
+        final double price = rs.getDouble("PRICE");
+        return new Ad(adID, adOwner, adType, category, title, description, price);
     }
 
     public List<Ad> getAds()
     {
-        return ads;
-    }
+        final List<Ad> courses = new ArrayList<>();
 
-//    public List<Ad> getAdsDB()
-//    {
-//        final List<Ad> courses = new ArrayList<>();
-//
-//        try (final Connection c = connection()) {
-//            final Statement st = c.createStatement();
-//            final ResultSet rs = st.executeQuery("SELECT * FROM courses");
-//            while (rs.next())
-//            {
-//                final Ad course = fromResultSet(rs);
-//                courses.add(course);
-//            }
-//            rs.close();
-//            st.close();
-//
-//            return courses;
-//        }
-//        catch (final SQLException e)
-//        {
-//            throw new PersistenceException(e);
-//        }
-//    }
+        try (final Connection c = connection()) {
+            final Statement st = c.createStatement();
+            final ResultSet rs = st.executeQuery("SELECT * FROM ADS");
+            while (rs.next())
+            {
+                final Ad course = fromResultSet(rs);
+                courses.add(course);
+            }
+            rs.close();
+            st.close();
+
+            return courses;
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
 
     public final Ad getAd(int adId)
     {
-        Ad currentAd;
-        Ad requiredAd = null;
-        boolean adFound = false;
-        int currentIndex = 0;
+        Ad ad = null;
 
-        while (!adFound && currentIndex < ads.size())
-        {
-            currentAd = ads.get(currentIndex);
-
-            if (currentAd.getAdId() == adId)
-            {
-                requiredAd = currentAd;
-                adFound = true;
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM ADS WHERE ADID = ?");
+            st.setInt(1, adId);
+            final ResultSet rs = st.executeQuery();
+            if(rs.next()) {
+                ad = fromResultSet(rs);
             }
-
-            currentIndex++;
+            return ad;
+        } catch (final SQLException e) {
+            throw new PersistenceException(e);
         }
-
-        return requiredAd;
     }
 
 

@@ -14,8 +14,10 @@ import android.widget.ImageButton;
 
 import com.simplisell.R;
 import com.simplisell.application.Main;
+import com.simplisell.business.AccessAds;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Search;
+import com.simplisell.objects.Ad;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.EncoderDecoder;
 import com.simplisell.objects.User;
@@ -29,6 +31,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -60,11 +63,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
-        accessUsers = new AccessUsers();
-        User user = accessUsers.getUser("bob");
-        System.out.println(user.getPassword());
-//        User user = accessUsers.getUser("Bob");
-//        System.out.println(accessUsers);
         search = new Search();
 
         tabFragmentAllObj = new TabFragment(search.getAllAds());
@@ -256,7 +254,6 @@ public class MainActivity extends AppCompatActivity
             int count;
 
             File outFile = new File(copyPath);
-            System.out.println("FAWJFALKJF" + outFile);
 
             //check if database file already exit?
             if (!outFile.exists()) {

@@ -26,7 +26,7 @@ public class Services
     {
         if (adPersistence == null)
         {
-            adPersistence = new AdPersistenceHSQLDB();
+            adPersistence = new AdPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return adPersistence;

@@ -37,9 +37,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
 
         // get id of ad passed from previous activity
         adId = getIntent().getIntExtra(ADID_TEXT, -1);
-
         currAd = accessAds.getAd(adId);
-
         // retrieve information of the current ad
         title = currAd.getTitle();
         description = currAd.getDescription();
