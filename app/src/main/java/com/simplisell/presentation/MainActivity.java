@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity
     private static String userName = null;
     private static boolean isSortedAscending = false;
 
-    private final String USERNAME_TEXT = "USER";
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private AccessUsers accessUsers;      // helps  access users
@@ -63,23 +61,17 @@ public class MainActivity extends AppCompatActivity
 
         accessUsers = new AccessUsers();
 
-        if (userName == null)  // if there is no logged in user
+        // if there is no logged in user
+        if (!isLoggedIn())
         {
-            try
+            Intent intentThatCalledThisActivity = getIntent();
+
+            if (intentThatCalledThisActivity.hasExtra(Intent.EXTRA_TEXT))
             {
+                // get the username to see if user was logged in.
+                userName = intentThatCalledThisActivity.getStringExtra(Intent.EXTRA_TEXT);
 
-                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
-
-                if (userName != null)
-                {
-
-                    currUser = accessUsers.getUser(userName);
-                }
-            } catch (Exception e)
-            {
-
-                userName = null;
-                currUser = null;
+                currUser = accessUsers.getUser(userName);
             }
         }
         tabSetUp();
@@ -120,8 +112,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed()
-    {   // if anytime the back is pressed. Go to app home
+    {
+        // if anytime the back is pressed. Go to app home
+        homeScreen();
+    }
 
+    private void homeScreen()
+    {
         Intent i = new Intent(Intent.ACTION_MAIN);
         i.addCategory(Intent.CATEGORY_HOME);
         startActivity(i);
@@ -131,17 +128,17 @@ public class MainActivity extends AppCompatActivity
     public void accountBtnClick(View view)
     {
 
-        if (userName == null)
-        {
-            // not logged in
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
-        else
+        if (isLoggedIn())
         {
             // already logged in
             Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
-            intent.putExtra(USERNAME_TEXT, userName);
+            intent.putExtra(Intent.EXTRA_TEXT, userName);
             startActivity(intent);
+        }
+        else
+        {
+            // not logged in
+            startActivity(new Intent(getApplicationContext(), Login.class));
         }
     }
 
@@ -177,8 +174,21 @@ public class MainActivity extends AppCompatActivity
         else
         {
             Intent postAd = new Intent(getApplicationContext(), PostAd.class);
-            postAd.putExtra(USERNAME_TEXT, userName);
+            postAd.putExtra(Intent.EXTRA_TEXT, userName);
             startActivity(postAd);
         }
+    }
+
+
+    public boolean isLoggedIn()
+    {
+        boolean loggedIn = false;
+
+        if (userName != null)
+        {
+            loggedIn = true;
+        }
+
+        return loggedIn;
     }
 }

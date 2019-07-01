@@ -19,13 +19,9 @@ import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 public class Login extends AppCompatActivity
 {
-    private final String USERNAME_TEXT = "USER";
+    private EditText userNameEntered;             // the edit text box for userName of the user
+    private EditText passwordEntered;          // the edit text box for password of the user
 
-    private static String uniqueUserName;
-
-    private EditText userName;             // the edit text box for userName of the user
-    private EditText password;          // the edit text box for password of the user
-    private ProgressDialog progressDialog;  // progress Dialogue
     private Credentials credentials;
 
 
@@ -35,11 +31,11 @@ public class Login extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        uniqueUserName = null;
+        //uniqueUserName = null;
 
         // initializing the buttons and edit textboxes
-        userName = findViewById(R.id.editText_login_enterUserName);
-        password = findViewById(R.id.editText_login_enterPassword);
+        userNameEntered = findViewById(R.id.editText_login_enterUserName);
+        passwordEntered = findViewById(R.id.editText_login_enterPassword);
 
         credentials = new Credentials();
     }
@@ -47,12 +43,14 @@ public class Login extends AppCompatActivity
 
     public void loginBtnClick(View view)
     {
-        String userName;       // The userName in the textbox will be stored here.
+        String userName;       // The userName from the textbox will be stored here.
         String userPassword;    // The userName in the password will be stored here.
 
+        ProgressDialog progressDialog;  // progress Dialogue
+
         // check if these fields are empty
-        boolean userNameEmpty = this.userName.getText().toString().isEmpty();
-        boolean passwordEmpty = password.getText().toString().isEmpty();
+        boolean userNameEmpty = userNameEntered.getText().toString().isEmpty();
+        boolean passwordEmpty = passwordEntered.getText().toString().isEmpty();
 
         if (userNameEmpty || passwordEmpty)   // if userName or password field is empty
         {
@@ -61,8 +59,8 @@ public class Login extends AppCompatActivity
         }
         else
         {
-            userName = this.userName.getText().toString();
-            userPassword = password.getText().toString();
+            userName = userNameEntered.getText().toString();
+            userPassword = passwordEntered.getText().toString();
 
             // Show a progress Dialog while the authentication is loading
             progressDialog = new ProgressDialog(this);
@@ -78,12 +76,11 @@ public class Login extends AppCompatActivity
 
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                uniqueUserName = userName;
 
                 finish();
 
                 Intent logIn = new Intent(getApplicationContext(), loggedInUser.logIn());
-                logIn.putExtra(USERNAME_TEXT, uniqueUserName);
+                logIn.putExtra(Intent.EXTRA_TEXT, userName);
                 RecyclerViewAdapter.login(userName);
                 startActivity(logIn);
             }
