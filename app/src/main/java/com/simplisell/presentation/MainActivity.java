@@ -83,34 +83,40 @@ public class MainActivity extends AppCompatActivity
             try
             {
 
-                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
+                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
+                // in.
 
                 if (userName != null)
                 {
 
                     currUser = accessUsers.getUser(userName);
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
 
                 userName = null;
                 currUser = null;
             }
-        } else
+        }
+        else
         {
             currUser = accessUsers.getUser(userName);   //Update to show profile image
         }
 
 
-        if(currUser != null) {
+        if (currUser != null)
+        {
 
             String profilePhoto = currUser.getProfilePhoto();
 
-            if (profilePhoto != null) {
+            if (profilePhoto != null)
+            {
 
                 Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
 
-                Bitmap displayProfile = Bitmap.createScaledBitmap(photo,(int)(photo.getWidth()*0.7),(int)(photo.getHeight()*0.7),true);
+                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
+                        (int) (photo.getHeight() * 0.7), true);
 
                 profileBtn.setImageBitmap(displayProfile);
             }
@@ -217,7 +223,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void copyDatabaseToDevice() {
+
+    private void copyDatabaseToDevice()
+    {
         final String DB_PATH = "db";
 
         String[] assetNames;
@@ -225,12 +233,15 @@ public class MainActivity extends AppCompatActivity
         File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
         AssetManager assetManager = getAssets();
 
-        try {
+        try
+        {
             //load in all asset file
             assetNames = assetManager.list(DB_PATH);
 
-            if (assetNames != null) {
-                for (int i = 0; i < assetNames.length; i++) {
+            if (assetNames != null)
+            {
+                for (int i = 0; i < assetNames.length; i++)
+                {
                     assetNames[i] = DB_PATH + "/" + assetNames[i];
                 }
 
@@ -238,16 +249,20 @@ public class MainActivity extends AppCompatActivity
 
                 Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
             }
-        } catch (final IOException ioe) {
+        }
+        catch (final IOException ioe)
+        {
             Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
         }
     }
 
 
-    private void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+    private void copyAssetsToDirectory(String[] assets, File directory) throws IOException
+    {
         AssetManager assetManager = getAssets();
 
-        for (String asset : assets) {
+        for (String asset : assets)
+        {
             String[] components = asset.split("/");
             String copyPath = directory.toString() + "/" + components[components.length - 1];
 
@@ -257,12 +272,14 @@ public class MainActivity extends AppCompatActivity
             File outFile = new File(copyPath);
 
             //check if database file already exit?
-            if (!outFile.exists()) {
+            if (!outFile.exists())
+            {
                 InputStreamReader in = new InputStreamReader(assetManager.open(asset));
                 FileWriter out = new FileWriter(outFile);
 
                 count = in.read(buffer);
-                while (count != -1) {
+                while (count != -1)
+                {
                     out.write(buffer, 0, count);
                     count = in.read(buffer);
                 }
@@ -272,6 +289,4 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
-
 }
