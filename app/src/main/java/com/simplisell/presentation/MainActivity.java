@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity
                 userName = null;
                 currUser = null;
             }
+        } else
+        {
+            currUser = accessUsers.getUser(userName);   //Update to show profile image
         }
 
 
@@ -175,7 +178,6 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
             intent.putExtra(USERNAME_TEXT, userName);
             startActivity(intent);
-            System.out.println("HIIIII");
         }
     }
 
@@ -184,8 +186,6 @@ public class MainActivity extends AppCompatActivity
     {
 
         int position = tabLayout.getSelectedTabPosition();   // get position of current tab layout
-
-
 
         tabFragmentAllObj.sort();
         tabFragmentBooksObj.sort();

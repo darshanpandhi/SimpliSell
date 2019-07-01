@@ -165,7 +165,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
     public void updateProfileImage(String userName, String profilePhoto)
     {
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET PROFILEIMAGE = ? WHERE USERNAME = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE users SET PROFILEPHOTO = ? WHERE USERNAME = ?");
             st.setString(1, profilePhoto );
             st.setString(2, userName);
             st.executeUpdate();

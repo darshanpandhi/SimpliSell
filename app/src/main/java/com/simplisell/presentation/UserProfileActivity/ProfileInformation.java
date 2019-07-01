@@ -127,6 +127,7 @@ public class ProfileInformation extends AppCompatActivity
         String userPhoneNumber = currUser.getPhoneNumber();
         String userSecurityQuestion = currUser.getSecurityQuestion();
         String userSecurityAnswer = currUser.getSecurityAnswer();
+        String userProfilePhoto = currUser.getProfilePhoto();
 
         boolean userUpdatedProfle = false;
 
@@ -200,7 +201,6 @@ public class ProfileInformation extends AppCompatActivity
             }
         }
 
-
     }
 
 
@@ -218,6 +218,7 @@ public class ProfileInformation extends AppCompatActivity
             String userName = currUser.getUserName();
 
             accessUsers.updateProfileImage(userName, EncoderDecoder.bitMapToString(photo));
+            System.out.println(EncoderDecoder.bitMapToString(photo).length());
         }
     }
 
