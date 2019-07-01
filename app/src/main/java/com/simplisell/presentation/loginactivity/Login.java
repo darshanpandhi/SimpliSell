@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity
             if (loggedInUser != null)
             {  // if login is successful
 
-                isLoggedIn = true;
+                logIn();
 
                 progressDialog.dismiss();   // dismiss the progress bar
 
@@ -122,5 +122,15 @@ public class Login extends AppCompatActivity
     public static boolean isLoggedIn()
     {
         return isLoggedIn;
+    }
+
+    private void logIn()
+    {
+        isLoggedIn = true;
+    }
+
+    public static void logOut()
+    {
+        isLoggedIn = false;
     }
 }

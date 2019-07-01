@@ -31,6 +31,12 @@ public class AdminHomeScreen extends AppCompatActivity implements UserProfileBut
 
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        // stay on the admin home screen whenever the back button is pressed
+    }
+
     public void accountBtnClick(View view)
     {
         Intent intent;

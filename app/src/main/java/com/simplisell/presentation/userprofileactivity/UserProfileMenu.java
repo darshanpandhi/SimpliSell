@@ -53,7 +53,8 @@ public class UserProfileMenu extends AppCompatActivity
 
     private void logout()
     {
-       RecyclerViewAdapter.logOut();
+        Login.logOut();
+        RecyclerViewAdapter.logOut();
         finish();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
