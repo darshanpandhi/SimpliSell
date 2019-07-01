@@ -42,7 +42,7 @@ public final class AccessAds
     {
         return adPersistence.removeAd(adToBeRemoved);
     }
-
+    
     //TODO test
     public final void reportAd(final int adID)
     {

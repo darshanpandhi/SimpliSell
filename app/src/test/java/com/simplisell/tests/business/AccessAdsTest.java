@@ -140,4 +140,16 @@ public class AccessAdsTest
 
         System.out.println("Finished AccessAdsTest: remove null");
     }
+
+    @Test
+    public final void testReportAd()
+    {
+        System.out.println("\nStarting AccessAdsTest: report ad");
+
+        Ad reportThisAd = accessAds.getAd(0);
+        reportThisAd.incrementNumReports();
+        assertEquals(1, reportThisAd.getNumReports());
+
+        System.out.println("Finished AccessAdsTest: ad reported");
+    }
 }

@@ -27,11 +27,6 @@ public class AccessUsers
         return userPersistence.getUser(userName);
     }
 
-    public List<User> getAllUsers()
-    {
-        return userPersistence.getUsers();
-    }
-
     public User insertNewUser(User currentUser)
     {
         User newUser = null;
@@ -45,8 +40,23 @@ public class AccessUsers
         return newUser;
     }
 
+    public void updatePassword(String userName, String password)
+    {
+        userPersistence.updatePassword(userName, password);
+    }
+
     public void reportUser(String userName)
     {
         userPersistence.reportUser(userName);
+    }
+
+    public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)
+    {
+        userPersistence.updateProfileInformation(userName, newFullName, newEmail, newPhoneNumber, newSecurityQuestion, newSecurityAnswer);
+    }
+
+    public void updateProfileImage(String userName, String profilePhoto)
+    {
+        userPersistence.updateProfileImage(userName, profilePhoto);
     }
 }

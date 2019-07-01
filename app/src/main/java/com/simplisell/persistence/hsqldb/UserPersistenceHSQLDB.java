@@ -40,7 +40,10 @@ public class UserPersistenceHSQLDB implements UserPersistence
         final String securityQuestion = rs.getString("SECURITYQUESTION");
         final String securityAnswer = rs.getString("SECURITYANSWER");
         final int numReports = rs.getInt("NUMREPORTS");
-        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, numReports);
+        final String email = rs.getString("EMAIL");
+        final String phoneNumber = rs.getString("PHONENUMBER");
+        final String profilePhoto = rs.getString("PROFILEPHOTO");
+        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, numReports, email, phoneNumber, profilePhoto);
     }
 
     @Override
@@ -124,7 +127,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
         }
     }
 
-    //TODO test
     @Override
     public void reportUser(final String userName)
     {
@@ -133,6 +135,38 @@ public class UserPersistenceHSQLDB implements UserPersistence
             int numReports = reportedUser.getNumReports() + 1;
             final PreparedStatement st = c.prepareStatement("UPDATE users SET NUMREPORTS = ? WHERE USERNAME = ?");
             st.setInt(1, numReports );
+            st.setString(2, userName);
+            st.executeUpdate();
+        }
+        catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+    @Override
+    public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)
+    {
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("UPDATE users SET FULLNAME = ?, EMAIL = ?, PHONENUMBER = ?, SECURITYQUESTION = ?, SECURITYANSWER = ? WHERE USERNAME = ?");
+            st.setString(1, newFullName);
+            st.setString(2, newEmail);
+            st.setString(3, newPhoneNumber);
+            st.setString(4, newSecurityQuestion);
+            st.setString(5, newSecurityAnswer);
+            st.setString(6, userName);
+            st.executeUpdate();
+        }
+        catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+    @Override
+    public void updateProfileImage(String userName, String profilePhoto)
+    {
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("UPDATE users SET PROFILEIMAGE = ? WHERE USERNAME = ?");
+            st.setString(1, profilePhoto );
             st.setString(2, userName);
             st.executeUpdate();
         }

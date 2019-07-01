@@ -22,17 +22,17 @@ public class User
     }
 
 
-    public User(String fullName, String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer, int numOfReports)
+    public User(String fullName, String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer, int numOfReports, String newEmail, String newPhoneNumber, String newProfileImage)
     {
         userName = newUserName;
         password = newUserPassword;
         securityQuestion = newSecurityQuestion;
         securityAnswer = newSecurityAnswer;
         firstAndLastName = fullName;
-        profilePhoto = null;
-        email = null;
-        phoneNumber = null;
         numReports = numOfReports;
+        email = newEmail;
+        phoneNumber = newPhoneNumber;
+        profilePhoto = newProfileImage;
     }
 
 

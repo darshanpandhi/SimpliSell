@@ -29,7 +29,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: correct password for user");
 
-        User user = new User("UserFullName","User1", "123456", "What is your favourite color", "Red", 0);
+        User user = new User("UserFullName","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
         accessUsers.insertNewUser(user);
         String passwordInput = "123456";
 
@@ -43,7 +43,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: incorrect password for user");
 
-        User user = new User("User1Name","User1", "123456", "What is your favourite color", "Red", 0);
+        User user = new User("User1Name","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
         accessUsers.insertNewUser(user);
         String userNameInput = "User1";
         String passwordInput = "1234567";
@@ -58,7 +58,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectSecurityAnswer: correct answer for user security question");
 
-        User user = new User("a1","User1", "123456", "What is your favourite color", "Red", 0);
+        User user = new User("a1","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
         accessUsers.insertNewUser(user);
         String userNameInput = "User1";
         String securityQuestionAnswer = "Red";
@@ -73,7 +73,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testIncorrectSecurityAnswer: incorrect answer for user security question");
 
-        User user = new User("asd","User1", "123456", "What is your favourite color", "Red",0 );
+        User user = new User("asd","User1", "123456", "What is your favourite color", "Red",0, null, null, null);
         accessUsers.insertNewUser(user);
         String userNameInput = "User1";
         String securityQuestionAnswer = "Green";
@@ -87,7 +87,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: username not found");
 
-        User user = new User("da da","User1", "123456", "What is your favourite color", "Red", 0);
+        User user = new User("da da","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
         User addedUser = accessUsers.insertNewUser(user);
         String userNameInput = "InvalidUser";
         String passwordInput = "123456";

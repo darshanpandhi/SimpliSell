@@ -61,7 +61,6 @@ public class ProfileInformation extends AppCompatActivity
         setUp();
 
 
-
         profileImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -109,7 +108,6 @@ public class ProfileInformation extends AppCompatActivity
 
         }
 
-
         securityQuestion.setHint(currUser.getSecurityQuestion());
         securityAnswer.setHint(currUser.getSecurityAnswer());
 
@@ -123,38 +121,53 @@ public class ProfileInformation extends AppCompatActivity
 
         User currUser = accessUsers.getUser(userName);
 
+        String userName = currUser.getUserName();
+        String userFullName = currUser.getFirstAndLastName();
+        String userEmail = currUser.getEmail();
+        String userPhoneNumber = currUser.getPhoneNumber();
+        String userSecurityQuestion = currUser.getSecurityQuestion();
+        String userSecurityAnswer = currUser.getSecurityAnswer();
+
+        boolean userUpdatedProfle = false;
 
         if (!(firstAndLastName.getText().toString()).isEmpty())
         {
-            currUser.setFirstAndLastName(firstAndLastName.getText().toString());
-
+            userFullName = firstAndLastName.getText().toString();
+            userUpdatedProfle = true;
         }
-
 
         if (!(email.getText().toString()).isEmpty())
         {
-            currUser.setEmail(email.getText().toString());
+            userEmail = email.getText().toString();
+            userUpdatedProfle = true;
         }
 
         if (!(phoneNumber.getText().toString()).isEmpty())
         {
-            currUser.setPhoneNumber(phoneNumber.getText().toString());
+            userPhoneNumber = phoneNumber.getText().toString();
+            userUpdatedProfle = true;
         }
-
 
         if (!(securityQuestion.getText().toString()).isEmpty())
         {
-            currUser.setSecurityQuestion(securityQuestion.getText().toString());
+            userSecurityQuestion = securityQuestion.getText().toString();
+            userUpdatedProfle = true;
         }
 
         if (!(securityAnswer.getText().toString()).isEmpty())
         {
-            currUser.setSecurityAnswer(securityAnswer.getText().toString());
+            userSecurityAnswer = securityAnswer.getText().toString();
+            userUpdatedProfle = true;
         }
 
         if (!(password.getText().toString()).isEmpty())
         {
-            currUser.setPassword(password.getText().toString());
+            accessUsers.updatePassword(userName, password.getText().toString());
+        }
+
+        if (userUpdatedProfle)
+        {
+            accessUsers.updateProfileInformation(userName, userFullName, userEmail, userPhoneNumber, userSecurityQuestion, userSecurityAnswer);
         }
 
 
@@ -202,8 +215,9 @@ public class ProfileInformation extends AppCompatActivity
             photoTextView.setText("");
 
             User currUser = accessUsers.getUser(userName);
+            String userName = currUser.getUserName();
 
-            currUser.setProfilePhoto(EncoderDecoder.bitMapToString(photo));
+            accessUsers.updateProfileImage(userName, EncoderDecoder.bitMapToString(photo));
         }
     }
 
@@ -215,6 +229,5 @@ public class ProfileInformation extends AppCompatActivity
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
 
 }

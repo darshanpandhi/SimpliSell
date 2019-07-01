@@ -29,7 +29,7 @@ public class AccessUsersTest
         System.out.println("\nStarting AccessUsersTest: insert unique username");
 
         User user = new User("Bob Saget","UniqueUser", "123456", "What is your favourite " +
-                "color", "Red", 0);
+                "color", "Red", 0, null, null, null);
         User addedUser = userList.insertNewUser(user);
 
         assertNotNull(addedUser);
@@ -45,7 +45,7 @@ public class AccessUsersTest
         System.out.println("\nStarting AccessUsersTest: insert duplicate username");
 
         User user = new User("ba ba","User1", "123456", "What is your favourite " +
-                "color", "Red", 0);
+                "color", "Red", 0, null, null, null);
         User addedUser = userList.insertNewUser(user);
         addedUser = userList.insertNewUser(user);
 
@@ -54,4 +54,35 @@ public class AccessUsersTest
         System.out.println("Finished insertNewUser: username exist");
     }
 
+    @Test
+    public void testReportUser()
+    {
+        System.out.println("\nStarting AccessUsersTest: test report user");
+
+        User user = new User("ba ba","User100", "123456", "What is your favourite " +
+                "color", "Red", 0, null, null, null);
+        userList.insertNewUser(user);
+        assertNotNull(user);
+
+        userList.reportUser("User100");
+        assertEquals(1, userList.getUser("User100").getNumReports());
+
+        System.out.println("Finished insertNewUser: user reported");
+    }
+
+    @Test
+    public void testChangePassword()
+    {
+        System.out.println("\nStarting AccessUsersTest: test change password");
+
+        User user = new User("ba ba","User10", "123456", "What is your favourite " +
+                "color", "Red", 0, null, null, null);
+        userList.insertNewUser(user);
+        assertNotNull(user);
+
+        userList.updatePassword("User10", "654321");
+        assertEquals("654321", userList.getUser("User10").getPassword());
+
+        System.out.println("Finished insertNewUser: password changed");
+    }
 }
