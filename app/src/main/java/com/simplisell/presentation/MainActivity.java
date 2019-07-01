@@ -26,7 +26,6 @@ import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 public class MainActivity extends AppCompatActivity implements UserProfileButton
 {
     private static String userName = null;
-    private static boolean isSortedAscending = false;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -82,12 +81,6 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         // adapter setup
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-    }
-
-
-    public static void logOutUser()
-    {   // logs out user
-        userName = null;
     }
 
 
@@ -147,15 +140,15 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
     public void postAdBtnClick(View view)
     {
-        if (userName == null)
-        {
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
-        else
+        if(Login.isLoggedIn())
         {
             Intent postAd = new Intent(getApplicationContext(), PostAd.class);
             postAd.putExtra(Intent.EXTRA_TEXT, userName);
             startActivity(postAd);
+        }
+        else
+        {
+            startActivity(new Intent(getApplicationContext(), Login.class));
         }
     }
 }

@@ -54,8 +54,6 @@ public class UserProfileMenu extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-
-
                 if (position == 0)
                 {
                     Intent postAd = new Intent(getApplicationContext(), PostAd.class);
@@ -74,16 +72,8 @@ public class UserProfileMenu extends AppCompatActivity
     }
 
 
-    public void accountBtnClick(View view)
-    {
-        finish();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-    }
-
-
     public void logout()
     {
-        MainActivity.logOutUser();
         userName = null;
         RecyclerViewAdapter.logOut();
         finish();
