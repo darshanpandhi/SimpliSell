@@ -22,7 +22,7 @@ public class UserProfileMenu extends AppCompatActivity {
     private static String userName = null;
     private static User currUser = null;
     private static ListView listView;
-    private static String[] titles = {"My profile","My Ads","Post an Ad","Logout"};
+    private static String[] titles = {"My profile","My ads","Post an ad","Logout"};
 
     private AccessUsers accessUsers;
 
@@ -33,7 +33,6 @@ public class UserProfileMenu extends AppCompatActivity {
 
 
         accessUsers = new AccessUsers();
-
 
         try
         {

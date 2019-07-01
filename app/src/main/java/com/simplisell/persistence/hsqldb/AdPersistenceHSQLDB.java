@@ -37,7 +37,8 @@ public class AdPersistenceHSQLDB implements AdPersistence
         final String title = rs.getString("TITLE");
         final String description = rs.getString("DESCRIPTION");
         final double price = rs.getDouble("PRICE");
-        return new Ad(adID, adOwner, adType, category, title, description, price);
+        final int numReports = rs.getInt("NUMREPORTS");
+        return new Ad(adID, adOwner, adType, category, title, description, price, numReports);
     }
 
     public List<Ad> getAds()
@@ -114,4 +115,20 @@ public class AdPersistenceHSQLDB implements AdPersistence
 
         return removedAd;
     }
+
+    public final void reportAd(final int adID)
+    {
+        try (final Connection c = connection()) {
+            Ad reportedAd = getAd(adID);
+            int numReports = reportedAd.getNumReports() + 1;
+            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET NUMREPORTS = ? WHERE ADID = ?");
+            st.setInt(1, numReports);
+            st.setInt(2, adID);
+            st.executeUpdate();
+        }
+        catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
 }

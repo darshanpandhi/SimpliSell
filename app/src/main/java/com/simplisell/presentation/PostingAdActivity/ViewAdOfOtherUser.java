@@ -24,7 +24,6 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     private String title;           // title of the current ad
     private String description;     // description of the current ad
     private double price;           // price of the current ad
-    private int numReports;
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ad
     private AccessUsers accessUsers = new AccessUsers();
@@ -57,8 +56,8 @@ public class ViewAdOfOtherUser extends AppCompatActivity
 
     public void reportAdBtnClick(View view)
     {
-        currAd.incrementNumReports();
-        Toast.makeText(getApplicationContext(), "Advertisement Reported", Toast.LENGTH_SHORT).show();
+        accessAds.reportAd(currAd.getAdId());
+        Toast.makeText(getApplicationContext(), "Advertisement Reported" + currAd.getNumReports(), Toast.LENGTH_SHORT).show();
 
         // go back to main page after deletion
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);

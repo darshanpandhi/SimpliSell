@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS));
         tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS));
 
-
+        accessUsers = new AccessUsers();
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 
 
@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
             intent.putExtra(USERNAME_TEXT, userName);
             startActivity(intent);
+            System.out.println("HIIIII");
         }
     }
 

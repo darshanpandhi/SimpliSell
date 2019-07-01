@@ -48,8 +48,6 @@ public class ProfileInformation extends AppCompatActivity
         setContentView(R.layout.activity_profile_information);
         userName = getIntent().getStringExtra(USERNAME_TEXT);
         accessUsers = new AccessUsers();
-
-
         profileImage = findViewById(R.id.profileImage);
         password = findViewById(R.id.profileEditBoxPassword);
         firstAndLastName = findViewById(R.id.profileEditBoxName6);

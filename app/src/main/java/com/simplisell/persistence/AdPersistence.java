@@ -8,9 +8,11 @@ public interface AdPersistence
 {
     List<Ad> getAds();
 
-    Ad getAd(int adId);
+    Ad getAd(int adID);
 
     Ad insertAd(final Ad ad);
 
     Ad removeAd(final Ad ad);
+
+    void reportAd(int adID);
 }

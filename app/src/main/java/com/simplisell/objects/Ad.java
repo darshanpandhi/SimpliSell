@@ -15,7 +15,7 @@ public final class Ad
 
 
     public Ad(int adId, final String adOwner, final AdType adType, final Category category, final
-    String title, final String description, final double price)
+    String title, final String description, final double price, final int numReports)
     {
         this.adId = adId;
         this.adOwner = adOwner;
@@ -24,7 +24,7 @@ public final class Ad
         this.title = title;
         this.description = description;
         this.price = price;
-        numReports = 0;
+        this.numReports = numReports;
     }
 
     public Ad(final String adOwner, final AdType adType, final Category category, final
