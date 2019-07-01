@@ -10,7 +10,7 @@ public class UserAdmin extends User
     }
 
     @Override
-    public final Class logIn()
+    public final Class logInClass()
     {
         return AdminHomeScreen.class;
     }

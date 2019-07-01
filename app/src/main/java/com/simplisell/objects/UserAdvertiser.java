@@ -11,7 +11,7 @@ public class UserAdvertiser extends User
 
 
     @Override
-    public final Class logIn()
+    public final Class logInClass()
     {
         return MainActivity.class;
     }

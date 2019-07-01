@@ -16,7 +16,7 @@ public abstract class User
         securityAnswer = newSecurityAnswer;
     }
 
-    public abstract Class logIn();
+    public abstract Class logInClass();
 
     public String getUserName()
     {

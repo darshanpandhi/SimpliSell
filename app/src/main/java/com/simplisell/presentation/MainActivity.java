@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.simplisell.R;
-import com.simplisell.business.AccessUsers;
-import com.simplisell.objects.User;
 import com.simplisell.presentation.homepagetabs.TabFragmentAll;
 import com.simplisell.presentation.homepagetabs.TabFragmentBooks;
 import com.simplisell.presentation.homepagetabs.TabFragmentElectronics;
@@ -22,17 +20,16 @@ import com.simplisell.presentation.homepagetabs.TabFragmentTransportation;
 import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.postingadactivity.PostAd;
+import com.simplisell.presentation.userprofileactivity.UserProfileButton;
 import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements UserProfileButton
 {
-    private static User currUser = null;
     private static String userName = null;
     private static boolean isSortedAscending = false;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private AccessUsers accessUsers;      // helps  access users
     private ImageButton profileBtn;
     private TabFragmentAll tabFragmentAllObj;
     private TabFragmentBooks tabFragmentBooksObj;
@@ -59,21 +56,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        accessUsers = new AccessUsers();
-
-        // if there is no logged in user
-        if (!isLoggedIn())
-        {
-            Intent intentThatCalledThisActivity = getIntent();
-
-            if (intentThatCalledThisActivity.hasExtra(Intent.EXTRA_TEXT))
-            {
-                // get the username to see if user was logged in.
-                userName = intentThatCalledThisActivity.getStringExtra(Intent.EXTRA_TEXT);
-
-                currUser = accessUsers.getUser(userName);
-            }
-        }
         tabSetUp();
     }
 
@@ -105,7 +87,6 @@ public class MainActivity extends AppCompatActivity
 
     public static void logOutUser()
     {   // logs out user
-        currUser = null;
         userName = null;
     }
 
@@ -127,19 +108,20 @@ public class MainActivity extends AppCompatActivity
 
     public void accountBtnClick(View view)
     {
+        Intent intent;
 
-        if (isLoggedIn())
+        if (Login.isLoggedIn())
         {
             // already logged in
-            Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
-            intent.putExtra(Intent.EXTRA_TEXT, userName);
-            startActivity(intent);
+            intent = new Intent(getApplicationContext(), UserProfileMenu.class);
         }
         else
         {
             // not logged in
-            startActivity(new Intent(getApplicationContext(), Login.class));
+            intent = new Intent(getApplicationContext(), Login.class);
         }
+
+        startActivity(intent);
     }
 
 
@@ -147,8 +129,6 @@ public class MainActivity extends AppCompatActivity
     {
 
         int position = tabLayout.getSelectedTabPosition();   // get position of current tab layout
-
-
 
         tabFragmentAllObj.sort();
         tabFragmentBooksObj.sort();
@@ -177,18 +157,5 @@ public class MainActivity extends AppCompatActivity
             postAd.putExtra(Intent.EXTRA_TEXT, userName);
             startActivity(postAd);
         }
-    }
-
-
-    public boolean isLoggedIn()
-    {
-        boolean loggedIn = false;
-
-        if (userName != null)
-        {
-            loggedIn = true;
-        }
-
-        return loggedIn;
     }
 }

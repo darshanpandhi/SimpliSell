@@ -11,10 +11,7 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
-import com.simplisell.objects.UserAdmin;
 import com.simplisell.presentation.MainActivity;
-import com.simplisell.presentation.AdminHomeScreen;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 public class Login extends AppCompatActivity
@@ -24,6 +21,8 @@ public class Login extends AppCompatActivity
 
     private Credentials credentials;
 
+    private static boolean isLoggedIn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,13 +30,14 @@ public class Login extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //uniqueUserName = null;
 
         // initializing the buttons and edit textboxes
         userNameEntered = findViewById(R.id.editText_login_enterUserName);
         passwordEntered = findViewById(R.id.editText_login_enterPassword);
 
         credentials = new Credentials();
+
+        isLoggedIn = false;
     }
 
 
@@ -70,7 +70,9 @@ public class Login extends AppCompatActivity
             User loggedInUser = credentials.authenticate(userName, userPassword);
 
             if (loggedInUser != null)
-            {  // if logging in is successful
+            {  // if login is successful
+
+                isLoggedIn = true;
 
                 progressDialog.dismiss();   // dismiss the progress bar
 
@@ -79,7 +81,7 @@ public class Login extends AppCompatActivity
 
                 finish();
 
-                Intent logIn = new Intent(getApplicationContext(), loggedInUser.logIn());
+                Intent logIn = new Intent(getApplicationContext(), loggedInUser.logInClass());
                 logIn.putExtra(Intent.EXTRA_TEXT, userName);
                 RecyclerViewAdapter.login(userName);
                 startActivity(logIn);
@@ -115,5 +117,10 @@ public class Login extends AppCompatActivity
         finish();
         Intent loginPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(loginPage);
+    }
+
+    public static boolean isLoggedIn()
+    {
+        return isLoggedIn;
     }
 }

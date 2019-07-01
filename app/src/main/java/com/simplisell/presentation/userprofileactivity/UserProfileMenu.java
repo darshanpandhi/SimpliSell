@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.simplisell.R;
-import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.MainActivity;
@@ -17,15 +16,10 @@ import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 public class UserProfileMenu extends AppCompatActivity
 {
-
-    private final String USERNAME_TEXT = "USER";
-
     private static String userName = null;
     private static User currUser = null;
-    private static ListView listView;
+    private ListView listView;
     private static String[] titles = {"Post an Ad", "Logout"};
-
-    private AccessUsers accessUsers;
 
 
     @Override
@@ -33,38 +27,13 @@ public class UserProfileMenu extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
-
-        accessUsers = new AccessUsers();
-
-
-        try
+        if (Login.isLoggedIn())
         {
-
-            userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
-
-            if (userName != null)
-            {
-
-                currUser = accessUsers.getUser(userName);
-                if (currUser == null)
-                {
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), Login.class));
-                }
-                else
-                {
-                    setContentView(R.layout.activity_user_profile_menu);
-                    initialize();
-                }
-            }
-            else
-            {
-                finish();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-            }
-        } catch (Exception e)
+            setContentView(R.layout.activity_user_profile_menu);
+            initialize();
+        }
+        else
         {
-
             finish();
             startActivity(new Intent(getApplicationContext(), Login.class));
         }
@@ -80,7 +49,6 @@ public class UserProfileMenu extends AppCompatActivity
         listView.setAdapter(profileListViewAdapter);
 
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -91,7 +59,7 @@ public class UserProfileMenu extends AppCompatActivity
                 if (position == 0)
                 {
                     Intent postAd = new Intent(getApplicationContext(), PostAd.class);
-                    postAd.putExtra(USERNAME_TEXT, userName);
+                    postAd.putExtra(Intent.EXTRA_TEXT, userName);
                     startActivity(postAd);
                 }
                 else
