@@ -39,6 +39,7 @@ public final class Ad
         this.title = title;
         this.description = description;
         this.price = price;
+        numReports = 0;
     }
 
 

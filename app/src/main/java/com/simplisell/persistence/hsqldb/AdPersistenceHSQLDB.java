@@ -16,10 +16,10 @@ import java.util.List;
 
 public class AdPersistenceHSQLDB implements AdPersistence
 {
-    private List<Ad> ads;
     private final String dbPath;
 
-    public AdPersistenceHSQLDB(String dbPath) {
+    public AdPersistenceHSQLDB(String dbPath)
+    {
         this.dbPath = dbPath;
     }
 
@@ -35,7 +35,8 @@ public class AdPersistenceHSQLDB implements AdPersistence
         return con;
     }
 
-    private Ad fromResultSet(final ResultSet rs) throws SQLException {
+    private Ad fromResultSet(final ResultSet rs) throws SQLException
+    {
         final int adID = rs.getInt("ADID");
         final String adOwner = rs.getString("ADOWNER");
         final int adTypeNum = rs.getInt("ADTYPE");
@@ -49,22 +50,24 @@ public class AdPersistenceHSQLDB implements AdPersistence
         return new Ad(adID, adOwner, adType, category, title, description, price, numReports);
     }
 
+    @Override
     public List<Ad> getAds()
     {
-        final List<Ad> courses = new ArrayList<>();
+        List<Ad> ads = new ArrayList<>();
 
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final Statement st = c.createStatement();
             final ResultSet rs = st.executeQuery("SELECT * FROM ADS");
             while (rs.next())
             {
-                final Ad course = fromResultSet(rs);
-                courses.add(course);
+                final Ad ad = fromResultSet(rs);
+                ads.add(ad);
             }
             rs.close();
             st.close();
 
-            return courses;
+            return ads;
         }
         catch (final SQLException e)
         {
@@ -72,61 +75,94 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
-    public final Ad getAd(int adId)
+    @Override
+    public Ad getAd(int adId)
     {
-        Ad ad = null;
+        Ad returnAd;
 
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM ADS WHERE ADID = ?");
-            st.setInt(1, adId);
+            st.setString(1, String.valueOf(adId));
             final ResultSet rs = st.executeQuery();
-            if(rs.next()) {
-                ad = fromResultSet(rs);
-            }
-            return ad;
-        } catch (final SQLException e) {
+
+            rs.next();
+            returnAd = fromResultSet(rs);
+            rs.close();
+            st.close();
+
+            return returnAd;
+        }
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }
 
 
-    public final Ad insertAd(final Ad newAd)
+    @Override
+    public Ad insertAd(final Ad ad)
     {
-        Ad insertedAd = null;
-
-        if (newAd != null)
+        try (final Connection c = connection())
         {
-            final int newAdId = newAd.getAdId();
 
-            // verify the presence of an ad with the same ad id
-            if (getAd(newAdId) == null)
+            final Statement stm = c.createStatement();
+            final ResultSet rs = stm.executeQuery("SELECT ADID FROM ADS ORDER BY ADID DESC LIMIT 1");
+            //Set new ad ID to value 1 greater than highest ad ID
+            int newAdID;
+            if (rs.next())
             {
-                ads.add(newAd);
-                insertedAd = newAd;
+                newAdID = rs.getInt("ADID") + 1;
             }
+            else
+            {
+                newAdID = 0;
+            }
+
+            final PreparedStatement st = c.prepareStatement("INSERT INTO ADS VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            st.setInt(1, newAdID);
+            st.setString(2, ad.getAdOwner());
+            st.setInt(3, ad.getAdType().ordinal());
+            st.setInt(4, ad.getCategory().ordinal());
+            st.setString(5, ad.getTitle());
+            st.setString(6, ad.getDescription());
+            st.setDouble(7, ad.getPrice());
+            st.setInt(8, ad.getNumReports());
+
+            st.executeUpdate();
+            st.close();
+
+            return ad;
         }
-
-        return insertedAd;
-    }
-
-
-    public final Ad removeAd(final Ad adToBeRemoved)
-    {
-        Ad removedAd = null;
-        final int index = ads.indexOf(adToBeRemoved);
-
-        if (index >= 0)
+        catch (final SQLException e)
         {
-            ads.remove(adToBeRemoved);
-            removedAd = adToBeRemoved;
+            throw new PersistenceException(e);
         }
-
-        return removedAd;
     }
 
+
+    @Override
+    public Ad removeAd(final Ad ad)
+    {
+        try (final Connection c = connection())
+        {
+            final PreparedStatement sc = c.prepareStatement("DELETE FROM ADS WHERE ADID = ?");
+            sc.setString(1, String.valueOf(ad.getAdId()));
+            sc.executeUpdate();
+            sc.close();
+            return ad;
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
+    @Override
     public final void reportAd(final int adID)
     {
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             Ad reportedAd = getAd(adID);
             int numReports = reportedAd.getNumReports() + 1;
             final PreparedStatement st = c.prepareStatement("UPDATE ADS SET NUMREPORTS = ? WHERE ADID = ?");
@@ -134,7 +170,8 @@ public class AdPersistenceHSQLDB implements AdPersistence
             st.setInt(2, adID);
             st.executeUpdate();
         }
-        catch (final SQLException e) {
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }
