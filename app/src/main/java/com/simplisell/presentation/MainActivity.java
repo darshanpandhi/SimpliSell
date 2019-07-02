@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity
         copyDatabaseToDevice();
         search = new Search();
 
-        tabFragmentAllObj = new TabFragment(search.getAllAds());
-        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS));
-        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION));
-        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES));
-        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION));
-        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS));
-        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS));
-        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS));
+        tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
+        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS), search);
+        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION), search);
+        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES), search);
+        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION), search);
+        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS), search);
+        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
+        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
 
         accessUsers = new AccessUsers();
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);

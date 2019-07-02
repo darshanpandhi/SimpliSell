@@ -16,26 +16,29 @@ public class Search
 {
 
     private final AdPersistence adInterface;
-
     private final UserPersistence userInterface;
+    private final List<Ad> allAds;
+    private final List<User> allUsers;
 
     public Search()
     {
         adInterface = Services.getAdPersistence();
         userInterface = Services.getUserPersistence();
+        allAds = adInterface.getAds();
+        allUsers = userInterface.getUsers();
     }
 
     public Search(final AdPersistence adPersistence, final UserPersistence userPersistence)
     {
         adInterface = adPersistence;
         userInterface = userPersistence;
+        allAds = adInterface.getAds();
+        allUsers = userInterface.getUsers();
     }
 
     public List<Ad> getAllAdsByCategory(Category category)
     {
         List<Ad> adList = new ArrayList<Ad>();
-
-        List<Ad> allAds = adInterface.getAds();
 
         for (Ad ad : allAds)
         {
@@ -52,8 +55,6 @@ public class Search
     {
         List<Ad> adList = new ArrayList<Ad>();
 
-        List<Ad> allAds = adInterface.getAds();
-
         for (Ad ad : allAds)
         {
             if (ad.getAdOwner().equals(userName))
@@ -68,8 +69,6 @@ public class Search
     public List<Ad> getReportedAds()
     {
         List<Ad> adList = new ArrayList<Ad>();
-
-        List<Ad> allAds = adInterface.getAds();
 
         int minNumberOfReports = 3;
 
@@ -88,8 +87,6 @@ public class Search
     {
         List<User> userList = new ArrayList<User>();
 
-        List<User> allUsers = userInterface.getUsers();
-
         int minNumberOfReports = 3;
 
         for (User user: allUsers)
@@ -105,11 +102,6 @@ public class Search
     public List<Ad> getAllAds()
     {
         return adInterface.getAds();
-    }
-
-    public List<User> getAllUsers()
-    {
-        return userInterface.getUsers();
     }
 
 

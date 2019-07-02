@@ -27,6 +27,11 @@ public class AccessUsers
         return userPersistence.getUser(userName);
     }
 
+    public List<User> getAllUsers()
+    {
+        return userPersistence.getUsers();
+    }
+
     public User insertNewUser(User currentUser)
     {
         User newUser = null;

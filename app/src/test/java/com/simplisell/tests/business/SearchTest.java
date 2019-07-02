@@ -42,7 +42,7 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch: get all ads");
 
-        List<Ad> ads = search.getAllAds();
+        List<Ad> ads = adPersistence.getAllAds();
 
         assertNotNull(ads);
 
@@ -54,7 +54,7 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch: get all users");
 
-        List<User> users = search.getAllUsers();
+        List<User> users = userPersistence.getAllUsers();
 
         assertNotNull(users);
 
@@ -89,7 +89,7 @@ public class SearchTest
                 "test", "test", 100));
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1000));
-        List<Ad> ads = search.sortPriceAsc(search.getAllAds());
+        List<Ad> ads = search.sortPriceAsc(adPersistence.getAllAds());
 
         for (int i = 0; i < ads.size()-1; i++)
         {
@@ -111,7 +111,7 @@ public class SearchTest
                 "test", "test", 100, 0));
         adPersistence.insertAd(new Ad(3, "test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1000, 0));
-        List<Ad> ads = search.sortPriceDesc(search.getAllAds());
+        List<Ad> ads = search.sortPriceDesc(adPersistence.getAllAds());
         for (int i = 0; i < ads.size()-1; i++)
         {
             double priceDiff = ads.get(i).getPrice() - ads.get(i+1).getPrice();

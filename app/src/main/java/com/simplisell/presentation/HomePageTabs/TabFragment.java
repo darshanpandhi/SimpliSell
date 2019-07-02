@@ -22,7 +22,7 @@ import java.util.List;
 public class TabFragment extends Fragment
 {
 
-    private Search adsSearch = new Search();
+    private Search adsSearch;
     private boolean isSortedAscending = false;
 
     private RecyclerView recyclerView;
@@ -36,9 +36,10 @@ public class TabFragment extends Fragment
 
 
     @SuppressLint("ValidFragment")
-    public TabFragment(List<Ad> ads)
+    public TabFragment(List<Ad> ads, Search adsSearch)
     {
         this.ads = ads;
+        this.adsSearch = adsSearch;
     }
 
 
