@@ -21,7 +21,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
         this.dbPath = dbPath;
     }
 
-    private Connection connection() throws SQLException {
+    private Connection connection() throws SQLException
+    {
         Connection con = DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
         if (con != null) {
             System.out.println("Connection created successfully");
@@ -32,7 +33,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
         return con;
     }
 
-    private User fromResultSet(final ResultSet rs) throws SQLException {
+    private User fromResultSet(final ResultSet rs) throws SQLException
+    {
         final String firstAndLastName = rs.getString("FULLNAME");
         final String userName = rs.getString("USERNAME");
         final String password = rs.getString("PASSWORD");
@@ -50,7 +52,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         final List<User> users = new ArrayList<>();
 
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final Statement st = c.createStatement();
             final ResultSet rs = st.executeQuery("SELECT * FROM USERS");
 
@@ -76,25 +79,29 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         User user = null;
 
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM USERS WHERE USERNAME = ?");
             st.setString(1, userName);
             final ResultSet rs = st.executeQuery();
-            if(rs.next()) {
+            if(rs.next())
+            {
                 user = fromResultSet(rs);
             }
             return user;
-        } catch (final SQLException e) {
+        }
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
-
     }
 
 
     @Override
     public User insertUser(final User user)
     {
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
             st.setString(1, user.getFirstAndLastName());
             st.setString(2, user.getUserName());
@@ -108,7 +115,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.executeUpdate();
             return user;
 
-        } catch (final SQLException e) {
+        } catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
 
@@ -118,13 +126,15 @@ public class UserPersistenceHSQLDB implements UserPersistence
     @Override
     public void updatePassword(final String userName, final String newPassword)
     {
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final PreparedStatement st = c.prepareStatement("UPDATE users SET PASSWORD = ? WHERE USERNAME = ?");
             st.setString(1, newPassword );
             st.setString(2, userName);
             st.executeUpdate();
         }
-        catch (final SQLException e) {
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }
@@ -132,7 +142,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
     @Override
     public void reportUser(final String userName)
     {
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             User reportedUser = getUser(userName);
             int numReports = reportedUser.getNumReports() + 1;
             final PreparedStatement st = c.prepareStatement("UPDATE users SET NUMREPORTS = ? WHERE USERNAME = ?");
@@ -140,7 +151,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(2, userName);
             st.executeUpdate();
         }
-        catch (final SQLException e) {
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }
@@ -148,7 +160,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
     @Override
     public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)
     {
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final PreparedStatement st = c.prepareStatement("UPDATE users SET FULLNAME = ?, EMAIL = ?, PHONENUMBER = ?, SECURITYQUESTION = ?, SECURITYANSWER = ? WHERE USERNAME = ?");
             st.setString(1, newFullName);
             st.setString(2, newEmail);
@@ -158,7 +171,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(6, userName);
             st.executeUpdate();
         }
-        catch (final SQLException e) {
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }
@@ -166,13 +180,15 @@ public class UserPersistenceHSQLDB implements UserPersistence
     @Override
     public void updateProfileImage(String userName, String profilePhoto)
     {
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             final PreparedStatement st = c.prepareStatement("UPDATE users SET PROFILEPHOTO = ? WHERE USERNAME = ?");
             st.setString(1, profilePhoto );
             st.setString(2, userName);
             st.executeUpdate();
         }
-        catch (final SQLException e) {
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }

@@ -20,6 +20,7 @@ public final class AccessAds
         this.adPersistence = adPersistence;
     }
 
+    //TODO Do new ad ID calculation here?
     public final Ad insertAd(final Ad newAd)
     {
         return adPersistence.insertAd(newAd);
