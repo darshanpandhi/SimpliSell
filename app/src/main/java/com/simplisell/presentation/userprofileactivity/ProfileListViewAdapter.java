@@ -19,8 +19,8 @@ public class ProfileListViewAdapter extends ArrayAdapter<String> {
     ProfileListViewAdapter(Context c,String[] t)
     {
         super(c, R.layout.profile_row,R.id.profile_row_title,t);
-        titles=t;
-        context=c;
+        titles = t;
+        context = c;
     }
 
 
@@ -30,9 +30,9 @@ public class ProfileListViewAdapter extends ArrayAdapter<String> {
     {
 
         LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view=layoutInflater.inflate(R.layout.profile_row,parent,false);
+        View view = layoutInflater.inflate(R.layout.profile_row,parent,false);
 
-        TextView title=view.findViewById(R.id.profile_row_title);
+        TextView title = view.findViewById(R.id.profile_row_title);
 
         title.setText(titles[position]);
 

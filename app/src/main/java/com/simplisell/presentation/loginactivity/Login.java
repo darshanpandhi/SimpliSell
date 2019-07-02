@@ -83,6 +83,7 @@ public class Login extends AppCompatActivity
 
                 Intent logIn = new Intent(getApplicationContext(), loggedInUser.logInClass());
                 logIn.putExtra(Intent.EXTRA_TEXT, userName);
+
                 RecyclerViewAdapter.login(userName);
                 startActivity(logIn);
             }
@@ -98,7 +99,7 @@ public class Login extends AppCompatActivity
 
     public void forgetPasswordBtnClick(View view)
     {
-        Intent forgetPass = new Intent(Login.this, ForgetPassword.class);
+        Intent forgetPass = new Intent(getApplicationContext(), ForgetPassword.class);
         startActivity(forgetPass);
     }
 
@@ -106,7 +107,7 @@ public class Login extends AppCompatActivity
     public void signUpBtnClick(View view)
     {
         // takes to sign in page
-        Intent signUp = new Intent(Login.this, SignUp.class);
+        Intent signUp = new Intent(getApplicationContext(), SignUp.class);
         startActivity(signUp);
     }
 

@@ -17,17 +17,33 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
+<<<<<<< HEAD
 
-
-
-        user = new UserAdvertiser("bob the bobber", "Bob", "123456", "What is your favourite color", "Red");
+        user = new UserAdvertiser("Bob", "123456", "What is your favourite color", "Red");
         users.add(user);
-        user = new UserAdvertiser("allice the cook", "Allice", "123456", "What is your favourite color", "Green");
+        user = new UserAdvertiser("Allice", "123456", "What is your favourite color", "Green");
+||||||| merged common ancestors
+        user = new User("Bob", "123456", "What is your favourite color", "Red");
+=======
+        user = new User("bob the bobber","Bob", "123456", "What is your favourite color", "Red");
+>>>>>>> userProfile
         users.add(user);
-        user = new UserAdvertiser("Jay the Don", "Jay", "123456", "What is your favourite color", "Blue");
+<<<<<<< HEAD
+        user = new UserAdvertiser("Jay", "123456", "What is your favourite color", "Blue");
+||||||| merged common ancestors
+        user = new User("Allice", "123456", "What is your favourite color", "Green");
+=======
+        user = new User("allice the cook","Allice", "123456", "What is your favourite color", "Green");
+>>>>>>> userProfile
         users.add(user);
+<<<<<<< HEAD
 
         user = new UserAdmin("Ronak", "admin", "What is your favourite color", "Black");
+||||||| merged common ancestors
+        user = new User("Jay", "123456", "What is your favourite color", "Blue");
+=======
+        user = new User("Jay the Don","Jay", "123456", "What is your favourite color", "Blue");
+>>>>>>> userProfile
         users.add(user);
     }
 

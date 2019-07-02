@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/black_overlay"
-            android:textColor="@color/whiteBtn"
+            android:textColor="@android:color/background_light"
             android:text="@string/reportedUsers"
             android:fontFamily="@font/candal"
             android:onClick="viewReportedUsersBtnClick"/>
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/black_overlay"
-            android:textColor="@color/whiteBtn"
+            android:textColor="@android:color/background_light"
             android:text="@string/reportedAds"
             android:fontFamily="@font/candal"
             android:onClick="viewReportedAdsBtnClick"/>

@@ -76,14 +76,16 @@ public class SignUp extends AppCompatActivity
     }
 
 
-    private void validate(String firstNLastName, String userName, String userPassword, String userConfirmPassword, String userSecurityQuestion, String userSecurityAnswer)
+    private void validate(String firstNLastName, String userName, String userPassword, String userConfirmPassword,
+                          String userSecurityQuestion, String userSecurityAnswer)
     {
 
 
         int number;
 
         // are the fields empty
-        boolean empty = (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
+        boolean empty =
+                (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
 
         if (empty)  // if any field is empty
         {
@@ -94,8 +96,9 @@ public class SignUp extends AppCompatActivity
                 {
 
                     // sign up button always creates a new user
-                    UserAdvertiser newUser = new UserAdvertiser(userName, userPassword, userSecurityQuestion, userSecurityAnswer);
-
+                    UserAdvertiser newUser = new UserAdvertiser(firstNLastName, userName, userPassword,
+                            userSecurityQuestion,
+                            userSecurityAnswer);
                     if (accessUsers.insertNewUser(newUser) != null)
                     {   // check if userName is in the database and insert
 
@@ -119,7 +122,8 @@ public class SignUp extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, " +
+                            "and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
                 }
             }
             else

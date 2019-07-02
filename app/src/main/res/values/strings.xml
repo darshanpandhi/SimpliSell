@@ -17,6 +17,10 @@
 
     <string name="resetPassword">Reset Password</string>
 
+    <string name="email"> EMAIL</string>
+
+    <string name="phoneNumber">  PHONE NUMBER</string>
+
     <string name="username">FIRST AND LAST NAME</string>
 
     <string name="signup">SIGN UP</string>
@@ -63,11 +67,11 @@
 
     <string name="post">Post</string>
 
-    <string name="title">Title</string>
+    <string name="title">    Title</string>
 
-    <string name="description">Description</string>
+    <string name="description">  Description</string>
 
-    <string name="price">Price</string>
+    <string name="price">  Price</string>
 
     <string name="postAd">Post Ad</string>
 
@@ -79,7 +83,11 @@
 
     <string name="delete">Delete</string>
 
-    <string name="save">Save</string>
+    <string name="myAds">My Ads</string>
+
+    <string name="photo">CAPTURE PHOTO</string>
+
+    <string name="save">SAVE</string>
 
     <string name="reportedUsers">View Reported Users</string>
 
@@ -87,8 +95,7 @@
 
     <string name="adminControl">Admin Control</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="changePassword">CHANGE PASSWORD</string>
 
 
 </resources>

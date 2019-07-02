@@ -16,7 +16,9 @@ public abstract class User
         securityAnswer = newSecurityAnswer;
     }
 
+
     public abstract Class logInClass();
+
 
     public String getUserName()
     {
@@ -42,6 +44,18 @@ public abstract class User
     }
 
 
+    public void setSecurityAnswer(String securityAnswer)
+    {
+        this.securityAnswer = securityAnswer;
+    }
+
+
+    public void setSecurityQuestion(String securityQuestion)
+    {
+        this.securityQuestion = securityQuestion;
+    }
+
+
     public void setPassword(final String newPassword)
     {
         this.password = newPassword;
@@ -50,6 +64,6 @@ public abstract class User
 
     public String toString()
     {
-        return String.format("User: %s %s %s", userName, userName);
+        return String.format("User: %s %s", userName, userName);
     }
 }

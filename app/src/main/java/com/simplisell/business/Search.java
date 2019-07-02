@@ -37,6 +37,23 @@ public class Search
         return adList;
     }
 
+    public List<Ad> getUserSpecificAds(String userName)
+    {
+        List<Ad> adList = new ArrayList<Ad>();
+
+        List<Ad> allAds = adInterface.getAllAds();
+
+        for (Ad ad : allAds)
+        {
+            if (ad.getAdOwner().equals(userName))
+            {
+                adList.add(ad);
+            }
+        }
+
+        return adList;
+    }
+
 
     public List<Ad> getAllAds()
     {

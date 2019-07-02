@@ -7,103 +7,111 @@
     android:background="@color/adPostGreyBackground"
     tools:context=".presentation.postingadactivity.ViewAdOfCurrentUser">
 
+
     <TextView
-        android:id="@+id/textView_viewAdCU_header"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:id="@+id/textView_viewAdCU_title"
+        android:layout_width="510dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@android:color/background_light"
+        android:hint="@string/title"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout_viewAdCU_top"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+    <TextView
+        android:id="@+id/textView_viewAdCU_price"
+        android:layout_width="510dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@android:color/background_light"
+        android:hint="@string/price"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_viewAdCU_title"
+        app:layout_constraintVertical_bias="0.014" />
+
+
+    <TextView
+        android:id="@+id/textView_viewAdCU_description"
+        android:layout_width="515dp"
+        android:layout_height="550dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+        android:layout_marginBottom="124dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@android:color/background_light"
+        android:hint="@string/description"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_viewAdCU_header">
+        app:layout_constraintTop_toBottomOf="@+id/textView_viewAdCU_price"
+        app:layout_constraintVertical_bias="0.338" />
 
-        <TextView
-            android:id="@+id/textView_viewAdCU_title"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/whiteBtn"
-            android:hint="@string/title"
-            android:textSize="36sp" />
-
-        <TextView
-            android:id="@+id/textView_viewAdCU_price"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/whiteBtn"
-            android:hint="@string/price"
-            android:textSize="36sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout_viewAdCU_bot"
-        android:layout_width="0dp"
-        android:layout_height="400dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdCU_top">
-
-        <TextView
-            android:id="@+id/textView_viewAdCU_description"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/whiteBtn"
-            android:hint="@string/description"
-            android:textSize="30sp" />
-    </LinearLayout>
 
     <Button
         android:id="@+id/button_viewAdCU_edit"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/editbox_background"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:onClick="editBtnClick"
         android:text="@string/edit"
         android:textAllCaps="false"
-        android:textColor="@color/whiteBtn"
+        android:textColor="@android:color/background_light"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdCU_bot"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_viewAdCU_description"
+        app:layout_constraintVertical_bias="0.324" />
 
     <Button
         android:id="@+id/button_viewAdCU_delete"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/editbox_background"
         android:backgroundTint="@color/black_overlay"
         android:onClick="deleteBtnClick"
         android:text="@string/delete"
         android:textAllCaps="false"
-        android:textColor="@color/whiteBtn"
+        android:textColor="@android:color/background_light"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_viewAdCU_edit"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_viewAdCU_bot"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_viewAdCU_description"
+        app:layout_constraintVertical_bias="0.319" />
 </android.support.constraint.ConstraintLayout>

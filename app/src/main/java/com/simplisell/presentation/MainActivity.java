@@ -1,6 +1,7 @@
 package com.simplisell.presentation;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,14 +10,10 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.simplisell.R;
-import com.simplisell.presentation.homepagetabs.TabFragmentAll;
-import com.simplisell.presentation.homepagetabs.TabFragmentBooks;
-import com.simplisell.presentation.homepagetabs.TabFragmentElectronics;
-import com.simplisell.presentation.homepagetabs.TabFragmentEvents;
-import com.simplisell.presentation.homepagetabs.TabFragmentLiving;
-import com.simplisell.presentation.homepagetabs.TabFragmentOther;
-import com.simplisell.presentation.homepagetabs.TabFragmentServicesJobs;
-import com.simplisell.presentation.homepagetabs.TabFragmentTransportation;
+import com.simplisell.business.Search;
+import com.simplisell.objects.Category;
+import com.simplisell.objects.EncoderDecoder;
+import com.simplisell.presentation.homepagetabs.TabFragment;
 import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.postingadactivity.PostAd;
@@ -30,31 +27,48 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ImageButton profileBtn;
-    private TabFragmentAll tabFragmentAllObj;
-    private TabFragmentBooks tabFragmentBooksObj;
-    private TabFragmentTransportation tabFragmentTransportationObj;
-    private TabFragmentServicesJobs tabFragmentServicesJobsObj;
-    private TabFragmentLiving tabFragmentLivingObj;
-    private TabFragmentEvents tabFragmentEventsObj;
-    private TabFragmentElectronics tabFragmentElectronicsObj;
-    private TabFragmentOther tabFragmentOtherObj;
+    private TabFragment tabFragmentAllObj;
+    private TabFragment tabFragmentBooksObj;
+    private TabFragment tabFragmentTransportationObj;
+    private TabFragment tabFragmentServicesJobsObj;
+    private TabFragment tabFragmentLivingObj;
+    private TabFragment tabFragmentEventsObj;
+    private TabFragment tabFragmentElectronicsObj;
+    private TabFragment tabFragmentOtherObj;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        tabFragmentAllObj = new TabFragmentAll();
-        tabFragmentBooksObj = new TabFragmentBooks();
-        tabFragmentTransportationObj = new TabFragmentTransportation();
-        tabFragmentServicesJobsObj = new TabFragmentServicesJobs();
-        tabFragmentLivingObj = new TabFragmentLiving();
-        tabFragmentEventsObj = new TabFragmentEvents();
-        tabFragmentElectronicsObj = new TabFragmentElectronics();
-        tabFragmentOtherObj = new TabFragmentOther();
+        Search search = new Search();
+
+        tabFragmentAllObj = new TabFragment(search.getAllAds());
+        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS));
+        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION));
+        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES));
+        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION));
+        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS));
+        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS));
+        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS));
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        if (Login.isLoggedIn())
+//        {
+//            String profilePhoto = currUser.getProfilePhoto();
+//
+//            if (profilePhoto != null)
+//            {
+//                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
+//
+//                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
+//                        (int) (photo.getHeight() * 0.7), true);
+//
+//                profileBtn.setImageBitmap(displayProfile);
+//            }
+//        }
         tabSetUp();
     }
 
@@ -63,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
     {
         tabLayout = findViewById(R.id.tabview_mainActivity);
         viewPager = findViewById(R.id.view_pager_mainActivity);
-        profileBtn = findViewById(R.id.imageButton_mainActivty_accountButton);
+
 
         TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
 
@@ -90,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         // if anytime the back is pressed. Go to app home
         homeScreen();
     }
+
 
     private void homeScreen()
     {
@@ -140,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
     public void postAdBtnClick(View view)
     {
-        if(Login.isLoggedIn())
+        if (Login.isLoggedIn())
         {
             Intent postAd = new Intent(getApplicationContext(), PostAd.class);
             postAd.putExtra(Intent.EXTRA_TEXT, userName);

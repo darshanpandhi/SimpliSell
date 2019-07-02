@@ -1,4 +1,6 @@
 #   Architecture
+The architecture for SimpliSell is 3-tier architecture, consisting of the presentation, logic and the persistence layer.
+
 ![Architecture](Architecture_Diagram.png)
 
 ##  Presentation Layer
@@ -7,11 +9,9 @@
 
 **MainActivity**
 *   Includes the homepage UI which views all the Ads and has a post Ad button and a profile Button for easy navgation for the user.
-*    
 
 **SpashActivity**
 *   When the app starts the splash screen stays for about 2 seconds.
-*   
 
 **HomePageTabs**
 

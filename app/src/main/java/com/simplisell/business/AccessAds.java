@@ -35,6 +35,7 @@ public final class AccessAds
     }
 
 
+
     public final Ad removeAd(final Ad adToBeRemoved)
     {
         return adPersistence.removeAd(adToBeRemoved);

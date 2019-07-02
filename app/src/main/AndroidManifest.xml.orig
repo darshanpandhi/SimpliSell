@@ -2,33 +2,35 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.simplisell">
 
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-feature android:name="android.hardware.camera"></uses-feature>
+
+
+
     <application
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:icon="@drawable/logo"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser" />
-        <activity android:name=".presentation.postingadactivity.EditAd" />
-        <activity android:name=".presentation.postingadactivity.ViewAdOfCurrentUser" />
-        <activity android:name=".presentation.userprofileactivity.UserProfileMenu" />
-        <activity android:name=".presentation.loginactivity.SignUp" />
-        <activity android:name=".presentation.postingadactivity.PostAd" />
-        <activity android:name=".presentation.loginactivity.Login" />
-        <activity android:name=".presentation.MainActivity" />
+<<<<<<< HEAD
+            android:allowBackup="true"
+            android:fullBackupContent="true"
+            android:icon="@drawable/logo"
+            android:label="@string/app_name"
+            android:roundIcon="@drawable/logo"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser"/>
+        <activity android:name=".presentation.postingadactivity.EditAd"/>
+        <activity android:name=".presentation.postingadactivity.ViewAdOfCurrentUser"/>
+        <activity android:name=".presentation.userprofileactivity.UserProfileMenu"/>
+        <activity android:name=".presentation.loginactivity.SignUp"/>
+        <activity android:name=".presentation.postingadactivity.PostAd"/>
+        <activity android:name=".presentation.loginactivity.Login"/>
+        <activity android:name=".presentation.MainActivity"/>
         <activity android:name=".presentation.loginactivity.ForgetPassword"/>
 ||||||| merged common ancestors
         android:allowBackup="true"
         android:fullBackupContent="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/twotone_sentiment_satisfied_white_48"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"></activity>
@@ -39,73 +41,21 @@
         <activity android:name=".presentation.PostingAdActivity.PostAd" />
         <activity android:name=".presentation.LoginActivity.Login" />
         <activity android:name=".presentation.MainActivity" />
-||||||| merged common ancestors
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:icon="@drawable/logo"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"></activity>
-        <activity android:name=".presentation.PostingAdActivity.EditAd" />
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu" />
-        <activity android:name=".presentation.LoginActivity.SignUp" />
-        <activity android:name=".presentation.PostingAdActivity.PostAd" />
-        <activity android:name=".presentation.LoginActivity.Login" />
-        <activity android:name=".presentation.MainActivity" />
-=======
-            android:allowBackup="true"
-            android:fullBackupContent="true"
-            android:icon="@drawable/logo"
-            android:label="@string/app_name"
-            android:roundIcon="@drawable/logo"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.AdminHomeScreen">
-        </activity>
-        <activity android:name=".adminHomeScreen">
-        </activity>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"/>
-        <activity android:name=".presentation.PostingAdActivity.EditAd"/>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser"/>
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu"/>
-        <activity android:name=".presentation.LoginActivity.SignUp"/>
-        <activity android:name=".presentation.PostingAdActivity.PostAd"/>
-        <activity android:name=".presentation.LoginActivity.Login"/>
-        <activity android:name=".presentation.MainActivity"/>
->>>>>>> Stashed changes
         <activity android:name=".presentation.LoginActivity.ForgetPassword"/>
 =======
-            android:allowBackup="true"
-            android:fullBackupContent="true"
-            android:icon="@drawable/logo"
-            android:label="@string/app_name"
-            android:roundIcon="@drawable/logo"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.AdminHomeScreen">
-        </activity>
-        <activity android:name=".adminHomeScreen">
-        </activity>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"/>
-        <activity android:name=".presentation.PostingAdActivity.EditAd"/>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser"/>
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu"/>
-        <activity android:name=".presentation.LoginActivity.SignUp"/>
-        <activity android:name=".presentation.PostingAdActivity.PostAd"/>
-        <activity android:name=".presentation.LoginActivity.Login"/>
-        <activity android:name=".presentation.MainActivity"/>
-||||||| merged common ancestors
         android:allowBackup="true"
         android:fullBackupContent="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/twotone_sentiment_satisfied_white_48"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"></activity>
+
+        <activity android:name=".presentation.UserProfileActivity.ProfileInformation">
+
+        </activity>
+        <activity android:name=".presentation.UserProfileActivity.UsersOwnAds" />
+        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser" />
         <activity android:name=".presentation.PostingAdActivity.EditAd" />
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
         <activity android:name=".presentation.UserProfileActivity.UserProfileMenu" />
@@ -113,66 +63,8 @@
         <activity android:name=".presentation.PostingAdActivity.PostAd" />
         <activity android:name=".presentation.LoginActivity.Login" />
         <activity android:name=".presentation.MainActivity" />
-=======
-            android:allowBackup="true"
-            android:fullBackupContent="true"
-            android:icon="@drawable/logo"
-            android:label="@string/app_name"
-            android:roundIcon="@drawable/logo"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.AdminHomeScreen">
-        </activity>
-        <activity android:name=".adminHomeScreen">
-        </activity>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"/>
-        <activity android:name=".presentation.PostingAdActivity.EditAd"/>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser"/>
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu"/>
-        <activity android:name=".presentation.LoginActivity.SignUp"/>
-        <activity android:name=".presentation.PostingAdActivity.PostAd"/>
-        <activity android:name=".presentation.LoginActivity.Login"/>
-        <activity android:name=".presentation.MainActivity"/>
->>>>>>> Stashed changes
-||||||| merged common ancestors
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:icon="@drawable/logo"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"></activity>
-        <activity android:name=".presentation.PostingAdActivity.EditAd" />
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu" />
-        <activity android:name=".presentation.LoginActivity.SignUp" />
-        <activity android:name=".presentation.PostingAdActivity.PostAd" />
-        <activity android:name=".presentation.LoginActivity.Login" />
-        <activity android:name=".presentation.MainActivity" />
-=======
-            android:allowBackup="true"
-            android:fullBackupContent="true"
-            android:icon="@drawable/logo"
-            android:label="@string/app_name"
-            android:roundIcon="@drawable/logo"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.AdminHomeScreen">
-        </activity>
-        <activity android:name=".adminHomeScreen">
-        </activity>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"/>
-        <activity android:name=".presentation.PostingAdActivity.EditAd"/>
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser"/>
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu"/>
-        <activity android:name=".presentation.LoginActivity.SignUp"/>
-        <activity android:name=".presentation.PostingAdActivity.PostAd"/>
-        <activity android:name=".presentation.LoginActivity.Login"/>
-        <activity android:name=".presentation.MainActivity"/>
->>>>>>> Stashed changes
-        <activity android:name=".presentation.LoginActivity.ForgetPassword"/>
->>>>>>> Stashed changes
+        <activity android:name=".presentation.LoginActivity.ForgetPassword" />
+>>>>>>> userProfile
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -181,10 +73,29 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.AdminHomeScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.AdminHomeScreen"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <meta-data
+<<<<<<< HEAD
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
+||||||| merged common ancestors
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+=======
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+
+>>>>>>> userProfile
     </application>
+
+
 
 </manifest>
