@@ -23,8 +23,16 @@ public class AdPersistenceHSQLDB implements AdPersistence
         this.dbPath = dbPath;
     }
 
-    private Connection connection() throws SQLException {
-        return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
+    private Connection connection() throws SQLException
+    {
+        Connection con = DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
+        if (con != null) {
+            System.out.println("Connection created successfully");
+        }
+        else {
+            System.out.println("Problem with creating connection");
+        }
+        return con;
     }
 
     private Ad fromResultSet(final ResultSet rs) throws SQLException {

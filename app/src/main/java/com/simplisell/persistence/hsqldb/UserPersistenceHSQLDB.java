@@ -22,7 +22,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
     }
 
     private Connection connection() throws SQLException {
-        System.out.println("Path:" + dbPath);
         Connection con = DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
         if (con != null) {
             System.out.println("Connection created successfully");
