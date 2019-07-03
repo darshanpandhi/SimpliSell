@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/adPostGreyBackground"
-    tools:context=".presentation.PostingAdActivity.ViewAdOfOtherUser">
+    tools:context=".presentation.postingadactivity.ViewAdOfOtherUser">
 
     <TextView
         android:id="@+id/textView_viewAdOU_title"

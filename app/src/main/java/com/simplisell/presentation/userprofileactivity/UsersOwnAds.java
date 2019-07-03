@@ -1,20 +1,17 @@
-package com.simplisell.presentation.UserProfileActivity;
+package com.simplisell.presentation.userprofileactivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
-import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
+import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 import java.util.List;
-
-import static com.simplisell.objects.Category.BOOKS;
 
 public class UsersOwnAds extends AppCompatActivity
 {
