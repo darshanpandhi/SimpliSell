@@ -14,6 +14,8 @@ import com.simplisell.objects.Category;
 import com.simplisell.business.AccessAds;
 import com.simplisell.tests.persistence.AdPersistenceStub;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -161,19 +163,19 @@ public class AccessAdsTest
     @Test
     public void testGetAllAds()
     {
-        System.out.println("\nStarting testSearch: get all ads");
+        System.out.println("\nStarting AccessAdsTest: get all ads");
 
         List<Ad> ads = adPersistence.getAllAds();
 
         assertNotNull(ads);
 
-        System.out.println("Finished testSearch: get all ads");
+        System.out.println("Finished AccessAdsTest: get all ads");
     }
 
     @Test
     public void testGetAllAdsByCategory()
     {
-        System.out.println("\nStarting testSearch: get all ads by category");
+        System.out.println("\nStarting AccessAdsTest: get all ads by category");
 
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1));
@@ -184,13 +186,13 @@ public class AccessAdsTest
             assertEquals(ad.getCategory(), Category.ELECTRONICS);
         }
 
-        System.out.println("Finished testSearch: get all ads by category");
+        System.out.println("Finished AccessAdsTest: get all ads by category");
     }
 
     @Test
     public void testSortPriceAsc()
     {
-        System.out.println("\nStarting testSearch: sort price (ascending)");
+        System.out.println("\nStarting AccessAdsTest: sort price (ascending)");
 
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10));
@@ -206,13 +208,13 @@ public class AccessAdsTest
             assertTrue(priceDiff >= 0);
         }
 
-        System.out.println("Finished testSearch: sort price (ascending)");
+        System.out.println("Finished AccessAdsTest: sort price (ascending)");
     }
 
     @Test
     public void testSortPriceDesc()
     {
-        System.out.println("\nStarting testSearch sort price (descending)");
+        System.out.println("\nStarting AccessAdsTest sort price (descending)");
 
         adPersistence.insertAd(new Ad(1, "test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10, 0));
@@ -227,14 +229,14 @@ public class AccessAdsTest
             assertTrue(priceDiff >= 0);
         }
 
-        System.out.println("Finished testSearch: sort price (descending)");
+        System.out.println("Finished AccessAdsTest: sort price (descending)");
     }
 
 
     @Test
     public void testGetUserSpecificAds()
     {
-        System.out.println("\nStarting testSearch: get all ads for specific user");
+        System.out.println("\nStarting AccessAdsTest: get all ads for specific user");
 
         adPersistence.insertAd(new Ad(4, "test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1, 0));
@@ -245,13 +247,13 @@ public class AccessAdsTest
             assertEquals(ad.getAdOwner(), "test");
         }
 
-        System.out.println("Finished testSearch: get all ads for specific user");
+        System.out.println("Finished AccessAdsTest: get all ads for specific user");
     }
 
     @Test
     public void testGetReportedAdsMoreThan3Reports()
     {
-        System.out.println("\nStarting testSearch: get all reported ads (3 or more reports)");
+        System.out.println("\nStarting AccessAdsTest: get all reported ads (3 or more reports)");
 
         Ad reportedAd = adPersistence.insertAd(new Ad(5, "test", AdType.OFFERING, Category.BOOKS,
                 "reportedAd3Reports", "reportedAd3Reports", 1, 3));
@@ -270,13 +272,13 @@ public class AccessAdsTest
 
         assertTrue(ads.size() == 2);
 
-        System.out.println("Finished testSearch: get all reported ads (3 or more reports)");
+        System.out.println("Finished AccessAdsTest: get all reported ads (3 or more reports)");
     }
 
     @Test
     public void testGetReportedAdsLessThan3Reports()
     {
-        System.out.println("\nStarting testSearch: get all reported ads (less than 3 reports)");
+        System.out.println("\nStarting AccessAdsTest: get all reported ads (less than 3 reports)");
 
         List<Ad> ads = adPersistence.getReportedAds();
 
@@ -287,6 +289,67 @@ public class AccessAdsTest
             assertFalse(ad.getNumReports() < minNumberReports);
         }
 
-        System.out.println("Finished testSearch: get all reported ads (less than 3 reports)");
+        System.out.println("Finished AccessAdsTest: get all reported ads (less than 3 reports)");
     }
+
+    @Test
+    public void testFilterAdsByType()
+    {
+        System.out.println("\nStarting AccessAdsTest: filter ads by ad type");
+
+        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 10));
+        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
+                "test", "test", 100));
+        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 2));
+        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 0));
+
+        List<Ad> offeringAds = adPersistence.filterAdsByType(adPersistence.getAllAds(), AdType.OFFERING);
+        List<Ad> wantedAds = adPersistence.filterAdsByType(adPersistence.getAllAds(), AdType.WANTED);
+
+        for (Ad ad : offeringAds)
+        {
+            assertEquals(AdType.OFFERING, ad.getAdType());
+        }
+
+        for (Ad ad : wantedAds)
+        {
+            assertEquals(AdType.WANTED, ad.getAdType());
+        }
+
+
+        System.out.println("Finished AccessAdsTest: filter ads by ad type");
+    }
+
+    @Test
+    public void testRemoveExpiredAds()
+    {
+        System.out.println("\nStarting AccessAdsTest: remove expired ads");
+
+        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 0));
+        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 0));
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -30);
+
+        Date oldDate = new Date(c.getTimeInMillis());
+        adPersistence.getAd(0).setExpiryDate(oldDate);
+
+        int sizeBefore = adPersistence.getAllAds().size();
+        adPersistence.removeExpiredAds();
+        int sizeAfter = adPersistence.getAllAds().size();
+
+        assertTrue(sizeBefore > sizeAfter);
+
+        System.out.println("Finished AccessAdsTest: remove expired ads");
+    }
+
+    /*
+    private List<Ad> removeExpiredAds(List<Ad> ads)
+
+     */
 }
