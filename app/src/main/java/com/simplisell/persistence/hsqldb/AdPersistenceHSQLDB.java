@@ -100,25 +100,34 @@ public class AdPersistenceHSQLDB implements AdPersistence
     }
 
 
+    public int getAdID()
+    {
+        try (final Connection c= connection())
+        {
+            final Statement stm = c.createStatement();
+            final ResultSet rs = stm.executeQuery("SELECT ADID FROM ADS ORDER BY ADID DESC LIMIT 1");
+            //Set new ad ID to value 1 greater than highest ad ID
+            int newAdID = 0;
+            if (rs.next())
+            {
+                newAdID = rs.getInt("ADID") + 1;
+            }
+
+            return newAdID;
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
+
     @Override
     public Ad insertAd(final Ad ad)
     {
         try (final Connection c = connection())
         {
-
-            final Statement stm = c.createStatement();
-            final ResultSet rs = stm.executeQuery("SELECT ADID FROM ADS ORDER BY ADID DESC LIMIT 1");
-            //Set new ad ID to value 1 greater than highest ad ID
-            int newAdID;
-            if (rs.next())
-            {
-                newAdID = rs.getInt("ADID") + 1;
-            }
-            else
-            {
-                newAdID = 0;
-            }
-
+            int newAdID = getAdID();
             final PreparedStatement st = c.prepareStatement("INSERT INTO ADS VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             st.setInt(1, newAdID);
             st.setString(2, ad.getAdOwner());
@@ -168,6 +177,26 @@ public class AdPersistenceHSQLDB implements AdPersistence
             final PreparedStatement st = c.prepareStatement("UPDATE ADS SET NUMREPORTS = ? WHERE ADID = ?");
             st.setInt(1, numReports);
             st.setInt(2, adID);
+            st.executeUpdate();
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
+    @Override
+    public final void updateAd(Ad ad)
+    {
+        try (final Connection c = connection())
+        {
+            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET CATEGORY = ?, TITLE = ?, DESCRIPTION = ?, PRICE = ? WHERE ADID = ?");
+            st.setInt(1, ad.getCategory().ordinal());
+            st.setString(2, ad.getTitle());
+            st.setString(3, ad.getDescription());
+            st.setDouble(4, ad.getPrice());
+            st.setInt(5, ad.getAdId());
+
             st.executeUpdate();
         }
         catch (final SQLException e)

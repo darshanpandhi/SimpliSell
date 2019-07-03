@@ -20,7 +20,6 @@ public final class AccessAds
         this.adPersistence = adPersistence;
     }
 
-    //TODO Do new ad ID calculation here?
     public final Ad insertAd(final Ad newAd)
     {
         return adPersistence.insertAd(newAd);
@@ -43,10 +42,19 @@ public final class AccessAds
     {
         return adPersistence.removeAd(adToBeRemoved);
     }
-    
-    //TODO test
+
     public final void reportAd(final int adID)
     {
         adPersistence.reportAd(adID);
+    }
+
+    public final int getAdID()
+    {
+        return adPersistence.getAdID();
+    }
+
+    public final void updateAd(Ad ad)
+    {
+        adPersistence.updateAd(ad);
     }
 }

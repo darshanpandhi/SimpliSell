@@ -78,9 +78,9 @@ public class PostAd extends AppCompatActivity
             title = this.title.getText().toString().trim();
             description = this.description.getText().toString().trim();
             price = Double.parseDouble(this.price.getText().toString());
-
+            int adId = accessAds.getAdID();
             // add ad into database
-            Ad ad = new Ad(userName, adType, category, title, description, price);
+            Ad ad = new Ad(adId, userName, adType, category, title, description, price, 0);
             accessAds.insertAd(ad);
             Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
 

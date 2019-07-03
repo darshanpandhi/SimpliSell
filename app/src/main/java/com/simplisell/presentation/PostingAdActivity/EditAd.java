@@ -101,6 +101,7 @@ public class EditAd extends AppCompatActivity
             currAd.setTitle(title);
             currAd.setDescription(description);
             currAd.setPrice(price);
+            accessAds.updateAd(currAd);
             Toast.makeText(getApplicationContext(), "Advertisement Updated", Toast.LENGTH_LONG).show();
 
             // go to View Individual Ad activity (current user)
