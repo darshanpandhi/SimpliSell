@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.simplisell.R;
 import com.simplisell.application.Main;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.Search;
+import com.simplisell.business.AccessAds;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.EncoderDecoder;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private AccessUsers accessUsers;      // helps  access users
-    private Search search;
+    private AccessAds search;
     private ImageButton profileBtn;
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
 
-        search = new Search();
+        search = new AccessAds();
         initializeTabFragments();
 
         accessUsers = new AccessUsers();
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
     public void selectTypeBtnClick(View view)
     {
-        search = new Search();
+        search = new AccessAds();
         AlertDialog dialog;
         AlertDialog.Builder builder;
         final String[] types = {"All Type", "OFFERING", "WANT"};
