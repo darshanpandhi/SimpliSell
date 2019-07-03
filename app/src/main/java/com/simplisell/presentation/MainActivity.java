@@ -38,15 +38,12 @@ public class MainActivity extends AppCompatActivity
 
     private static User currUser = null;
     private static String userName = null;
-    private static boolean isSortedAscending = false;
 
     private final String USERNAME_TEXT = "USER";
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private AccessUsers accessUsers;      // helps  access users
     private Search search;
-    private ImageButton profileBtn;
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
     private TabFragment tabFragmentTransportationObj;
@@ -76,8 +73,9 @@ public class MainActivity extends AppCompatActivity
         tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
         tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
 
-        accessUsers = new AccessUsers();
-        profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
+        // helps  access users
+        AccessUsers accessUsers = new AccessUsers();
+        ImageButton profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 
 
         if (userName == null)  // if there is no logged in user
