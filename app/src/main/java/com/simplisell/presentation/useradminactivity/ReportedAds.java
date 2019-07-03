@@ -39,8 +39,7 @@ public class ReportedAds extends AppCompatActivity
 
 
         recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
-        recyclerViewAdapter.setMyAd(reportedAds);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, reportedAds);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
     }

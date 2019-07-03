@@ -24,22 +24,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context myContext;
     private List<Ad> myAd;
-    private List<User> myUser;
 
 
-    public RecyclerViewAdapter(Context context)
+    public RecyclerViewAdapter(Context context, List<Ad> ad)
     {
         myContext = context;
-    }
-
-    public void setMyAd(List<Ad> ads)
-    {
-        myAd  = ads;
-    }
-
-    public void setMyUser(List<User> users)
-    {
-        myUser = users;
+        myAd = ad;
     }
 
     @NonNull

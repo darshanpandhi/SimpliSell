@@ -29,7 +29,6 @@
         <activity android:name=".presentation.MainActivity" />
         <activity android:name=".presentation.loginactivity.ForgetPassword" />
         <activity android:name=".presentation.useradminactivity.ReportedAds" />
-        <activity android:name=".presentation.useradminactivity.ReportedUsers" />
         <activity android:name=".presentation.Messages" />
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
