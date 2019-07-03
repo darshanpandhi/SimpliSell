@@ -30,7 +30,6 @@ public class Credentials
         return user;
     }
 
-
     public boolean correctSecurityAnswer(String userName, String securityAnswer)
     {
         boolean correctAnswer = false;
@@ -42,12 +41,6 @@ public class Credentials
             }
         }
         return correctAnswer;
-    }
-
-
-    public void updatePassword(String userName, String newPassword)
-    {
-        userPersistence.updatePassword(userName, newPassword);
     }
 
 
