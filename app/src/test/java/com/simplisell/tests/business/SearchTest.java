@@ -5,25 +5,36 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 import java.util.List;
 
+import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.business.Search;
 import com.simplisell.business.AccessAds;
+import com.simplisell.objects.User;
+import com.simplisell.persistence.UserPersistence;
+import com.simplisell.tests.persistence.AdPersistenceStub;
+import com.simplisell.tests.persistence.UserPersistenceStub;
 
 public class SearchTest
 {
 
     private Search search;
     private AccessAds adPersistence;
+    private AccessUsers userPersistence;
 
     @Before
     public final void setup()
     {
-        search = new Search();
-        adPersistence = new AccessAds();
+        AdPersistenceStub adStub = new AdPersistenceStub();
+        UserPersistenceStub userStub = new UserPersistenceStub();
+        search = new Search(adStub, userStub);
+        adPersistence = new AccessAds(adStub);
+        userPersistence = new AccessUsers(userStub);
     }
 
     @Test
@@ -36,6 +47,18 @@ public class SearchTest
         assertNotNull(ads);
 
         System.out.println("Finished testSearch: get all ads");
+    }
+
+    @Test
+    public void testGetAllUsers()
+    {
+        System.out.println("\nStarting testSearch: get all users");
+
+        List<User> users = search.getAllUsers();
+
+        assertNotNull(users);
+
+        System.out.println("Finished testSearch: get all users");
     }
 
     @Test
@@ -82,12 +105,12 @@ public class SearchTest
     {
         System.out.println("\nStarting testSearch sort price (descending)");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 10));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
-                "test", "test", 100));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1000));
+        adPersistence.insertAd(new Ad(1, "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 10, 0));
+        adPersistence.insertAd(new Ad(2, "test", AdType.OFFERING, Category.OTHERS,
+                "test", "test", 100, 0));
+        adPersistence.insertAd(new Ad(3, "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1000, 0));
         List<Ad> ads = search.sortPriceDesc(search.getAllAds());
         for (int i = 0; i < ads.size()-1; i++)
         {
@@ -99,14 +122,13 @@ public class SearchTest
     }
 
 
-
     @Test
-    public void testgetUserSpecificAds()
+    public void testGetUserSpecificAds()
     {
         System.out.println("\nStarting testSearch: get all ads for specific user");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1));
+        adPersistence.insertAd(new Ad(4, "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1, 0));
         List<Ad> ads = search.getUserSpecificAds("test");
 
         for (Ad ad : ads)
@@ -115,5 +137,69 @@ public class SearchTest
         }
 
         System.out.println("Finished testSearch: get all ads for specific user");
+    }
+
+    @Test
+    public void testGetReportedAdsMoreThan3Reports()
+    {
+        System.out.println("\nStarting testSearch: get all reported ads (3 or more reports)");
+
+        Ad reportedAd = adPersistence.insertAd(new Ad(5, "test", AdType.OFFERING, Category.BOOKS,
+                "reportedAd3Reports", "reportedAd3Reports", 1, 3));
+
+        Ad reportedAd2 = adPersistence.insertAd(new Ad(6, "test", AdType.OFFERING, Category.BOOKS,
+                "reportedAd4Reports", "reportedAd4Reports", 1, 4));
+
+        List<Ad> ads = search.getReportedAds();
+
+        int minNumberReports = 3;
+
+        for (Ad ad : ads)
+        {
+            assertTrue(ad.getNumReports() >= minNumberReports);
+        }
+
+        assertTrue(ads.size() == 2);
+
+        System.out.println("Finished testSearch: get all reported ads (3 or more reports)");
+    }
+
+    @Test
+    public void testGetReportedAdsLessThan3Reports()
+    {
+        System.out.println("\nStarting testSearch: get all reported ads (less than 3 reports)");
+
+        List<Ad> ads = search.getReportedAds();
+
+        int minNumberReports = 3;
+
+        for (Ad ad : ads)
+        {
+            assertFalse(ad.getNumReports() < minNumberReports);
+        }
+
+        System.out.println("Finished testSearch: get all reported ads (less than 3 reports)");
+    }
+
+    @Test
+    public void testGetReportedUsersMoreThan3Reports()
+    {
+        System.out.println("\nStarting testSearch: get all reported users (3 or more reports)");
+
+        User reportedUser = userPersistence.insertNewUser(new User("Bad User", "testUser", "123456", "What is your favourite color", "Black", 3, null, null, null));
+        reportedUser = userPersistence.insertNewUser(new User("Worst User", "testUser1", "123456", "What is your favourite color", "Black", 4, null, null, null));
+
+        List<User> users = search.getReportedUsers();
+
+        int minNumberReports = 3;
+
+        for (User user : users)
+        {
+            assertTrue(user.getNumReports() >= minNumberReports);
+        }
+
+        assertTrue(users.size() == 2);
+
+        System.out.println("Finished testSearch: get all reported ads (3 or more reports)");
     }
 }

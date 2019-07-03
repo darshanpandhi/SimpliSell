@@ -18,6 +18,7 @@ import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
+import com.simplisell.presentation.MainActivity;
 public class PostAd extends AppCompatActivity
 {
     private final String USERNAME_TEXT = "USER";
@@ -140,7 +141,7 @@ public class PostAd extends AppCompatActivity
     {   // if anytime the back is pressed. Go back
 
         finish();
-        Intent i = new Intent(this, UserProfileMenu.class);
+        Intent i = new Intent(this, MainActivity.class);
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.simplisell.R;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 
 import java.util.List;
 
@@ -23,14 +25,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context myContext;
     private List<Ad> myAd;
+    private List<UserAdvertiser> myUser;
 
 
-    public RecyclerViewAdapter(Context context, List<Ad> ad)
+    public RecyclerViewAdapter(Context context)
     {
         myContext = context;
-        myAd = ad;
     }
 
+    public void setMyAd(List<Ad> ads)
+    {
+        myAd  = ads;
+    }
+
+    public void setMyUser(List<UserAdvertiser> users)
+    {
+        myUser = users;
+    }
 
     @NonNull
     @Override
@@ -48,7 +59,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v)
             {
-
                 int adId = myAd.get(viewHolder.getAdapterPosition()).getAdId();
                 String adUserName = myAd.get(viewHolder.getAdapterPosition()).getAdOwner();
 
@@ -56,16 +66,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 if (adUserName.equals(userName))
                 { // logged in user and its their Ad
 
-
-
                     Intent viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
                     viewAd.putExtra(ADID_TEXT, adId);
                     myContext.startActivity(viewAd);
                 }
                 else   // not logged in user
                 {
-
-
                     Intent viewAd = new Intent(myContext, ViewAdOfOtherUser.class);
                     viewAd.putExtra(ADID_TEXT, adId);
                     myContext.startActivity(viewAd);

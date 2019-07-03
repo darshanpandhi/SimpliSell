@@ -4,11 +4,16 @@
 
     <uses-permission android:name="android.permission.CAMERA"></uses-permission>
     <uses-feature android:name="android.hardware.camera"></uses-feature>
-
-
-
-    <application
 <<<<<<< HEAD
+||||||| merged common ancestors
+
+
+
+=======
+
+
+>>>>>>> reportSystem
+    <application
             android:allowBackup="true"
             android:fullBackupContent="true"
             android:icon="@drawable/logo"
@@ -16,6 +21,10 @@
             android:roundIcon="@drawable/logo"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".presentation.UserProfileActivity.ProfileInformation">
+        </activity>
+        <activity android:name=".presentation.UserProfileActivity.UsersOwnAds" />
+<<<<<<< HEAD
         <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser"/>
         <activity android:name=".presentation.postingadactivity.EditAd"/>
         <activity android:name=".presentation.postingadactivity.ViewAdOfCurrentUser"/>
@@ -26,35 +35,6 @@
         <activity android:name=".presentation.MainActivity"/>
         <activity android:name=".presentation.loginactivity.ForgetPassword"/>
 ||||||| merged common ancestors
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:icon="@drawable/twotone_sentiment_satisfied_white_48"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser"></activity>
-        <activity android:name=".presentation.PostingAdActivity.EditAd" />
-        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
-        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu" />
-        <activity android:name=".presentation.LoginActivity.SignUp" />
-        <activity android:name=".presentation.PostingAdActivity.PostAd" />
-        <activity android:name=".presentation.LoginActivity.Login" />
-        <activity android:name=".presentation.MainActivity" />
-        <activity android:name=".presentation.LoginActivity.ForgetPassword"/>
-=======
-        android:allowBackup="true"
-        android:fullBackupContent="true"
-        android:icon="@drawable/twotone_sentiment_satisfied_white_48"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/twotone_sentiment_satisfied_white_48"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <activity android:name=".presentation.UserProfileActivity.ProfileInformation">
-
-        </activity>
-        <activity android:name=".presentation.UserProfileActivity.UsersOwnAds" />
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser" />
         <activity android:name=".presentation.PostingAdActivity.EditAd" />
         <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
@@ -64,7 +44,20 @@
         <activity android:name=".presentation.LoginActivity.Login" />
         <activity android:name=".presentation.MainActivity" />
         <activity android:name=".presentation.LoginActivity.ForgetPassword" />
->>>>>>> userProfile
+=======
+        <activity android:name=".presentation.PostingAdActivity.ViewAdOfOtherUser" />
+        <activity android:name=".presentation.PostingAdActivity.EditAd" />
+        <activity android:name=".presentation.PostingAdActivity.ViewAdOfCurrentUser" />
+        <activity android:name=".presentation.UserProfileActivity.UserProfileMenu" />
+        <activity android:name=".presentation.LoginActivity.SignUp" />
+        <activity android:name=".presentation.PostingAdActivity.PostAd" />
+        <activity android:name=".presentation.LoginActivity.Login" />
+        <activity android:name=".presentation.MainActivity" />
+        <activity android:name=".presentation.LoginActivity.ForgetPassword" />
+        <activity android:name=".presentation.UserAdminActivity.ReportedAds" />
+        <activity android:name=".presentation.UserAdminActivity.ReportedUsers" />
+        <activity android:name=".presentation.Messages" />
+>>>>>>> reportSystem
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -81,19 +74,14 @@
             </intent-filter>
         </activity>
 
-        <meta-data
 <<<<<<< HEAD
+        <meta-data
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
 ||||||| merged common ancestors
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
 =======
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
 
-
->>>>>>> userProfile
+>>>>>>> reportSystem
     </application>
 
 

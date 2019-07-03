@@ -1,6 +1,6 @@
 package com.simplisell.objects;
 
-import com.simplisell.presentation.AdminHomeScreen;
+import com.simplisell.presentation.UserAdminActivity.AdminHomeScreen;
 
 public class UserAdmin extends User
 {

@@ -23,7 +23,7 @@ public class UserProfileMenu extends AppCompatActivity
     private static String userName = null;
     private static User currUser = null;
     private static ListView listView;
-    private static String[] titles = {"Post an Ad", "Logout"};
+    private static String[] titles = {"My profile","My ads","Logout"};
 
     private AccessUsers accessUsers;
 
@@ -35,7 +35,6 @@ public class UserProfileMenu extends AppCompatActivity
 
 
         accessUsers = new AccessUsers();
-
 
         try
         {
@@ -89,8 +88,22 @@ public class UserProfileMenu extends AppCompatActivity
             {
                 if (position == 0)
                 {
-                    logout();
+                    Intent postAd=new Intent(getApplicationContext(), ProfileInformation.class);
+                    postAd.putExtra(USERNAME_TEXT, userName);
+                    startActivity(postAd);
+
                 }
+                else if (position == 1)
+                {
+
+                    Intent postAd=new Intent(getApplicationContext(), UsersOwnAds.class);
+                    postAd.putExtra(USERNAME_TEXT, userName);
+                    startActivity(postAd);
+                }
+                else if (position == 2)
+                    {
+                        logout();
+                    }
             }
         });
     }

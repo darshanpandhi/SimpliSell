@@ -16,6 +16,9 @@ public final class AccessAds
         adPersistence = Services.getAdPersistence();
     }
 
+    public AccessAds(final AdPersistence adPersistence) {
+        this.adPersistence = adPersistence;
+    }
 
     public final Ad insertAd(final Ad newAd)
     {
@@ -35,9 +38,14 @@ public final class AccessAds
     }
 
 
-
     public final Ad removeAd(final Ad adToBeRemoved)
     {
         return adPersistence.removeAd(adToBeRemoved);
+    }
+    
+    //TODO test
+    public final void reportAd(final int adID)
+    {
+        adPersistence.reportAd(adID);
     }
 }

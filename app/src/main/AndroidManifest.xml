@@ -12,10 +12,10 @@
             android:roundIcon="@drawable/logo"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".presentation.UserProfileActivity.ProfileInformation">
+        <activity android:name=".presentation.userprofileactivity.ProfileInformation">
 
         </activity>
-        <activity android:name=".presentation.UserProfileActivity.UsersOwnAds" />
+        <activity android:name=".presentation.userprofileactivity.UsersOwnAds" />
         <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser"/>
         <activity android:name=".presentation.postingadactivity.EditAd"/>
         <activity android:name=".presentation.postingadactivity.ViewAdOfCurrentUser"/>
@@ -25,6 +25,9 @@
         <activity android:name=".presentation.loginactivity.Login"/>
         <activity android:name=".presentation.MainActivity"/>
         <activity android:name=".presentation.loginactivity.ForgetPassword"/>
+        <activity android:name=".presentation.UserAdminActivity.ReportedAds" />
+        <activity android:name=".presentation.UserAdminActivity.ReportedUsers" />
+        <activity android:name=".presentation.Messages" />
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -33,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.AdminHomeScreen">
+        <activity android:name=".presentation.UserAdminActivity.AdminHomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.AdminHomeScreen"/>
 

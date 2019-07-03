@@ -19,7 +19,6 @@ import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.EncoderDecoder;
 import com.simplisell.objects.User;
 import com.simplisell.objects.UserAdvertiser;
-import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
 public class ProfileInformation extends AppCompatActivity
 {
@@ -48,8 +47,6 @@ public class ProfileInformation extends AppCompatActivity
         setContentView(R.layout.activity_profile_information);
         userName = getIntent().getStringExtra(USERNAME_TEXT);
         accessUsers = new AccessUsers();
-
-
         profileImage = findViewById(R.id.profileImage);
         password = findViewById(R.id.profileEditBoxPassword);
         firstAndLastName = findViewById(R.id.profileEditBoxName6);
@@ -61,7 +58,6 @@ public class ProfileInformation extends AppCompatActivity
 
 
         setUp();
-
 
 
         profileImage.setOnClickListener(new View.OnClickListener()
@@ -96,7 +92,9 @@ public class ProfileInformation extends AppCompatActivity
                 Bitmap photo = EncoderDecoder.stringToBitMap(currUserAdvertiser.getProfilePhoto());
                 Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 2.8),
                         (int) (photo.getHeight() * 2.8), true);
+
                 profileImage.setImageBitmap(displayProfile);
+
                 photoTextView.setText("");
             }
 
@@ -115,8 +113,6 @@ public class ProfileInformation extends AppCompatActivity
                 phoneNumber.setHint(currUserAdvertiser.getPhoneNumber());
             }
 
-
-
             securityQuestion.setHint(currUserAdvertiser.getSecurityQuestion());
             securityAnswer.setHint(currUserAdvertiser.getSecurityAnswer());
         }
@@ -132,47 +128,64 @@ public class ProfileInformation extends AppCompatActivity
         {
             UserAdvertiser currUserAdvertiser = (UserAdvertiser) currUser;
 
+            String userName = currUserAdvertiser.getUserName();
+            String userFullName = currUserAdvertiser.getFirstAndLastName();
+            String userEmail = currUserAdvertiser.getEmail();
+            String userPhoneNumber = currUserAdvertiser.getPhoneNumber();
+            String userSecurityQuestion = currUserAdvertiser.getSecurityQuestion();
+            String userSecurityAnswer = currUserAdvertiser.getSecurityAnswer();
+            String userProfilePhoto = currUserAdvertiser.getProfilePhoto();
+
+            boolean userUpdatedProfle = false;
 
             if (!(firstAndLastName.getText().toString()).isEmpty())
             {
-                currUserAdvertiser.setFirstAndLastName(firstAndLastName.getText().toString());
+                userFullName = firstAndLastName.getText().toString();
+                userUpdatedProfle = true;
             }
-
 
             if (!(email.getText().toString()).isEmpty())
             {
-                currUserAdvertiser.setEmail(email.getText().toString());
+                userEmail = email.getText().toString();
+                userUpdatedProfle = true;
             }
 
             if (!(phoneNumber.getText().toString()).isEmpty())
             {
-                currUserAdvertiser.setPhoneNumber(phoneNumber.getText().toString());
+                userPhoneNumber = phoneNumber.getText().toString();
+                userUpdatedProfle = true;
             }
-
 
             if (!(securityQuestion.getText().toString()).isEmpty())
             {
-                currUserAdvertiser.setSecurityQuestion(securityQuestion.getText().toString());
+                userSecurityQuestion = securityQuestion.getText().toString();
+                userUpdatedProfle = true;
             }
 
             if (!(securityAnswer.getText().toString()).isEmpty())
             {
-                currUserAdvertiser.setSecurityAnswer(securityAnswer.getText().toString());
+                userSecurityAnswer = securityAnswer.getText().toString();
+                userUpdatedProfle = true;
             }
 
             if (!(password.getText().toString()).isEmpty())
             {
-                currUserAdvertiser.setPassword(password.getText().toString());
+                accessUsers.updatePassword(userName, password.getText().toString());
             }
+
+            if (userUpdatedProfle)
+            {
+                accessUsers.updateProfileInformation(userName, userFullName, userEmail, userPhoneNumber,
+                        userSecurityQuestion, userSecurityAnswer);
+            }
+
+            Toast.makeText(this, "PROFILE INFORMATION UPDATED", Toast.LENGTH_LONG).show();
+
+            finish();
+            Intent i = new Intent(getApplicationContext(), UserProfileMenu.class);
+            i.putExtra(USERNAME_TEXT, userName);
+            startActivity(i);
         }
-
-
-        Toast.makeText(this, "PROFILE INFORMATION UPDATED", Toast.LENGTH_LONG).show();
-
-        finish();
-        Intent i = new Intent(getApplicationContext(), UserProfileMenu.class);
-        i.putExtra(USERNAME_TEXT, userName);
-        startActivity(i);
     }
 
 
@@ -206,21 +219,17 @@ public class ProfileInformation extends AppCompatActivity
             photoTextView.setText("");
 
             User currUser = accessUsers.getUser(userName);
+            String userName = currUser.getUserName();
 
-            if (currUser instanceof UserAdvertiser)
-            {
-                UserAdvertiser currUserAdvertiser = (UserAdvertiser) currUser;
-
-                currUserAdvertiser.setProfilePhoto(EncoderDecoder.bitMapToString(photo));
-            }
+            accessUsers.updateProfileImage(userName, EncoderDecoder.bitMapToString(photo));
+            System.out.println(EncoderDecoder.bitMapToString(photo).length());
         }
     }
 
 
     @Override
     public void onBackPressed()
-    {
-        // if anytime the back is pressed. Go back
+    {   // if anytime the back is pressed. Go back
         finish();
         Intent i = new Intent(this, UserProfileMenu.class);
         i.putExtra(USERNAME_TEXT, userName);

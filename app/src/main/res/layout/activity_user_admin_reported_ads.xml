@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".presentation.userprofileactivity.UserProfileMenu">
+
+    <TextView
+            android:id="@+id/reportedAds_menu_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:fontFamily="@font/orbitron"
+            android:text="@string/reported_ads"
+            android:textColor="@android:color/background_light"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="30sp"/>
+
+
+    <ListView
+            android:id="@+id/reportedAds_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.simplisell.presentation.userprofileactivity;
+package com.simplisell.presentation.UserAdminActivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,22 +10,22 @@ import android.view.View;
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
+import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
 import java.util.List;
 
-import static com.simplisell.objects.Category.BOOKS;
-
-public class UsersOwnAds extends AppCompatActivity
+public class ReportedUsers extends AppCompatActivity
 {
 
     private static final String USERNAME_TEXT="USER";
 
-    private List<Ad> ads;
+    private List<UserAdvertiser> reportedUsers;
     private Search adsSearch;
     private RecyclerView recyclerView;
     private String userName;
-
 
 
     @Override
@@ -37,12 +37,11 @@ public class UsersOwnAds extends AppCompatActivity
 
 
         adsSearch = new Search();
-        ads = adsSearch.getUserSpecificAds(userName);
-
+        reportedUsers = adsSearch.getReportedUsers();
 
         recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
-        recyclerViewAdapter.setMyAd(ads);
+        recyclerViewAdapter.setMyUser(reportedUsers);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
@@ -57,7 +56,6 @@ public class UsersOwnAds extends AppCompatActivity
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
 
 
 }

@@ -1,7 +1,12 @@
 package com.simplisell.business;
 
+import com.simplisell.application.Services;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.Category;
+import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
+import com.simplisell.persistence.AdPersistence;
+import com.simplisell.persistence.UserPersistence;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,20 +16,27 @@ import java.util.Comparator;
 public class Search
 {
 
-    private final AccessAds adInterface;
+    private final AdPersistence adInterface;
 
+    private final UserPersistence userInterface;
 
     public Search()
     {
-        adInterface = new AccessAds();
+        adInterface = Services.getAdPersistence();
+        userInterface = Services.getUserPersistence();
     }
 
+    public Search(final AdPersistence adPersistence, final UserPersistence userPersistence)
+    {
+        adInterface = adPersistence;
+        userInterface = userPersistence;
+    }
 
     public List<Ad> getAllAdsByCategory(Category category)
     {
         List<Ad> adList = new ArrayList<Ad>();
 
-        List<Ad> allAds = adInterface.getAllAds();
+        List<Ad> allAds = adInterface.getAds();
 
         for (Ad ad : allAds)
         {
@@ -41,7 +53,7 @@ public class Search
     {
         List<Ad> adList = new ArrayList<Ad>();
 
-        List<Ad> allAds = adInterface.getAllAds();
+        List<Ad> allAds = adInterface.getAds();
 
         for (Ad ad : allAds)
         {
@@ -54,10 +66,51 @@ public class Search
         return adList;
     }
 
+    public List<Ad> getReportedAds()
+    {
+        List<Ad> adList = new ArrayList<Ad>();
+
+        List<Ad> allAds = adInterface.getAds();
+
+        int minNumberOfReports = 3;
+
+        for (Ad ad: allAds)
+        {
+            if (ad.getNumReports() >= minNumberOfReports)
+            {
+                adList.add(ad);
+            }
+        }
+
+        return adList;
+    }
+
+    public List<UserAdvertiser> getReportedUsers()
+    {
+        List<UserAdvertiser> userList = new ArrayList<UserAdvertiser>();
+
+        List<User> allUsers = userInterface.getUsers();
+
+        int minNumberOfReports = 3;
+
+        for (UserAdvertiser userAdvertiser: allUsers)
+        {
+            if (user.getNumReports() >= minNumberOfReports)
+            {
+                userList.add(user);
+            }
+        }
+        return userList;
+    }
 
     public List<Ad> getAllAds()
     {
-        return adInterface.getAllAds();
+        return adInterface.getAds();
+    }
+
+    public List<User> getAllUsers()
+    {
+        return userInterface.getUsers();
     }
 
 

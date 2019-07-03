@@ -1,5 +1,7 @@
 package com.simplisell.objects;
 
+import com.simplisell.presentation.MainActivity;
+
 public abstract class User
 {
     private final String userName;
@@ -17,9 +19,6 @@ public abstract class User
     }
 
 
-    public abstract Class logInClass();
-
-
     public String getUserName()
     {
         return userName;
@@ -31,12 +30,12 @@ public abstract class User
         return password;
     }
 
+    public abstract Class logInClass();
 
     public String getSecurityQuestion()
     {
         return securityQuestion;
     }
-
 
     public String getSecurityAnswer()
     {
@@ -47,12 +46,6 @@ public abstract class User
     public void setSecurityAnswer(String securityAnswer)
     {
         this.securityAnswer = securityAnswer;
-    }
-
-
-    public void setSecurityQuestion(String securityQuestion)
-    {
-        this.securityQuestion = securityQuestion;
     }
 
 

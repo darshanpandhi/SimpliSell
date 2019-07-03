@@ -8,6 +8,7 @@ public class UserAdvertiser extends User
     private String email;
     private String phoneNumber;
     private String profilePhoto;
+    private int numReports;
 
 
     public UserAdvertiser(String newFirstAndLastName, String newUserName, String newUserPassword,
@@ -20,6 +21,7 @@ public class UserAdvertiser extends User
         email = null;
         phoneNumber = null;
         profilePhoto = null;
+        numReports = 0;
     }
 
 
@@ -75,5 +77,10 @@ public class UserAdvertiser extends User
     public void setProfilePhoto(String profilePhoto)
     {
         this.profilePhoto = profilePhoto;
+    }
+
+    public void incrementNumReports()
+    {
+        numReports++;
     }
 }

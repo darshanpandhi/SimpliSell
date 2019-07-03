@@ -173,7 +173,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:background="@android:drawable/editbox_background"
         android:backgroundTint="@color/colorPrimary"
@@ -186,12 +185,10 @@
         android:textColorHint="@color/whiteBtn"
         android:textColorLink="@color/colorAccent"
         android:textCursorDrawable="@drawable/cursor_colour"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationSecurityQuestion"
-        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_signUp_securityQuestions"
         tools:targetApi="o" />
 
     <Button
@@ -229,5 +226,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_signUp_registerbutton"
         app:layout_constraintVertical_bias="0.428" />
+
+    <Spinner
+        android:id="@+id/spinner_signUp_securityQuestions"
+        android:layout_width="329dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:entries="@array/security_questions"
+        android:spinnerMode="dropdown"
+        android:text="Security Questions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name_registrationConfirmPass" />
 
 </android.support.constraint.ConstraintLayout>

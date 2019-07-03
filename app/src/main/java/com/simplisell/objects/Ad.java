@@ -11,7 +11,21 @@ public final class Ad
     private String title;
     private String description;
     private double price;
+    private int numReports;
 
+
+    public Ad(int adId, final String adOwner, final AdType adType, final Category category, final
+    String title, final String description, final double price, final int numReports)
+    {
+        this.adId = adId;
+        this.adOwner = adOwner;
+        this.adType = adType;
+        this.category = category;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.numReports = numReports;
+    }
 
     public Ad(final String adOwner, final AdType adType, final Category category, final
     String title, final String description, final double price)
@@ -100,6 +114,16 @@ public final class Ad
     public void setPrice(double price)
     {
         this.price = price;
+    }
+
+    public int getNumReports()
+    {
+        return numReports;
+    }
+
+    public void incrementNumReports()
+    {
+        numReports++;
     }
 }
 

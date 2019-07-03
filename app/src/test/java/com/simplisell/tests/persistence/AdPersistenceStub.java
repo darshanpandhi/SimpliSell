@@ -1,4 +1,4 @@
-package com.simplisell.persistence.stubs;
+package com.simplisell.tests.persistence;
 
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
@@ -24,7 +24,7 @@ public class AdPersistenceStub implements AdPersistence
         String description = "iPad Ad description";
         double price = 554.99;
 
-        Ad newAd = new Ad(adOwner, adType, category, title, description, price);
+        Ad newAd = new Ad(0, adOwner, adType, category, title, description, price, 0);
         ads.add(newAd);
 
         adOwner = "Allice";
@@ -34,7 +34,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "Tutoring Services Description";
         price = 40;
 
-        newAd = new Ad(adOwner, adType, category, title, description, price);
+        newAd = new Ad(1, adOwner, adType, category, title, description, price, 0);
         ads.add(newAd);
 
         adOwner = "Jay";
@@ -44,7 +44,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "CarPooling Ad Description";
         price = 100;
 
-        newAd = new Ad(adOwner, adType, category, title, description, price);
+        newAd = new Ad(2, adOwner, adType, category, title, description, price, 0);
         ads.add(newAd);
 
 
@@ -55,7 +55,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "A nice book by Dr APJ abdul kalaam";
         price = 0;
 
-        newAd = new Ad(adOwner, adType, category, title, description, price);
+        newAd = new Ad(3, adOwner, adType, category, title, description, price, 0);
         ads.add(newAd);
 
 
@@ -66,7 +66,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "Book for COMP2080 and COMP3170";
         price = 20;
 
-        newAd = new Ad(adOwner, adType, category, title, description, price);
+        newAd = new Ad(4, adOwner, adType, category, title, description, price, 0);
         ads.add(newAd);
     }
 
@@ -133,5 +133,11 @@ public class AdPersistenceStub implements AdPersistence
         }
 
         return removedAd;
+    }
+
+    public final void reportAd(final int adID)
+    {
+        Ad reportedAd = getAd(adID);
+        reportedAd.incrementNumReports();
     }
 }

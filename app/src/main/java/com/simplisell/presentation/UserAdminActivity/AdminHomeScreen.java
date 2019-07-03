@@ -1,4 +1,4 @@
-package com.simplisell.presentation;
+package com.simplisell.presentation.UserAdminActivity;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
