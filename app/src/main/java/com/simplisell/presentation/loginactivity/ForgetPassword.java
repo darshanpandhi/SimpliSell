@@ -25,8 +25,8 @@ public class ForgetPassword extends AppCompatActivity
     private EditText securityAnswer;
     private AccessUsers accessUsers;      // helps  access users
     private Credentials credentials;
-    EditText newPassword;
-    EditText confirmNewPassword;
+    private EditText newPassword;
+    private EditText confirmNewPassword;
     private boolean securityQuestionDisplayed;
 
 

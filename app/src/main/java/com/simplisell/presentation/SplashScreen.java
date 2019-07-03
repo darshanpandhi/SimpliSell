@@ -27,7 +27,7 @@ public class SplashScreen extends AppCompatActivity
                 try
                 {
 
-                    Thread.sleep(1200); // As I am using LENGTH_LONG in Toast
+                    Thread.sleep(800); // As I am using LENGTH_LONG in Toast
 
                     // move to the main activity
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));

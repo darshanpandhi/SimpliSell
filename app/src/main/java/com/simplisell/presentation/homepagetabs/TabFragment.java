@@ -9,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.simplisell.R;
-import com.simplisell.business.Search;
+import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
@@ -23,10 +24,9 @@ import java.util.List;
 public class TabFragment extends Fragment
 {
 
-    private Search adsSearch;
+    private AccessAds adsSearch;
     private boolean isSortedAscending = false;
 
-    private RecyclerView recyclerView;
     private List<Ad> ads;
 
     private List<Ad> filteredAds;
@@ -39,7 +39,7 @@ public class TabFragment extends Fragment
 
 
     @SuppressLint("ValidFragment")
-    public TabFragment(List<Ad> ads, Search adsSearch)
+    public TabFragment(List<Ad> ads, AccessAds adsSearch)
     {
         this.ads = ads;
         this.adsSearch = adsSearch;
@@ -49,12 +49,11 @@ public class TabFragment extends Fragment
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tab_fragment, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragment);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragment);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), filteredAds);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -84,10 +83,12 @@ public class TabFragment extends Fragment
         }
     }
 
+
     public void filterByType(AdType adType)
     {
         filteredAds = adsSearch.filterAdsByType(ads, adType);
     }
+
 
     public void revertAds()
     {

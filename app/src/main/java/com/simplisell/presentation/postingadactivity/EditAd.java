@@ -1,5 +1,6 @@
 package com.simplisell.presentation.postingadactivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -72,6 +73,11 @@ public class EditAd extends AppCompatActivity
         String description;
         double price;
 
+        // Show a progress Dialog while the authentication is loading
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Saving");
+        progressDialog.show();
+
         // check if all fields are filled
         EditText editTextTitle = findViewById(R.id.editText_editAd_title);
         boolean titleEmpty = editTextTitle.getText().toString().isEmpty();
@@ -106,6 +112,7 @@ public class EditAd extends AppCompatActivity
             // go to View Individual Ad activity (current user)
             Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
             viewAd.putExtra(ADID_TEXT, currAd.getAdId());
+            progressDialog.dismiss();
             startActivity(viewAd);
         }
     }

@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.simplisell.R;
-import com.simplisell.business.Search;
+import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
@@ -19,7 +19,7 @@ public class UsersOwnAds extends AppCompatActivity
     private static final String USERNAME_TEXT="USER";
 
     private List<Ad> ads;
-    private Search adsSearch;
+    private AccessAds adsSearch;
     private RecyclerView recyclerView;
     private String userName;
 
@@ -33,7 +33,7 @@ public class UsersOwnAds extends AppCompatActivity
         userName = getIntent().getStringExtra(USERNAME_TEXT);
 
 
-        adsSearch = new Search();
+        adsSearch = new AccessAds();
         ads = adsSearch.getUserSpecificAds(userName);
 
 

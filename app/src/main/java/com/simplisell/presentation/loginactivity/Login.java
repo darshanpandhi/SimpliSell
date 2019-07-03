@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.simplisell.R;
+import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
@@ -24,6 +25,7 @@ public class Login extends AppCompatActivity
     private EditText password;          // the edit text box for password of the user
     private ProgressDialog progressDialog;  // progress Dialogue
     private Credentials credentials;
+    private AccessUsers accessUsers;
 
 
     @Override
