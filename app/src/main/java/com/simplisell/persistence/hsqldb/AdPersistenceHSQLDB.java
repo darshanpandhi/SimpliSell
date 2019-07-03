@@ -205,4 +205,10 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
+    @Override
+    public final void repostAd(final int adID)
+    {
+        // Guys I need help here XD
+        // Not sure how to reset expiry date within the database
+    }
 }
