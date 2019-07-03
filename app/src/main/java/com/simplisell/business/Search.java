@@ -8,6 +8,7 @@ import com.simplisell.objects.User;
 import com.simplisell.persistence.AdPersistence;
 import com.simplisell.persistence.UserPersistence;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Search
     public Search()
     {
         adInterface = Services.getAdPersistence();
-        allAds = adInterface.getAds();
+        allAds = removeExpiredAds(adInterface.getAds());
     }
 
     public Search(final AdPersistence adPersistence)
@@ -81,7 +82,7 @@ public class Search
 
     public List<Ad> getAllAds()
     {
-        return adInterface.getAds();
+        return allAds;
     }
 
 
@@ -113,6 +114,25 @@ public class Search
         }
 
         return adList;
+    }
+
+    private List<Ad> removeExpiredAds(List<Ad> ads)
+    {
+        long currTime = System.currentTimeMillis();
+
+        Date currDate = new Date(currTime);
+
+        for (Ad ad : ads)
+        {
+            Date expiryDate = ad.getExpireDate();
+            if (expiryDate.compareTo(currDate) < 0)
+            {
+                ads.remove(ad);
+                adInterface.removeAd(ad);
+            }
+        }
+
+        return ads;
     }
 
 
