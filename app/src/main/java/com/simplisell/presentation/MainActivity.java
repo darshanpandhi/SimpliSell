@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         search = new Search();
         AlertDialog dialog;
         AlertDialog.Builder builder;
-        final String[] types = {"All Type", "OFFERING", "WANT"};
+        final String[] types = {"All Types", "OFFERING", "WANTED"};
 
         builder = new AlertDialog.Builder(MainActivity.this);
 
