@@ -43,9 +43,12 @@ public class MainActivity extends AppCompatActivity
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
     private AccessUsers accessUsers;      // helps  access users
-    private AccessAds search;
+    private AccessAds search;             // helps  access ads
+
     private ImageButton profileBtn;
+
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
     private TabFragment tabFragmentTransportationObj;

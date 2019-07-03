@@ -28,7 +28,7 @@ public class AdPersistenceStub implements AdPersistence
         ads.add(newAd);
 
         adOwner = "Allice";
-        adType = AdType.WANT;
+        adType = AdType.WANTED;
         category = Category.JOBS_SERVICES;
         title = "Wanted Tutoring Services";
         description = "Tutoring Services Description";
@@ -153,6 +153,7 @@ public class AdPersistenceStub implements AdPersistence
     public int getAdID()
     {
         int newAdId = findMaxAdID() + 1;
+
         return newAdId;
     }
 
