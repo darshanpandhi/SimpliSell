@@ -1,16 +1,19 @@
 package com.simplisell.presentation;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.simplisell.R;
 import com.simplisell.application.Main;
@@ -18,6 +21,7 @@ import com.simplisell.business.AccessAds;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.EncoderDecoder;
 import com.simplisell.objects.User;
@@ -55,6 +59,8 @@ public class MainActivity extends AppCompatActivity
     private TabFragment tabFragmentEventsObj;
     private TabFragment tabFragmentElectronicsObj;
     private TabFragment tabFragmentOtherObj;
+
+    private String typeResult;
 
 
     @Override
@@ -185,6 +191,82 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra(USERNAME_TEXT, userName);
             startActivity(intent);
         }
+    }
+
+    public void selectTypeBtnClick(View view)
+    {
+        search = new Search();
+        AlertDialog dialog;
+        AlertDialog.Builder builder;
+        final String[] types = {"All Type", "OFFERING", "WANT"};
+
+        builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setTitle("Select the Advertisement Type");
+
+        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                typeResult = types[which];
+            }
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                TextView textView = findViewById(R.id.textView_mainActivity_adType);
+                textView.setText(typeResult);
+
+                if (typeResult.equals(types[0]))
+                {
+                    revertTabs();
+                }
+                else
+                {
+                    AdType adType = AdType.valueOf(typeResult);
+
+                    filterTabs(adType);
+                }
+
+                int position = tabLayout.getSelectedTabPosition();
+                tabSetUp();
+                viewPager.setCurrentItem(position);
+            }
+        });
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    private void filterTabs(AdType adType)
+    {
+        tabFragmentAllObj.filterByType(adType);
+        tabFragmentBooksObj.filterByType(adType);
+        tabFragmentTransportationObj.filterByType(adType);
+        tabFragmentServicesJobsObj.filterByType(adType);
+        tabFragmentLivingObj.filterByType(adType);
+        tabFragmentEventsObj.filterByType(adType);
+        tabFragmentElectronicsObj.filterByType(adType);
+        tabFragmentOtherObj.filterByType(adType);
+    }
+
+    private void revertTabs()
+    {
+        tabFragmentAllObj.revertAds();
+        tabFragmentBooksObj.revertAds();
+        tabFragmentTransportationObj.revertAds();
+        tabFragmentServicesJobsObj.revertAds();
+        tabFragmentLivingObj.revertAds();
+        tabFragmentEventsObj.revertAds();
+        tabFragmentElectronicsObj.revertAds();
+        tabFragmentOtherObj.revertAds();
     }
 
 

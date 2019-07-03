@@ -26,18 +26,16 @@ public class PostAd extends AppCompatActivity
 
     private String userName;
 
-    // hardcode ad type for iteration 1
-    private AdType adType = AdType.OFFERING;
-
+    private AdType adType = null;
     private Category category = null;
-
     private EditText title;
     private EditText description;
     private EditText price;
 
     private AccessAds accessAds;
 
-    private String result;
+    private String categoryResult;
+    private String typeResult;
 
 
     @Override
@@ -68,9 +66,10 @@ public class PostAd extends AppCompatActivity
         boolean descriptionEmpty = this.description.getText().toString().isEmpty();
         boolean priceEmpty = this.price.getText().toString().isEmpty();
         boolean categoryEmpty = (category == null);
+        boolean typeEmpty = (adType == null);
 
         // if empty field exists
-        if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty)
+        if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty || typeEmpty)
         {
             Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
         }
@@ -109,8 +108,8 @@ public class PostAd extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                result = categories[which];
-                category = Category.valueOf(result);
+                categoryResult = categories[which];
+                category = Category.valueOf(categoryResult);
             }
         });
 
@@ -120,7 +119,7 @@ public class PostAd extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 TextView textView = findViewById(R.id.textView_postAd_category);
-                textView.setText(result);
+                textView.setText(categoryResult);
             }
         });
 
@@ -129,6 +128,43 @@ public class PostAd extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+            }
+        });
+
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    public void selectTypeBtnClick(View view)
+    {
+        AlertDialog dialog;
+        AlertDialog.Builder builder;
+        final String[] types = {"OFFERING", "WANT"};
+
+        builder = new AlertDialog.Builder(PostAd.this);
+
+        builder.setTitle("Select the Advertisement Type");
+
+        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                typeResult = types[which];
+                adType = AdType.valueOf(typeResult);
+            }
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                TextView textView = findViewById(R.id.textView_postAd_adType);
+                textView.setText(typeResult);
+            }
+        });
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
             }
         });
 

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.AdType;
 import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public class TabFragment extends Fragment
     private RecyclerView recyclerView;
     private List<Ad> ads;
 
+    private List<Ad> filteredAds;
+
 
     public TabFragment()
     {
@@ -40,6 +43,8 @@ public class TabFragment extends Fragment
     {
         this.ads = ads;
         this.adsSearch = adsSearch;
+
+        filteredAds = ads;
     }
 
 
@@ -51,7 +56,7 @@ public class TabFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_tab_fragment, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragment);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext());
-        recyclerViewAdapter.setMyAd(ads);
+        recyclerViewAdapter.setMyAd(filteredAds);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -70,13 +75,23 @@ public class TabFragment extends Fragment
     {
         if (isSortedAscending)       // if its already sorted in ascending
         {
-            ads = adsSearch.sortPriceDesc(ads);
+            filteredAds = adsSearch.sortPriceDesc(filteredAds);
             isSortedAscending = false;
         }
         else
         {
-            ads = adsSearch.sortPriceAsc(ads);
+            filteredAds = adsSearch.sortPriceAsc(filteredAds);
             isSortedAscending = true;
         }
+    }
+
+    public void filterByType(AdType adType)
+    {
+        filteredAds = adsSearch.filterAdsByType(ads, adType);
+    }
+
+    public void revertAds()
+    {
+        filteredAds = ads;
     }
 }

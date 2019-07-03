@@ -2,6 +2,7 @@ package com.simplisell.business;
 
 import com.simplisell.application.Services;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.User;
 import com.simplisell.persistence.AdPersistence;
@@ -118,6 +119,21 @@ public class Search
         Collections.sort(ads, compareByPriceDesc);
 
         return ads;
+    }
+
+    public List<Ad> filterAdsByType(List<Ad> ads, AdType adType)
+    {
+        List<Ad> adList = new ArrayList<Ad>();
+
+        for (Ad ad : ads)
+        {
+            if (ad.getAdType() == adType)
+            {
+                adList.add(ad);
+            }
+        }
+
+        return adList;
     }
 
 
