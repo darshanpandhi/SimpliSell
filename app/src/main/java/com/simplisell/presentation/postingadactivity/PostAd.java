@@ -1,5 +1,6 @@
 package com.simplisell.presentation.postingadactivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -62,6 +63,12 @@ public class PostAd extends AppCompatActivity
         String description;
         double price;
 
+
+        // Show a progress Dialog while the authentication is loading
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Posting");
+        progressDialog.show();
+
         // check if all fields are filled
         boolean titleEmpty = this.title.getText().toString().isEmpty();
         boolean descriptionEmpty = this.description.getText().toString().isEmpty();
@@ -89,6 +96,7 @@ public class PostAd extends AppCompatActivity
             finish();
             Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
             viewAd.putExtra(ADID_TEXT, ad.getAdId());
+            progressDialog.dismiss();
             startActivity(viewAd);
         }
     }
