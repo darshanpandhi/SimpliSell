@@ -46,6 +46,7 @@ public final class AccessAds
         }
 
         newAd.setAdId(newAdId);
+        newAd.resetExpiryDate();
         return adPersistence.insertAd(newAd);
     }
 
@@ -72,11 +73,6 @@ public final class AccessAds
     public void repostAd(final int adID)
     {
         adPersistence.repostAd(adID);
-    }
-
-    public final int getAdID()
-    {
-        return adPersistence.getAdID();
     }
 
     public final void updateAd(Ad ad)

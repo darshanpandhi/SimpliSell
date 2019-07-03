@@ -14,8 +14,6 @@ public interface AdPersistence
 
     Ad removeAd(final Ad ad);
 
-    int getAdID();
-
     void reportAd(int adID);
 
     void repostAd(int adID);

@@ -151,24 +151,11 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: report ad");
 
-        Ad reportThisAd = adPersistence.getAd(0);
-        reportThisAd.incrementNumReports();
-        assertEquals(1, reportThisAd.getNumReports());
+        int reportsBefore = adPersistence.getAd(0).getNumReports();
+        adPersistence.reportAd(0);
+        assertEquals(reportsBefore + 1, adPersistence.getAd(0).getNumReports());
 
         System.out.println("Finished AccessAdsTest: ad reported");
-    }
-
-    @Test
-    public final void testGetAdID()
-    {
-        System.out.println("\nStarting AccessAdsTest: get new adID");
-
-        adPersistence = new AccessAds(new AdPersistenceStub());
-        int expectedNewAdID = 5;
-        int newAdID = adPersistence.getAdID();
-        assertEquals(5, newAdID);
-
-        System.out.println("Finished AccessAdsTest: correct adID received");
     }
 
     @Test

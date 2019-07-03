@@ -101,37 +101,13 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
-
-    public int getAdID()
-    {
-        try (final Connection c= connection())
-        {
-            final Statement stm = c.createStatement();
-            final ResultSet rs = stm.executeQuery("SELECT ADID FROM ADS ORDER BY ADID DESC LIMIT 1");
-            //Set new ad ID to value 1 greater than highest ad ID
-            int newAdID = 0;
-            if (rs.next())
-            {
-                newAdID = rs.getInt("ADID") + 1;
-            }
-
-            return newAdID;
-        }
-        catch (final SQLException e)
-        {
-            throw new PersistenceException(e);
-        }
-    }
-
-
     @Override
     public Ad insertAd(final Ad ad)
     {
         try (final Connection c = connection())
         {
-            int newAdID = getAdID();
             final PreparedStatement st = c.prepareStatement("INSERT INTO ADS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            st.setInt(1, newAdID);
+            st.setInt(1, ad.getAdId());
             st.setString(2, ad.getAdOwner());
             st.setInt(3, ad.getAdType().ordinal());
             st.setInt(4, ad.getCategory().ordinal());
