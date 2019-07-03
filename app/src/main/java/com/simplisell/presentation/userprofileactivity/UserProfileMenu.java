@@ -22,9 +22,8 @@ public class UserProfileMenu extends AppCompatActivity {
     private static String userName = null;
     private static User currUser = null;
     private static ListView listView;
-    private static String[] titles = {"My profile","My ads","Post an ad","Logout"};
+    private static String[] titles = {"My Profile","My Ads","Post an Ad","Logout"};
 
-    private AccessUsers accessUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +31,7 @@ public class UserProfileMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        accessUsers = new AccessUsers();
+        AccessUsers accessUsers = new AccessUsers();
 
         try
         {
