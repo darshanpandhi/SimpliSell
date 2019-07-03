@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@color/adPostGreyBackground"
     android:orientation="vertical"
-    tools:context=".presentation.UserProfileActivity.ProfileInformation">
+    tools:context=".presentation.userprofileactivity.ProfileInformation">
 
     <TextView
         android:id="@+id/textView8"

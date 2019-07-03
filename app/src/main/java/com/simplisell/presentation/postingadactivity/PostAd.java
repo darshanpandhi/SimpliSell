@@ -1,4 +1,4 @@
-package com.simplisell.presentation.PostingAdActivity;
+package com.simplisell.presentation.postingadactivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +17,6 @@ import com.simplisell.R;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.presentation.MainActivity;
-import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
 
 public class PostAd extends AppCompatActivity
 {

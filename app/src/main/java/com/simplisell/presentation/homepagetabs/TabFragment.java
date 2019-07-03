@@ -1,4 +1,4 @@
-package com.simplisell.presentation.HomePageTabs;
+package com.simplisell.presentation.homepagetabs;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.simplisell.R;
 import com.simplisell.business.Search;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
-import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
+import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:id="@+id/row_forAds"
     android:padding="3dp"
-    tools:context=".presentation.PostingAdActivity.RecyclerViewAdapter">
+    tools:context=".presentation.postingadactivity.RecyclerViewAdapter">
 
 
         <TextView

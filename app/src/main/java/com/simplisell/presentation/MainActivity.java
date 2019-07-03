@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -17,25 +16,22 @@ import android.widget.TextView;
 
 import com.simplisell.R;
 import com.simplisell.application.Main;
-import com.simplisell.business.AccessAds;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Search;
-import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.EncoderDecoder;
 import com.simplisell.objects.User;
-import com.simplisell.presentation.HomePageTabs.TabFragment;
-import com.simplisell.presentation.HomePageTabs.TabPagerAdapter;
-import com.simplisell.presentation.LoginActivity.Login;
-import com.simplisell.presentation.PostingAdActivity.PostAd;
-import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
+import com.simplisell.presentation.homepagetabs.TabFragment;
+import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
+import com.simplisell.presentation.loginactivity.Login;
+import com.simplisell.presentation.postingadactivity.PostAd;
+import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {

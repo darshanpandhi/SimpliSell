@@ -1,18 +1,16 @@
-package com.simplisell.presentation.UserAdminActivity;
+package com.simplisell.presentation.useradminactivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.simplisell.R;
 import com.simplisell.business.Search;
-import com.simplisell.objects.Ad;
 import com.simplisell.objects.User;
-import com.simplisell.presentation.PostingAdActivity.RecyclerViewAdapter;
-import com.simplisell.presentation.UserProfileActivity.UserProfileMenu;
+import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
+import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
 import java.util.List;
 

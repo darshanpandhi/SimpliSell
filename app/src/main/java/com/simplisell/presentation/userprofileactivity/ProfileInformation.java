@@ -1,4 +1,4 @@
-package com.simplisell.presentation.UserProfileActivity;
+package com.simplisell.presentation.userprofileactivity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
