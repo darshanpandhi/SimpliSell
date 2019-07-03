@@ -72,7 +72,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="40dp"
             android:background="@android:drawable/editbox_background"
             android:backgroundTint="@color/black_overlay"
             android:onClick="reportAdBtnClick"
@@ -83,7 +83,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.424"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.425"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

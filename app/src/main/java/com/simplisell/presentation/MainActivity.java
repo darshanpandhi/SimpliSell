@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     public static void logOutUser()
     {   // logs out user
         currUser = null;
@@ -114,6 +113,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     public void selectTypeBtnClick(View view)
     {
         search = new Search();
@@ -125,16 +125,20 @@ public class MainActivity extends AppCompatActivity
 
         builder.setTitle("Select the Advertisement Type");
 
-        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                 typeResult = types[which];
             }
         });
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                 TextView textView = findViewById(R.id.textView_mainActivity_adType);
                 textView.setText(typeResult);
 
@@ -155,9 +159,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
 
             }
         });
@@ -165,6 +171,7 @@ public class MainActivity extends AppCompatActivity
         dialog = builder.create();
         dialog.show();
     }
+
 
     public void sortBtnClick(View view)
     {
@@ -201,6 +208,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     private void initializeTabFragments()
     {
         tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
@@ -212,6 +220,7 @@ public class MainActivity extends AppCompatActivity
         tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
         tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
     }
+
 
     private void tabSetUp()
     {
@@ -239,6 +248,7 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
     }
 
+
     private void filterTabs(AdType adType)
     {
         tabFragmentAllObj.filterByType(adType);
@@ -251,6 +261,7 @@ public class MainActivity extends AppCompatActivity
         tabFragmentOtherObj.filterByType(adType);
     }
 
+
     private void revertTabs()
     {
         tabFragmentAllObj.revertAds();
@@ -262,6 +273,7 @@ public class MainActivity extends AppCompatActivity
         tabFragmentElectronicsObj.revertAds();
         tabFragmentOtherObj.revertAds();
     }
+
 
     private void getLoggedInUser()
     {
@@ -292,6 +304,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     private void displayProfilePhoto()
     {
         if (currUser != null)
@@ -311,6 +324,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 
     private void copyDatabaseToDevice()
     {
