@@ -152,4 +152,17 @@ public class AccessAdsTest
 
         System.out.println("Finished AccessAdsTest: ad reported");
     }
+
+    @Test
+    public final void testGetAdID()
+    {
+        System.out.println("\nStarting AccessAdsTest: get new adID");
+
+        accessAds = new AccessAds(new AdPersistenceStub());
+        int expectedNewAdID = 5;
+        int newAdID = accessAds.getAdID();
+        assertEquals(5, newAdID);
+
+        System.out.println("Finished AccessAdsTest: correct adID received");
+    }
 }

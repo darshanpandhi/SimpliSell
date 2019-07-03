@@ -85,4 +85,30 @@ public class AccessUsersTest
 
         System.out.println("Finished insertNewUser: password changed");
     }
+
+    @Test
+    public void testUpdateProfileInformation()
+    {
+        System.out.println("\nStarting AccessUsersTest: test update profile information");
+
+        User user = new User("Bobby Lee","Bobby", "123456", "What is your favourite " +
+                "color", "Red", 0, null, null, null);
+        userList.insertNewUser(user);
+        assertNotNull(user);
+
+        String newFullName = "Lee Bobby";
+        String newEmail = "leebobby@yahoo.ca";
+        String newPhoneNumber = "1234567890";
+        String newSecurityQuestion = "What is your favourite movie";
+        String newSecurityAnswer = "Hereditary";
+        userList.updateProfileInformation("Bobby", newFullName, newEmail, newPhoneNumber, newSecurityQuestion, newSecurityAnswer);
+        user = userList.getUser("Bobby");
+        assertEquals(newFullName, user.getFirstAndLastName());
+        assertEquals(newEmail, user.getEmail());
+        assertEquals(newPhoneNumber, user.getPhoneNumber());
+        assertEquals(newSecurityQuestion, user.getSecurityQuestion());
+        assertEquals(newSecurityAnswer, user.getSecurityAnswer());
+
+        System.out.println("Finished insertNewUser: profile information updated");
+    }
 }

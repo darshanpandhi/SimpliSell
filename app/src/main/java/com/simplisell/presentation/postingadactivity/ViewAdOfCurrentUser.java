@@ -12,6 +12,8 @@ import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.presentation.MainActivity;
 
+import java.util.Date;
+
 public class ViewAdOfCurrentUser extends AppCompatActivity
 {
 
@@ -22,6 +24,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     private String title;           // title of the current ad
     private String description;     // description of the current ad
     private double price;           // price of the current ad
+    private Date expireDate;
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
 
@@ -41,6 +44,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         title = currAd.getTitle();
         description = currAd.getDescription();
         price = currAd.getPrice();
+        expireDate = currAd.getExpireDate();
 
         // display corresponding information
         TextView textViewTitle = findViewById(R.id.textView_viewAdCU_title);
@@ -52,6 +56,10 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         TextView textViewPrice = findViewById(R.id.textView_viewAdCU_price);
         String price = "$" + this.price;
         textViewPrice.setText(price);
+
+        TextView textViewExpireDate = findViewById(R.id.textView_viewAdCU_expireDate);
+        String date = "Your ad will be expired on " + expireDate;
+        textViewExpireDate.setText(date);
     }
 
 
@@ -61,6 +69,12 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         Intent editAd = new Intent(getApplicationContext(), EditAd.class);
         editAd.putExtra(ADID_TEXT, adId);
         startActivity(editAd);
+    }
+
+    public void repostBtnClick(View view)
+    {
+        accessAds.repostAd(currAd.getAdId());
+        Toast.makeText(getApplicationContext(), "Advertisement Reposted", Toast.LENGTH_LONG).show();
     }
 
 

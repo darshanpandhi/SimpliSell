@@ -140,4 +140,38 @@ public class AdPersistenceStub implements AdPersistence
         Ad reportedAd = getAd(adID);
         reportedAd.incrementNumReports();
     }
+
+    public final void updateAd(Ad newAd)
+    {
+        Ad ad = ads.get(newAd.getAdId());
+        ad.setTitle(newAd.getTitle());
+        ad.setAdType(newAd.getAdType());
+        ad.setCategory(newAd.getCategory());
+        ad.setDescription(newAd.getDescription());
+    }
+
+    public int getAdID()
+    {
+        int newAdId = findMaxAdID() + 1;
+        return newAdId;
+    }
+
+    private int findMaxAdID()
+    {
+        int maxAdID = 0;
+        for (int i = 0; i < ads.size(); i++)
+        {
+            if (ads.get(i).getAdId() > maxAdID)
+            {
+                maxAdID = ads.get(i).getAdId();
+            }
+        }
+        return maxAdID;
+    }
+
+    public void repostAd(final int adID)
+    {
+        Ad repostedAd = getAd(adID);
+        repostedAd.resetExpiryDate();
+    }
 }

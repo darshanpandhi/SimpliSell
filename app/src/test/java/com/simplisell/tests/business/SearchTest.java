@@ -25,16 +25,13 @@ public class SearchTest
 
     private Search search;
     private AccessAds adPersistence;
-    private AccessUsers userPersistence;
 
     @Before
     public final void setup()
     {
         AdPersistenceStub adStub = new AdPersistenceStub();
-        UserPersistenceStub userStub = new UserPersistenceStub();
-        search = new Search(adStub, userStub);
+        search = new Search(adStub);
         adPersistence = new AccessAds(adStub);
-        userPersistence = new AccessUsers(userStub);
     }
 
     @Test
@@ -47,18 +44,6 @@ public class SearchTest
         assertNotNull(ads);
 
         System.out.println("Finished testSearch: get all ads");
-    }
-
-    @Test
-    public void testGetAllUsers()
-    {
-        System.out.println("\nStarting testSearch: get all users");
-
-        List<User> users = userPersistence.getAllUsers();
-
-        assertNotNull(users);
-
-        System.out.println("Finished testSearch: get all users");
     }
 
     @Test
@@ -181,25 +166,4 @@ public class SearchTest
         System.out.println("Finished testSearch: get all reported ads (less than 3 reports)");
     }
 
-    @Test
-    public void testGetReportedUsersMoreThan3Reports()
-    {
-        System.out.println("\nStarting testSearch: get all reported users (3 or more reports)");
-
-        User reportedUser = userPersistence.insertNewUser(new User("Bad User", "testUser", "123456", "What is your favourite color", "Black", 3, null, null, null));
-        reportedUser = userPersistence.insertNewUser(new User("Worst User", "testUser1", "123456", "What is your favourite color", "Black", 4, null, null, null));
-
-        List<User> users = search.getReportedUsers();
-
-        int minNumberReports = 3;
-
-        for (User user : users)
-        {
-            assertTrue(user.getNumReports() >= minNumberReports);
-        }
-
-        assertTrue(users.size() == 2);
-
-        System.out.println("Finished testSearch: get all reported ads (3 or more reports)");
-    }
 }
