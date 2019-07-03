@@ -111,7 +111,6 @@ public class SignUp extends AppCompatActivity
                             String successMessage = "Logged in as " + userName;
                             Toast.makeText(this, successMessage, Toast.LENGTH_SHORT).show();
                             uniqueUserName = userName;
-
                             // Pass this domain object across activities
                             Intent signedUp = new Intent(getApplicationContext(), MainActivity.class);
                             signedUp.putExtra(USERNAME_TEXT, uniqueUserName);
