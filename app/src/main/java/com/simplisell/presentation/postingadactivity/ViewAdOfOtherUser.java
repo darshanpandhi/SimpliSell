@@ -57,8 +57,8 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     public void reportAdBtnClick(View view)
     {
         accessAds.reportAd(currAd.getAdId());
-        int numReports = currAd.getNumReports() + 1;
-        Toast.makeText(getApplicationContext(), "Advertisement Reported" + numReports, Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getApplicationContext(), "Advertisement Reported", Toast.LENGTH_SHORT).show();
 
         // go back to main page after deletion
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
@@ -70,8 +70,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         String adOwner = currAd.getAdOwner();
         User reportedUser = accessUsers.getUser(adOwner);
         accessUsers.reportUser(reportedUser.getUserName());
-        int numReports = reportedUser.getNumReports() + 1;
-        Toast.makeText(getApplicationContext(), "User Reported " + numReports, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "User Reported ", Toast.LENGTH_SHORT).show();
 
         // go back to main page after deletion
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
