@@ -1,6 +1,5 @@
-package com.simplisell.presentation.UserAdminActivity;
+package com.simplisell.presentation.useradminactivity;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
