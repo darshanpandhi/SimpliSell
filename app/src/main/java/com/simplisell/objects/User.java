@@ -12,15 +12,6 @@ public class User
     private String profilePhoto;
     private int numReports;
 
-    public User()
-    {
-        userName = "";
-        password = "";
-        securityQuestion = "";
-        securityAnswer = "";
-        numReports = 0;
-    }
-
 
     public User(String fullName, String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer, int numOfReports, String newEmail, String newPhoneNumber, String newProfileImage)
     {
@@ -80,10 +71,5 @@ public class User
     public void incrementNumReports()
     {
         numReports++;
-    }
-
-    public String toString()
-    {
-        return String.format("User: %s %s", userName, userName);
     }
 }
