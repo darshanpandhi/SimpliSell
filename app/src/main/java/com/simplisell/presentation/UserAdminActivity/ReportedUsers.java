@@ -36,7 +36,7 @@ public class ReportedUsers extends AppCompatActivity
 
 
         adsSearch = new Search();
-        reportedUsers = adsSearch.getReportedUsers();
+//        reportedUsers = adsSearch.getReportedUsers();
 
         recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);

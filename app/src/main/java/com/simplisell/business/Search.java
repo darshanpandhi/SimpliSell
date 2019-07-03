@@ -17,24 +17,18 @@ public class Search
 {
 
     private final AdPersistence adInterface;
-    private final UserPersistence userInterface;
     private final List<Ad> allAds;
-    private final List<User> allUsers;
 
     public Search()
     {
         adInterface = Services.getAdPersistence();
-        userInterface = Services.getUserPersistence();
         allAds = adInterface.getAds();
-        allUsers = userInterface.getUsers();
     }
 
-    public Search(final AdPersistence adPersistence, final UserPersistence userPersistence)
+    public Search(final AdPersistence adPersistence)
     {
         adInterface = adPersistence;
-        userInterface = userPersistence;
         allAds = adInterface.getAds();
-        allUsers = userInterface.getUsers();
     }
 
     public List<Ad> getAllAdsByCategory(Category category)
@@ -84,21 +78,6 @@ public class Search
         return adList;
     }
 
-    public List<User> getReportedUsers()
-    {
-        List<User> userList = new ArrayList<User>();
-
-        int minNumberOfReports = 3;
-
-        for (User user: allUsers)
-        {
-            if (user.getNumReports() >= minNumberOfReports)
-            {
-                userList.add(user);
-            }
-        }
-        return userList;
-    }
 
     public List<Ad> getAllAds()
     {
