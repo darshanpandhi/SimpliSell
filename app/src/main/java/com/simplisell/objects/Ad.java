@@ -18,6 +18,20 @@ public final class Ad
     private Date expiryDate;
 
     public Ad(int adId, final String adOwner, final AdType adType, final Category category, final
+    String title, final String description, final double price, final int numReports, final Date expiryDate)
+    {
+        this.adId = adId;
+        this.adOwner = adOwner;
+        this.adType = adType;
+        this.category = category;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.numReports = numReports;
+        this.expiryDate = expiryDate;
+    }
+
+    public Ad(int adId, final String adOwner, final AdType adType, final Category category, final
     String title, final String description, final double price, final int numReports)
     {
         this.adId = adId;
@@ -28,7 +42,6 @@ public final class Ad
         this.description = description;
         this.price = price;
         this.numReports = numReports;
-
         this.expiryDate = calculateExpireDate();
     }
 
@@ -145,7 +158,7 @@ public final class Ad
         numReports++;
     }
 
-    private Date calculateExpireDate()
+    public Date calculateExpireDate()
     {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DATE, 21);

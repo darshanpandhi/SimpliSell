@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 public class AdPersistenceHSQLDB implements AdPersistence
 {
@@ -47,7 +48,8 @@ public class AdPersistenceHSQLDB implements AdPersistence
         final String description = rs.getString("DESCRIPTION");
         final double price = rs.getDouble("PRICE");
         final int numReports = rs.getInt("NUMREPORTS");
-        return new Ad(adID, adOwner, adType, category, title, description, price, numReports);
+        final Date expiryDate = rs.getDate("EXPIRYDATE");
+        return new Ad(adID, adOwner, adType, category, title, description, price, numReports, expiryDate);
     }
 
     @Override
@@ -128,7 +130,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
         try (final Connection c = connection())
         {
             int newAdID = getAdID();
-            final PreparedStatement st = c.prepareStatement("INSERT INTO ADS VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO ADS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
             st.setInt(1, newAdID);
             st.setString(2, ad.getAdOwner());
             st.setInt(3, ad.getAdType().ordinal());
@@ -137,6 +139,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
             st.setString(6, ad.getDescription());
             st.setDouble(7, ad.getPrice());
             st.setInt(8, ad.getNumReports());
+            st.setDate(9, ad.getExpireDate());
 
             st.executeUpdate();
             st.close();
@@ -208,7 +211,19 @@ public class AdPersistenceHSQLDB implements AdPersistence
     @Override
     public final void repostAd(final int adID)
     {
-        // Guys I need help here XD
-        // Not sure how to reset expiry date within the database
+        Ad ad = getAd(adID);
+
+        try (final Connection c = connection())
+        {
+            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET EXPIRYDATE = ? WHERE ADID = ?");
+            st.setDate(1, ad.calculateExpireDate());
+            st.setInt(2, ad.getAdId());
+
+            st.executeUpdate();
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
     }
 }
