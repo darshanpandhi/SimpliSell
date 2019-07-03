@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.simplisell.R;
-import com.simplisell.business.Search;
+import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
@@ -24,7 +24,7 @@ import java.util.List;
 public class TabFragment extends Fragment
 {
 
-    private Search adsSearch;
+    private AccessAds adsSearch;
     private boolean isSortedAscending = false;
 
     private List<Ad> ads;
@@ -39,7 +39,7 @@ public class TabFragment extends Fragment
 
 
     @SuppressLint("ValidFragment")
-    public TabFragment(List<Ad> ads, Search adsSearch)
+    public TabFragment(List<Ad> ads, AccessAds adsSearch)
     {
         this.ads = ads;
         this.adsSearch = adsSearch;
