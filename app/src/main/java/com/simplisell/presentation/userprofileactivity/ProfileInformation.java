@@ -24,13 +24,11 @@ public class ProfileInformation extends AppCompatActivity
 
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
-    private static final String USERNAME_TEXT="USER";
-
+    private static final String USERNAME_TEXT = "USER";
 
     private ImageButton profileImage;
-    private Button saveButton;
     private String userName;
-    private EditText firstAndLastName;              // name of user
+    private EditText firstAndLastName;   // name of user
     private EditText password;          // password of user
     private EditText securityQuestion;  // security question of user
     private EditText securityAnswer;    // security answer of user
@@ -40,12 +38,12 @@ public class ProfileInformation extends AppCompatActivity
     private AccessUsers accessUsers;      // helps  access users
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_information);
+
         userName = getIntent().getStringExtra(USERNAME_TEXT);
         accessUsers = new AccessUsers();
         profileImage = findViewById(R.id.profileImage);
@@ -87,7 +85,8 @@ public class ProfileInformation extends AppCompatActivity
         if (currUser.getProfilePhoto() != null)
         {
             Bitmap photo = EncoderDecoder.stringToBitMap(currUser.getProfilePhoto());
-            Bitmap displayProfile = Bitmap.createScaledBitmap(photo,(int)(photo.getWidth()*2.8),(int)(photo.getHeight()*2.8),true);
+            Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 2.8),
+                    (int) (photo.getHeight() * 2.8), true);
             profileImage.setImageBitmap(displayProfile);
             photoTextView.setText("");
         }
@@ -105,15 +104,11 @@ public class ProfileInformation extends AppCompatActivity
         if (currUser.getPhoneNumber() != null)
         {
             phoneNumber.setHint(currUser.getPhoneNumber());
-
         }
 
         securityQuestion.setHint(currUser.getSecurityQuestion());
         securityAnswer.setHint(currUser.getSecurityAnswer());
-
-
     }
-
 
 
     public void profileInformationSaveClick(View view)
@@ -129,59 +124,63 @@ public class ProfileInformation extends AppCompatActivity
         String userSecurityAnswer = currUser.getSecurityAnswer();
         String userProfilePhoto = currUser.getProfilePhoto();
 
-        boolean userUpdatedProfle = false;
+        boolean userUpdatedProfile = false;
 
-        if (!(firstAndLastName.getText().toString()).isEmpty())
+        if (!isEditTextEmpty(firstAndLastName))
         {
             userFullName = firstAndLastName.getText().toString();
-            userUpdatedProfle = true;
+            userUpdatedProfile = true;
         }
 
-        if (!(email.getText().toString()).isEmpty())
+        if (!isEditTextEmpty(email))
         {
             userEmail = email.getText().toString();
-            userUpdatedProfle = true;
+            userUpdatedProfile = true;
         }
 
-        if (!(phoneNumber.getText().toString()).isEmpty())
+        if (!isEditTextEmpty(phoneNumber))
         {
             userPhoneNumber = phoneNumber.getText().toString();
-            userUpdatedProfle = true;
+            userUpdatedProfile = true;
         }
 
-        if (!(securityQuestion.getText().toString()).isEmpty())
+        if (!isEditTextEmpty(securityQuestion))
         {
             userSecurityQuestion = securityQuestion.getText().toString();
-            userUpdatedProfle = true;
+            userUpdatedProfile = true;
         }
 
-        if (!(securityAnswer.getText().toString()).isEmpty())
+        if (!isEditTextEmpty(securityAnswer))
         {
             userSecurityAnswer = securityAnswer.getText().toString();
-            userUpdatedProfle = true;
+            userUpdatedProfile = true;
         }
 
-        if (!(password.getText().toString()).isEmpty())
+        if (!isEditTextEmpty(password))
         {
             accessUsers.updatePassword(userName, password.getText().toString());
         }
 
-        if (userUpdatedProfle)
+        if (userUpdatedProfile)
         {
-            accessUsers.updateProfileInformation(userName, userFullName, userEmail, userPhoneNumber, userSecurityQuestion, userSecurityAnswer);
+            accessUsers.updateProfileInformation(userName, userFullName, userEmail, userPhoneNumber,
+                    userSecurityQuestion, userSecurityAnswer);
         }
 
 
         Toast.makeText(this, "PROFILE INFORMATION UPDATED", Toast.LENGTH_LONG).show();
 
         finish();
-        Intent i = new Intent(getApplicationContext(),UserProfileMenu.class);
+        Intent i = new Intent(getApplicationContext(), UserProfileMenu.class);
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
 
 
-
+    private boolean isEditTextEmpty(EditText userAttribute)
+    {
+        return (userAttribute.getText().toString()).isEmpty();
+    }
 
 
     @Override
@@ -200,9 +199,7 @@ public class ProfileInformation extends AppCompatActivity
                 Toast.makeText(this, "Camera permission denied!", Toast.LENGTH_LONG).show();
             }
         }
-
     }
-
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -210,7 +207,8 @@ public class ProfileInformation extends AppCompatActivity
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK)
         {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            Bitmap displayProfile = Bitmap.createScaledBitmap(photo,(int)(photo.getWidth()*2.8),(int)(photo.getHeight()*2.8),true);
+            Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 2.8),
+                    (int) (photo.getHeight() * 2.8), true);
             profileImage.setImageBitmap(displayProfile);
             photoTextView.setText("");
 
@@ -222,13 +220,13 @@ public class ProfileInformation extends AppCompatActivity
         }
     }
 
+
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
         finish();
-        Intent i = new Intent(this,UserProfileMenu.class);
+        Intent i = new Intent(this, UserProfileMenu.class);
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
 }

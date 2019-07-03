@@ -75,14 +75,47 @@ public class MainActivity extends AppCompatActivity
 
         getLoggedInUser();
 
-        profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
+        profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivity_accountButton);
         displayProfilePhoto();
 
         tabSetUp();
     }
 
 
-    private void initializeTabFragments()
+    private void copyDatabaseToDevice()
+    {
+        final String DB_PATH = "db";
+
+        String[] assetNames;
+        Context context = getApplicationContext();
+        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
+        AssetManager assetManager = getAssets();
+
+        try
+        {
+            //load in all asset file
+            assetNames = assetManager.list(DB_PATH);
+
+            if (assetNames != null)
+            {
+                for (int i = 0; i < assetNames.length; i++)
+                {
+                    assetNames[i] = DB_PATH + "/" + assetNames[i];
+                }
+
+                copyAssetsToDirectory(assetNames, dataDirectory);
+
+                Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
+            }
+        }
+        catch (final IOException ioe)
+        {
+            Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
+        }
+    }
+
+
+    void initializeTabFragments()
     {
         tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
         tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS), search);
@@ -92,6 +125,56 @@ public class MainActivity extends AppCompatActivity
         tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS), search);
         tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
         tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
+    }
+
+
+    private void getLoggedInUser()
+    {
+        if (userName == null)  // if there is no logged in user
+        {
+            try
+            {
+
+                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
+                // in.
+
+                if (userName != null)
+                {
+
+                    currUser = accessUsers.getUser(userName);
+                }
+            }
+            catch (Exception e)
+            {
+
+                userName = null;
+                currUser = null;
+            }
+        }
+        else
+        {
+            currUser = accessUsers.getUser(userName);   //Update to show profile image
+        }
+    }
+
+
+    private void displayProfilePhoto()
+    {
+        if (currUser != null)
+        {
+            String profilePhoto = currUser.getProfilePhoto();
+
+            if (profilePhoto != null)
+            {
+
+                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
+
+                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
+                        (int) (photo.getHeight() * 0.7), true);
+
+                profileBtn.setImageBitmap(displayProfile);
+            }
+        }
     }
 
 
@@ -275,90 +358,6 @@ public class MainActivity extends AppCompatActivity
         tabFragmentEventsObj.revertAds();
         tabFragmentElectronicsObj.revertAds();
         tabFragmentOtherObj.revertAds();
-    }
-
-
-    private void getLoggedInUser()
-    {
-        if (userName == null)  // if there is no logged in user
-        {
-            try
-            {
-
-                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
-                // in.
-
-                if (userName != null)
-                {
-
-                    currUser = accessUsers.getUser(userName);
-                }
-            }
-            catch (Exception e)
-            {
-
-                userName = null;
-                currUser = null;
-            }
-        }
-        else
-        {
-            currUser = accessUsers.getUser(userName);   //Update to show profile image
-        }
-    }
-
-
-    private void displayProfilePhoto()
-    {
-        if (currUser != null)
-        {
-
-            String profilePhoto = currUser.getProfilePhoto();
-
-            if (profilePhoto != null)
-            {
-
-                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
-
-                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
-                        (int) (photo.getHeight() * 0.7), true);
-
-                profileBtn.setImageBitmap(displayProfile);
-            }
-        }
-    }
-
-
-    private void copyDatabaseToDevice()
-    {
-        final String DB_PATH = "db";
-
-        String[] assetNames;
-        Context context = getApplicationContext();
-        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
-        AssetManager assetManager = getAssets();
-
-        try
-        {
-            //load in all asset file
-            assetNames = assetManager.list(DB_PATH);
-
-            if (assetNames != null)
-            {
-                for (int i = 0; i < assetNames.length; i++)
-                {
-                    assetNames[i] = DB_PATH + "/" + assetNames[i];
-                }
-
-                copyAssetsToDirectory(assetNames, dataDirectory);
-
-                Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
-            }
-        }
-        catch (final IOException ioe)
-        {
-            Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
-        }
     }
 
 
