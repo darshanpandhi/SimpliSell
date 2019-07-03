@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity
 
     private static User currUser = null;
     private static String userName = null;
-    private static boolean isSortedAscending = false;
 
     private final String USERNAME_TEXT = "USER";
 
@@ -65,94 +64,20 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
-        search = new Search();
 
-        tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
-        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS), search);
-        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION), search);
-        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES), search);
-        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION), search);
-        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS), search);
-        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
-        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
+        search = new Search();
+        initializeTabFragments();
 
         accessUsers = new AccessUsers();
+
+        getLoggedInUser();
+
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
-
-
-        if (userName == null)  // if there is no logged in user
-        {
-            try
-            {
-
-                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
-                // in.
-
-                if (userName != null)
-                {
-
-                    currUser = accessUsers.getUser(userName);
-                }
-            }
-            catch (Exception e)
-            {
-
-                userName = null;
-                currUser = null;
-            }
-        }
-        else
-        {
-            currUser = accessUsers.getUser(userName);   //Update to show profile image
-        }
-
-
-        if (currUser != null)
-        {
-
-            String profilePhoto = currUser.getProfilePhoto();
-
-            if (profilePhoto != null)
-            {
-
-                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
-
-                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
-                        (int) (photo.getHeight() * 0.7), true);
-
-                profileBtn.setImageBitmap(displayProfile);
-            }
-        }
+        displayProfilePhoto();
 
         tabSetUp();
     }
 
-
-    private void tabSetUp()
-    {
-
-        tabLayout = findViewById(R.id.tabview_mainActivity);
-        viewPager = findViewById(R.id.view_pager_mainActivity);
-
-
-        TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
-
-        // adding the fragments
-        adapter.addFragment(tabFragmentAllObj, "All");
-        adapter.addFragment(tabFragmentBooksObj, "Book");
-        adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
-        adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
-        adapter.addFragment(tabFragmentEventsObj, "Events");
-        adapter.addFragment(tabFragmentTransportationObj, "Transportation");
-        adapter.addFragment(tabFragmentLivingObj, "Accommodation");
-        adapter.addFragment(tabFragmentOtherObj, "Other");
-
-
-        // adapter setup
-
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-    }
 
 
     public static void logOutUser()
@@ -241,31 +166,6 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
     }
 
-    private void filterTabs(AdType adType)
-    {
-        tabFragmentAllObj.filterByType(adType);
-        tabFragmentBooksObj.filterByType(adType);
-        tabFragmentTransportationObj.filterByType(adType);
-        tabFragmentServicesJobsObj.filterByType(adType);
-        tabFragmentLivingObj.filterByType(adType);
-        tabFragmentEventsObj.filterByType(adType);
-        tabFragmentElectronicsObj.filterByType(adType);
-        tabFragmentOtherObj.filterByType(adType);
-    }
-
-    private void revertTabs()
-    {
-        tabFragmentAllObj.revertAds();
-        tabFragmentBooksObj.revertAds();
-        tabFragmentTransportationObj.revertAds();
-        tabFragmentServicesJobsObj.revertAds();
-        tabFragmentLivingObj.revertAds();
-        tabFragmentEventsObj.revertAds();
-        tabFragmentElectronicsObj.revertAds();
-        tabFragmentOtherObj.revertAds();
-    }
-
-
     public void sortBtnClick(View view)
     {
 
@@ -301,6 +201,116 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void initializeTabFragments()
+    {
+        tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
+        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS), search);
+        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION), search);
+        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES), search);
+        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION), search);
+        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS), search);
+        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
+        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
+    }
+
+    private void tabSetUp()
+    {
+
+        tabLayout = findViewById(R.id.tabview_mainActivity);
+        viewPager = findViewById(R.id.view_pager_mainActivity);
+
+
+        TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
+
+        // adding the fragments
+        adapter.addFragment(tabFragmentAllObj, "All");
+        adapter.addFragment(tabFragmentBooksObj, "Book");
+        adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
+        adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
+        adapter.addFragment(tabFragmentEventsObj, "Events");
+        adapter.addFragment(tabFragmentTransportationObj, "Transportation");
+        adapter.addFragment(tabFragmentLivingObj, "Accommodation");
+        adapter.addFragment(tabFragmentOtherObj, "Other");
+
+
+        // adapter setup
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void filterTabs(AdType adType)
+    {
+        tabFragmentAllObj.filterByType(adType);
+        tabFragmentBooksObj.filterByType(adType);
+        tabFragmentTransportationObj.filterByType(adType);
+        tabFragmentServicesJobsObj.filterByType(adType);
+        tabFragmentLivingObj.filterByType(adType);
+        tabFragmentEventsObj.filterByType(adType);
+        tabFragmentElectronicsObj.filterByType(adType);
+        tabFragmentOtherObj.filterByType(adType);
+    }
+
+    private void revertTabs()
+    {
+        tabFragmentAllObj.revertAds();
+        tabFragmentBooksObj.revertAds();
+        tabFragmentTransportationObj.revertAds();
+        tabFragmentServicesJobsObj.revertAds();
+        tabFragmentLivingObj.revertAds();
+        tabFragmentEventsObj.revertAds();
+        tabFragmentElectronicsObj.revertAds();
+        tabFragmentOtherObj.revertAds();
+    }
+
+    private void getLoggedInUser()
+    {
+        if (userName == null)  // if there is no logged in user
+        {
+            try
+            {
+
+                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
+                // in.
+
+                if (userName != null)
+                {
+
+                    currUser = accessUsers.getUser(userName);
+                }
+            }
+            catch (Exception e)
+            {
+
+                userName = null;
+                currUser = null;
+            }
+        }
+        else
+        {
+            currUser = accessUsers.getUser(userName);   //Update to show profile image
+        }
+    }
+
+    private void displayProfilePhoto()
+    {
+        if (currUser != null)
+        {
+
+            String profilePhoto = currUser.getProfilePhoto();
+
+            if (profilePhoto != null)
+            {
+
+                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
+
+                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
+                        (int) (photo.getHeight() * 0.7), true);
+
+                profileBtn.setImageBitmap(displayProfile);
+            }
+        }
+    }
 
     private void copyDatabaseToDevice()
     {

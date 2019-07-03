@@ -55,8 +55,7 @@ public class TabFragment extends Fragment
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tab_fragment, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.listView_insideFragment);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext());
-        recyclerViewAdapter.setMyAd(filteredAds);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), filteredAds);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 
