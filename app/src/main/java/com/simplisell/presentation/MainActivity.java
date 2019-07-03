@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private AccessUsers accessUsers;      // helps  access users
     private Search search;
+    private ImageButton profileBtn;
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
     private TabFragment tabFragmentTransportationObj;
@@ -66,70 +68,7 @@ public class MainActivity extends AppCompatActivity
         search = new Search();
         initializeTabFragments();
 
-<<<<<<< HEAD
-        // helps  access users
-        AccessUsers accessUsers = new AccessUsers();
-        ImageButton profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
-
-
-        if (userName == null)  // if there is no logged in user
-        {
-            try
-            {
-
-                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
-                // in.
-
-                if (userName != null)
-                {
-
-                    currUser = accessUsers.getUser(userName);
-                }
-            }
-            catch (Exception e)
-            {
-
-                userName = null;
-                currUser = null;
-            }
-        }
-        else
-        {
-            currUser = accessUsers.getUser(userName);   //Update to show profile image
-        }
-||||||| merged common ancestors
         accessUsers = new AccessUsers();
-        profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
-
-
-        if (userName == null)  // if there is no logged in user
-        {
-            try
-            {
-
-                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
-                // in.
-
-                if (userName != null)
-                {
-
-                    currUser = accessUsers.getUser(userName);
-                }
-            }
-            catch (Exception e)
-            {
-
-                userName = null;
-                currUser = null;
-            }
-        }
-        else
-        {
-            currUser = accessUsers.getUser(userName);   //Update to show profile image
-        }
-=======
-        accessUsers = new AccessUsers();
->>>>>>> 301924a647b5c0ee90dc51f5164499b90819e8a3
 
         getLoggedInUser();
 
