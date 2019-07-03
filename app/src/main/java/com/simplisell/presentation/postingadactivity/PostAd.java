@@ -147,7 +147,7 @@ public class PostAd extends AppCompatActivity
     {
         AlertDialog dialog;
         AlertDialog.Builder builder;
-        final String[] types = {"OFFERING", "WANT"};
+        final String[] types = {"OFFERING", "WANTED"};
 
         builder = new AlertDialog.Builder(PostAd.this);
 

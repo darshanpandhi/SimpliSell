@@ -10,8 +10,6 @@ public class AccessUsers
 {
     private UserPersistence userPersistence;
 
-
-
     public AccessUsers()
     {
         userPersistence = Services.getUserPersistence();
@@ -25,11 +23,6 @@ public class AccessUsers
     public User getUser(String userName)
     {
         return userPersistence.getUser(userName);
-    }
-
-    public List<User> getAllUsers()
-    {
-        return userPersistence.getUsers();
     }
 
     public User insertNewUser(User currentUser)

@@ -156,7 +156,7 @@
             android:layout_marginStart="20dp"
             android:gravity="center"
             android:onClick="selectTypeBtnClick"
-            android:text="@string/allType"
+            android:text="@string/filter"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="18sp"
