@@ -1,5 +1,9 @@
 package com.simplisell.objects;
 
+
+import java.sql.Date;
+import java.util.Calendar;
+
 public final class Ad
 {
     private static int idCounter = 1;
@@ -13,6 +17,7 @@ public final class Ad
     private double price;
     private int numReports;
 
+    private Date expiryDate;
 
     public Ad(int adId, final String adOwner, final AdType adType, final Category category, final
     String title, final String description, final double price, final int numReports)
@@ -25,6 +30,8 @@ public final class Ad
         this.description = description;
         this.price = price;
         this.numReports = numReports;
+
+        expiryDate = calculateExpireDate();
     }
 
     public Ad(final String adOwner, final AdType adType, final Category category, final
@@ -122,9 +129,31 @@ public final class Ad
         return numReports;
     }
 
+    public Date getExpireDate()
+    {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date date)
+    {
+        this.expiryDate = date;
+    }
+
     public void incrementNumReports()
     {
         numReports++;
     }
-}
 
+    private Date calculateExpireDate()
+    {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, 21);
+
+        return new Date(c.getTimeInMillis());
+    }
+
+    public void resetExpiryDate()
+    {
+        expiryDate = calculateExpireDate();
+    }
+}

@@ -48,6 +48,11 @@ public final class AccessAds
         adPersistence.reportAd(adID);
     }
 
+    public void repostAd(final int adID)
+    {
+        adPersistence.repostAd(adID);
+    }
+
     public final int getAdID()
     {
         return adPersistence.getAdID();

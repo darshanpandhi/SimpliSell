@@ -18,6 +18,8 @@ import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.presentation.MainActivity;
 
+import java.util.Calendar;
+
 public class PostAd extends AppCompatActivity
 {
     private final String USERNAME_TEXT = "USER";

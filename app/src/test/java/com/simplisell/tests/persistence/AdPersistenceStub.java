@@ -168,4 +168,10 @@ public class AdPersistenceStub implements AdPersistence
         }
         return maxAdID;
     }
+
+    public void repostAd(final int adID)
+    {
+        Ad repostedAd = getAd(adID);
+        repostedAd.resetExpiryDate();
+    }
 }
