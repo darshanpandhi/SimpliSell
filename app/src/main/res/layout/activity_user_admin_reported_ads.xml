@@ -29,7 +29,6 @@
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/holo_red_dark"
             android:onClick="accountBtnClick"
-            android:src="@drawable/round_arrow_back_white_24"
 
             tools:ignore="ContentDescription" />
 
