@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.LoginActivity.Login"
-    android:background="@color/colorPrimary"
-    >
+    android:background="@color/colorPrimaryDark"
+    tools:context=".presentation.loginactivity.Login">
 
     <TextView
         android:id="@+id/textView_login_loginText"
@@ -15,11 +14,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/orbitron_medium"
+        android:fontFamily="@font/orbitron"
         android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
-        android:textSize="75sp"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -32,12 +31,12 @@
         android:layout_width="254dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:background="@android:drawable/editbox_background"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimary"
         android:cursorVisible="true"
         android:ems="10"
         android:hint="@string/userName"
@@ -45,6 +44,7 @@
         android:shadowColor="@color/black_overlay"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@color/black_overlay"
+        android:textColorHint="@color/whiteBtn"
         android:textColorLink="@color/black_overlay"
         android:textCursorDrawable="@drawable/cursor_colour"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +52,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_login_loginText"
-        app:layout_constraintVertical_bias="0.107"
+        app:layout_constraintVertical_bias="0.042"
         tools:targetApi="o" />
 
     <EditText
@@ -60,11 +60,12 @@
         android:layout_width="254dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="484dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:background="@android:drawable/editbox_background_normal"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimary"
         android:cursorVisible="true"
         android:ems="10"
         android:hint="@string/password"
@@ -72,6 +73,7 @@
         android:shadowColor="@color/colorAccent"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/whiteBtn"
         android:textColorLink="@color/colorAccent"
         android:textCursorDrawable="@drawable/cursor_colour"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +81,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_enterUserName"
-        app:layout_constraintVertical_bias="0.528"
+        app:layout_constraintVertical_bias="0.052"
         tools:targetApi="o" />
 
     <Button
@@ -118,29 +120,27 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_enterPassword"
-        app:layout_constraintVertical_bias="0.402" />
+        app:layout_constraintVertical_bias="0.491" />
 
     <Button
-        android:id="@+id/button_login_signupBtn"
         android:layout_width="254dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="signUpBtnClick"
         android:background="@android:drawable/editbox_background"
         android:backgroundTint="@android:color/background_light"
+        android:onClick="signUpBtnClick"
         android:text="@string/signupTwo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_login_or"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.248" />
 
     <TextView
-        android:id="@+id/textView_login_resetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

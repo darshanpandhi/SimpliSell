@@ -1,7 +1,6 @@
 #   Architecture
 The architecture for SimpliSell is 3-tier architecture, consisting of the presentation, logic and the persistence layer.
 
-
 ![Architecture](Architecture_Diagram.png)
 
 ##  Presentation Layer
@@ -14,16 +13,17 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 **SpashActivity**
 *   When the app starts the splash screen stays for about 2 seconds.
 
+**UserProfile**
+
+*   UsersOwnAds
+*   ProfileInformation
+*   UserProfileMenu
+*   ProfileListViewAdapter
+
+
 **HomePageTabs**
 
-*   TabFragmentAll
-*   TabFragmentBooks
-*   TabFragmentElectronics
-*   TabFragmentEvents
-*   TabFragmentLiving
-*   TabFragmentServiceJobs
-*   TabFragmentTransportation
-*   TabFragmentOther
+*   TabFragment
 *   TabFragmentAdapter
 
 **Login**
@@ -46,15 +46,11 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 
 **AccessAds**
 
-*   Insert, get and delete advertisements from the database
+*   Insert, get and delete advertisements from the database and Filters out advertisements based on categories, and sorts the advertisements by price
 
 **AccessUsers**
 
 *   Insert, and get users from the database
-
-**Search**
-
-*   Filters out advertisements based on categories, and sorts the advertisements by price
 
 **Credentials**
 
@@ -79,6 +75,16 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 **UserPersistenceStub**
 
 *   Stub implementation for users in the database
+ 
+**AdPersistenceHSQLDB**
+
+*   Implementation for advertisements in the database
+
+**UserPersistenceHSQLDB**
+
+*   Implementation for users in the database
+ 
+
 
 ##   Domain Objects
 **Ad**

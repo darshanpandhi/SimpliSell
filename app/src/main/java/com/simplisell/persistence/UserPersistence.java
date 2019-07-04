@@ -6,17 +6,14 @@ import java.util.List;
 
 public interface UserPersistence
 {
-    List<User> getUsers();
-
     User getUser(String userName);
-
-    String getPassword(String userName);
-
-    String getSecurityQuestion(String userName);
-
-    String getSecurityAnswer(String userName);
 
     User insertUser(User user);
 
-    User updatePassword(String userName, String newPassword);
+    void updatePassword(String userName, String newPassword);
+
+    void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer);
+
+    void updateProfileImage(String userName, String profilePhoto);
+
 }
