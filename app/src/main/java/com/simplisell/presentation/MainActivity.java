@@ -20,7 +20,7 @@ import com.simplisell.business.AccessUsers;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
-import com.simplisell.objects.EncoderDecoder;
+import com.simplisell.business.EncoderDecoder;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.homepagetabs.TabFragment;
 import com.simplisell.presentation.homepagetabs.TabPagerAdapter;

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.objects.EncoderDecoder;
+import com.simplisell.business.EncoderDecoder;
 import com.simplisell.objects.User;
 
 public class ProfileInformation extends AppCompatActivity
@@ -216,7 +216,6 @@ public class ProfileInformation extends AppCompatActivity
             String userName = currUser.getUserName();
 
             accessUsers.updateProfileImage(userName, EncoderDecoder.bitMapToString(photo));
-            System.out.println(EncoderDecoder.bitMapToString(photo).length());
         }
     }
 

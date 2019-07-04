@@ -52,6 +52,8 @@ public class Login extends AppCompatActivity
         String userNameEditBox;       // The userName in the textbox will be stored here.
         String passwordEditBox;    // The userName in the password will be stored here.
 
+
+
         // check if these fields are empty
         boolean userNameEmpty = userName.getText().toString().isEmpty();
         boolean passwordEmpty = password.getText().toString().isEmpty();
@@ -67,6 +69,7 @@ public class Login extends AppCompatActivity
 
             userNameEditBox = userName.getText().toString();
             passwordEditBox = password.getText().toString();
+            // Show a progress Dialog while the authentication is loading
 
             User loggedInUser = credentials.authenticate(userNameEditBox, passwordEditBox);
 
