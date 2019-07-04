@@ -28,14 +28,16 @@ public class AccessUsersTest
     {
         System.out.println("\nStarting AccessUsersTest: insert unique username");
 
-        User user = new User("Bob Saget","UniqueUser", "123456", "What is your favourite " +
-                "color", "Red", 0, null, null, null);
+        User user = new User("Bob Saget","UniqueUser", "123456", "What is your favourite color?", "Red", null, null, null);
         User addedUser = userList.insertNewUser(user);
 
         assertNotNull(addedUser);
+        assertEquals("Bob Saget", addedUser.getFirstAndLastName());
         assertEquals("UniqueUser",addedUser.getUserName());
         assertEquals("123456", addedUser.getPassword());
-        assertEquals(0, addedUser.getNumReports());
+        assertEquals("What is your favourite color?", addedUser.getSecurityQuestion());
+        assertEquals("Red", addedUser.getSecurityAnswer());
+
         System.out.println("Finished AccessUsersTest: insert unique username");
     }
 
@@ -45,7 +47,7 @@ public class AccessUsersTest
         System.out.println("\nStarting AccessUsersTest: insert duplicate username");
 
         User user = new User("ba ba","User1", "123456", "What is your favourite " +
-                "color", "Red", 0, null, null, null);
+                "color", "Red", null, null, null);
         User addedUser = userList.insertNewUser(user);
         addedUser = userList.insertNewUser(user);
 
@@ -54,21 +56,6 @@ public class AccessUsersTest
         System.out.println("Finished insertNewUser: username exist");
     }
 
-    @Test
-    public void testReportUser()
-    {
-        System.out.println("\nStarting AccessUsersTest: test report user");
-
-        User user = new User("ba ba","User100", "123456", "What is your favourite " +
-                "color", "Red", 0, null, null, null);
-        userList.insertNewUser(user);
-        assertNotNull(user);
-
-        userList.reportUser("User100");
-        assertEquals(1, userList.getUser("User100").getNumReports());
-
-        System.out.println("Finished insertNewUser: user reported");
-    }
 
     @Test
     public void testChangePassword()
@@ -76,7 +63,7 @@ public class AccessUsersTest
         System.out.println("\nStarting AccessUsersTest: test change password");
 
         User user = new User("ba ba","User10", "123456", "What is your favourite " +
-                "color", "Red", 0, null, null, null);
+                "color", "Red", null, null, null);
         userList.insertNewUser(user);
         assertNotNull(user);
 
@@ -92,7 +79,7 @@ public class AccessUsersTest
         System.out.println("\nStarting AccessUsersTest: test update profile information");
 
         User user = new User("Bobby Lee","Bobby", "123456", "What is your favourite " +
-                "color", "Red", 0, null, null, null);
+                "color", "Red", null, null, null);
         userList.insertNewUser(user);
         assertNotNull(user);
 
@@ -118,18 +105,14 @@ public class AccessUsersTest
         System.out.println("\nStarting AccessUsersTest: test update profile photo");
 
         User user = new User("Bobby Lee 2","Bobby2", "123456", "What is your favourite " +
-                "color", "Red", 0, null, null, null);
+                "color", "Red", null, null, null);
         userList.insertNewUser(user);
         assertNotNull(user);
 
-        String newFullName = "Lee Bobby";
-        String newEmail = "leebobby@yahoo.ca";
-        String newPhoneNumber = "1234567890";
-        String newSecurityQuestion = "What is your favourite movie";
-        String newSecurityAnswer = "Hereditary";
         userList.updateProfileImage("Bobby2", "profileImageBase64");
         assertNotNull(user.getProfilePhoto());
         assertEquals("profileImageBase64", user.getProfilePhoto());
+
         System.out.println("Finished insertNewUser: profile photo updated");
     }
 }

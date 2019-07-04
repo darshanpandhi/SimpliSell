@@ -30,6 +30,16 @@ public final class AccessAds
         allAds = adPersistence.getAds();
     }
 
+    public final List<Ad> getAllAds()
+    {
+        return adPersistence.getAds();
+    }
+
+    public final Ad getAd(int adId)
+    {
+        return adPersistence.getAd(adId);
+    }
+
     public final Ad insertAd(final Ad newAd)
     {
         if (newAd == null || newAd.getClass() != Ad.class)
@@ -51,24 +61,9 @@ public final class AccessAds
         return adPersistence.insertAd(newAd);
     }
 
-    public final Ad getAd(int adId)
-    {
-        return adPersistence.getAd(adId);
-    }
-
-    public final List<Ad> getAllAds()
-    {
-        return adPersistence.getAds();
-    }
-
     public final Ad removeAd(final Ad adToBeRemoved)
     {
         return adPersistence.removeAd(adToBeRemoved);
-    }
-
-    public final void reportAd(final int adID)
-    {
-        adPersistence.reportAd(adID);
     }
 
     public void repostAd(final int adID)
@@ -111,15 +106,13 @@ public final class AccessAds
         return adList;
     }
 
-    public List<Ad> getReportedAds()
+    public List<Ad> filterAdsByType(List<Ad> ads, AdType adType)
     {
         List<Ad> adList = new ArrayList<Ad>();
 
-        int minNumberOfReports = 3;
-
-        for (Ad ad: allAds)
+        for (Ad ad : ads)
         {
-            if (ad.getNumReports() >= minNumberOfReports)
+            if (ad.getAdType() == adType)
             {
                 adList.add(ad);
             }
@@ -143,21 +136,6 @@ public final class AccessAds
         return ads;
     }
 
-    public List<Ad> filterAdsByType(List<Ad> ads, AdType adType)
-    {
-        List<Ad> adList = new ArrayList<Ad>();
-
-        for (Ad ad : ads)
-        {
-            if (ad.getAdType() == adType)
-            {
-                adList.add(ad);
-            }
-        }
-
-        return adList;
-    }
-
     public void removeExpiredAds()
     {
         long currTime = System.currentTimeMillis();
@@ -169,7 +147,7 @@ public final class AccessAds
 
         for (Ad ad : allAds)
         {
-            Date expiryDate = ad.getExpireDate();
+            Date expiryDate = ad.getExpiryDate();
             if (expiryDate.compareTo(currDate) < 0)
             {
                 adsToRemove.add(ad.getAdId());
@@ -181,6 +159,7 @@ public final class AccessAds
             adPersistence.removeAd(getAd(x));
         }
     }
+
 
     //Need multiple comparator functions per asc or desc sort due to API level 23
     Comparator<Ad> compareByPriceDesc = new Comparator<Ad>()

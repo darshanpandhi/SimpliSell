@@ -10,17 +10,15 @@ public class User
     private String securityAnswer;
     private String firstAndLastName;
     private String profilePhoto;
-    private int numReports;
 
 
-    public User(String fullName, String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer, int numOfReports, String newEmail, String newPhoneNumber, String newProfileImage)
+    public User(String fullName, String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer, String newEmail, String newPhoneNumber, String newProfileImage)
     {
         userName = newUserName;
         password = newUserPassword;
         securityQuestion = newSecurityQuestion;
         securityAnswer = newSecurityAnswer;
         firstAndLastName = fullName;
-        numReports = numOfReports;
         email = newEmail;
         phoneNumber = newPhoneNumber;
         profilePhoto = newProfileImage;
@@ -46,11 +44,6 @@ public class User
 
     public String getProfilePhoto() { return profilePhoto; }
 
-    public int getNumReports()
-    {
-        return numReports;
-    }
-
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
     public void setEmail(String email) { this.email = email; }
@@ -63,13 +56,9 @@ public class User
 
     public void setProfilePhoto(String profilePhoto) { this.profilePhoto = profilePhoto; }
 
-    public void setPassword(final String newPassword)
+    public void setPassword(String newPassword)
     {
         this.password = newPassword;
     }
 
-    public void incrementNumReports()
-    {
-        numReports++;
-    }
 }

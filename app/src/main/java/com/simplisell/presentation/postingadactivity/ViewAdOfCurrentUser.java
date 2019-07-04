@@ -44,7 +44,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         title = currAd.getTitle();
         description = currAd.getDescription();
         price = currAd.getPrice();
-        expireDate = currAd.getExpireDate();
+        expireDate = currAd.getExpiryDate();
 
         // display corresponding information
         TextView textViewTitle = findViewById(R.id.textView_viewAdCU_title);
@@ -58,7 +58,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         textViewPrice.setText(price);
 
         TextView textViewExpireDate = findViewById(R.id.textView_viewAdCU_expireDate);
-        String date = "Your ad will be expired on " + expireDate;
+        String date = "Your ad will expire on " + expireDate;
         textViewExpireDate.setText(date);
     }
 
@@ -93,7 +93,6 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
 
         finish();
         Intent i = new Intent(this, MainActivity.class);
-//        i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
 

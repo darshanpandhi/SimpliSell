@@ -28,7 +28,6 @@ public class ProfileInformation extends AppCompatActivity
 
 
     private ImageButton profileImage;
-    private Button saveButton;
     private String userName;
     private EditText firstAndLastName;              // name of user
     private EditText password;          // password of user

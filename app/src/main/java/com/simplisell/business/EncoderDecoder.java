@@ -3,8 +3,6 @@ package com.simplisell.business;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
 
 public class EncoderDecoder

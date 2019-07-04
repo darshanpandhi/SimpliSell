@@ -54,27 +54,4 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         textViewPrice.setText(price);
     }
 
-    public void reportAdBtnClick(View view)
-    {
-        accessAds.reportAd(currAd.getAdId());
-
-        Toast.makeText(getApplicationContext(), "Advertisement Reported", Toast.LENGTH_SHORT).show();
-
-        // go back to main page after deletion
-        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainPage);
-    }
-
-    public void reportUserBtnClick(View view)
-    {
-        String adOwner = currAd.getAdOwner();
-        User reportedUser = accessUsers.getUser(adOwner);
-        accessUsers.reportUser(reportedUser.getUserName());
-        Toast.makeText(getApplicationContext(), "User Reported ", Toast.LENGTH_SHORT).show();
-
-        // go back to main page after deletion
-        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainPage);
-    }
-
 }
