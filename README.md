@@ -16,6 +16,9 @@
 ## Our Architecture
 [Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/dev/Docs/ARCHITECTURE.md)
 
+## Identified Issues/Bugs
+[Low Performance](#118)
+
 ## Release notes - June 13, 2019
 - Login System is now complete!  Users can create a new account, reset their password and log into the app
 - All Advertisements display in the homepage, and users can filter these advertisements based on 7 categories: Books, Electronics, Events, Living, Service & Jobs, 
