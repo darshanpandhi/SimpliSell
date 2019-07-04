@@ -16,8 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".presentation.userprofileactivity.ProfileInformation">
-        </activity>
+        <activity android:name=".presentation.userprofileactivity.ProfileInformation"/>
         <activity android:name=".presentation.userprofileactivity.UsersOwnAds" />
         <activity android:name=".presentation.postingadactivity.ViewAdOfOtherUser" />
         <activity android:name=".presentation.postingadactivity.EditAd" />
@@ -26,9 +25,9 @@
         <activity android:name=".presentation.loginactivity.SignUp" />
         <activity android:name=".presentation.postingadactivity.PostAd" />
         <activity android:name=".presentation.loginactivity.Login" />
-        <activity android:name=".presentation.MainActivity" />
+        <activity android:name=".presentation.MainActivity" android:screenOrientation="portrait"
+            />
         <activity android:name=".presentation.loginactivity.ForgetPassword" />
-        <activity android:name=".presentation.useradminactivity.ReportedAds" />
         <activity android:name=".presentation.Messages" />
         <activity android:name=".presentation.SplashScreen">
             <intent-filter>

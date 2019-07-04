@@ -160,8 +160,9 @@ public final class Ad
 
     public Date calculateExpireDate()
     {
+        int daysTillExpired = 21;
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, 21);
+        c.add(Calendar.DATE, daysTillExpired);
 
         return new Date(c.getTimeInMillis());
     }
