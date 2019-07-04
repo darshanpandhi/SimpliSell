@@ -43,9 +43,12 @@ public class MainActivity extends AppCompatActivity
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
     private AccessUsers accessUsers;      // helps  access users
-    private AccessAds search;
+    private AccessAds search;             // helps  access ads
+
     private ImageButton profileBtn;
+
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
     private TabFragment tabFragmentTransportationObj;
@@ -76,6 +79,19 @@ public class MainActivity extends AppCompatActivity
         displayProfilePhoto();
 
         tabSetUp();
+    }
+
+
+    private void initializeTabFragments()
+    {
+        tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
+        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS), search);
+        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION), search);
+        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES), search);
+        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION), search);
+        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS), search);
+        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
+        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
     }
 
 
@@ -119,7 +135,7 @@ public class MainActivity extends AppCompatActivity
         search = new AccessAds();
         AlertDialog dialog;
         AlertDialog.Builder builder;
-        final String[] types = {"All Type", "OFFERING", "WANT"};
+        final String[] types = {"All Types", "OFFERING", "WANTED"};
 
         builder = new AlertDialog.Builder(MainActivity.this);
 
@@ -206,19 +222,6 @@ public class MainActivity extends AppCompatActivity
             postAd.putExtra(USERNAME_TEXT, userName);
             startActivity(postAd);
         }
-    }
-
-
-    private void initializeTabFragments()
-    {
-        tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
-        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS), search);
-        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION), search);
-        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES), search);
-        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION), search);
-        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS), search);
-        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
-        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
     }
 
 

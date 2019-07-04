@@ -20,6 +20,7 @@ public final class AccessAds
     public AccessAds()
     {
         adPersistence = Services.getAdPersistence();
+        removeExpiredAds();
         allAds = adPersistence.getAds();
     }
 
@@ -46,6 +47,7 @@ public final class AccessAds
         }
 
         newAd.setAdId(newAdId);
+        newAd.resetExpiryDate();
         return adPersistence.insertAd(newAd);
     }
 
@@ -72,11 +74,6 @@ public final class AccessAds
     public void repostAd(final int adID)
     {
         adPersistence.repostAd(adID);
-    }
-
-    public final int getAdID()
-    {
-        return adPersistence.getAdID();
     }
 
     public final void updateAd(Ad ad)
@@ -161,23 +158,28 @@ public final class AccessAds
         return adList;
     }
 
-    private List<Ad> removeExpiredAds(List<Ad> ads)
+    public void removeExpiredAds()
     {
         long currTime = System.currentTimeMillis();
 
         Date currDate = new Date(currTime);
 
-        for (Ad ad : ads)
+        List<Ad> allAds = adPersistence.getAds();
+        List<Integer> adsToRemove = new ArrayList<>();
+
+        for (Ad ad : allAds)
         {
             Date expiryDate = ad.getExpireDate();
             if (expiryDate.compareTo(currDate) < 0)
             {
-                ads.remove(ad);
-                adPersistence.removeAd(ad);
+                adsToRemove.add(ad.getAdId());
             }
         }
 
-        return ads;
+        for (Integer x : adsToRemove)
+        {
+            adPersistence.removeAd(getAd(x));
+        }
     }
 
     //Need multiple comparator functions per asc or desc sort due to API level 23

@@ -111,4 +111,25 @@ public class AccessUsersTest
 
         System.out.println("Finished insertNewUser: profile information updated");
     }
+
+    @Test
+    public void testUpdateProfileImage()
+    {
+        System.out.println("\nStarting AccessUsersTest: test update profile photo");
+
+        User user = new User("Bobby Lee 2","Bobby2", "123456", "What is your favourite " +
+                "color", "Red", 0, null, null, null);
+        userList.insertNewUser(user);
+        assertNotNull(user);
+
+        String newFullName = "Lee Bobby";
+        String newEmail = "leebobby@yahoo.ca";
+        String newPhoneNumber = "1234567890";
+        String newSecurityQuestion = "What is your favourite movie";
+        String newSecurityAnswer = "Hereditary";
+        userList.updateProfileImage("Bobby2", "profileImageBase64");
+        assertNotNull(user.getProfilePhoto());
+        assertEquals("profileImageBase64", user.getProfilePhoto());
+        System.out.println("Finished insertNewUser: profile photo updated");
+    }
 }
