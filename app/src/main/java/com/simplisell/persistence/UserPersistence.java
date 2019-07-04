@@ -16,6 +16,4 @@ public interface UserPersistence
 
     void updateProfileImage(String userName, String profilePhoto);
 
-    List<User> getUsers();
-
 }

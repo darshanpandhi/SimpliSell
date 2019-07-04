@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.simplisell.R;
-import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
@@ -61,9 +60,7 @@ public class Login extends AppCompatActivity
             userNameEditBox = userName.getText().toString();
             passwordEditBox = password.getText().toString();
 
-            User loggedInUser = new User(userNameEditBox, passwordEditBox);
-
-            loggedInUser = credentials.authenticate(loggedInUser);
+            User loggedInUser = credentials.authenticate(userNameEditBox, passwordEditBox);
 
             if (loggedInUser != null)
             {

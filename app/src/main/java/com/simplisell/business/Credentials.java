@@ -4,17 +4,14 @@ import com.simplisell.application.Services;
 import com.simplisell.objects.User;
 import com.simplisell.persistence.UserPersistence;
 
-import java.util.List;
-
 public class Credentials
 {
     private UserPersistence userPersistence;
-    private List<User> userList;
+
 
     public Credentials()
     {
         userPersistence = Services.getUserPersistence();
-        userList = userPersistence.getUsers();
     }
 
     public Credentials(UserPersistence userPersistence)
@@ -22,9 +19,10 @@ public class Credentials
         this.userPersistence = userPersistence;
     }
 
-    public User authenticate(User user)
+    public User authenticate(String userName, String password)
     {
-        boolean validUser = user != null && correctPassword(user.getUserName(), user.getPassword());
+        User user = userPersistence.getUser(userName);
+        boolean validUser = user != null && correctPassword(userName, password);
         if (!validUser)
         {
             user = null;
@@ -95,14 +93,7 @@ public class Credentials
     private boolean correctPassword(String userName, String password)
     {
         boolean match = false;
-        User user = null;
-        for (int i = 0; i < userList.size(); i++){
-            if (userName.equals(userList.get(i).getUserName()))
-            {
-                user = userList.get(i);
-            }
-        }
-
+        User user = userPersistence.getUser(userName);
         if (user != null)
         {
             match = user.getPassword().equals(password);

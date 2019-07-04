@@ -93,10 +93,4 @@ public class UserPersistenceStub implements UserPersistence
         return user;
     }
 
-    @Override
-    public List<User> getUsers()
-    {
-        return users;
-    }
-
 }
