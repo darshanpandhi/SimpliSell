@@ -27,6 +27,7 @@ public final class AccessAds
     public AccessAds(final AdPersistence adPersistence)
     {
         this.adPersistence = adPersistence;
+        removeExpiredAds();
         allAds = adPersistence.getAds();
     }
 
