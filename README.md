@@ -20,7 +20,7 @@
 [Low Performance](#118)
 
 ## Release notes - July 04, 2019
-- Advertisement Posting, Search, Persistent Storage and User Profiles features are now complete!  
+- Advertisement Posting, Search, Persistent Storage and User Profile features are now complete!  
 - In addition to posting new ads, updating and deleting existing ads, users can now one-click repost ads that are about to expire. 
 - One can also manage his list of own ads and customize his profile by adding a cool profile picture. 
 - The application now features a easy way to filter ads by type (Offering ads or Wanted Ads) or even sort them based on price.
