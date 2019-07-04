@@ -66,23 +66,4 @@
             app:layout_constraintVertical_bias="0.16" />
 
 
-    <Button
-        android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="40dp"
-            android:background="@android:drawable/editbox_background"
-            android:backgroundTint="@color/black_overlay"
-            android:onClick="reportAdBtnClick"
-            android:text="@string/report_ad"
-            android:textAllCaps="false"
-            android:textColor="@android:color/background_light"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.425"
-            app:layout_constraintStart_toStartOf="parent"/>
-
 </android.support.constraint.ConstraintLayout>

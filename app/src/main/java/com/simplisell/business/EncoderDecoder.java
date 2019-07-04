@@ -1,4 +1,4 @@
-package com.simplisell.objects;
+package com.simplisell.business;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
