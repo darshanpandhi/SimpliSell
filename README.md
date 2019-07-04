@@ -14,7 +14,6 @@
 [Iteration 3 User Stories](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/milestones/3)
 
 ## Our Architecture
-<<<<<<< HEAD
 [Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/master/Docs/ARCHITECTURE.md)
 
 ## Identified Issues/Bugs
@@ -23,7 +22,7 @@
 [Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/dev/Docs/ARCHITECTURE.md)
 
 ## Identified Issues/Bugs
-[Low Performance](#118)
+-[Low Performance](#118)
 
 ## Release notes - June 13, 2019
 - Login System is now complete!  Users can create a new account, reset their password and log into the app
@@ -57,4 +56,3 @@
         Password: 123456
       
         Security Question Answer: Blue
->>>>>>> dev
