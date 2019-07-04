@@ -1,11 +1,11 @@
 package com.simplisell.presentation.loginactivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.simplisell.R;
@@ -23,10 +23,9 @@ public class Login extends AppCompatActivity
 
     private EditText userName;             // the edit text box for userName of the user
     private EditText password;          // the edit text box for password of the user
-    private ProgressDialog progressDialog;  // progress Dialogue
     private Credentials credentials;
-    private AccessUsers accessUsers;
 
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,58 +40,59 @@ public class Login extends AppCompatActivity
         password = findViewById(R.id.editText_login_enterPassword);
 
         credentials = new Credentials();
+
+        //progressBar = findViewById(R.id.progressBar);
+
+        //progressBar.setVisibility(View.GONE);
     }
 
 
     public void loginBtnClick(View view)
     {
-
-        String userName;       // The userName in the textbox will be stored here.
-        String userPassword;    // The userName in the password will be stored here.
+        String userNameEditBox;       // The userName in the textbox will be stored here.
+        String passwordEditBox;    // The userName in the password will be stored here.
 
         // check if these fields are empty
-        boolean userNameEmpty = this.userName.getText().toString().isEmpty();
+        boolean userNameEmpty = userName.getText().toString().isEmpty();
         boolean passwordEmpty = password.getText().toString().isEmpty();
 
         if (userNameEmpty || passwordEmpty)   // if userName or password field is empty
         {
-
             // Make a toast to display error message
             Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            userName = this.userName.getText().toString();
-            userPassword = password.getText().toString();
+            //progressBar.setVisibility(View.GONE);
 
-            // Show a progress Dialog while the authentication is loading
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Logging In");
-            progressDialog.show();
+            userNameEditBox = userName.getText().toString();
+            passwordEditBox = password.getText().toString();
 
-            User loggedInUser = credentials.authenticate(userName, userPassword);
+            User loggedInUser = credentials.authenticate(userNameEditBox, passwordEditBox);
 
             if (loggedInUser != null)
-            {  // if logging in is successful
+            {
+                // if logging in is successful
 
-                progressDialog.dismiss();   // dismiss the progress bar
+                //progressBar.setVisibility(View.GONE);
 
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                uniqueUserName = userName;
+                uniqueUserName = userNameEditBox;
 
                 // login and go to homepage
 
 
                 Intent logIn = new Intent(this, MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT, uniqueUserName);
-                RecyclerViewAdapter.login(userName);
+                RecyclerViewAdapter.login(userNameEditBox);
                 finish();
                 startActivity(logIn);
             }
             else    // if authentication is not successful.
             {
-                progressDialog.dismiss();
+                //progressBar.setVisibility(View.GONE);
+
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
         }
