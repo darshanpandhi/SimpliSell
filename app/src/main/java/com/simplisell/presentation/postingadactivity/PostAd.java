@@ -79,6 +79,7 @@ public class PostAd extends AppCompatActivity
         // if empty field exists
         if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty || typeEmpty)
         {
+            progressDialog.dismiss();
             Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
         }
         else
