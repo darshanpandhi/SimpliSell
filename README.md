@@ -29,7 +29,7 @@
 - The Admin Control feature and the Reporting feature are pushed to iteration 3 as we underestimated the time and effort required to implement these. They should be included in our next release.
 
 ## Special Instructions
-- The log in credentials still remain the same so use any of the following login credentials:
+- To log in, use any of the following login credentials:
  
         Username: Bob
     
