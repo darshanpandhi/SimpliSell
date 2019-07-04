@@ -50,6 +50,10 @@ public class Login extends AppCompatActivity
         String userName;       // The userName in the textbox will be stored here.
         String userPassword;    // The userName in the password will be stored here.
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Logging In");
+        progressDialog.show();
+
         // check if these fields are empty
         boolean userNameEmpty = this.userName.getText().toString().isEmpty();
         boolean passwordEmpty = password.getText().toString().isEmpty();
@@ -66,16 +70,13 @@ public class Login extends AppCompatActivity
             userPassword = password.getText().toString();
 
             // Show a progress Dialog while the authentication is loading
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Logging In");
-            progressDialog.show();
+
 
             User loggedInUser = credentials.authenticate(userName, userPassword);
 
             if (loggedInUser != null)
             {  // if logging in is successful
 
-                progressDialog.dismiss();   // dismiss the progress bar
 
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
@@ -87,6 +88,8 @@ public class Login extends AppCompatActivity
                 Intent logIn = new Intent(this, MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT, uniqueUserName);
                 RecyclerViewAdapter.login(userName);
+                progressDialog.dismiss();   // dismiss the progress bar
+
                 finish();
                 startActivity(logIn);
             }
