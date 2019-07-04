@@ -57,7 +57,6 @@ public class SignUp extends AppCompatActivity
     public void signUpBtnClickRegister(View view)
     {
 
-
         // get the input from user
         String firstNLastName = name.getText().toString().trim();
         String userName = this.userName.getText().toString().trim();
