@@ -15,3 +15,6 @@
 
 ## Our Architecture
 [Architecture](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/master/Docs/ARCHITECTURE.md)
+
+## Identified Issues/Bugs
+[Low Performance](#118)
