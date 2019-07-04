@@ -1,6 +1,5 @@
 package com.simplisell.objects;
 
-
 import java.sql.Date;
 import java.util.Calendar;
 
@@ -16,8 +15,9 @@ public final class Ad
 
     private Date expiryDate;
 
-    public Ad(int adId, final String adOwner, final AdType adType, final Category category, final
-    String title, final String description, final double price, final Date expiryDate)
+
+    public Ad(int adId, final String adOwner, final AdType adType, final Category category, final String title,
+              final String description, final double price, final Date expiryDate)
     {
         this.adId = adId;
         this.adOwner = adOwner;
@@ -29,8 +29,9 @@ public final class Ad
         this.expiryDate = expiryDate;
     }
 
-    public Ad(final String adOwner, final AdType adType, final Category category, final
-    String title, final String description, final double price)
+
+    public Ad(final String adOwner, final AdType adType, final Category category, final String title,
+              final String description, final double price)
     {
         this.adId = -1;
         this.adOwner = adOwner;
@@ -47,59 +48,85 @@ public final class Ad
     {
         return adId;
     }
+
+
     public String getAdOwner()
     {
         return adOwner;
     }
+
+
     public AdType getAdType()
     {
         return adType;
     }
+
+
     public Category getCategory()
     {
         return category;
     }
+
+
     public String getTitle()
     {
         return title;
     }
+
+
     public String getDescription()
     {
         return description;
     }
+
+
     public double getPrice()
     {
         return price;
     }
+
+
     public Date getExpiryDate()
     {
         return expiryDate;
     }
 
+
     public void setAdId(int newId)
     {
         this.adId = newId;
     }
+
+
     public void setCategory(Category category)
     {
         this.category = category;
     }
+
+
     public void setTitle(String title)
     {
         this.title = title;
     }
+
+
     public void setDescription(String description)
     {
         this.description = description;
     }
+
+
     public void setPrice(double price)
     {
         this.price = price;
     }
+
+
     public void setExpiryDate(Date date)
     {
         this.expiryDate = date;
     }
+
 
     public Date calculateExpiryDate()
     {
@@ -109,6 +136,8 @@ public final class Ad
 
         return new Date(c.getTimeInMillis());
     }
+
+
     public void resetExpiryDate()
     {
         expiryDate = calculateExpiryDate();

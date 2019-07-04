@@ -23,6 +23,7 @@ public class Login extends AppCompatActivity
     private EditText password;          // the edit text box for password of the user
     private Credentials credentials;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

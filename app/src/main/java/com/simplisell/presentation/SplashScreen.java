@@ -32,7 +32,8 @@ public class SplashScreen extends AppCompatActivity
                     // move to the main activity
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
 
                     // sent an error message as a toast if we are not able to go to main activity
