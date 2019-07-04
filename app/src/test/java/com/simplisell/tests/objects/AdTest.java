@@ -9,7 +9,6 @@ import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 
-
 public class AdTest
 {
     @Test
@@ -19,8 +18,14 @@ public class AdTest
 
         System.out.println("\nStarting testAd");
 
-        newAd = new Ad("AdOwner1", AdType.OFFERING, Category.ACCOMMODATION, "Roommate required",
-                "Roommate Ad Description", 350);
+        newAd = new Ad("AdOwner1", null, null, null,
+                null, 0);
+
+        newAd.setAdType(AdType.OFFERING);
+        newAd.setCategory(Category.ACCOMMODATION);
+        newAd.setTitle("Roommate required");
+        newAd.setDescription("Roommate Ad Description");
+        newAd.setPrice(350);
 
         assertNotNull(newAd);
 
