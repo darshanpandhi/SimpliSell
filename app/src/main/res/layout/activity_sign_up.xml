@@ -139,7 +139,6 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/editText_name_registrationSecurityQuestion"
         android:layout_width="254dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
@@ -208,7 +207,6 @@
         app:layout_constraintVertical_bias="0.171" />
 
     <TextView
-        android:id="@+id/textView_signUp_backtoLogin"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
         android:layout_marginStart="8dp"
