@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.simplisell.R;
@@ -25,8 +24,6 @@ public class Login extends AppCompatActivity
     private EditText password;          // the edit text box for password of the user
     private Credentials credentials;
 
-    private ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -40,10 +37,6 @@ public class Login extends AppCompatActivity
         password = findViewById(R.id.editText_login_enterPassword);
 
         credentials = new Credentials();
-
-        //progressBar = findViewById(R.id.progressBar);
-
-        //progressBar.setVisibility(View.GONE);
     }
 
 
@@ -51,7 +44,6 @@ public class Login extends AppCompatActivity
     {
         String userNameEditBox;       // The userName in the textbox will be stored here.
         String passwordEditBox;    // The userName in the password will be stored here.
-
 
 
         // check if these fields are empty
@@ -65,11 +57,9 @@ public class Login extends AppCompatActivity
         }
         else
         {
-            //progressBar.setVisibility(View.GONE);
 
             userNameEditBox = userName.getText().toString();
             passwordEditBox = password.getText().toString();
-            // Show a progress Dialog while the authentication is loading
 
             User loggedInUser = credentials.authenticate(userNameEditBox, passwordEditBox);
 
@@ -77,15 +67,11 @@ public class Login extends AppCompatActivity
             {
                 // if logging in is successful
 
-                //progressBar.setVisibility(View.GONE);
-
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
                 uniqueUserName = userNameEditBox;
 
                 // login and go to homepage
-
-
                 Intent logIn = new Intent(this, MainActivity.class);
                 logIn.putExtra(USERNAME_TEXT, uniqueUserName);
                 RecyclerViewAdapter.login(userNameEditBox);
@@ -94,8 +80,6 @@ public class Login extends AppCompatActivity
             }
             else    // if authentication is not successful.
             {
-                //progressBar.setVisibility(View.GONE);
-
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
         }
