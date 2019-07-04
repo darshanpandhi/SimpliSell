@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.assertNotEquals;
 
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.AdType;
@@ -41,6 +42,7 @@ public class AccessAdsTest
         String title = "Test Title";
         String description = "Test Description";
         double price = 200;
+
 
         Ad uniqueAd = new Ad(userName, adType, category, title, description, price);
 
@@ -149,18 +151,6 @@ public class AccessAdsTest
     }
 
     @Test
-    public final void testReportAd()
-    {
-        System.out.println("\nStarting AccessAdsTest: report ad");
-
-        int reportsBefore = adPersistence.getAd(0).getNumReports();
-        adPersistence.reportAd(0);
-        assertEquals(reportsBefore + 1, adPersistence.getAd(0).getNumReports());
-
-        System.out.println("Finished AccessAdsTest: ad reported");
-    }
-
-    @Test
     public void testGetAllAds()
     {
         System.out.println("\nStarting AccessAdsTest: get all ads");
@@ -216,6 +206,7 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest sort price (descending)");
 
+
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10));
         adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
@@ -248,54 +239,6 @@ public class AccessAdsTest
         }
 
         System.out.println("Finished AccessAdsTest: get all ads for specific user");
-    }
-
-    @Test
-    public void testGetReportedAdsMoreThan3Reports()
-    {
-        System.out.println("\nStarting AccessAdsTest: get all reported ads (3 or more reports)");
-
-        Ad reportedAd = adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.BOOKS,
-                "reportedAd3Reports", "reportedAd3Reports", 1));
-
-        Ad reportedAd2 = adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.BOOKS,
-                "reportedAd4Reports", "reportedAd4Reports", 1));
-
-        for (int i = 0; i < 4; i++)
-        {
-            reportedAd.incrementNumReports();
-            reportedAd2.incrementNumReports();
-        }
-
-        List<Ad> ads = adPersistence.getReportedAds();
-
-        int minNumberReports = 3;
-
-        for (Ad ad : ads)
-        {
-            assertTrue(ad.getNumReports() >= minNumberReports);
-        }
-
-        assertTrue(ads.size() == 2);
-
-        System.out.println("Finished AccessAdsTest: get all reported ads (3 or more reports)");
-    }
-
-    @Test
-    public void testGetReportedAdsLessThan3Reports()
-    {
-        System.out.println("\nStarting AccessAdsTest: get all reported ads (less than 3 reports)");
-
-        List<Ad> ads = adPersistence.getReportedAds();
-
-        int minNumberReports = 3;
-
-        for (Ad ad : ads)
-        {
-            assertFalse(ad.getNumReports() < minNumberReports);
-        }
-
-        System.out.println("Finished AccessAdsTest: get all reported ads (less than 3 reports)");
     }
 
     @Test
@@ -343,19 +286,73 @@ public class AccessAdsTest
         c.add(Calendar.DATE, -30);
 
         Date oldDate = new Date(c.getTimeInMillis());
+        //Set 3 ads to expire
         adPersistence.getAd(0).setExpiryDate(oldDate);
+        adPersistence.getAd(1).setExpiryDate(oldDate);
+        adPersistence.getAd(2).setExpiryDate(oldDate);
 
         int sizeBefore = adPersistence.getAllAds().size();
         adPersistence.removeExpiredAds();
         int sizeAfter = adPersistence.getAllAds().size();
 
-        assertTrue(sizeBefore > sizeAfter);
+        assertTrue(sizeBefore == sizeAfter + 3);
 
         System.out.println("Finished AccessAdsTest: remove expired ads");
     }
 
-    /*
-    private List<Ad> removeExpiredAds(List<Ad> ads)
+    @Test
+    public void testRepostAd()
+    {
+        System.out.println("\nStarting AccessAdsTest: repost Ad");
 
-     */
+        Ad repostThisAd = adPersistence.getAd(0);
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -30);
+        Date oldDate = new Date(c.getTimeInMillis());
+        repostThisAd.setExpiryDate(oldDate);
+
+        //New Expiry Date
+        int daysTillExpired = 21;
+        Calendar c1 = Calendar.getInstance();
+        c1.add(Calendar.DATE, daysTillExpired);
+        Date newDate = new Date(c1.getTimeInMillis());
+
+        adPersistence.repostAd(repostThisAd.getAdId());
+
+        assertNotEquals(oldDate, repostThisAd.getExpiryDate());
+        //Make sure the time is close enough...
+        assertTrue("Ad was not reposted!", (newDate.getTime() - repostThisAd.getExpiryDate().getTime()) < 1000);
+
+        System.out.println("Finished AccessAdsTest: ad reposted");
+    }
+
+    @Test
+    public void testUpdateAd()
+    {
+        System.out.println("\nStarting AccessAdsTest: update Ad (category and description does not change)");
+
+        //Description should be the same
+        Ad updateThisAd = adPersistence.getAd(0);
+        Category oldCategory = updateThisAd.getCategory();
+        String oldTile = updateThisAd.getTitle();
+        String oldDescription = updateThisAd.getDescription();
+        Double oldPrice = updateThisAd.getPrice();
+
+        String newTitle = "this is a new title!!!";
+        double newPrice = 321.23;
+
+        Ad updatedAd = new Ad(updateThisAd.getAdId(), updateThisAd.getAdOwner(), updateThisAd.getAdType(), oldCategory, newTitle, oldDescription, newPrice, null);
+
+        adPersistence.updateAd(updatedAd);
+
+        assertEquals(oldDescription, updateThisAd.getDescription());
+        assertEquals(oldCategory, updateThisAd.getCategory());
+        assertEquals(newTitle, updateThisAd.getTitle());
+        assertEquals(newPrice, updateThisAd.getPrice(),0.001);
+
+        assertNotEquals(oldTile, updateThisAd.getTitle());
+        assertNotEquals(oldPrice, updateThisAd.getPrice());
+        System.out.println("Finished AccessAdsTest: ad updated (category and description did not change)");
+    }
 }

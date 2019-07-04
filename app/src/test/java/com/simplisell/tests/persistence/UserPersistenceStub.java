@@ -15,11 +15,11 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", 0, null, null, null);
+        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null, null);
         users.add(user);
-        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", 0, null, null, null);
+        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", null, null, null);
         users.add(user);
-        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", 0, null, null, null);
+        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null, null, null);
         users.add(user);
     }
 
@@ -55,12 +55,6 @@ public class UserPersistenceStub implements UserPersistence
         }
     }
 
-    @Override
-    public void reportUser(final String userName)
-    {
-        User reportedUser = findUser(userName);
-        reportedUser.incrementNumReports();
-    }
 
     @Override
     public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)

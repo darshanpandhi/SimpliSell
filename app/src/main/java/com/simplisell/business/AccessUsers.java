@@ -43,11 +43,6 @@ public class AccessUsers
         userPersistence.updatePassword(userName, password);
     }
 
-    public void reportUser(String userName)
-    {
-        userPersistence.reportUser(userName);
-    }
-
     public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)
     {
         userPersistence.updateProfileInformation(userName, newFullName, newEmail, newPhoneNumber, newSecurityQuestion, newSecurityAnswer);

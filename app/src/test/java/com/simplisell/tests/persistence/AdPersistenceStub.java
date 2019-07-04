@@ -31,7 +31,7 @@ public class AdPersistenceStub implements AdPersistence
         String description = "iPad Ad description";
         double price = 554.99;
 
-        Ad newAd = new Ad(0, adOwner, adType, category, title, description, price, 0, date);
+        Ad newAd = new Ad(0, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
         adOwner = "Allice";
@@ -41,7 +41,8 @@ public class AdPersistenceStub implements AdPersistence
         description = "Tutoring Services Description";
         price = 40;
 
-        newAd = new Ad(1, adOwner, adType, category, title, description, price, 0, date);
+
+        newAd = new Ad(1, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
         adOwner = "Jay";
@@ -51,7 +52,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "CarPooling Ad Description";
         price = 100;
 
-        newAd = new Ad(2, adOwner, adType, category, title, description, price, 0, date);
+        newAd = new Ad(2, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
 
@@ -62,7 +63,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "A nice book by Dr APJ abdul kalaam";
         price = 0;
 
-        newAd = new Ad(3, adOwner, adType, category, title, description, price, 0, date);
+        newAd = new Ad(3, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
 
@@ -73,17 +74,18 @@ public class AdPersistenceStub implements AdPersistence
         description = "Book for COMP2080 and COMP3170";
         price = 20;
 
-        newAd = new Ad(4, adOwner, adType, category, title, description, price, 0, date);
+        newAd = new Ad(4, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
     }
 
-
+    @Override
     public List<Ad> getAds()
     {
         return ads;
     }
 
 
+    @Override
     public final Ad getAd(int adId)
     {
         Ad currentAd;
@@ -108,6 +110,7 @@ public class AdPersistenceStub implements AdPersistence
     }
 
 
+    @Override
     public final Ad insertAd(final Ad newAd)
     {
         Ad insertedAd = null;
@@ -127,7 +130,7 @@ public class AdPersistenceStub implements AdPersistence
         return insertedAd;
     }
 
-
+    @Override
     public final Ad removeAd(final Ad adToBeRemoved)
     {
         Ad removedAd = null;
@@ -142,21 +145,17 @@ public class AdPersistenceStub implements AdPersistence
         return removedAd;
     }
 
-    public final void reportAd(final int adID)
-    {
-        Ad reportedAd = getAd(adID);
-        reportedAd.incrementNumReports();
-    }
-
+    @Override
     public final void updateAd(Ad newAd)
     {
         Ad ad = ads.get(newAd.getAdId());
-        ad.setTitle(newAd.getTitle());
-        ad.setAdType(newAd.getAdType());
         ad.setCategory(newAd.getCategory());
+        ad.setTitle(newAd.getTitle());
         ad.setDescription(newAd.getDescription());
+        ad.setPrice(newAd.getPrice());
     }
 
+    @Override
     public void repostAd(final int adID)
     {
         Ad repostedAd = getAd(adID);

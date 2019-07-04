@@ -95,8 +95,6 @@
         <item>What is your mother\'s maiden name?</item>
     </string-array>
 
-    <string name="report_ad">Report Ad</string>
-
     <string name="fatalError">Fatal error</string>
     <string name="warning">Warning</string>
 </resources>

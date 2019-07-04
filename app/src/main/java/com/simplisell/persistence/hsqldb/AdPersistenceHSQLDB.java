@@ -47,9 +47,8 @@ public class AdPersistenceHSQLDB implements AdPersistence
         final String title = rs.getString("TITLE");
         final String description = rs.getString("DESCRIPTION");
         final double price = rs.getDouble("PRICE");
-        final int numReports = rs.getInt("NUMREPORTS");
         final Date expiryDate = rs.getDate("EXPIRYDATE");
-        return new Ad(adID, adOwner, adType, category, title, description, price, numReports, expiryDate);
+        return new Ad(adID, adOwner, adType, category, title, description, price, expiryDate);
     }
 
     @Override
@@ -106,7 +105,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO ADS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO ADS VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             st.setInt(1, ad.getAdId());
             st.setString(2, ad.getAdOwner());
             st.setInt(3, ad.getAdType().ordinal());
@@ -114,8 +113,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
             st.setString(5, ad.getTitle());
             st.setString(6, ad.getDescription());
             st.setDouble(7, ad.getPrice());
-            st.setInt(8, ad.getNumReports());
-            st.setDate(9, ad.getExpireDate());
+            st.setDate(8, ad.getExpiryDate());
 
             st.executeUpdate();
             st.close();
@@ -139,24 +137,6 @@ public class AdPersistenceHSQLDB implements AdPersistence
             sc.executeUpdate();
             sc.close();
             return ad;
-        }
-        catch (final SQLException e)
-        {
-            throw new PersistenceException(e);
-        }
-    }
-
-    @Override
-    public final void reportAd(final int adID)
-    {
-        try (final Connection c = connection())
-        {
-            Ad reportedAd = getAd(adID);
-            int numReports = reportedAd.getNumReports() + 1;
-            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET NUMREPORTS = ? WHERE ADID = ?");
-            st.setInt(1, numReports);
-            st.setInt(2, adID);
-            st.executeUpdate();
         }
         catch (final SQLException e)
         {
@@ -192,7 +172,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
         try (final Connection c = connection())
         {
             final PreparedStatement st = c.prepareStatement("UPDATE ADS SET EXPIRYDATE = ? WHERE ADID = ?");
-            st.setDate(1, ad.calculateExpireDate());
+            st.setDate(1, ad.calculateExpiryDate());
             st.setInt(2, ad.getAdId());
 
             st.executeUpdate();
