@@ -2,7 +2,7 @@ package com.simplisell.objects;
 
 public class User
 {
-    private final String userName;
+    private String userName;
     private String email;
     private String phoneNumber;
     private String password;
@@ -11,6 +11,17 @@ public class User
     private String firstAndLastName;
     private String profilePhoto;
 
+    public User(String newUserName, String newPassword)
+    {
+        userName = newUserName;
+        password = newPassword;
+        securityQuestion = null;
+        securityAnswer = null;
+        firstAndLastName = null;
+        email = null;
+        phoneNumber = null;
+        profilePhoto = null;
+    }
 
     public User(String fullName, String newUserName, String newUserPassword, String newSecurityQuestion, String newSecurityAnswer, String newEmail, String newPhoneNumber, String newProfileImage)
     {

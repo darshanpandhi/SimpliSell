@@ -61,7 +61,9 @@ public class Login extends AppCompatActivity
             userNameEditBox = userName.getText().toString();
             passwordEditBox = password.getText().toString();
 
-            User loggedInUser = credentials.authenticate(userNameEditBox, passwordEditBox);
+            User loggedInUser = new User(userNameEditBox, passwordEditBox);
+
+            loggedInUser = credentials.authenticate(loggedInUser);
 
             if (loggedInUser != null)
             {
