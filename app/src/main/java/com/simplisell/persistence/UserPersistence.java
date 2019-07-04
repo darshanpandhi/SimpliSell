@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface UserPersistence
 {
-    List<User> getUsers();
-
     User getUser(String userName);
 
     User insertUser(User user);

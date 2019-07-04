@@ -47,33 +47,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
     }
 
     @Override
-    public List<User> getUsers()
-    {
-        final List<User> users = new ArrayList<>();
-
-        try (final Connection c = connection())
-        {
-            final Statement st = c.createStatement();
-            final ResultSet rs = st.executeQuery("SELECT * FROM USERS");
-
-            while (rs.next())
-            {
-                final User user = fromResultSet(rs);
-                users.add(user);
-            }
-            rs.close();
-            st.close();
-
-            return users;
-        }
-        catch (final SQLException e)
-        {
-            throw new PersistenceException(e);
-        }
-    }
-
-
-    @Override
     public User getUser(final String userName)
     {
         User user = null;

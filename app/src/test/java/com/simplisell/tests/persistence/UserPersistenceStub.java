@@ -23,12 +23,6 @@ public class UserPersistenceStub implements UserPersistence
         users.add(user);
     }
 
-    @Override
-    public List<User> getUsers()
-    {
-        return users;
-    }
-
 
     @Override
     public User getUser(final String userName)

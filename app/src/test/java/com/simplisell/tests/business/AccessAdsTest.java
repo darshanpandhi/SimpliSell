@@ -346,13 +346,14 @@ public class AccessAdsTest
 
         adPersistence.updateAd(updatedAd);
 
+        assertNotEquals(oldTile, updateThisAd.getTitle());
+        assertNotEquals(oldPrice, updateThisAd.getPrice());
         assertEquals(oldDescription, updateThisAd.getDescription());
         assertEquals(oldCategory, updateThisAd.getCategory());
+
         assertEquals(newTitle, updateThisAd.getTitle());
         assertEquals(newPrice, updateThisAd.getPrice(),0.001);
 
-        assertNotEquals(oldTile, updateThisAd.getTitle());
-        assertNotEquals(oldPrice, updateThisAd.getPrice());
         System.out.println("Finished AccessAdsTest: ad updated (category and description did not change)");
     }
 }
