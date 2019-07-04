@@ -84,20 +84,28 @@ public class PostAd extends AppCompatActivity
         }
         else
         {
-            title = this.title.getText().toString().trim();
-            description = this.description.getText().toString().trim();
-            price = Double.parseDouble(this.price.getText().toString());
-            // add ad into database
-            Ad ad = new Ad(userName, adType, category, title, description, price);
-            accessAds.insertAd(ad);
-            Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
+            try
+            {
+                title = this.title.getText().toString().trim();
+                description = this.description.getText().toString().trim();
+                price = Double.parseDouble(this.price.getText().toString());
+                // add ad into database
+                Ad ad = new Ad(userName, adType, category, title, description, price);
+                accessAds.insertAd(ad);
+                Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
 
-            // go to View Individual Ad activity (current user)
-            finish();
-            Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
-            viewAd.putExtra(ADID_TEXT, ad.getAdId());
-            progressDialog.dismiss();
-            startActivity(viewAd);
+                // go to View Individual Ad activity (current user)
+                finish();
+                Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
+                viewAd.putExtra(ADID_TEXT, ad.getAdId());
+                progressDialog.dismiss();
+                startActivity(viewAd);
+            }
+            catch (Exception e)
+            {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

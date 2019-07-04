@@ -97,23 +97,31 @@ public class EditAd extends AppCompatActivity
         }
         else
         {
-            title = editTextTitle.getText().toString().trim();
-            description = editTextDescription.getText().toString().trim();
-            price = Double.parseDouble(editTextPrice.getText().toString());
+            try
+            {
+                title = editTextTitle.getText().toString().trim();
+                description = editTextDescription.getText().toString().trim();
+                price = Double.parseDouble(editTextPrice.getText().toString());
 
-            // save changes made by user
-            currAd.setCategory(category);
-            currAd.setTitle(title);
-            currAd.setDescription(description);
-            currAd.setPrice(price);
-            accessAds.updateAd(currAd);
-            Toast.makeText(getApplicationContext(), "Advertisement Updated", Toast.LENGTH_LONG).show();
+                // save changes made by user
+                currAd.setCategory(category);
+                currAd.setTitle(title);
+                currAd.setDescription(description);
+                currAd.setPrice(price);
+                accessAds.updateAd(currAd);
+                Toast.makeText(getApplicationContext(), "Advertisement Updated", Toast.LENGTH_LONG).show();
 
-            // go to View Individual Ad activity (current user)
-            Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
-            viewAd.putExtra(ADID_TEXT, currAd.getAdId());
-            progressDialog.dismiss();
-            startActivity(viewAd);
+                // go to View Individual Ad activity (current user)
+                Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
+                viewAd.putExtra(ADID_TEXT, currAd.getAdId());
+                progressDialog.dismiss();
+                startActivity(viewAd);
+            }
+            catch (Exception e)
+            {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
