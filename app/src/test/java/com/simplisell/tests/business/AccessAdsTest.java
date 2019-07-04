@@ -43,7 +43,8 @@ public class AccessAdsTest
         String description = "Test Description";
         double price = 200;
 
-        Ad uniqueAd = new Ad(1000, userName, adType, category, title, description, price);
+
+        Ad uniqueAd = new Ad(userName, adType, category, title, description, price);
 
         Ad insertedAd = adPersistence.insertAd(uniqueAd);
 
@@ -105,7 +106,7 @@ public class AccessAdsTest
         String description = "Test Description";
         double price = 200;
 
-        Ad uniqueAd = new Ad(12121, userName, adType, category, title, description, price);
+        Ad uniqueAd = new Ad(userName, adType, category, title, description, price);
 
         // verifying if we are able to get a deleted ad from the list
         Ad insertedAd = adPersistence.insertAd(uniqueAd);
@@ -205,11 +206,12 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest sort price (descending)");
 
-        adPersistence.insertAd(new Ad(1, "test", AdType.OFFERING, Category.ELECTRONICS,
+
+        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 10));
-        adPersistence.insertAd(new Ad(2, "test", AdType.OFFERING, Category.OTHERS,
+        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
                 "test", "test", 100));
-        adPersistence.insertAd(new Ad(3, "test", AdType.OFFERING, Category.ELECTRONICS,
+        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1000));
         List<Ad> ads = adPersistence.sortPriceDesc(adPersistence.getAllAds());
         for (int i = 0; i < ads.size()-1; i++)
@@ -227,7 +229,7 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: get all ads for specific user");
 
-        adPersistence.insertAd(new Ad(4, "test", AdType.OFFERING, Category.ELECTRONICS,
+        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1));
         List<Ad> ads = adPersistence.getUserSpecificAds("test");
 
@@ -238,7 +240,6 @@ public class AccessAdsTest
 
         System.out.println("Finished AccessAdsTest: get all ads for specific user");
     }
-
 
     @Test
     public void testFilterAdsByType()
@@ -341,7 +342,7 @@ public class AccessAdsTest
         String newTitle = "this is a new title!!!";
         double newPrice = 321.23;
 
-        Ad updatedAd = new Ad(updateThisAd.getAdId(), updateThisAd.getAdOwner(), updateThisAd.getAdType(), oldCategory, newTitle, oldDescription, newPrice);
+        Ad updatedAd = new Ad(updateThisAd.getAdId(), updateThisAd.getAdOwner(), updateThisAd.getAdType(), oldCategory, newTitle, oldDescription, newPrice, null);
 
         adPersistence.updateAd(updatedAd);
 

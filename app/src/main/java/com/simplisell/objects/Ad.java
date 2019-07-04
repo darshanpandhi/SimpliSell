@@ -29,21 +29,6 @@ public final class Ad
         this.expiryDate = expiryDate;
     }
 
-    //Constructor for AccessAdsTest
-    public Ad(int adId, final String adOwner, final AdType adType, final Category category, final
-    String title, final String description, final double price)
-    {
-        this.adId = adId;
-        this.adOwner = adOwner;
-        this.adType = adType;
-        this.category = category;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.expiryDate = calculateExpiryDate();
-    }
-
-    //Constructor for AccessAdsTest
     public Ad(final String adOwner, final AdType adType, final Category category, final
     String title, final String description, final double price)
     {
