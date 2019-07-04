@@ -239,6 +239,12 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 TextView textView = findViewById(R.id.textView_mainActivity_adType);
+
+                if (typeResult == null)
+                {
+                    typeResult = types[0];
+                }
+
                 textView.setText(typeResult);
 
                 if (typeResult.equals(types[0]))
