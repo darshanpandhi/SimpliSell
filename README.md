@@ -51,7 +51,7 @@
     
         Password: 222222
       
-        Security Question Answer: Blue
+        Security Question Answer: Elsa
 
 ## Release notes - June 13, 2019
 - Login System is now complete!  Users can create a new account, reset their password and log into the app
