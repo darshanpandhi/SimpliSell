@@ -17,12 +17,14 @@ public final class AccessAds
     private final AdPersistence adPersistence;
     private final List<Ad> allAds;
 
+
     public AccessAds()
     {
         adPersistence = Services.getAdPersistence();
         removeExpiredAds();
         allAds = adPersistence.getAds();
     }
+
 
     public AccessAds(final AdPersistence adPersistence)
     {
@@ -31,15 +33,18 @@ public final class AccessAds
         allAds = adPersistence.getAds();
     }
 
+
     public final List<Ad> getAllAds()
     {
         return adPersistence.getAds();
     }
 
+
     public final Ad getAd(int adId)
     {
         return adPersistence.getAd(adId);
     }
+
 
     public final Ad insertAd(final Ad newAd)
     {
@@ -62,20 +67,24 @@ public final class AccessAds
         return adPersistence.insertAd(newAd);
     }
 
+
     public final Ad removeAd(final Ad adToBeRemoved)
     {
         return adPersistence.removeAd(adToBeRemoved);
     }
+
 
     public void repostAd(final int adID)
     {
         adPersistence.repostAd(adID);
     }
 
+
     public final void updateAd(Ad ad)
     {
         adPersistence.updateAd(ad);
     }
+
 
     public List<Ad> getAllAdsByCategory(Category category)
     {
@@ -92,6 +101,7 @@ public final class AccessAds
         return adList;
     }
 
+
     public List<Ad> getUserSpecificAds(String userName)
     {
         List<Ad> adList = new ArrayList<Ad>();
@@ -106,6 +116,7 @@ public final class AccessAds
 
         return adList;
     }
+
 
     public List<Ad> filterAdsByType(List<Ad> ads, AdType adType)
     {
@@ -122,6 +133,7 @@ public final class AccessAds
         return adList;
     }
 
+
     public List<Ad> sortPriceAsc(List<Ad> ads)
     {
         Collections.sort(ads, compareByPriceAsc);
@@ -136,6 +148,7 @@ public final class AccessAds
 
         return ads;
     }
+
 
     public void removeExpiredAds()
     {
@@ -184,7 +197,7 @@ public final class AccessAds
     Comparator<Ad> compareAdId = new Comparator<Ad>()
     {
         @Override
-        public int compare (Ad o1, Ad o2)
+        public int compare(Ad o1, Ad o2)
         {
             return o1.getAdId() > o2.getAdId() ? 1 : o1.getAdId() < o2.getAdId() ? -1 : 0;
         }

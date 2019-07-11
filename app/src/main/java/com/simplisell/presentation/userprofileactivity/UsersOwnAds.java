@@ -16,13 +16,12 @@ import java.util.List;
 public class UsersOwnAds extends AppCompatActivity
 {
 
-    private static final String USERNAME_TEXT="USER";
+    private static final String USERNAME_TEXT = "USER";
 
     private List<Ad> ads;
     private AccessAds adsSearch;
     private RecyclerView recyclerView;
     private String userName;
-
 
 
     @Override
@@ -49,11 +48,8 @@ public class UsersOwnAds extends AppCompatActivity
     {   // if anytime the back is pressed. Go back
 
         finish();
-        Intent i = new Intent(this,UserProfileMenu.class);
+        Intent i = new Intent(this, UserProfileMenu.class);
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
-
-
 }

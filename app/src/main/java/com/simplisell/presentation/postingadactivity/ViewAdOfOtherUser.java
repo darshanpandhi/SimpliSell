@@ -28,6 +28,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     private AccessAds accessAds = new AccessAds();    // helps with accessing ad
     private AccessUsers accessUsers = new AccessUsers();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -53,5 +54,4 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         String price = "$" + this.price;
         textViewPrice.setText(price);
     }
-
 }

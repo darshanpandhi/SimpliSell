@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity
 
         // adding the fragments
         adapter.addFragment(tabFragmentAllObj, "All");
-        adapter.addFragment(tabFragmentBooksObj, "Book");
+        adapter.addFragment(tabFragmentBooksObj, "Books");
         adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
         adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
         adapter.addFragment(tabFragmentEventsObj, "Events");

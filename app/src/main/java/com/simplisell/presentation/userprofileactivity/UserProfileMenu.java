@@ -15,14 +15,15 @@ import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.PostAd;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
-public class UserProfileMenu extends AppCompatActivity {
+public class UserProfileMenu extends AppCompatActivity
+{
 
     private final String USERNAME_TEXT = "USER";
 
     private static String userName = null;
     private static User currUser = null;
     private static ListView listView;
-    private static String[] titles = {"My Profile","My Ads","Post an Ad","Logout"};
+    private static String[] titles = {"My Profile", "My Ads", "Post an Ad", "Logout"};
 
 
     @Override
@@ -38,105 +39,112 @@ public class UserProfileMenu extends AppCompatActivity {
 
             userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
 
-            if(userName != null)
+            if (userName != null)
             {
 
                 currUser = accessUsers.getUser(userName);
-                if(currUser == null)
+                if (currUser == null)
                 {
                     finish();
-                    startActivity(new Intent(getApplicationContext() , Login.class));
-                }else
+                    startActivity(new Intent(getApplicationContext(), Login.class));
+                }
+                else
                 {
                     setContentView(R.layout.activity_user_profile_menu);
                     initialize();
                 }
-
-
             }
             else
             {
                 finish();
-                startActivity(new Intent(getApplicationContext() , Login.class));
-
+                startActivity(new Intent(getApplicationContext(), Login.class));
             }
-
         }
         catch (Exception e)
         {
 
             finish();
-            startActivity(new Intent(getApplicationContext() , Login.class));
+            startActivity(new Intent(getApplicationContext(), Login.class));
         }
-
     }
 
 
     public void initialize()
     {
-        listView=findViewById(R.id.profile_list_view);
+        listView = findViewById(R.id.profile_list_view);
 
-        ProfileListViewAdapter profileListViewAdapter=new ProfileListViewAdapter(this,titles);
+        ProfileListViewAdapter profileListViewAdapter = new ProfileListViewAdapter(this, titles);
 
         listView.setAdapter(profileListViewAdapter);
 
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
 
 
                 if (position == 0)
                 {
-                    Intent postAd=new Intent(getApplicationContext(), ProfileInformation.class);
+                    Intent postAd = new Intent(getApplicationContext(), ProfileInformation.class);
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
+                }
+                else
+                {
+                    if (position == 1)
+                    {
 
-                }
-                else if (position == 1)
-                {
-
-                    Intent postAd=new Intent(getApplicationContext(), UsersOwnAds.class);
-                    postAd.putExtra(USERNAME_TEXT, userName);
-                    startActivity(postAd);
-                }
-                else if (position == 2)
-                {
-                    Intent postAd=new Intent(getApplicationContext(), PostAd.class);
-                    postAd.putExtra(USERNAME_TEXT, userName);
-                    startActivity(postAd);
-                }
-                else if (position == 3)
-                {
-                    logout();
+                        Intent postAd = new Intent(getApplicationContext(), UsersOwnAds.class);
+                        postAd.putExtra(USERNAME_TEXT, userName);
+                        startActivity(postAd);
+                    }
+                    else
+                    {
+                        if (position == 2)
+                        {
+                            Intent postAd = new Intent(getApplicationContext(), PostAd.class);
+                            postAd.putExtra(USERNAME_TEXT, userName);
+                            startActivity(postAd);
+                        }
+                        else
+                        {
+                            if (position == 3)
+                            {
+                                logout();
+                            }
+                        }
+                    }
                 }
             }
         });
-
     }
 
 
     public void accountBtnClick(View view)
     {
         finish();
-        startActivity(new Intent(getApplicationContext() , MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
+
 
     public void logout()
     {
         MainActivity.logOutUser();
-        userName=null;
+        userName = null;
         RecyclerViewAdapter.logOut();
         finish();
-        startActivity(new Intent(getApplicationContext() , MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
+
 
     @Override
     public void onBackPressed()
     {
         finish();
-        Intent i = new Intent(this,MainActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }

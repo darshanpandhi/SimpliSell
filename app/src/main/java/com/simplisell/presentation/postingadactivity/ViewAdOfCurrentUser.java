@@ -71,6 +71,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         startActivity(editAd);
     }
 
+
     public void repostBtnClick(View view)
     {
         accessAds.repostAd(currAd.getAdId());
@@ -87,6 +88,8 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainPage);
     }
+
+
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
@@ -95,8 +98,4 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
-
-
-
-
 }

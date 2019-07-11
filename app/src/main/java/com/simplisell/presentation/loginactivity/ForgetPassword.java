@@ -110,7 +110,9 @@ public class ForgetPassword extends AppCompatActivity
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or " +
+                                "numbers, and have a minimum of 6 characters and a maximum of 12 characters",
+                                Toast.LENGTH_LONG).show();
                     }
                 }
                 else

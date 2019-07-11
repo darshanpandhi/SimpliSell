@@ -12,8 +12,8 @@ public interface UserPersistence
 
     void updatePassword(String userName, String newPassword);
 
-    void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer);
+    void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber,
+                                  String newSecurityQuestion, String newSecurityAnswer);
 
     void updateProfileImage(String userName, String profilePhoto);
-
 }
