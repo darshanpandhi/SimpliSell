@@ -114,7 +114,8 @@ public class PostAd extends AppCompatActivity
     {
         AlertDialog dialog;
         AlertDialog.Builder builder;
-        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION", "EVENTS", "OTHERS"};
+        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION",
+                "EVENTS", "OTHERS"};
 
         builder = new AlertDialog.Builder(PostAd.this);
 
@@ -152,6 +153,7 @@ public class PostAd extends AppCompatActivity
         dialog.show();
     }
 
+
     public void selectTypeBtnClick(View view)
     {
         AlertDialog dialog;
@@ -162,25 +164,31 @@ public class PostAd extends AppCompatActivity
 
         builder.setTitle("Select the Advertisement Type");
 
-        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                 typeResult = types[which];
                 adType = AdType.valueOf(typeResult);
             }
         });
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                 TextView textView = findViewById(R.id.textView_postAd_adType);
                 textView.setText(typeResult);
             }
         });
 
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
 
             }
         });
@@ -188,6 +196,7 @@ public class PostAd extends AppCompatActivity
         dialog = builder.create();
         dialog.show();
     }
+
 
     @Override
     public void onBackPressed()
@@ -198,5 +207,4 @@ public class PostAd extends AppCompatActivity
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
 }

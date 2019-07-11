@@ -16,22 +16,27 @@ public class UserPersistenceHSQLDB implements UserPersistence
 {
     private final String dbPath;
 
+
     public UserPersistenceHSQLDB(final String dbPath)
     {
         this.dbPath = dbPath;
     }
 
+
     private Connection connection() throws SQLException
     {
         Connection con = DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
-        if (con != null) {
+        if (con != null)
+        {
             System.out.println("Connection created successfully");
         }
-        else {
+        else
+        {
             System.out.println("Problem with creating connection");
         }
         return con;
     }
+
 
     private User fromResultSet(final ResultSet rs) throws SQLException
     {
@@ -43,8 +48,10 @@ public class UserPersistenceHSQLDB implements UserPersistence
         final String email = rs.getString("EMAIL");
         final String phoneNumber = rs.getString("PHONENUMBER");
         final String profilePhoto = rs.getString("PROFILEPHOTO");
-        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber, profilePhoto);
+        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,
+                profilePhoto);
     }
+
 
     @Override
     public User getUser(final String userName)
@@ -56,7 +63,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
             final PreparedStatement st = c.prepareStatement("SELECT * FROM USERS WHERE USERNAME = ?");
             st.setString(1, userName);
             final ResultSet rs = st.executeQuery();
-            if(rs.next())
+            if (rs.next())
             {
                 user = fromResultSet(rs);
             }
@@ -85,12 +92,11 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(8, user.getProfilePhoto());
             st.executeUpdate();
             return user;
-
-        } catch (final SQLException e)
+        }
+        catch (final SQLException e)
         {
             throw new PersistenceException(e);
         }
-
     }
 
 
@@ -100,7 +106,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
         try (final Connection c = connection())
         {
             final PreparedStatement st = c.prepareStatement("UPDATE users SET PASSWORD = ? WHERE USERNAME = ?");
-            st.setString(1, newPassword );
+            st.setString(1, newPassword);
             st.setString(2, userName);
             st.executeUpdate();
         }
@@ -112,11 +118,13 @@ public class UserPersistenceHSQLDB implements UserPersistence
 
 
     @Override
-    public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)
+    public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber,
+                                         String newSecurityQuestion, String newSecurityAnswer)
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET FULLNAME = ?, EMAIL = ?, PHONENUMBER = ?, SECURITYQUESTION = ?, SECURITYANSWER = ? WHERE USERNAME = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE users SET FULLNAME = ?, EMAIL = ?, PHONENUMBER = " +
+                    "?, SECURITYQUESTION = ?, SECURITYANSWER = ? WHERE USERNAME = ?");
             st.setString(1, newFullName);
             st.setString(2, newEmail);
             st.setString(3, newPhoneNumber);
@@ -131,13 +139,14 @@ public class UserPersistenceHSQLDB implements UserPersistence
         }
     }
 
+
     @Override
     public void updateProfileImage(String userName, String profilePhoto)
     {
         try (final Connection c = connection())
         {
             final PreparedStatement st = c.prepareStatement("UPDATE users SET PROFILEPHOTO = ? WHERE USERNAME = ?");
-            st.setString(1, profilePhoto );
+            st.setString(1, profilePhoto);
             st.setString(2, userName);
             st.executeUpdate();
         }

@@ -11,14 +11,16 @@ import android.widget.TextView;
 
 import com.simplisell.R;
 
-public class ProfileListViewAdapter extends ArrayAdapter<String> {
+public class ProfileListViewAdapter extends ArrayAdapter<String>
+{
 
     private Context context;
     private String[] titles;
 
-    public ProfileListViewAdapter(Context c,String[] t)
+
+    public ProfileListViewAdapter(Context c, String[] t)
     {
-        super(c, R.layout.profile_row,R.id.profile_row_title,t);
+        super(c, R.layout.profile_row, R.id.profile_row_title, t);
         titles = t;
         context = c;
     }
@@ -29,8 +31,8 @@ public class ProfileListViewAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
 
-        LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.profile_row,parent,false);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.profile_row, parent, false);
 
         TextView title = view.findViewById(R.id.profile_row_title);
 

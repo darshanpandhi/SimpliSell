@@ -130,7 +130,8 @@ public class EditAd extends AppCompatActivity
     {
         AlertDialog dialog;
         AlertDialog.Builder builder;
-        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION", "EVENTS", "OTHERS"};
+        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION",
+                "EVENTS", "OTHERS"};
 
         builder = new AlertDialog.Builder(EditAd.this);
 
@@ -169,6 +170,7 @@ public class EditAd extends AppCompatActivity
         dialog.show();
     }
 
+
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
@@ -177,5 +179,4 @@ public class EditAd extends AppCompatActivity
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
-
 }

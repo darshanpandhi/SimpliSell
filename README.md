@@ -1,7 +1,7 @@
 # SimpliSell
 
 ## Vision Statement
-[Vision Statement](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/master/Docs/Vision.md)
+[Vision Statement](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/blob/master/Docs/VISION.md)
 
 ## Our Features
 [Feature List](https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/issues?label_name%5B%5D=Feature)
@@ -22,10 +22,10 @@
 ## Release notes - July 04, 2019
 - Advertisement Posting, Search, Persistent Storage and User Profile features are now complete!  
 - In addition to posting new ads, updating and deleting existing ads, users can now one-click repost ads that are about to expire. 
-- One can also manage his list of own ads and customize his profile by adding a cool profile picture. 
+- One can also manage their list of ads and customize their profile by adding a *cool* profile picture. 
 - The application now features a easy way to filter ads by type (Offering ads or Wanted Ads) or even sort them based on price.
-- Existing users can reset their password in case they forget it by answering their own security question.
-- The application runs perfectly but it a bit slow on certain activites like logging in for instance due to HSQLDB. We have captured the bug in [Low Performance](#118) and will solve this in our next release.
+- Existing users can reset their password in case they forget it by answering their own created security question.
+- The application runs perfectly but is a bit slow on certain activites like logging in for instance due to HSQLDB. We have captured the bug in [Low Performance](#118) and will solve this in our next release.
 - The Admin Control feature and the Reporting feature are pushed to iteration 3 as we underestimated the time and effort required to implement these. They should be included in our next release.
 
 ## Special Instructions
@@ -51,7 +51,7 @@
     
         Password: 222222
       
-        Security Question Answer: Blue
+        Security Question Answer: Elsa
 
 ## Release notes - June 13, 2019
 - Login System is now complete!  Users can create a new account, reset their password and log into the app

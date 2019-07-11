@@ -14,10 +14,12 @@ public class Credentials
         userPersistence = Services.getUserPersistence();
     }
 
+
     public Credentials(UserPersistence userPersistence)
     {
         this.userPersistence = userPersistence;
     }
+
 
     public User authenticate(String userName, String password)
     {
@@ -29,6 +31,7 @@ public class Credentials
         }
         return user;
     }
+
 
     public boolean correctSecurityAnswer(String userName, String securityAnswer)
     {

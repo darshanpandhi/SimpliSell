@@ -19,22 +19,27 @@ public class AdPersistenceHSQLDB implements AdPersistence
 {
     private final String dbPath;
 
+
     public AdPersistenceHSQLDB(String dbPath)
     {
         this.dbPath = dbPath;
     }
 
+
     private Connection connection() throws SQLException
     {
         Connection con = DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
-        if (con != null) {
+        if (con != null)
+        {
             System.out.println("Connection created successfully");
         }
-        else {
+        else
+        {
             System.out.println("Problem with creating connection");
         }
         return con;
     }
+
 
     private Ad fromResultSet(final ResultSet rs) throws SQLException
     {
@@ -50,6 +55,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
         final Date expiryDate = rs.getDate("EXPIRYDATE");
         return new Ad(adID, adOwner, adType, category, title, description, price, expiryDate);
     }
+
 
     @Override
     public List<Ad> getAds()
@@ -76,6 +82,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
+
     @Override
     public Ad getAd(int adId)
     {
@@ -99,6 +106,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
             throw new PersistenceException(e);
         }
     }
+
 
     @Override
     public Ad insertAd(final Ad ad)
@@ -144,12 +152,14 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
+
     @Override
     public final void updateAd(Ad ad)
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET CATEGORY = ?, TITLE = ?, DESCRIPTION = ?, PRICE = ? WHERE ADID = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET CATEGORY = ?, TITLE = ?, DESCRIPTION = ?," +
+                    " PRICE = ? WHERE ADID = ?");
             st.setInt(1, ad.getCategory().ordinal());
             st.setString(2, ad.getTitle());
             st.setString(3, ad.getDescription());
@@ -163,6 +173,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
             throw new PersistenceException(e);
         }
     }
+
 
     @Override
     public final void repostAd(final int adID)

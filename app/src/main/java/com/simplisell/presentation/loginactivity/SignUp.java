@@ -77,7 +77,8 @@ public class SignUp extends AppCompatActivity
     }
 
 
-    private void validate(String firstNLastName, String userName, String userPassword, String userConfirmPassword, String userSecurityQuestion, String userSecurityAnswer)
+    private void validate(String firstNLastName, String userName, String userPassword, String userConfirmPassword,
+                          String userSecurityQuestion, String userSecurityAnswer)
     {
 
 
@@ -89,20 +90,24 @@ public class SignUp extends AppCompatActivity
         progressDialog.show();
 
         // are the fields empty
-        boolean empty = (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
+        boolean empty =
+                (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
         boolean selectedSecurityQuestion = !userSecurityQuestion.equals("Select a security question");
 
         if (empty)  // if any field is empty
         {
-            if (selectedSecurityQuestion) {
+            if (selectedSecurityQuestion)
+            {
                 if (userConfirmPassword.equals(userPassword))  // if both fields have the same password
                 {
                     if (credentials.validPassword(userPassword))  // if password meets the standards
                     {
 
-                    User newUser = new User(firstNLastName, userName, userPassword, userSecurityQuestion, userSecurityAnswer, null, null, null);   // create a new user
+                        User newUser = new User(firstNLastName, userName, userPassword, userSecurityQuestion,
+                                userSecurityAnswer, null, null, null);   // create a new user
 
-                        if (accessUsers.insertNewUser(newUser) != null) {   // check if userName is in the database and insert
+                        if (accessUsers.insertNewUser(newUser) != null)
+                        {   // check if userName is in the database and insert
 
                             String registrationSuccessMessage = "Registration successful";
                             Toast.makeText(this, registrationSuccessMessage, Toast.LENGTH_SHORT).show();
@@ -116,16 +121,25 @@ public class SignUp extends AppCompatActivity
                             RecyclerViewAdapter.login(userName);
                             progressDialog.dismiss();
                             startActivity(signedUp);
-                        } else {
+                        }
+                        else
+                        {
                             Toast.makeText(this, "Username has been taken! Please try another", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
                     }
-                } else {
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or " +
+                                "numbers, and have a minimum of 6 characters and a maximum of 12 characters",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
                     Toast.makeText(this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
                 }
-            } else
+            }
+            else
             {
                 Toast.makeText(this, "Please select a security question", Toast.LENGTH_SHORT).show();
             }
