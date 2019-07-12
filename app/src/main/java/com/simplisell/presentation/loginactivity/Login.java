@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ public class Login extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         uniqueUserName = null;
 
         // initializing the buttons and edit textboxes

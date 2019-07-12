@@ -123,6 +123,7 @@
         app:layout_constraintVertical_bias="0.491" />
 
     <Button
+        android:id="@+id/signUp_btn_onLogin"
         android:layout_width="254dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -141,6 +142,7 @@
         app:layout_constraintVertical_bias="0.248" />
 
     <TextView
+        android:id="@+id/forgotPasswordBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
