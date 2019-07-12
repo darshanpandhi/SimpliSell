@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.simplisell.R;
-import com.simplisell.business.Search;
+import com.simplisell.business.AccessAds;
 import com.simplisell.objects.Ad;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
@@ -20,7 +20,6 @@ public class ReportedAds extends AppCompatActivity
     private static final String USERNAME_TEXT="USER";
 
     private List<Ad> reportedAds;
-    private Search adsSearch;
     private RecyclerView recyclerView;
     private String userName;
 
@@ -33,14 +32,12 @@ public class ReportedAds extends AppCompatActivity
         setContentView(R.layout.activity_users_own_ads);
         userName = getIntent().getStringExtra(USERNAME_TEXT);
 
-
-        adsSearch = new Search();
-        reportedAds = adsSearch.getReportedAds();
+        AccessAds accessAds = new AccessAds();
+        reportedAds = accessAds.getReportedAds();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
-        recyclerViewAdapter.setMyAd(reportedAds);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, reportedAds);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
     }

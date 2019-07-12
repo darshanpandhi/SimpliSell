@@ -1,6 +1,8 @@
 package com.simplisell.tests.persistence;
 
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdmin;
+import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.persistence.UserPersistence;
 
 import java.util.ArrayList;
@@ -8,40 +10,45 @@ import java.util.List;
 
 public class UserPersistenceStub implements UserPersistence
 {
-    private List<User> users;
+    private List<User> userList;
 
 
     public UserPersistenceStub()
     {
-        this.users = new ArrayList<>();
-        User user;
-        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null, null);
-        users.add(user);
-        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", null, null, null);
-        users.add(user);
-        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null, null, null);
-        users.add(user);
+        userList = new ArrayList<>();
+
+        User newUser;
+
+        newUser = new UserAdvertiser("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null
+                , null, 0);
+        userList.add(newUser);
+
+        newUser = new UserAdvertiser("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green"
+                , null, null, null, 0);
+        userList.add(newUser);
+
+        newUser = new UserAdvertiser("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null
+                , null, null, 0);
+        userList.add(newUser);
+
+        newUser = new UserAdmin("Ronak", "admin", "What is your favourite color", "Black");
+        userList.add(newUser);
     }
 
-    @Override
-    public List<User> getUsers()
-    {
-        return users;
-    }
 
-
-    @Override
     public User getUser(final String userName)
     {
         User user = findUser(userName);
+
         return user;
     }
 
+
     @Override
-    public User insertUser(final User user)
+    public UserAdvertiser insertUserAdvertiser(final UserAdvertiser userAdvertiser)
     {
-        users.add(user);
-        return user;
+        userList.add(userAdvertiser);
+        return userAdvertiser;
     }
 
 
@@ -55,53 +62,84 @@ public class UserPersistenceStub implements UserPersistence
         }
     }
 
-    @Override
-    public void reportUser(final String userName)
-    {
-        User reportedUser = findUser(userName);
-        reportedUser.incrementNumReports();
-    }
 
     @Override
-    public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)
+    public void reportUserAdvertiser(final String userName)
     {
-        User user = getUser(userName);
-        user.setFirstAndLastName(newFullName);
-        user.setEmail(newEmail);
-        user.setPhoneNumber(newPhoneNumber);
-        user.setSecurityQuestion(newSecurityQuestion);
-        user.setSecurityAnswer(newSecurityAnswer);
+        UserAdvertiser reportedUserAdvertiser = findUserAdvertiser(userName);
+
+        if (reportedUserAdvertiser != null)
+        {
+            reportedUserAdvertiser.incrementNumReports();
+        }
     }
 
+
     @Override
-    public void updateProfileImage(String userName, String profilePhoto)
+    public void updateProfileInformation(final String userName, final String newFullName, final String newEmail,
+                                         final String newPhoneNumber, final String newSecurityQuestion,
+                                         final String newSecurityAnswer)
     {
-        User user = getUser(userName);
-        user.setProfilePhoto(profilePhoto);
+        UserAdvertiser userAdvertiser = findUserAdvertiser(userName);
+
+        if (userAdvertiser != null)
+        {
+            userAdvertiser.setFirstAndLastName(newFullName);
+            userAdvertiser.setEmail(newEmail);
+            userAdvertiser.setPhoneNumber(newPhoneNumber);
+            userAdvertiser.setSecurityQuestion(newSecurityQuestion);
+            userAdvertiser.setSecurityAnswer(newSecurityAnswer);
+        }
     }
+
+
+    @Override
+    public void updateProfileImage(final String userName, final String profilePhoto)
+    {
+        UserAdvertiser userAdvertiser = findUserAdvertiser(userName);
+
+        if (userAdvertiser != null)
+        {
+            userAdvertiser.setProfilePhoto(profilePhoto);
+        }
+    }
+
 
     private User findUser(final String userName)
     {
-        User user = null;
+        User requiredUser = null;
 
         if (userName != null)
         {
-
             boolean foundUser = false;
-            for (int i = 0; i < users.size() && !foundUser; i++)
+            User currentUser;
+
+            for (int i = 0; i < userList.size() && !foundUser; i++)
             {
-                user = users.get(i);
-                if (user.getUserName().equals(userName))
+                currentUser = userList.get(i);
+
+                if (currentUser.getUserName().equals(userName))
                 {
                     foundUser = true;
+                    requiredUser = currentUser;
                 }
-            }
-            if (!foundUser)
-            {
-                user = null;
             }
         }
 
-        return user;
+        return requiredUser;
+    }
+
+
+    private UserAdvertiser findUserAdvertiser(final String userName)
+    {
+        User requiredUser = findUser(userName);
+        UserAdvertiser requiredUserAdvertiser = null;
+
+        if (requiredUser instanceof UserAdvertiser)
+        {
+            requiredUserAdvertiser = (UserAdvertiser) requiredUser;
+        }
+
+        return requiredUserAdvertiser;
     }
 }

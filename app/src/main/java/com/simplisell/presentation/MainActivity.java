@@ -14,9 +14,12 @@ import android.widget.ImageButton;
 
 import com.simplisell.R;
 import com.simplisell.application.Main;
-import com.simplisell.business.Search;
+import com.simplisell.business.AccessAds;
+import com.simplisell.business.AccessUsers;
+import com.simplisell.business.EncoderDecoder;
 import com.simplisell.objects.Category;
-import com.simplisell.objects.EncoderDecoder;
+import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.presentation.homepagetabs.TabFragment;
 import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
 import com.simplisell.presentation.loginactivity.Login;
@@ -33,10 +36,16 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 {
     private static String userName = null;
 
+    private User loggedInUser = null;
+
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+    private AccessUsers accessUsers;      // helps  access users
+    private AccessAds accessAds;             // helps  access ads
+
     private ImageButton profileBtn;
-    private Search search;
+
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
     private TabFragment tabFragmentTransportationObj;
@@ -53,35 +62,76 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
-        search = new Search();
 
-        tabFragmentAllObj = new TabFragment(search.getAllAds());
-        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS));
-        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION));
-        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES));
-        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION));
-        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS));
-        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS));
-        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS));
-
+        accessAds = new AccessAds();
+        accessUsers = new AccessUsers();
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 
-        //        if (Login.isLoggedIn())
-        //        {
-        //            String profilePhoto = currUser.getProfilePhoto();
-        //
-        //            if (profilePhoto != null)
-        //            {
-        //                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
-        //
-        //                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
-        //                        (int) (photo.getHeight() * 0.7), true);
-        //
-        //                profileBtn.setImageBitmap(displayProfile);
-        //            }
-        //        }
+        initializeTabFragments();
+        displayProfilePhoto();
 
         tabSetUp();
+    }
+
+    private void getLoggedInUser()
+    {
+        if (Login.isLoggedIn())  // if there is no logged in user
+        {
+            loggedInUser = accessUsers.getUser(Intent.EXTRA_TEXT);   //Update to show profile image
+        }
+        else
+        {
+            try
+            {
+                userName = getIntent().getStringExtra(Intent.EXTRA_TEXT);   // get the username to see if user was logged
+                // in.
+
+                if (userName != null)
+                {
+                    loggedInUser = accessUsers.getUser(userName);
+                }
+            }
+            catch (Exception e)
+            {
+                userName = null;
+                loggedInUser = null;
+            }
+        }
+    }
+
+
+    private void displayProfilePhoto()
+    {
+        if (Login.isLoggedIn() && loggedInUser instanceof UserAdvertiser)
+        {
+            UserAdvertiser loggedInUserAdvertiser = (UserAdvertiser) loggedInUser;
+
+            String profilePhoto = loggedInUserAdvertiser.getProfilePhoto();
+
+            if (profilePhoto != null)
+            {
+                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
+
+                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
+                        (int) (photo.getHeight() * 0.7), true);
+
+                profileBtn.setImageBitmap(displayProfile);
+            }
+        }
+    }
+
+
+    private void initializeTabFragments()
+    {
+        tabFragmentAllObj = new TabFragment(accessAds.getAllAds(), accessAds);
+        tabFragmentBooksObj = new TabFragment(accessAds.getAllAdsByCategory(Category.BOOKS), accessAds);
+        tabFragmentTransportationObj = new TabFragment(accessAds.getAllAdsByCategory(Category.TRANSPORTATION),
+                accessAds);
+        tabFragmentServicesJobsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.JOBS_SERVICES), accessAds);
+        tabFragmentLivingObj = new TabFragment(accessAds.getAllAdsByCategory(Category.ACCOMMODATION), accessAds);
+        tabFragmentEventsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.EVENTS), accessAds);
+        tabFragmentElectronicsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.ELECTRONICS), accessAds);
+        tabFragmentOtherObj = new TabFragment(accessAds.getAllAdsByCategory(Category.OTHERS), accessAds);
     }
 
 
@@ -95,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
         // adding the fragments
         adapter.addFragment(tabFragmentAllObj, "All");
-        adapter.addFragment(tabFragmentBooksObj, "Book");
+        adapter.addFragment(tabFragmentBooksObj, "Books");
         adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
         adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
         adapter.addFragment(tabFragmentEventsObj, "Events");

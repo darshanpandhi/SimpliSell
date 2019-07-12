@@ -12,6 +12,7 @@ import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
@@ -97,10 +98,11 @@ public class SignUp extends AppCompatActivity
                     if (credentials.validPassword(userPassword))  // if password meets the standards
                     {
 
-                        User newUser = new User(firstNLastName, userName, userPassword, userSecurityQuestion,
-                                userSecurityAnswer, null, null, null);   // create a new user
+                        UserAdvertiser newUserAdvertiser = new UserAdvertiser(firstNLastName, userName, userPassword,
+                                userSecurityQuestion, userSecurityAnswer, null, null,
+                                null, 0);   // create a new user
 
-                        if (accessUsers.insertNewUser(newUser) != null)
+                        if (accessUsers.insertNewUserAdvertiser(newUserAdvertiser) != null)
                         {   // check if userName is in the database and insert
 
                             String registrationSuccessMessage = "Registration successful";

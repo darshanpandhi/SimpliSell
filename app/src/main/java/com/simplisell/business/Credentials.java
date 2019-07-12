@@ -24,7 +24,9 @@ public class Credentials
     public User authenticate(String userName, String password)
     {
         User user = userPersistence.getUser(userName);
-        boolean validUser = user != null && correctPassword(userName, password);
+
+        boolean validUser = user != null && correctPassword(user, password);
+
         if (!validUser)
         {
             user = null;
@@ -93,14 +95,15 @@ public class Credentials
     }
 
 
-    private boolean correctPassword(String userName, String password)
+    private boolean correctPassword(User user, String password)
     {
         boolean match = false;
-        User user = userPersistence.getUser(userName);
+
         if (user != null)
         {
             match = user.getPassword().equals(password);
         }
+
         return match;
     }
 }

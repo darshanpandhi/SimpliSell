@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:fontFamily="@font/orbitron"
-            android:text="@string/reported_ads"
+            android:text="@string/reportedAds"
             android:textColor="@android:color/background_light"
             android:background="@color/colorPrimaryDark"
             android:textSize="30sp"/>

@@ -17,4 +17,6 @@ public interface AdPersistence
     void repostAd(int adID);
 
     void updateAd(final Ad ad);
+
+    void reportAd(final int adId);
 }

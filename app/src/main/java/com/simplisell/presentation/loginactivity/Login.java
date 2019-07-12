@@ -10,8 +10,10 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
+import com.simplisell.presentation.useradminactivity.AdminHomeScreen;
 
 public class Login extends AppCompatActivity
 {
@@ -59,32 +61,45 @@ public class Login extends AppCompatActivity
             userName = userNameEntered.getText().toString();
             userPassword = passwordEntered.getText().toString();
 
-
-
             User loggedInUser = credentials.authenticate(userName, userPassword);
 
             if (loggedInUser != null)
-            {  // if login is successful
-
-                logIn();
-
-
+            {
+                // if login is successful
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
 
                 finish();
 
-                Intent logIn = new Intent(getApplicationContext(), loggedInUser.logInClass());
-                logIn.putExtra(Intent.EXTRA_TEXT, userName);
-
-                RecyclerViewAdapter.login(userName);
-                startActivity(logIn);
+                logIn(loggedInUser);
             }
             else
             {
                 // if authentication is not successful.
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    private void logIn(User loggedInUser)
+    {
+        String userName = loggedInUser.getUserName();
+
+        if (loggedInUser instanceof UserAdvertiser)
+        {
+            Intent logIn = new Intent(getApplicationContext(), MainActivity.class);
+            logIn.putExtra(Intent.EXTRA_TEXT, userName);
+
+            RecyclerViewAdapter.login(userName);
+            startActivity(logIn);
+        }
+        else
+        {
+            Intent logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
+            logIn.putExtra(Intent.EXTRA_TEXT, userName);
+
+            RecyclerViewAdapter.login(userName);
+            startActivity(logIn);
         }
     }
 

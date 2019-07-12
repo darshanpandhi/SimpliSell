@@ -1,6 +1,8 @@
 package com.simplisell.persistence.hsqldb;
 
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdmin;
+import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.persistence.UserPersistence;
 
 import java.sql.Connection;
@@ -8,12 +10,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserPersistenceHSQLDB implements UserPersistence
 {
+    private static final String USER_ADVERTISER = "UserAdvertiser";
     private final String dbPath;
 
 
@@ -40,16 +40,31 @@ public class UserPersistenceHSQLDB implements UserPersistence
 
     private User fromResultSet(final ResultSet rs) throws SQLException
     {
-        final String firstAndLastName = rs.getString("FULLNAME");
+        User requiredUser;
+
         final String userName = rs.getString("USERNAME");
         final String password = rs.getString("PASSWORD");
         final String securityQuestion = rs.getString("SECURITYQUESTION");
         final String securityAnswer = rs.getString("SECURITYANSWER");
-        final String email = rs.getString("EMAIL");
-        final String phoneNumber = rs.getString("PHONENUMBER");
-        final String profilePhoto = rs.getString("PROFILEPHOTO");
-        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,
-                profilePhoto);
+        final String discriminatorColumn = rs.getString("DISCRIMINATOR");
+
+        if (discriminatorColumn.equals(USER_ADVERTISER))
+        {
+            final String firstAndLastName = rs.getString("FULLNAME");
+            final String email = rs.getString("EMAIL");
+            final String phoneNumber = rs.getString("PHONENUMBER");
+            final String profilePhoto = rs.getString("PROFILEPHOTO");
+            final int numReports = rs.getInt("NUMREPORTS");
+
+            requiredUser = new UserAdvertiser(firstAndLastName, userName, password, securityQuestion, securityAnswer,
+                    email, phoneNumber, profilePhoto, numReports);
+        }
+        else
+        {
+            requiredUser = new UserAdmin(userName, password, securityQuestion, securityAnswer);
+        }
+
+        return requiredUser;
     }
 
 
@@ -77,21 +92,25 @@ public class UserPersistenceHSQLDB implements UserPersistence
 
 
     @Override
-    public User insertUser(final User user)
+    public UserAdvertiser insertUserAdvertiser(final UserAdvertiser userAdvertiser)
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-            st.setString(1, user.getFirstAndLastName());
-            st.setString(2, user.getUserName());
-            st.setString(3, user.getPassword());
-            st.setString(4, user.getSecurityQuestion());
-            st.setString(5, user.getSecurityAnswer());
-            st.setString(6, user.getEmail());
-            st.setString(7, user.getPhoneNumber());
-            st.setString(8, user.getProfilePhoto());
+            final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?, " + "?, ?," +
+                    " ?)");
+            st.setString(1, userAdvertiser.getFirstAndLastName());
+            st.setString(2, userAdvertiser.getUserName());
+            st.setString(3, userAdvertiser.getPassword());
+            st.setString(4, userAdvertiser.getSecurityQuestion());
+            st.setString(5, userAdvertiser.getSecurityAnswer());
+            st.setString(6, userAdvertiser.getEmail());
+            st.setString(7, userAdvertiser.getPhoneNumber());
+            st.setString(8, userAdvertiser.getProfilePhoto());
+            st.setInt(9, userAdvertiser.getNumReports());
+            st.setString(10, USER_ADVERTISER);
+
             st.executeUpdate();
-            return user;
+            return userAdvertiser;
         }
         catch (final SQLException e)
         {
@@ -105,7 +124,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET PASSWORD = ? WHERE USERNAME = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE USERS SET PASSWORD = ? WHERE USERNAME = ?");
             st.setString(1, newPassword);
             st.setString(2, userName);
             st.executeUpdate();
@@ -123,8 +142,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET FULLNAME = ?, EMAIL = ?, PHONENUMBER = " +
-                    "?, SECURITYQUESTION = ?, SECURITYANSWER = ? WHERE USERNAME = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE USERS SET FULLNAME = ?, EMAIL = ?, " +
+                    "PHONENUMBER = ?, SECURITYQUESTION = ?, SECURITYANSWER = ? WHERE USERNAME = ?");
             st.setString(1, newFullName);
             st.setString(2, newEmail);
             st.setString(3, newPhoneNumber);
@@ -145,10 +164,37 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET PROFILEPHOTO = ? WHERE USERNAME = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE USERS SET PROFILEPHOTO = ? WHERE USERNAME = ?");
             st.setString(1, profilePhoto);
             st.setString(2, userName);
             st.executeUpdate();
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
+
+    @Override
+    public void reportUserAdvertiser(String userName)
+    {
+        try (final Connection c = connection())
+        {
+            User reportedUser = getUser(userName);
+            UserAdvertiser reportedUserAdvertiser;
+
+            if (reportedUser instanceof UserAdvertiser)
+            {
+                reportedUserAdvertiser = (UserAdvertiser) reportedUser;
+
+                int newNumReports = reportedUserAdvertiser.getNumReports() + 1;
+
+                final PreparedStatement st = c.prepareStatement("UPDATE USERS SET NUMREPORTS = ? WHERE USERNAME = ?");
+                st.setInt(1, newNumReports);
+                st.setString(2, userName);
+                st.executeUpdate();
+            }
         }
         catch (final SQLException e)
         {

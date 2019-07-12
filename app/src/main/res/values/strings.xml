@@ -87,9 +87,11 @@
 
     <string name="save">SAVE</string>
 
-    <string name="reportedUsers">View Reported Users</string>
+    <string name="reportAd">REPORT AD</string>
 
-    <string name="reportedAds">View Reported Ads</string>
+    <string name="viewReportedAds">View Reported Ads</string>
+
+    <string name="reportedAds">Reported Ads</string>
 
     <string name="adminControl">Admin Control</string>
 

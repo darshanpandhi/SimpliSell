@@ -1,7 +1,5 @@
 package com.simplisell.objects;
 
-import com.simplisell.presentation.MainActivity;
-
 public class UserAdvertiser extends User
 {
     private String firstAndLastName;
@@ -12,23 +10,16 @@ public class UserAdvertiser extends User
 
 
     public UserAdvertiser(String newFirstAndLastName, String newUserName, String newUserPassword,
-                          String newSecurityQuestion, String newSecurityAnswer)
+                          String newSecurityQuestion, String newSecurityAnswer, String newEmail, String newPhoneNumber,
+                          String newProfilePhoto, int newNumReports)
     {
         super(newUserName, newUserPassword, newSecurityQuestion, newSecurityAnswer);
 
         firstAndLastName = newFirstAndLastName;
-
-        email = null;
-        phoneNumber = null;
-        profilePhoto = null;
-        numReports = 0;
-    }
-
-
-    @Override
-    public final Class logInClass()
-    {
-        return MainActivity.class;
+        email = newEmail;
+        phoneNumber = newPhoneNumber;
+        profilePhoto = newProfilePhoto;
+        numReports = newNumReports;
     }
 
 
@@ -82,5 +73,10 @@ public class UserAdvertiser extends User
     public void incrementNumReports()
     {
         numReports++;
+    }
+
+    public int getNumReports()
+    {
+        return numReports;
     }
 }

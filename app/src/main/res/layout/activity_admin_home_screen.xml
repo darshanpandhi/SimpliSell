@@ -29,26 +29,6 @@
                 android:fontFamily="@font/orbitron"/>
     </LinearLayout>
 
-    <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-    <Button
-            android:layout_width="289dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/black_overlay"
-            android:textColor="@android:color/background_light"
-            android:text="@string/reportedUsers"
-            android:fontFamily="@font/candal"
-            android:onClick="viewReportedUsersBtnClick"/>
-
-    <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
     <Button
             android:layout_width="289dp"
             android:layout_height="wrap_content"
@@ -58,10 +38,5 @@
             android:text="@string/reportedAds"
             android:fontFamily="@font/candal"
             android:onClick="viewReportedAdsBtnClick"/>
-    <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
 
 </LinearLayout>

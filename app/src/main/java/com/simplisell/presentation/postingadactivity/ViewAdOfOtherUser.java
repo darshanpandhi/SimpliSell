@@ -54,4 +54,16 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         String price = "$" + this.price;
         textViewPrice.setText(price);
     }
+
+    public void reportAdBtnClick(View view)
+    {
+        accessAds.reportAd(currAd.getAdId());
+        Toast.makeText(getApplicationContext(), "Advertisement Reported" + currAd.getNumReports(),
+                Toast.LENGTH_SHORT).show();
+
+        // go back to main page after deletion
+        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainPage);
+    }
+
 }

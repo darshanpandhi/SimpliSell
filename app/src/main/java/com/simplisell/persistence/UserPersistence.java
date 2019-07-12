@@ -1,19 +1,23 @@
 package com.simplisell.persistence;
 
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 
 import java.util.List;
 
 public interface UserPersistence
 {
-    User getUser(String userName);
+    User getUser(final String userName);
 
-    User insertUser(User user);
+    UserAdvertiser insertUserAdvertiser(final UserAdvertiser userAdvertiser);
 
-    void updatePassword(String userName, String newPassword);
+    void updatePassword(final String userName, final String newPassword);
 
-    void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber,
-                                  String newSecurityQuestion, String newSecurityAnswer);
+    void updateProfileInformation(final String userName, final String newFullName, final String newEmail,
+                                  final String newPhoneNumber, final String newSecurityQuestion,
+                                  final String newSecurityAnswer);
 
-    void updateProfileImage(String userName, String profilePhoto);
+    void updateProfileImage(final String userName, final String profilePhoto);
+
+    void reportUserAdvertiser(final String userName);
 }

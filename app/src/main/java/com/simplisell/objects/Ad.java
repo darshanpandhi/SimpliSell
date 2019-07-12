@@ -5,6 +5,8 @@ import java.util.Calendar;
 
 public final class Ad
 {
+    private static adIdCounter = 1
+
     private int adId;
     private String adOwner;
     private AdType adType;
@@ -12,13 +14,16 @@ public final class Ad
     private String title;
     private String description;
     private double price;
+    private int numReports;
 
     private Date expiryDate;
 
 
     public Ad(int adId, final String adOwner, final AdType adType, final Category category, final String title,
-              final String description, final double price, final Date expiryDate)
+              final String description, final double price, final Date expiryDate, final int numReports)
     {
+
+
         this.adId = adId;
         this.adOwner = adOwner;
         this.adType = adType;
@@ -27,19 +32,7 @@ public final class Ad
         this.description = description;
         this.price = price;
         this.expiryDate = expiryDate;
-    }
-
-
-    public Ad(final String adOwner, final AdType adType, final Category category, final String title,
-              final String description, final double price)
-    {
-        this.adId = -1;
-        this.adOwner = adOwner;
-        this.adType = adType;
-        this.category = category;
-        this.title = title;
-        this.description = description;
-        this.price = price;
+        this.numReports = numReports;
     }
 
 
@@ -125,6 +118,11 @@ public final class Ad
     public void setExpiryDate(Date date)
     {
         this.expiryDate = date;
+    }
+
+    public int getNumReports()
+    {
+        return numReports;
     }
 
 

@@ -1,6 +1,7 @@
 package com.simplisell.objects;
 
-public class User
+
+public abstract class User
 {
     private final String userName;
     private String password;
@@ -38,13 +39,10 @@ public class User
         return securityAnswer;
     }
 
-    public String getPhoneNumber() { return phoneNumber; }
-
-    public String getFirstAndLastName() { return firstAndLastName; }
-
-    public String getEmail() { return email; }
-
-    public String getProfilePhoto() { return profilePhoto; }
+    public void setSecurityQuestion(String securityQuestion)
+    {
+        this.securityQuestion = securityQuestion;
+    }
 
     public void setSecurityAnswer(String securityAnswer)
     {
