@@ -1,6 +1,5 @@
 package com.simplisell.presentation.loginactivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,8 +45,6 @@ public class Login extends AppCompatActivity
         String userName;       // The userName from the textbox will be stored here.
         String userPassword;    // The userName in the password will be stored here.
 
-        ProgressDialog progressDialog;  // progress Dialogue
-
         // check if these fields are empty
         boolean userNameEmpty = userNameEntered.getText().toString().isEmpty();
         boolean passwordEmpty = passwordEntered.getText().toString().isEmpty();
@@ -62,10 +59,7 @@ public class Login extends AppCompatActivity
             userName = userNameEntered.getText().toString();
             userPassword = passwordEntered.getText().toString();
 
-            // Show a progress Dialog while the authentication is loading
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Logging In");
-            progressDialog.show();
+
 
             User loggedInUser = credentials.authenticate(userName, userPassword);
 
@@ -74,7 +68,6 @@ public class Login extends AppCompatActivity
 
                 logIn();
 
-                progressDialog.dismiss();   // dismiss the progress bar
 
                 // show user that login was successful
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
@@ -90,7 +83,6 @@ public class Login extends AppCompatActivity
             else
             {
                 // if authentication is not successful.
-                progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
         }

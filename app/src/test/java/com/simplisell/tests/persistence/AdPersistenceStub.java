@@ -4,8 +4,10 @@ import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.persistence.AdPersistence;
 import com.simplisell.objects.Ad;
+import java.sql.Date;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class AdPersistenceStub implements AdPersistence
@@ -15,6 +17,11 @@ public class AdPersistenceStub implements AdPersistence
 
     public AdPersistenceStub()
     {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, 21);
+
+        Date date = new Date(c.getTimeInMillis());
+
         ads = new ArrayList<>();
 
         String adOwner = "Bob";
@@ -24,17 +31,18 @@ public class AdPersistenceStub implements AdPersistence
         String description = "iPad Ad description";
         double price = 554.99;
 
-        Ad newAd = new Ad(0, adOwner, adType, category, title, description, price, 0);
+        Ad newAd = new Ad(0, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
         adOwner = "Allice";
-        adType = AdType.WANT;
+        adType = AdType.WANTED;
         category = Category.JOBS_SERVICES;
         title = "Wanted Tutoring Services";
         description = "Tutoring Services Description";
         price = 40;
 
-        newAd = new Ad(1, adOwner, adType, category, title, description, price, 0);
+
+        newAd = new Ad(1, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
         adOwner = "Jay";
@@ -44,7 +52,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "CarPooling Ad Description";
         price = 100;
 
-        newAd = new Ad(2, adOwner, adType, category, title, description, price, 0);
+        newAd = new Ad(2, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
 
@@ -55,7 +63,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "A nice book by Dr APJ abdul kalaam";
         price = 0;
 
-        newAd = new Ad(3, adOwner, adType, category, title, description, price, 0);
+        newAd = new Ad(3, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
 
 
@@ -66,17 +74,18 @@ public class AdPersistenceStub implements AdPersistence
         description = "Book for COMP2080 and COMP3170";
         price = 20;
 
-        newAd = new Ad(4, adOwner, adType, category, title, description, price, 0);
+        newAd = new Ad(4, adOwner, adType, category, title, description, price, date);
         ads.add(newAd);
     }
 
-
+    @Override
     public List<Ad> getAds()
     {
         return ads;
     }
 
 
+    @Override
     public final Ad getAd(int adId)
     {
         Ad currentAd;
@@ -101,6 +110,7 @@ public class AdPersistenceStub implements AdPersistence
     }
 
 
+    @Override
     public final Ad insertAd(final Ad newAd)
     {
         Ad insertedAd = null;
@@ -120,7 +130,7 @@ public class AdPersistenceStub implements AdPersistence
         return insertedAd;
     }
 
-
+    @Override
     public final Ad removeAd(final Ad adToBeRemoved)
     {
         Ad removedAd = null;
@@ -135,9 +145,20 @@ public class AdPersistenceStub implements AdPersistence
         return removedAd;
     }
 
-    public final void reportAd(final int adID)
+    @Override
+    public final void updateAd(Ad newAd)
     {
-        Ad reportedAd = getAd(adID);
-        reportedAd.incrementNumReports();
+        Ad ad = ads.get(newAd.getAdId());
+        ad.setCategory(newAd.getCategory());
+        ad.setTitle(newAd.getTitle());
+        ad.setDescription(newAd.getDescription());
+        ad.setPrice(newAd.getPrice());
+    }
+
+    @Override
+    public void repostAd(final int adID)
+    {
+        Ad repostedAd = getAd(adID);
+        repostedAd.resetExpiryDate();
     }
 }

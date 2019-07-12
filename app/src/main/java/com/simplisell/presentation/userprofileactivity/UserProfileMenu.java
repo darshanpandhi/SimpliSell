@@ -13,8 +13,6 @@ import com.simplisell.objects.User;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
-import com.simplisell.presentation.userprofileactivity.ProfileListViewAdapter;
-
 public class UserProfileMenu extends AppCompatActivity
 {
 
@@ -55,12 +53,15 @@ public class UserProfileMenu extends AppCompatActivity
                     setContentView(R.layout.activity_user_profile_menu);
                     initialize();
                 }
+
+
             }
             else
             {
                 finish();
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
+
         }
         catch (Exception e)
         {
@@ -68,6 +69,7 @@ public class UserProfileMenu extends AppCompatActivity
             finish();
             startActivity(new Intent(getApplicationContext(), Login.class));
         }
+
     }
 
 

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
-import com.simplisell.objects.UserAdvertiser;
+import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 
@@ -55,7 +55,6 @@ public class SignUp extends AppCompatActivity
     public void signUpBtnClickRegister(View view)
     {
 
-
         // get the input from user
         String firstNLastName = name.getText().toString().trim();
         String userName = this.userName.getText().toString().trim();
@@ -98,12 +97,11 @@ public class SignUp extends AppCompatActivity
                     if (credentials.validPassword(userPassword))  // if password meets the standards
                     {
 
-                        // sign up button always creates a new userAdvertiser
-                        UserAdvertiser newUser = new UserAdvertiser(firstNLastName, userName, userPassword,
-                                userSecurityQuestion, userSecurityAnswer);
+                        User newUser = new User(firstNLastName, userName, userPassword, userSecurityQuestion,
+                                userSecurityAnswer, null, null, null);   // create a new user
+
                         if (accessUsers.insertNewUser(newUser) != null)
                         {   // check if userName is in the database and insert
-
 
                             String registrationSuccessMessage = "Registration successful";
                             Toast.makeText(this, registrationSuccessMessage, Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package com.simplisell.presentation.postingadactivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -72,6 +73,11 @@ public class EditAd extends AppCompatActivity
         String description;
         double price;
 
+        // Show a progress Dialog while the authentication is loading
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Saving");
+        progressDialog.show();
+
         // check if all fields are filled
         EditText editTextTitle = findViewById(R.id.editText_editAd_title);
         boolean titleEmpty = editTextTitle.getText().toString().isEmpty();
@@ -91,21 +97,31 @@ public class EditAd extends AppCompatActivity
         }
         else
         {
-            title = editTextTitle.getText().toString().trim();
-            description = editTextDescription.getText().toString().trim();
-            price = Double.parseDouble(editTextPrice.getText().toString());
+            try
+            {
+                title = editTextTitle.getText().toString().trim();
+                description = editTextDescription.getText().toString().trim();
+                price = Double.parseDouble(editTextPrice.getText().toString());
 
-            // save changes made by user
-            currAd.setCategory(category);
-            currAd.setTitle(title);
-            currAd.setDescription(description);
-            currAd.setPrice(price);
-            Toast.makeText(getApplicationContext(), "Advertisement Updated", Toast.LENGTH_LONG).show();
+                // save changes made by user
+                currAd.setCategory(category);
+                currAd.setTitle(title);
+                currAd.setDescription(description);
+                currAd.setPrice(price);
+                accessAds.updateAd(currAd);
+                Toast.makeText(getApplicationContext(), "Advertisement Updated", Toast.LENGTH_LONG).show();
 
-            // go to View Individual Ad activity (current user)
-            Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
-            viewAd.putExtra(ADID_TEXT, currAd.getAdId());
-            startActivity(viewAd);
+                // go to View Individual Ad activity (current user)
+                Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
+                viewAd.putExtra(ADID_TEXT, currAd.getAdId());
+                progressDialog.dismiss();
+                startActivity(viewAd);
+            }
+            catch (Exception e)
+            {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -114,7 +130,8 @@ public class EditAd extends AppCompatActivity
     {
         AlertDialog dialog;
         AlertDialog.Builder builder;
-        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION", "EVENTS", "OTHERS"};
+        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION",
+                "EVENTS", "OTHERS"};
 
         builder = new AlertDialog.Builder(EditAd.this);
 
@@ -153,6 +170,7 @@ public class EditAd extends AppCompatActivity
         dialog.show();
     }
 
+
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
@@ -161,5 +179,4 @@ public class EditAd extends AppCompatActivity
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
-
 }

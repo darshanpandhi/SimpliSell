@@ -16,9 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.objects.EncoderDecoder;
+import com.simplisell.business.EncoderDecoder;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 
 public class ProfileInformation extends AppCompatActivity
 {
@@ -28,9 +27,8 @@ public class ProfileInformation extends AppCompatActivity
     private static final String USERNAME_TEXT = "USER";
 
     private ImageButton profileImage;
-    private Button saveButton;
     private String userName;
-    private EditText firstAndLastName;              // name of user
+    private EditText firstAndLastName;   // name of user
     private EditText password;          // password of user
     private EditText securityQuestion;  // security question of user
     private EditText securityAnswer;    // security answer of user
@@ -45,6 +43,7 @@ public class ProfileInformation extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_information);
+
         userName = getIntent().getStringExtra(USERNAME_TEXT);
         accessUsers = new AccessUsers();
         profileImage = findViewById(R.id.profileImage);
@@ -83,39 +82,32 @@ public class ProfileInformation extends AppCompatActivity
     {
         User currUser = accessUsers.getUser(userName);
 
-        if (currUser instanceof UserAdvertiser)
+        if (currUser.getProfilePhoto() != null)
         {
-            UserAdvertiser currUserAdvertiser = (UserAdvertiser) currUser;
-
-            if (currUserAdvertiser.getProfilePhoto() != null)
-            {
-                Bitmap photo = EncoderDecoder.stringToBitMap(currUserAdvertiser.getProfilePhoto());
-                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 2.8),
-                        (int) (photo.getHeight() * 2.8), true);
-
-                profileImage.setImageBitmap(displayProfile);
-
-                photoTextView.setText("");
-            }
-
-            if (currUserAdvertiser.getFirstAndLastName() != null)
-            {
-                firstAndLastName.setHint(currUserAdvertiser.getFirstAndLastName());
-            }
-
-            if (currUserAdvertiser.getEmail() != null)
-            {
-                email.setHint(currUserAdvertiser.getEmail());
-            }
-
-            if (currUserAdvertiser.getPhoneNumber() != null)
-            {
-                phoneNumber.setHint(currUserAdvertiser.getPhoneNumber());
-            }
-
-            securityQuestion.setHint(currUserAdvertiser.getSecurityQuestion());
-            securityAnswer.setHint(currUserAdvertiser.getSecurityAnswer());
+            Bitmap photo = EncoderDecoder.stringToBitMap(currUser.getProfilePhoto());
+            Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 2.8),
+                    (int) (photo.getHeight() * 2.8), true);
+            profileImage.setImageBitmap(displayProfile);
+            photoTextView.setText("");
         }
+
+        if (currUser.getFirstAndLastName() != null)
+        {
+            firstAndLastName.setHint(currUser.getFirstAndLastName());
+        }
+
+        if (currUser.getEmail() != null)
+        {
+            email.setHint(currUser.getEmail());
+        }
+
+        if (currUser.getPhoneNumber() != null)
+        {
+            phoneNumber.setHint(currUser.getPhoneNumber());
+        }
+
+        securityQuestion.setHint(currUser.getSecurityQuestion());
+        securityAnswer.setHint(currUser.getSecurityAnswer());
     }
 
 
@@ -124,68 +116,70 @@ public class ProfileInformation extends AppCompatActivity
 
         User currUser = accessUsers.getUser(userName);
 
-        if (currUser instanceof UserAdvertiser)
+        String userName = currUser.getUserName();
+        String userFullName = currUser.getFirstAndLastName();
+        String userEmail = currUser.getEmail();
+        String userPhoneNumber = currUser.getPhoneNumber();
+        String userSecurityQuestion = currUser.getSecurityQuestion();
+        String userSecurityAnswer = currUser.getSecurityAnswer();
+        String userProfilePhoto = currUser.getProfilePhoto();
+
+        boolean userUpdatedProfile = false;
+
+        if (!isEditTextEmpty(firstAndLastName))
         {
-            UserAdvertiser currUserAdvertiser = (UserAdvertiser) currUser;
-
-            String userName = currUserAdvertiser.getUserName();
-            String userFullName = currUserAdvertiser.getFirstAndLastName();
-            String userEmail = currUserAdvertiser.getEmail();
-            String userPhoneNumber = currUserAdvertiser.getPhoneNumber();
-            String userSecurityQuestion = currUserAdvertiser.getSecurityQuestion();
-            String userSecurityAnswer = currUserAdvertiser.getSecurityAnswer();
-            String userProfilePhoto = currUserAdvertiser.getProfilePhoto();
-
-            boolean userUpdatedProfle = false;
-
-            if (!(firstAndLastName.getText().toString()).isEmpty())
-            {
-                userFullName = firstAndLastName.getText().toString();
-                userUpdatedProfle = true;
-            }
-
-            if (!(email.getText().toString()).isEmpty())
-            {
-                userEmail = email.getText().toString();
-                userUpdatedProfle = true;
-            }
-
-            if (!(phoneNumber.getText().toString()).isEmpty())
-            {
-                userPhoneNumber = phoneNumber.getText().toString();
-                userUpdatedProfle = true;
-            }
-
-            if (!(securityQuestion.getText().toString()).isEmpty())
-            {
-                userSecurityQuestion = securityQuestion.getText().toString();
-                userUpdatedProfle = true;
-            }
-
-            if (!(securityAnswer.getText().toString()).isEmpty())
-            {
-                userSecurityAnswer = securityAnswer.getText().toString();
-                userUpdatedProfle = true;
-            }
-
-            if (!(password.getText().toString()).isEmpty())
-            {
-                accessUsers.updatePassword(userName, password.getText().toString());
-            }
-
-            if (userUpdatedProfle)
-            {
-                accessUsers.updateProfileInformation(userName, userFullName, userEmail, userPhoneNumber,
-                        userSecurityQuestion, userSecurityAnswer);
-            }
-
-            Toast.makeText(this, "PROFILE INFORMATION UPDATED", Toast.LENGTH_LONG).show();
-
-            finish();
-            Intent i = new Intent(getApplicationContext(), UserProfileMenu.class);
-            i.putExtra(USERNAME_TEXT, userName);
-            startActivity(i);
+            userFullName = firstAndLastName.getText().toString();
+            userUpdatedProfile = true;
         }
+
+        if (!isEditTextEmpty(email))
+        {
+            userEmail = email.getText().toString();
+            userUpdatedProfile = true;
+        }
+
+        if (!isEditTextEmpty(phoneNumber))
+        {
+            userPhoneNumber = phoneNumber.getText().toString();
+            userUpdatedProfile = true;
+        }
+
+        if (!isEditTextEmpty(securityQuestion))
+        {
+            userSecurityQuestion = securityQuestion.getText().toString();
+            userUpdatedProfile = true;
+        }
+
+        if (!isEditTextEmpty(securityAnswer))
+        {
+            userSecurityAnswer = securityAnswer.getText().toString();
+            userUpdatedProfile = true;
+        }
+
+        if (!isEditTextEmpty(password))
+        {
+            accessUsers.updatePassword(userName, password.getText().toString());
+        }
+
+        if (userUpdatedProfile)
+        {
+            accessUsers.updateProfileInformation(userName, userFullName, userEmail, userPhoneNumber,
+                    userSecurityQuestion, userSecurityAnswer);
+        }
+
+
+        Toast.makeText(this, "PROFILE INFORMATION UPDATED", Toast.LENGTH_LONG).show();
+
+        finish();
+        Intent i = new Intent(getApplicationContext(), UserProfileMenu.class);
+        i.putExtra(USERNAME_TEXT, userName);
+        startActivity(i);
+    }
+
+
+    private boolean isEditTextEmpty(EditText userAttribute)
+    {
+        return (userAttribute.getText().toString()).isEmpty();
     }
 
 
@@ -222,7 +216,6 @@ public class ProfileInformation extends AppCompatActivity
             String userName = currUser.getUserName();
 
             accessUsers.updateProfileImage(userName, EncoderDecoder.bitMapToString(photo));
-            System.out.println(EncoderDecoder.bitMapToString(photo).length());
         }
     }
 

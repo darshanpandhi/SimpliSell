@@ -25,8 +25,8 @@ public class ForgetPassword extends AppCompatActivity
     private EditText securityAnswer;
     private AccessUsers accessUsers;      // helps  access users
     private Credentials credentials;
-    EditText newPassword;
-    EditText confirmNewPassword;
+    private EditText newPassword;
+    private EditText confirmNewPassword;
     private boolean securityQuestionDisplayed;
 
 
@@ -101,7 +101,7 @@ public class ForgetPassword extends AppCompatActivity
                 {
                     if (credentials.validPassword(newPass))
                     {
-                        credentials.updatePassword(user.getUserName(), newPass);
+                        accessUsers.updatePassword(user.getUserName(), newPass);
                         Toast.makeText(getApplicationContext(), "Password has been changed", Toast.LENGTH_SHORT).show();
 
                         finish();
@@ -110,7 +110,9 @@ public class ForgetPassword extends AppCompatActivity
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or numbers, and have a minimum of 6 characters and a maximum of 12 characters", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Password should only be composed of letters or " +
+                                "numbers, and have a minimum of 6 characters and a maximum of 12 characters",
+                                Toast.LENGTH_LONG).show();
                     }
                 }
                 else

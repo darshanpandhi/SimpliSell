@@ -13,6 +13,8 @@ import com.simplisell.objects.Ad;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
+import java.util.Date;
+
 public class ViewAdOfCurrentUser extends AppCompatActivity
 {
 
@@ -23,6 +25,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     private String title;           // title of the current ad
     private String description;     // description of the current ad
     private double price;           // price of the current ad
+    private Date expireDate;
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
 
@@ -42,6 +45,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         title = currAd.getTitle();
         description = currAd.getDescription();
         price = currAd.getPrice();
+        expireDate = currAd.getExpiryDate();
 
         // display corresponding information
         TextView textViewTitle = findViewById(R.id.textView_viewAdCU_title);
@@ -53,6 +57,10 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         TextView textViewPrice = findViewById(R.id.textView_viewAdCU_price);
         String price = "$" + this.price;
         textViewPrice.setText(price);
+
+        TextView textViewExpireDate = findViewById(R.id.textView_viewAdCU_expireDate);
+        String date = "Your ad will expire on " + expireDate;
+        textViewExpireDate.setText(date);
     }
 
 
@@ -65,6 +73,13 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     }
 
 
+    public void repostBtnClick(View view)
+    {
+        accessAds.repostAd(currAd.getAdId());
+        Toast.makeText(getApplicationContext(), "Advertisement Reposted", Toast.LENGTH_LONG).show();
+    }
+
+
     public void deleteBtnClick(View view)
     {
         accessAds.removeAd(currAd);
@@ -74,13 +89,14 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainPage);
     }
+
+
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
 
         finish();
         Intent i = new Intent(this, MainActivity.class);
-//        i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
 

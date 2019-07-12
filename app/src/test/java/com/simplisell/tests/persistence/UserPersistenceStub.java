@@ -1,8 +1,6 @@
 package com.simplisell.tests.persistence;
 
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
-import com.simplisell.objects.UserAdmin;
 import com.simplisell.persistence.UserPersistence;
 
 import java.util.ArrayList;
@@ -17,35 +15,11 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-<<<<<<< HEAD:app/src/main/java/com/simplisell/persistence/stubs/UserPersistenceStub.java
-
-
-
-        user = new UserAdvertiser("bob the bobber", "Bob", "123456", "What is your favourite color", "Red");
-||||||| merged common ancestors:app/src/main/java/com/simplisell/persistence/stubs/UserPersistenceStub.java
-        user = new User("bob the bobber","Bob", "123456", "What is your favourite color", "Red");
-=======
-        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", 0, null, null, null);
->>>>>>> reportSystem:app/src/test/java/com/simplisell/tests/persistence/UserPersistenceStub.java
+        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null, null);
         users.add(user);
-<<<<<<< HEAD:app/src/main/java/com/simplisell/persistence/stubs/UserPersistenceStub.java
-        user = new UserAdvertiser("allice the cook", "Allice", "123456", "What is your favourite color", "Green");
-||||||| merged common ancestors:app/src/main/java/com/simplisell/persistence/stubs/UserPersistenceStub.java
-        user = new User("allice the cook","Allice", "123456", "What is your favourite color", "Green");
-=======
-        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", 0, null, null, null);
->>>>>>> reportSystem:app/src/test/java/com/simplisell/tests/persistence/UserPersistenceStub.java
+        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", null, null, null);
         users.add(user);
-<<<<<<< HEAD:app/src/main/java/com/simplisell/persistence/stubs/UserPersistenceStub.java
-        user = new UserAdvertiser("Jay the Don", "Jay", "123456", "What is your favourite color", "Blue");
-        users.add(user);
-
-        user = new UserAdmin("Ronak", "admin", "What is your favourite color", "Black");
-||||||| merged common ancestors:app/src/main/java/com/simplisell/persistence/stubs/UserPersistenceStub.java
-        user = new User("Jay the Don","Jay", "123456", "What is your favourite color", "Blue");
-=======
-        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", 0, null, null, null);
->>>>>>> reportSystem:app/src/test/java/com/simplisell/tests/persistence/UserPersistenceStub.java
+        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null, null, null);
         users.add(user);
     }
 

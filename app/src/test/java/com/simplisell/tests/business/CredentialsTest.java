@@ -3,13 +3,8 @@ package com.simplisell.tests.business;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
-<<<<<<< HEAD
-import com.simplisell.objects.UserAdvertiser;
-||||||| merged common ancestors
-=======
 import com.simplisell.persistence.UserPersistence;
 import com.simplisell.tests.persistence.UserPersistenceStub;
->>>>>>> reportSystem
 
 import static org.junit.Assert.*;
 
@@ -34,13 +29,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: correct password for user");
 
-<<<<<<< HEAD
-        User user = new UserAdvertiser("t a", "User1", "123456", "What is your favourite color", "Red");
-||||||| merged common ancestors
-        User user = new User("t a","User1", "123456", "What is your favourite color", "Red");
-=======
-        User user = new User("UserFullName","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
->>>>>>> reportSystem
+        User user = new User("UserFullName","User1", "123456", "What is your favourite color", "Red", null, null, null);
         accessUsers.insertNewUser(user);
         String passwordInput = "123456";
 
@@ -54,13 +43,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: incorrect password for user");
 
-<<<<<<< HEAD
-        User user = new UserAdvertiser("d a", "User1", "123456", "What is your favourite color", "Red");
-||||||| merged common ancestors
-        User user = new User("d a","User1", "123456", "What is your favourite color", "Red");
-=======
-        User user = new User("User1Name","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
->>>>>>> reportSystem
+        User user = new User("User1Name","User1", "123456", "What is your favourite color", "Red", null, null, null);
         accessUsers.insertNewUser(user);
         String userNameInput = "User1";
         String passwordInput = "1234567";
@@ -75,13 +58,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectSecurityAnswer: correct answer for user security question");
 
-<<<<<<< HEAD
-        User user = new UserAdvertiser("asp", "User1", "123456", "What is your favourite color", "Red");
-||||||| merged common ancestors
-        User user = new User("asp","User1", "123456", "What is your favourite color", "Red");
-=======
-        User user = new User("a1","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
->>>>>>> reportSystem
+        User user = new User("a1","User1", "123456", "What is your favourite color", "Red", null, null, null);
         accessUsers.insertNewUser(user);
         String userNameInput = "User1";
         String securityQuestionAnswer = "Red";
@@ -96,13 +73,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testIncorrectSecurityAnswer: incorrect answer for user security question");
 
-<<<<<<< HEAD
-        User user = new UserAdvertiser("asd", "User1", "123456", "What is your favourite color", "Red");
-||||||| merged common ancestors
-        User user = new User("asd","User1", "123456", "What is your favourite color", "Red");
-=======
-        User user = new User("asd","User1", "123456", "What is your favourite color", "Red",0, null, null, null);
->>>>>>> reportSystem
+        User user = new User("asd","User1", "123456", "What is your favourite color", "Red", null, null, null);
         accessUsers.insertNewUser(user);
         String userNameInput = "User1";
         String securityQuestionAnswer = "Green";
@@ -116,13 +87,7 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: username not found");
 
-<<<<<<< HEAD
-        User user = new UserAdvertiser("da da", "User1", "123456", "What is your favourite color", "Red");
-||||||| merged common ancestors
-        User user = new User("da da","User1", "123456", "What is your favourite color", "Red");
-=======
-        User user = new User("da da","User1", "123456", "What is your favourite color", "Red", 0, null, null, null);
->>>>>>> reportSystem
+        User user = new User("da da","User1", "123456", "What is your favourite color", "Red", null, null, null);
         User addedUser = accessUsers.insertNewUser(user);
         String userNameInput = "InvalidUser";
         String passwordInput = "123456";

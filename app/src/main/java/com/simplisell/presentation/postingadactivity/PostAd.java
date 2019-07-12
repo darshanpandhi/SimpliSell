@@ -16,9 +16,10 @@ import com.simplisell.business.AccessAds;
 import com.simplisell.R;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
-import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
-
 import com.simplisell.presentation.MainActivity;
+
+import java.util.Calendar;
+
 public class PostAd extends AppCompatActivity
 {
     private final String USERNAME_TEXT = "USER";
@@ -26,18 +27,16 @@ public class PostAd extends AppCompatActivity
 
     private String userName;
 
-    // hardcode ad type for iteration 1
-    private AdType adType = AdType.OFFERING;
-
+    private AdType adType = null;
     private Category category = null;
-
     private EditText title;
     private EditText description;
     private EditText price;
 
     private AccessAds accessAds;
 
-    private String result;
+    private String categoryResult;
+    private String typeResult;
 
 
     @Override
@@ -68,28 +67,36 @@ public class PostAd extends AppCompatActivity
         boolean descriptionEmpty = this.description.getText().toString().isEmpty();
         boolean priceEmpty = this.price.getText().toString().isEmpty();
         boolean categoryEmpty = (category == null);
+        boolean typeEmpty = (adType == null);
 
         // if empty field exists
-        if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty)
+        if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty || typeEmpty)
         {
             Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
         }
         else
         {
-            title = this.title.getText().toString().trim();
-            description = this.description.getText().toString().trim();
-            price = Double.parseDouble(this.price.getText().toString());
+            try
+            {
+                title = this.title.getText().toString().trim();
+                description = this.description.getText().toString().trim();
+                price = Double.parseDouble(this.price.getText().toString());
+                // add ad into database
+                Ad ad = new Ad(userName, adType, category, title, description, price);
+                accessAds.insertAd(ad);
+                Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
 
-            // add ad into database
-            Ad ad = new Ad(userName, adType, category, title, description, price);
-            accessAds.insertAd(ad);
-            Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
+                // go to View Individual Ad activity (current user)
+                finish();
+                Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
+                viewAd.putExtra(ADID_TEXT, ad.getAdId());
 
-            // go to View Individual Ad activity (current user)
-            finish();
-            Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
-            viewAd.putExtra(ADID_TEXT, ad.getAdId());
-            startActivity(viewAd);
+                startActivity(viewAd);
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -98,7 +105,8 @@ public class PostAd extends AppCompatActivity
     {
         AlertDialog dialog;
         AlertDialog.Builder builder;
-        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION", "EVENTS", "OTHERS"};
+        final String[] categories = {"ELECTRONICS", "BOOKS", "ACCOMMODATION", "JOBS_SERVICES", "TRANSPORTATION",
+                "EVENTS", "OTHERS"};
 
         builder = new AlertDialog.Builder(PostAd.this);
 
@@ -109,8 +117,8 @@ public class PostAd extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                result = categories[which];
-                category = Category.valueOf(result);
+                categoryResult = categories[which];
+                category = Category.valueOf(categoryResult);
             }
         });
 
@@ -120,7 +128,7 @@ public class PostAd extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 TextView textView = findViewById(R.id.textView_postAd_category);
-                textView.setText(result);
+                textView.setText(categoryResult);
             }
         });
 
@@ -136,6 +144,51 @@ public class PostAd extends AppCompatActivity
         dialog.show();
     }
 
+
+    public void selectTypeBtnClick(View view)
+    {
+        AlertDialog dialog;
+        AlertDialog.Builder builder;
+        final String[] types = {"OFFERING", "WANTED"};
+
+        builder = new AlertDialog.Builder(PostAd.this);
+
+        builder.setTitle("Select the Advertisement Type");
+
+        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                typeResult = types[which];
+                adType = AdType.valueOf(typeResult);
+            }
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                TextView textView = findViewById(R.id.textView_postAd_adType);
+                textView.setText(typeResult);
+            }
+        });
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+
+            }
+        });
+
+        dialog = builder.create();
+        dialog.show();
+    }
+
+
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
@@ -145,5 +198,4 @@ public class PostAd extends AppCompatActivity
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
 }

@@ -28,6 +28,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     private AccessAds accessAds = new AccessAds();    // helps with accessing ad
     private AccessUsers accessUsers = new AccessUsers();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -53,29 +54,4 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         String price = "$" + this.price;
         textViewPrice.setText(price);
     }
-
-    public void reportAdBtnClick(View view)
-    {
-        accessAds.reportAd(currAd.getAdId());
-        int numReports = currAd.getNumReports() + 1;
-        Toast.makeText(getApplicationContext(), "Advertisement Reported" + numReports, Toast.LENGTH_SHORT).show();
-
-        // go back to main page after deletion
-        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainPage);
-    }
-
-    public void reportUserBtnClick(View view)
-    {
-        String adOwner = currAd.getAdOwner();
-        User reportedUser = accessUsers.getUser(adOwner);
-        accessUsers.reportUser(reportedUser.getUserName());
-        int numReports = reportedUser.getNumReports() + 1;
-        Toast.makeText(getApplicationContext(), "User Reported " + numReports, Toast.LENGTH_SHORT).show();
-
-        // go back to main page after deletion
-        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainPage);
-    }
-
 }
