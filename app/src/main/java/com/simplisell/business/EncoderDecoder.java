@@ -7,7 +7,6 @@ import android.util.Base64;
 import java.io.ByteArrayOutputStream;
 
 public class EncoderDecoder
-
 {
     public static String bitMapToString(Bitmap bitmap)
     {
@@ -27,7 +26,6 @@ public class EncoderDecoder
 
         try
         {
-
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             retValue = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
         }
