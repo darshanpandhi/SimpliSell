@@ -1,9 +1,7 @@
 package com.simplisell.presentation;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,23 +13,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.simplisell.R;
-import com.simplisell.application.Main;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.AccessAds;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
-import com.simplisell.business.EncoderDecoder;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.homepagetabs.TabFragment;
 import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.postingadactivity.PostAd;
 import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -75,7 +66,6 @@ public class MainActivity extends AppCompatActivity
         getLoggedInUser();
 
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivity_accountButton);
-        displayProfilePhoto();
 
         tabSetUp();
     }
@@ -127,24 +117,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void displayProfilePhoto()
-    {
-        if (currUser != null)
-        {
-            String profilePhoto = currUser.getProfilePhoto();
-
-            if (profilePhoto != null)
-            {
-
-                Bitmap photo = EncoderDecoder.stringToBitMap(profilePhoto);
-
-                Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 0.7),
-                        (int) (photo.getHeight() * 0.7), true);
-
-                profileBtn.setImageBitmap(displayProfile);
-            }
-        }
-    }
 
 
     public static void logOutUser()
