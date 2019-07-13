@@ -1,13 +1,7 @@
 package com.simplisell;
 
 
-import android.app.Instrumentation;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.SystemClock;
-import android.provider.MediaStore;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -35,7 +29,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.anything;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(AndroidJUnit4.class)
 
@@ -235,12 +228,12 @@ public class AllAcceptanceTest
         SystemClock.sleep(500);
         onView(withText("Logout")).perform(click());
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
-        onView(withId(R.id.forgotPasswordBtn)).perform(click());
+        onView(withId(R.id.forgotPasswordTextView)).perform(click());
 
 
 
         // click on reset password without doing anything
-        onView(withId(R.id.getSecuriityQuestionBtn)).perform(click());
+        onView(withId(R.id.getSecuriityQuestionButton)).perform(click());
         SystemClock.sleep(1500);
 
 
@@ -253,7 +246,7 @@ public class AllAcceptanceTest
 
         // type text and then click on get security question then click on reset password
         onView(withId(R.id.editText_forgetPassword_userName)).perform(typeText("Bob2"));
-        onView(withId(R.id.getSecuriityQuestionBtn)).perform(click());
+        onView(withId(R.id.getSecuriityQuestionButton)).perform(click());
         pressBack();
         onView(withId(R.id.answeredSecurityQuestionBtn)).perform(click());
         SystemClock.sleep(1500);

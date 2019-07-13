@@ -15,10 +15,12 @@
             android:orientation="horizontal"
             android:background="@color/colorPrimaryDark">
 
-        <include layout="@layout/activity_user_profile_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"/>
+        <include
+            android:id="@+id/imageButton_mainActivity_accountButton"
+            layout="@layout/activity_user_profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp" />
 
         <TextView
                 android:layout_width="wrap_content"
