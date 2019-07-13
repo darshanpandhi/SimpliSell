@@ -2,7 +2,6 @@ package com.simplisell.presentation;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +17,6 @@ import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.presentation.homepagetabs.TabFragment;
 import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
 import com.simplisell.presentation.loginactivity.Login;

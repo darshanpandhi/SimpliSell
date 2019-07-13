@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
 import com.simplisell.presentation.useradminactivity.AdminHomeScreen;
@@ -94,19 +93,9 @@ public class Login extends AppCompatActivity
 
         Intent logIn;
 
-        if (loggedInUser instanceof UserAdvertiser)
-        {
-            logIn = new Intent(getApplicationContext(), MainActivity.class);
-            logIn.putExtra(USERNAME_TEXT, userName);
-            RecyclerViewAdapter.login(userName);
-        }
-        else
-        {
-            logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
-            logIn.putExtra(USERNAME_TEXT, userName);
-            RecyclerViewAdapter.login(userName);
-        }
-
+        logIn = new Intent(getApplicationContext(), MainActivity.class);
+        logIn.putExtra(USERNAME_TEXT, userName);
+        RecyclerViewAdapter.login(userName);
         finish();
         startActivity(logIn);
     }

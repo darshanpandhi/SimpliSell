@@ -1,8 +1,6 @@
 package com.simplisell.tests.persistence;
 
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdmin;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.persistence.UserPersistence;
 
 import java.util.ArrayList;

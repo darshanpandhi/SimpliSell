@@ -1,8 +1,6 @@
 package com.simplisell.persistence.hsqldb;
 
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdmin;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.persistence.UserPersistence;
 
 import java.sql.Connection;
@@ -42,28 +40,15 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         User requiredUser;
 
+        final String firstAndLastName = rs.getString("FULLNAME");
         final String userName = rs.getString("USERNAME");
         final String password = rs.getString("PASSWORD");
         final String securityQuestion = rs.getString("SECURITYQUESTION");
         final String securityAnswer = rs.getString("SECURITYANSWER");
-        final String discriminatorColumn = rs.getString("DISCRIMINATOR");
-
-        if (discriminatorColumn.equals(USER_ADVERTISER))
-        {
-            final String firstAndLastName = rs.getString("FULLNAME");
-            final String email = rs.getString("EMAIL");
-            final String phoneNumber = rs.getString("PHONENUMBER");
-            final int numReports = rs.getInt("NUMREPORTS");
-
-            requiredUser = new UserAdvertiser(firstAndLastName, userName, password, securityQuestion, securityAnswer,
-                    email, phoneNumber, numReports);
-        }
-        else
-        {
-            requiredUser = new UserAdmin(userName, password, securityQuestion, securityAnswer);
-        }
-
-        return requiredUser;
+        final String email = rs.getString("EMAIL");
+        final String phoneNumber = rs.getString("PHONENUMBER");
+        final boolean isAdmin = rs.getBoolean("ADMIN");
+        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,isAdmin);
     }
 
 
@@ -91,23 +76,21 @@ public class UserPersistenceHSQLDB implements UserPersistence
 
 
     @Override
-    public UserAdvertiser insertUserAdvertiser(final UserAdvertiser userAdvertiser)
+    public User insertUser(final User user)
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            st.setString(1, userAdvertiser.getFirstAndLastName());
-            st.setString(2, userAdvertiser.getUserName());
-            st.setString(3, userAdvertiser.getPassword());
-            st.setString(4, userAdvertiser.getSecurityQuestion());
-            st.setString(5, userAdvertiser.getSecurityAnswer());
-            st.setString(6, userAdvertiser.getEmail());
-            st.setString(7, userAdvertiser.getPhoneNumber());
-            st.setInt(8, userAdvertiser.getNumReports());
-            st.setString(9, USER_ADVERTISER);
-
+            final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)");
+            st.setString(1, user.getFirstAndLastName());
+            st.setString(2, user.getUserName());
+            st.setString(3, user.getPassword());
+            st.setString(4, user.getSecurityQuestion());
+            st.setString(5, user.getSecurityAnswer());
+            st.setString(6, user.getEmail());
+            st.setString(7, user.getPhoneNumber());
+            st.setBoolean(8,user.isAdmin());
             st.executeUpdate();
-            return userAdvertiser;
+            return user;
         }
         catch (final SQLException e)
         {
@@ -155,19 +138,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
         }
     }
 
-
-    public final UserAdvertiser getUserAdvertiser(final String userName)
-    {
-        User requiredUser = getUser(userName);
-        UserAdvertiser requiredUserAdvertiser = null;
-
-        if (requiredUser instanceof UserAdvertiser)
-        {
-            requiredUserAdvertiser = (UserAdvertiser) requiredUser;
-        }
-
-        return requiredUserAdvertiser;
-    }
 
 
     @Override

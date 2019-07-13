@@ -1,6 +1,5 @@
 package com.simplisell.tests.business;
 
-import com.simplisell.objects.UserAdvertiser;
 import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.TestCase.assertNull;
@@ -8,9 +7,8 @@ import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 import com.simplisell.business.AccessUsers;
-import com.simplisell.objects.User;
 import com.simplisell.persistence.UserPersistence;
-import com.simplisell.tests.persistence.UserPersistenceStub;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

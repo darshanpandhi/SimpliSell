@@ -1,7 +1,5 @@
 package com.simplisell.tests;
 
-import com.simplisell.objects.UserAdmin;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.tests.objects.UserAdminTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

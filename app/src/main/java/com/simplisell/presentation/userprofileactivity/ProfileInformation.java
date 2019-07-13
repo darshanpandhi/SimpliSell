@@ -1,13 +1,8 @@
 package com.simplisell.presentation.userprofileactivity;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -17,7 +12,6 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 
 public class ProfileInformation extends AppCompatActivity
 {
@@ -62,7 +56,7 @@ public class ProfileInformation extends AppCompatActivity
 
     private void setUp()
     {
-        UserAdvertiser userAdvertiser = accessUsers.getUserAdvertiser(userName);
+        User userAdvertiser = accessUsers.getUser(userName);
 
         if (userAdvertiser.getFirstAndLastName() != null)
         {
@@ -87,7 +81,7 @@ public class ProfileInformation extends AppCompatActivity
     public void profileInformationSaveClick(View view)
     {
 
-        UserAdvertiser userAdvertiser = accessUsers.getUserAdvertiser(userName);
+        User userAdvertiser = accessUsers.getUser(userName);
 
         String userName = userAdvertiser.getUserName();
         String userFullName = userAdvertiser.getFirstAndLastName();

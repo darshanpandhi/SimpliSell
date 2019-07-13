@@ -1,15 +1,10 @@
 package com.simplisell.persistence;
 
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
-
-import java.util.List;
 
 public interface UserPersistence
 {
     User getUser(final String userName);
-
-    UserAdvertiser insertUserAdvertiser(final UserAdvertiser userAdvertiser);
 
     void updatePassword(final String userName, final String newPassword);
 
@@ -17,7 +12,7 @@ public interface UserPersistence
                                   final String newPhoneNumber, final String newSecurityQuestion,
                                   final String newSecurityAnswer);
 
-    UserAdvertiser getUserAdvertiser(final String userName);
+    User insertUser(final User user);
 
     void deleteUser(String userName);
 }

@@ -2,10 +2,7 @@ package com.simplisell.business;
 
 import com.simplisell.application.Services;
 import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
 import com.simplisell.persistence.UserPersistence;
-
-import java.util.List;
 
 public class AccessUsers
 {
@@ -30,13 +27,13 @@ public class AccessUsers
     }
 
 
-    public UserAdvertiser insertNewUserAdvertiser(UserAdvertiser newUser)
+    public User insertNewUser(User newUser)
     {
         String userName = newUser.getUserName();
 
         if (!duplicateExists(userName))
         {
-            userPersistence.insertUserAdvertiser(newUser);
+            userPersistence.insertUser(newUser);
         }
 
         return newUser;
@@ -59,10 +56,6 @@ public class AccessUsers
         return userExists;
     }
 
-    public UserAdvertiser getUserAdvertiser(String userName)
-    {
-        return userPersistence.getUserAdvertiser(userName);
-    }
 
 
     public void updatePassword(String userName, String password)

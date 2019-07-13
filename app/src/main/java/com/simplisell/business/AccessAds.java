@@ -21,16 +21,18 @@ public final class AccessAds
     public AccessAds()
     {
         adPersistence = Services.getAdPersistence();
-        removeExpiredAds();
         allAds = adPersistence.getAds();
+        removeExpiredAds();
+
     }
 
 
     public AccessAds(final AdPersistence adPersistence)
     {
         this.adPersistence = adPersistence;
-        removeExpiredAds();
         allAds = adPersistence.getAds();
+        removeExpiredAds();
+
     }
 
 
@@ -160,7 +162,6 @@ public final class AccessAds
 
         Date currDate = new Date(currTime);
 
-        List<Ad> allAds = adPersistence.getAds();
         List<Integer> adsToRemove = new ArrayList<>();
 
         for (Ad ad : allAds)
@@ -168,14 +169,11 @@ public final class AccessAds
             Date expiryDate = ad.getExpiryDate();
             if (expiryDate.compareTo(currDate) < 0)
             {
-                adsToRemove.add(ad.getAdId());
+                adPersistence.removeAd(ad);
             }
         }
 
-        for (Integer x : adsToRemove)
-        {
-            adPersistence.removeAd(getAd(x));
-        }
+
     }
 
 

@@ -2,9 +2,6 @@ package com.simplisell.tests.business;
 
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
-import com.simplisell.objects.User;
-import com.simplisell.objects.UserAdvertiser;
-import com.simplisell.persistence.UserPersistence;
 import com.simplisell.tests.persistence.UserPersistenceStub;
 
 import static org.junit.Assert.*;
