@@ -32,7 +32,7 @@ public class CredentialsTest
 
         UserAdvertiser userAdvertiser = new UserAdvertiser("UserFullName","User1",
                 "123456", "What is your favourite color", "Red",
-                null, null, null, 0);
+                null, null, 0);
         accessUsers.insertNewUserAdvertiser(userAdvertiser);
         String passwordInput = "123456";
 
@@ -48,7 +48,7 @@ public class CredentialsTest
 
         UserAdvertiser userAdvertiser = new UserAdvertiser("User1Name","User1",
                 "123456", "What is your favourite color", "Red",
-                null, null, null, 0);
+                null, null, 0);
         accessUsers.insertNewUserAdvertiser(userAdvertiser);
         String userNameInput = "User1";
         String passwordInput = "1234567";

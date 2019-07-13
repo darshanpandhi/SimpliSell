@@ -53,11 +53,10 @@ public class UserPersistenceHSQLDB implements UserPersistence
             final String firstAndLastName = rs.getString("FULLNAME");
             final String email = rs.getString("EMAIL");
             final String phoneNumber = rs.getString("PHONENUMBER");
-            final String profilePhoto = rs.getString("PROFILEPHOTO");
             final int numReports = rs.getInt("NUMREPORTS");
 
             requiredUser = new UserAdvertiser(firstAndLastName, userName, password, securityQuestion, securityAnswer,
-                    email, phoneNumber, profilePhoto, numReports);
+                    email, phoneNumber, numReports);
         }
         else
         {
@@ -96,8 +95,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?, " + "?, ?,"
-                    + " ?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
             st.setString(1, userAdvertiser.getFirstAndLastName());
             st.setString(2, userAdvertiser.getUserName());
             st.setString(3, userAdvertiser.getPassword());
@@ -105,9 +103,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(5, userAdvertiser.getSecurityAnswer());
             st.setString(6, userAdvertiser.getEmail());
             st.setString(7, userAdvertiser.getPhoneNumber());
-            st.setString(8, userAdvertiser.getProfilePhoto());
-            st.setInt(9, userAdvertiser.getNumReports());
-            st.setString(10, USER_ADVERTISER);
+            st.setInt(8, userAdvertiser.getNumReports());
+            st.setString(9, USER_ADVERTISER);
 
             st.executeUpdate();
             return userAdvertiser;
@@ -159,44 +156,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
     }
 
 
-    @Override
-    public void updateProfileImage(String userName, String profilePhoto)
-    {
-        try (final Connection c = connection())
-        {
-            final PreparedStatement st = c.prepareStatement("UPDATE USERS SET PROFILEPHOTO = ? WHERE USERNAME = ?");
-            st.setString(1, profilePhoto);
-            st.setString(2, userName);
-            st.executeUpdate();
-        }
-        catch (final SQLException e)
-        {
-            throw new PersistenceException(e);
-        }
-    }
-
-
-    @Override
-    public void reportUserAdvertiser(String userName)
-    {
-        try (final Connection c = connection())
-        {
-            UserAdvertiser reportedUserAdvertiser = getUserAdvertiser(userName);
-
-            int newNumReports = reportedUserAdvertiser.getNumReports() + 1;
-
-            final PreparedStatement st = c.prepareStatement("UPDATE USERS SET NUMREPORTS = ? WHERE USERNAME = ?");
-            st.setInt(1, newNumReports);
-            st.setString(2, userName);
-            st.executeUpdate();
-        }
-        catch (final SQLException e)
-        {
-            throw new PersistenceException(e);
-        }
-    }
-
-
     public final UserAdvertiser getUserAdvertiser(final String userName)
     {
         User requiredUser = getUser(userName);
@@ -208,5 +167,22 @@ public class UserPersistenceHSQLDB implements UserPersistence
         }
 
         return requiredUserAdvertiser;
+    }
+
+
+    @Override
+    public void deleteUser(String userName)
+    {
+        try (final Connection c = connection())
+        {
+
+            final PreparedStatement sc = c.prepareStatement("DELETE FROM USERS WHERE USERNAME = ?");
+            sc.setString(1, userName);
+            sc.executeUpdate();
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
     }
 }

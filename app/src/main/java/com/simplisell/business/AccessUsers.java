@@ -77,10 +77,4 @@ public class AccessUsers
         userPersistence.updateProfileInformation(userName, newFullName, newEmail, newPhoneNumber, newSecurityQuestion
                 , newSecurityAnswer);
     }
-
-
-    public void updateProfileImage(String userName, String profilePhoto)
-    {
-        userPersistence.updateProfileImage(userName, profilePhoto);
-    }
 }

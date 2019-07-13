@@ -34,7 +34,7 @@ public class AccessUsersTest
 
         UserAdvertiser userAdvertiser = new UserAdvertiser("Unique Name","UniqueUser",
                 "123456", "What is your favourite color?", "Red",
-                null, null, null, 0);
+                null, null, 0);
 
         when(userPersistence.getUser("UniqueUser")).thenReturn(null);
         when(userPersistence.insertUserAdvertiser(userAdvertiser)).thenReturn(userAdvertiser);

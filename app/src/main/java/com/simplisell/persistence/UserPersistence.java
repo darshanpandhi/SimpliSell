@@ -19,7 +19,5 @@ public interface UserPersistence
 
     UserAdvertiser getUserAdvertiser(final String userName);
 
-    void updateProfileImage(final String userName, final String profilePhoto);
-
-    void reportUserAdvertiser(final String userName);
+    void deleteUser(String userName);
 }

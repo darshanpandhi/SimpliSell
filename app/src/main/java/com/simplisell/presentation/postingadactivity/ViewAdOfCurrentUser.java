@@ -17,6 +17,7 @@ import java.util.Date;
 
 public class ViewAdOfCurrentUser extends AppCompatActivity
 {
+    private final String USERNAME_TEXT = "USER";
 
     private final String ADID_TEXT = "ADID";
 
@@ -97,6 +98,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
 
         finish();
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra(USERNAME_TEXT, currAd.getAdOwner());
         startActivity(i);
     }
 

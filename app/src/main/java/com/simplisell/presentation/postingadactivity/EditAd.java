@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,8 @@ public class EditAd extends AppCompatActivity
 
         // get id of ad passed from previous activity
         adId = getIntent().getIntExtra(ADID_TEXT, -1);
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         currAd = accessAds.getAd(adId);
 

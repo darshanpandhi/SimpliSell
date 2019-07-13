@@ -19,19 +19,23 @@ public class UserPersistenceStub implements UserPersistence
 
         User newUser;
 
-        newUser = new UserAdvertiser("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null
-                , null, 0);
+        newUser = new UserAdvertiser("Bob Marley", "Bob", "123456",
+                "What is your favourite color", "Red", null,
+                null, 0);
         userList.add(newUser);
 
-        newUser = new UserAdvertiser("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green"
-                , null, null, null, 0);
+        newUser = new UserAdvertiser("Allice Wonderland", "Allice",
+                "111111", "What is your favourite color", "Green",
+                null, null, 0);
         userList.add(newUser);
 
-        newUser = new UserAdvertiser("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null
-                , null, null, 0);
+        newUser = new UserAdvertiser("Jay Petr", "Jay", "222222",
+                "What is your mother\'s maiden name?", "Elsa", null,
+                null, 0);
         userList.add(newUser);
 
-        newUser = new UserAdmin("Ronak", "admin", "What is your favourite color", "Black");
+        newUser = new UserAdmin("Ronak", "admin",
+                "What is your favourite color", "Black");
         userList.add(newUser);
     }
 
@@ -64,18 +68,6 @@ public class UserPersistenceStub implements UserPersistence
 
 
     @Override
-    public void reportUserAdvertiser(final String userName)
-    {
-        UserAdvertiser reportedUserAdvertiser = getUserAdvertiser(userName);
-
-        if (reportedUserAdvertiser != null)
-        {
-            reportedUserAdvertiser.incrementNumReports();
-        }
-    }
-
-
-    @Override
     public void updateProfileInformation(final String userName, final String newFullName, final String newEmail,
                                          final String newPhoneNumber, final String newSecurityQuestion,
                                          final String newSecurityAnswer)
@@ -89,18 +81,6 @@ public class UserPersistenceStub implements UserPersistence
             userAdvertiser.setPhoneNumber(newPhoneNumber);
             userAdvertiser.setSecurityQuestion(newSecurityQuestion);
             userAdvertiser.setSecurityAnswer(newSecurityAnswer);
-        }
-    }
-
-
-    @Override
-    public void updateProfileImage(final String userName, final String profilePhoto)
-    {
-        UserAdvertiser userAdvertiser = getUserAdvertiser(userName);
-
-        if (userAdvertiser != null)
-        {
-            userAdvertiser.setProfilePhoto(profilePhoto);
         }
     }
 
@@ -142,4 +122,18 @@ public class UserPersistenceStub implements UserPersistence
 
         return requiredUserAdvertiser;
     }
+
+    public void deleteUser(String userName)
+    {
+
+        for(int i = 0; i<userList.size(); i++)
+        {
+            if(userList.get(i).getUserName().equals(userName))
+            {
+                userList.remove(i);
+            }
+        }
+
+    }
+
 }

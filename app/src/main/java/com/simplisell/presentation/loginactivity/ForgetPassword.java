@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ public class ForgetPassword extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_forget_password);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         userName = findViewById(R.id.editText_forgetPassword_userName);
         securityAnswer = findViewById(R.id.editText_forgetPassword_securityAnswer);
         securityQuestion = findViewById(R.id.textView_forgetPassword_securityQuestion);

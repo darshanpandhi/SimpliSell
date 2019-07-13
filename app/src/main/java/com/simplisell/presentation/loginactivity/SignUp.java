@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ public class SignUp extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         uniqueUserName = null;
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // initializing the buttons and edit textboxes
         userName = findViewById(R.id.editText_name_user);
@@ -97,7 +100,8 @@ public class SignUp extends AppCompatActivity
                     {
 
                         UserAdvertiser newUserAdvertiser = new UserAdvertiser(firstNLastName, userName, userPassword,
-                                userSecurityQuestion, userSecurityAnswer, null, null, null, 0);   // create a new user
+                                userSecurityQuestion, userSecurityAnswer, null, null,
+                                0);   // create a new userAdvertiser
 
                         if (accessUsers.insertNewUserAdvertiser(newUserAdvertiser) != null)
                         {   // check if userName is in the database and insert
