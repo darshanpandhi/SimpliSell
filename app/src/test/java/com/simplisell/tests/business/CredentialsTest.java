@@ -2,6 +2,7 @@ package com.simplisell.tests.business;
 
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
+import com.simplisell.objects.User;
 import com.simplisell.tests.persistence.UserPersistenceStub;
 
 import static org.junit.Assert.*;
@@ -27,10 +28,10 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: correct password for user");
 
-        UserAdvertiser userAdvertiser = new UserAdvertiser("UserFullName","User1",
+        User User = new User("UserFullName","User1",
                 "123456", "What is your favourite color", "Red",
-                null, null, 0);
-        accessUsers.insertNewUserAdvertiser(userAdvertiser);
+                null, null, false);
+        accessUsers.insertNewUser(User);
         String passwordInput = "123456";
 
         assertNotNull(credentials.authenticate("User1", passwordInput));
@@ -43,10 +44,10 @@ public class CredentialsTest
     {
         System.out.println("\nStarting testCorrectPassword: incorrect password for user");
 
-        UserAdvertiser userAdvertiser = new UserAdvertiser("User1Name","User1",
+        User User = new User("User1Name","User1",
                 "123456", "What is your favourite color", "Red",
-                null, null, 0);
-        accessUsers.insertNewUserAdvertiser(userAdvertiser);
+                null, null, false);
+        accessUsers.insertNewUser(User);
         String userNameInput = "User1";
         String passwordInput = "1234567";
 

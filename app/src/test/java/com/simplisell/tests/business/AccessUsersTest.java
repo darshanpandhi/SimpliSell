@@ -7,6 +7,7 @@ import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 import com.simplisell.business.AccessUsers;
+import com.simplisell.objects.User;
 import com.simplisell.persistence.UserPersistence;
 
 import static org.mockito.Mockito.mock;
@@ -30,24 +31,23 @@ public class AccessUsersTest
     {
         System.out.println("\nStarting AccessUsersTest: insert unique username");
 
-        UserAdvertiser userAdvertiser = new UserAdvertiser("Unique Name","UniqueUser",
+        User User = new User("Unique Name","UniqueUser",
                 "123456", "What is your favourite color?", "Red",
-                null, null, 0);
+                null, null, false);
 
         when(userPersistence.getUser("UniqueUser")).thenReturn(null);
-        when(userPersistence.insertUserAdvertiser(userAdvertiser)).thenReturn(userAdvertiser);
+        when(userPersistence.insertUser(User)).thenReturn(User);
 
-        UserAdvertiser addedUserAdvertiser = accessUsers.insertNewUserAdvertiser(userAdvertiser);
-        assertNotNull(addedUserAdvertiser);
-        assertEquals("Unique Name", addedUserAdvertiser.getFirstAndLastName());
-        assertEquals("UniqueUser",addedUserAdvertiser.getUserName());
-        assertEquals("123456", addedUserAdvertiser.getPassword());
-        assertEquals("What is your favourite color?", addedUserAdvertiser.getSecurityQuestion());
-        assertEquals("Red", addedUserAdvertiser.getSecurityAnswer());
-        assertEquals(0, addedUserAdvertiser.getNumReports());
+        User addedUser = accessUsers.insertNewUser(User);
+        assertNotNull(addedUser);
+        assertEquals("Unique Name", addedUser.getFirstAndLastName());
+        assertEquals("UniqueUser",addedUser.getUserName());
+        assertEquals("123456", addedUser.getPassword());
+        assertEquals("What is your favourite color?", addedUser.getSecurityQuestion());
+        assertEquals("Red", addedUser.getSecurityAnswer());
 
         verify(userPersistence).getUser("UniqueUser");
-        verify(userPersistence).insertUserAdvertiser(userAdvertiser);
+        verify(userPersistence).insertUser(User);
 
         System.out.println("Finished AccessUsersTest: insert unique username");
     }

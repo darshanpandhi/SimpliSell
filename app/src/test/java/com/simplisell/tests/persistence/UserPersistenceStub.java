@@ -17,23 +17,23 @@ public class UserPersistenceStub implements UserPersistence
 
         User newUser;
 
-        newUser = new UserAdvertiser("Bob Marley", "Bob", "123456",
+        newUser = new User("Bob Marley", "Bob", "123456",
                 "What is your favourite color", "Red", null,
-                null, 0);
+                null, false);
         userList.add(newUser);
 
-        newUser = new UserAdvertiser("Allice Wonderland", "Allice",
+        newUser = new User("Allice Wonderland", "Allice",
                 "111111", "What is your favourite color", "Green",
-                null, null, 0);
+                null, null, false);
         userList.add(newUser);
 
-        newUser = new UserAdvertiser("Jay Petr", "Jay", "222222",
+        newUser = new User("Jay Petr", "Jay", "222222",
                 "What is your mother\'s maiden name?", "Elsa", null,
-                null, 0);
+                null, false);
         userList.add(newUser);
 
-        newUser = new UserAdmin("Ronak", "admin",
-                "What is your favourite color", "Black");
+        newUser = new User("Ronak the dude","Ronak", "admin",
+                "What is your favourite color", "Black","","",true);
         userList.add(newUser);
     }
 
@@ -47,10 +47,10 @@ public class UserPersistenceStub implements UserPersistence
 
 
     @Override
-    public UserAdvertiser insertUserAdvertiser(final UserAdvertiser userAdvertiser)
+    public User insertUser(final User User)
     {
-        userList.add(userAdvertiser);
-        return userAdvertiser;
+        userList.add(User);
+        return User;
     }
 
 
@@ -70,15 +70,15 @@ public class UserPersistenceStub implements UserPersistence
                                          final String newPhoneNumber, final String newSecurityQuestion,
                                          final String newSecurityAnswer)
     {
-        UserAdvertiser userAdvertiser = getUserAdvertiser(userName);
+        User User = getUser(userName);
 
-        if (userAdvertiser != null)
+        if (User != null)
         {
-            userAdvertiser.setFirstAndLastName(newFullName);
-            userAdvertiser.setEmail(newEmail);
-            userAdvertiser.setPhoneNumber(newPhoneNumber);
-            userAdvertiser.setSecurityQuestion(newSecurityQuestion);
-            userAdvertiser.setSecurityAnswer(newSecurityAnswer);
+            User.setFirstAndLastName(newFullName);
+            User.setEmail(newEmail);
+            User.setPhoneNumber(newPhoneNumber);
+            User.setSecurityQuestion(newSecurityQuestion);
+            User.setSecurityAnswer(newSecurityAnswer);
         }
     }
 
@@ -105,20 +105,6 @@ public class UserPersistenceStub implements UserPersistence
         }
 
         return requiredUser;
-    }
-
-
-    public final UserAdvertiser getUserAdvertiser(final String userName)
-    {
-        User requiredUser = findUser(userName);
-        UserAdvertiser requiredUserAdvertiser = null;
-
-        if (requiredUser instanceof UserAdvertiser)
-        {
-            requiredUserAdvertiser = (UserAdvertiser) requiredUser;
-        }
-
-        return requiredUserAdvertiser;
     }
 
     public void deleteUser(String userName)

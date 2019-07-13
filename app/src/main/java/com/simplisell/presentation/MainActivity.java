@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 {
     private final String USERNAME_TEXT = "USER";
 
-    private String userName = null;
-
+    private static String userName = null;
     private User loggedInUser = null;
 
     private TabLayout tabLayout;
@@ -276,5 +275,10 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         {
             startActivity(new Intent(getApplicationContext(), Login.class));
         }
+    }
+
+    public static void logout()
+    {
+        userName = null;
     }
 }

@@ -60,7 +60,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         textViewPrice.setText(price);
 
         TextView textViewExpireDate = findViewById(R.id.textView_viewAdCU_expireDate);
-        String date = "Your ad will expire on " + expireDate;
+        String date = "The ad will expire on " + expireDate;
         textViewExpireDate.setText(date);
     }
 

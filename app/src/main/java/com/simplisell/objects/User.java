@@ -21,6 +21,7 @@ public class User {
         firstAndLastName = fullName;
         email = newEmail;
         phoneNumber = newPhoneNumber;
+        this.admin = admin;
     }
 
 

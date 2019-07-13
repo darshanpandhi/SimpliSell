@@ -13,7 +13,6 @@ import com.simplisell.business.Credentials;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
-import com.simplisell.presentation.useradminactivity.AdminHomeScreen;
 
 public class Login extends AppCompatActivity
 {

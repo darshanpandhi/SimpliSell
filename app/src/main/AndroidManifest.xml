@@ -28,21 +28,16 @@
         <activity android:name=".presentation.postingadactivity.PostAd" android:screenOrientation="portrait"/>
         <activity android:name=".presentation.loginactivity.Login" android:screenOrientation="portrait"/>
         <activity android:name=".presentation.MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.useradminactivity.ReportedAds" android:screenOrientation="portrait"/>
         <activity android:name=".presentation.loginactivity.ForgetPassword" android:screenOrientation="portrait"/>
         <activity android:name=".presentation.Messages" />
+
         <activity android:name=".presentation.SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".presentation.useradminactivity.AdminHomeScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.AdminHomeScreen"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 

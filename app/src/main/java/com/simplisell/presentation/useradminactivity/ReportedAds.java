@@ -29,14 +29,14 @@ public class ReportedAds extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users_own_ads);
+        setContentView(R.layout.activity_user_admin_reported_ads);
         userName = getIntent().getStringExtra(USERNAME_TEXT);
 
         AccessAds accessAds = new AccessAds();
         reportedAds = accessAds.getReportedAds();
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
+        recyclerView = (RecyclerView) findViewById(R.id.reportedAds_recycle_view);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, reportedAds);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.simplisell.R;
+import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.Ad;
 import com.simplisell.objects.User;
 
@@ -40,6 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         View view;
 
+        final AccessUsers accessUsers = new AccessUsers();
+
         view = LayoutInflater.from(myContext).inflate(R.layout.row, viewGroup, false);
 
         final MyViewHolder viewHolder = new MyViewHolder(view);
@@ -52,18 +55,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 int adId = myAd.get(viewHolder.getAdapterPosition()).getAdId();
                 String adUserName = myAd.get(viewHolder.getAdapterPosition()).getAdOwner();
 
-                Intent viewAd;
+                Intent viewAd = new Intent(myContext, ViewAdOfOtherUser.class);;
 
-                if (adUserName.equals(userName))
+                if(userName != null)
                 {
-                    // logged in user and its their Ad
-                    viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
+                    User currUser = accessUsers.getUser(userName);
+
+                    if (adUserName.equals(userName))
+                    {
+
+                        viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
+                    }
+
+                    if(currUser.isAdmin())
+                    {
+                        int reported = myAd.get(viewHolder.getAdapterPosition()).getNumReports();
+
+                        if(reported > 0)
+                        {
+                            viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
+
+                        }
+
+                    }
                 }
-                else
-                {
-                    // not logged in user
-                    viewAd = new Intent(myContext, ViewAdOfOtherUser.class);
-                }
+
+
                 viewAd.putExtra(ADID_TEXT, adId);
                 myContext.startActivity(viewAd);
             }
