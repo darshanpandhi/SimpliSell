@@ -9,11 +9,10 @@ public class User
     private String securityQuestion;
     private String securityAnswer;
     private String firstAndLastName;
-    private String profilePhoto;
 
 
     public User(String fullName, String newUserName, String newUserPassword, String newSecurityQuestion,
-                String newSecurityAnswer, String newEmail, String newPhoneNumber, String newProfileImage)
+                String newSecurityAnswer, String newEmail, String newPhoneNumber)
     {
         userName = newUserName;
         password = newUserPassword;
@@ -22,7 +21,6 @@ public class User
         firstAndLastName = fullName;
         email = newEmail;
         phoneNumber = newPhoneNumber;
-        profilePhoto = newProfileImage;
     }
 
 
@@ -68,12 +66,6 @@ public class User
     }
 
 
-    public String getProfilePhoto()
-    {
-        return profilePhoto;
-    }
-
-
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
@@ -102,13 +94,6 @@ public class User
     {
         this.securityQuestion = securityQuestion;
     }
-
-
-    public void setProfilePhoto(String profilePhoto)
-    {
-        this.profilePhoto = profilePhoto;
-    }
-
 
     public void setPassword(String newPassword)
     {

@@ -96,7 +96,6 @@ public class ProfileInformation extends AppCompatActivity
         String userPhoneNumber = currUser.getPhoneNumber();
         String userSecurityQuestion = currUser.getSecurityQuestion();
         String userSecurityAnswer = currUser.getSecurityAnswer();
-        String userProfilePhoto = currUser.getProfilePhoto();
 
         boolean userUpdatedProfile = false;
 

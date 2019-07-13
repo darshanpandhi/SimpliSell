@@ -47,9 +47,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
         final String securityAnswer = rs.getString("SECURITYANSWER");
         final String email = rs.getString("EMAIL");
         final String phoneNumber = rs.getString("PHONENUMBER");
-        final String profilePhoto = rs.getString("PROFILEPHOTO");
-        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,
-                profilePhoto);
+        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber);
     }
 
 
@@ -81,7 +79,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)");
             st.setString(1, user.getFirstAndLastName());
             st.setString(2, user.getUserName());
             st.setString(3, user.getPassword());
@@ -89,7 +87,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(5, user.getSecurityAnswer());
             st.setString(6, user.getEmail());
             st.setString(7, user.getPhoneNumber());
-            st.setString(8, user.getProfilePhoto());
             st.executeUpdate();
             return user;
         }
@@ -139,22 +136,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
         }
     }
 
-
-    @Override
-    public void updateProfileImage(String userName, String profilePhoto)
-    {
-        try (final Connection c = connection())
-        {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET PROFILEPHOTO = ? WHERE USERNAME = ?");
-            st.setString(1, profilePhoto);
-            st.setString(2, userName);
-            st.executeUpdate();
-        }
-        catch (final SQLException e)
-        {
-            throw new PersistenceException(e);
-        }
-    }
 
     @Override
     public void deleteUser(String userName)

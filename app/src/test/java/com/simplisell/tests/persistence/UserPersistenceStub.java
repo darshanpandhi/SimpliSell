@@ -15,11 +15,11 @@ public class UserPersistenceStub implements UserPersistence
     {
         this.users = new ArrayList<>();
         User user;
-        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null, null);
+        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null);
         users.add(user);
-        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", null, null, null);
+        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", null, null);
         users.add(user);
-        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null, null, null);
+        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null, null);
         users.add(user);
     }
 
@@ -61,13 +61,6 @@ public class UserPersistenceStub implements UserPersistence
         user.setSecurityAnswer(newSecurityAnswer);
     }
 
-    @Override
-    public void updateProfileImage(String userName, String profilePhoto)
-    {
-        User user = getUser(userName);
-        user.setProfilePhoto(profilePhoto);
-    }
-
     private User findUser(final String userName)
     {
         User user = null;
@@ -91,6 +84,19 @@ public class UserPersistenceStub implements UserPersistence
         }
 
         return user;
+    }
+
+    public void deleteUser(String userName)
+    {
+
+        for(int i = 0; i<users.size(); i++)
+        {
+            if(users.get(i).getUserName().equals(userName))
+            {
+                users.remove(i);
+            }
+        }
+
     }
 
 }
