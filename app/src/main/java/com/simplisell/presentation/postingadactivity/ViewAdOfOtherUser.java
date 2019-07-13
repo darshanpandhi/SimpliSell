@@ -58,7 +58,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     public void reportAdBtnClick(View view)
     {
         accessAds.reportAd(currAd.getAdId());
-        Toast.makeText(getApplicationContext(), "Advertisement Reported" + currAd.getNumReports(),
+        Toast.makeText(getApplicationContext(), "Advertisement Reported",
                 Toast.LENGTH_SHORT).show();
 
         // go back to main page after deletion

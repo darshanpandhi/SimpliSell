@@ -96,8 +96,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?, " + "?, ?," +
-                    " ?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?, ?, " + "?, ?,"
+                    + " ?)");
             st.setString(1, userAdvertiser.getFirstAndLastName());
             st.setString(2, userAdvertiser.getUserName());
             st.setString(3, userAdvertiser.getPassword());
@@ -181,24 +181,32 @@ public class UserPersistenceHSQLDB implements UserPersistence
     {
         try (final Connection c = connection())
         {
-            User reportedUser = getUser(userName);
-            UserAdvertiser reportedUserAdvertiser;
+            UserAdvertiser reportedUserAdvertiser = getUserAdvertiser(userName);
 
-            if (reportedUser instanceof UserAdvertiser)
-            {
-                reportedUserAdvertiser = (UserAdvertiser) reportedUser;
+            int newNumReports = reportedUserAdvertiser.getNumReports() + 1;
 
-                int newNumReports = reportedUserAdvertiser.getNumReports() + 1;
-
-                final PreparedStatement st = c.prepareStatement("UPDATE USERS SET NUMREPORTS = ? WHERE USERNAME = ?");
-                st.setInt(1, newNumReports);
-                st.setString(2, userName);
-                st.executeUpdate();
-            }
+            final PreparedStatement st = c.prepareStatement("UPDATE USERS SET NUMREPORTS = ? WHERE USERNAME = ?");
+            st.setInt(1, newNumReports);
+            st.setString(2, userName);
+            st.executeUpdate();
         }
         catch (final SQLException e)
         {
             throw new PersistenceException(e);
         }
+    }
+
+
+    public final UserAdvertiser getUserAdvertiser(final String userName)
+    {
+        User requiredUser = getUser(userName);
+        UserAdvertiser requiredUserAdvertiser = null;
+
+        if (requiredUser instanceof UserAdvertiser)
+        {
+            requiredUserAdvertiser = (UserAdvertiser) requiredUser;
+        }
+
+        return requiredUserAdvertiser;
     }
 }

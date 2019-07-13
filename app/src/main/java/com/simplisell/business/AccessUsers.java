@@ -59,6 +59,11 @@ public class AccessUsers
         return userExists;
     }
 
+    public UserAdvertiser getUserAdvertiser(String userName)
+    {
+        return userPersistence.getUserAdvertiser(userName);
+    }
+
 
     public void updatePassword(String userName, String password)
     {

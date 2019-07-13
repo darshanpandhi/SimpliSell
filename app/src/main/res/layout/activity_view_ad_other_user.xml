@@ -70,8 +70,6 @@
             android:id="@+id/button_viewAdCU_reportAd"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="8dp"
             android:background="@android:drawable/editbox_background"
             android:backgroundTint="@color/black_overlay"
             android:onClick="reportAdBtnClick"
@@ -80,10 +78,13 @@
             android:textColor="@android:color/background_light"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_viewAdOU_description"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.425"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

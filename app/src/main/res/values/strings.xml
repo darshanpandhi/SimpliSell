@@ -93,8 +93,6 @@
 
     <string name="reportedAds">Reported Ads</string>
 
-    <string name="adminControl">Admin Control</string>
-
     <string name="changePassword">CHANGE PASSWORD</string>
 
     <string-array name = "security_questions">

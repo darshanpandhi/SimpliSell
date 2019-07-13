@@ -17,6 +17,8 @@ public interface UserPersistence
                                   final String newPhoneNumber, final String newSecurityQuestion,
                                   final String newSecurityAnswer);
 
+    UserAdvertiser getUserAdvertiser(final String userName);
+
     void updateProfileImage(final String userName, final String profilePhoto);
 
     void reportUserAdvertiser(final String userName);

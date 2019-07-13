@@ -17,6 +17,8 @@ import com.simplisell.presentation.useradminactivity.AdminHomeScreen;
 
 public class Login extends AppCompatActivity
 {
+    private final String USERNAME_TEXT = "USER";
+
     private EditText userNameEntered;             // the edit text box for userName of the user
     private EditText passwordEntered;          // the edit text box for password of the user
 
@@ -83,24 +85,27 @@ public class Login extends AppCompatActivity
 
     private void logIn(User loggedInUser)
     {
+        isLoggedIn = true;
+
         String userName = loggedInUser.getUserName();
+
+        Intent logIn;
 
         if (loggedInUser instanceof UserAdvertiser)
         {
-            Intent logIn = new Intent(getApplicationContext(), MainActivity.class);
-            logIn.putExtra(Intent.EXTRA_TEXT, userName);
-
+            logIn = new Intent(getApplicationContext(), MainActivity.class);
+            logIn.putExtra(USERNAME_TEXT, userName);
             RecyclerViewAdapter.login(userName);
-            startActivity(logIn);
         }
         else
         {
-            Intent logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
-            logIn.putExtra(Intent.EXTRA_TEXT, userName);
-
+            logIn = new Intent(getApplicationContext(), AdminHomeScreen.class);
+            logIn.putExtra(USERNAME_TEXT, userName);
             RecyclerViewAdapter.login(userName);
-            startActivity(logIn);
         }
+
+        finish();
+        startActivity(logIn);
     }
 
 
@@ -130,11 +135,6 @@ public class Login extends AppCompatActivity
     public static boolean isLoggedIn()
     {
         return isLoggedIn;
-    }
-
-    private void logIn()
-    {
-        isLoggedIn = true;
     }
 
     public static void logOut()

@@ -1,22 +1,26 @@
 package com.simplisell.presentation;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import android.widget.TextView;
 import com.simplisell.R;
 import com.simplisell.application.Main;
 import com.simplisell.business.AccessAds;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.EncoderDecoder;
+import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.User;
 import com.simplisell.objects.UserAdvertiser;
@@ -34,7 +38,9 @@ import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity implements UserProfileButton
 {
-    private static String userName = null;
+    private final String USERNAME_TEXT = "USER";
+
+    private String userName = null;
 
     private User loggedInUser = null;
 
@@ -55,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
     private TabFragment tabFragmentElectronicsObj;
     private TabFragment tabFragmentOtherObj;
 
+    private String typeResult;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,36 +75,11 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         accessUsers = new AccessUsers();
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 
+        getCurrentUserName();
         initializeTabFragments();
         displayProfilePhoto();
 
         tabSetUp();
-    }
-
-    private void getLoggedInUser()
-    {
-        if (Login.isLoggedIn())  // if there is no logged in user
-        {
-            loggedInUser = accessUsers.getUser(Intent.EXTRA_TEXT);   //Update to show profile image
-        }
-        else
-        {
-            try
-            {
-                userName = getIntent().getStringExtra(Intent.EXTRA_TEXT);   // get the username to see if user was logged
-                // in.
-
-                if (userName != null)
-                {
-                    loggedInUser = accessUsers.getUser(userName);
-                }
-            }
-            catch (Exception e)
-            {
-                userName = null;
-                loggedInUser = null;
-            }
-        }
     }
 
 
@@ -178,20 +161,31 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
     public void accountBtnClick(View view)
     {
-        Intent intent;
+        Intent nextActivityIntent;
 
-        if (Login.isLoggedIn())
+        if (userName != null)
         {
-            // already logged in
-            intent = new Intent(getApplicationContext(), UserProfileMenu.class);
+            nextActivityIntent = new Intent(getApplicationContext(), UserProfileMenu.class);
+            nextActivityIntent.putExtra(USERNAME_TEXT, userName);
         }
         else
         {
             // not logged in
-            intent = new Intent(getApplicationContext(), Login.class);
+            nextActivityIntent = new Intent(getApplicationContext(), Login.class);
         }
 
-        startActivity(intent);
+        startActivity(nextActivityIntent);
+    }
+
+
+    private void getCurrentUserName()
+    {
+        Intent intentThatStartedThisActivity = getIntent();
+
+        if (intentThatStartedThisActivity.hasExtra(USERNAME_TEXT))
+        {
+            userName = intentThatStartedThisActivity.getStringExtra(USERNAME_TEXT);
+        }
     }
 
 
@@ -215,12 +209,102 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
     }
 
 
+    public void filterTypeBtnClick(View view)
+    {
+        AlertDialog dialog;
+        AlertDialog.Builder builder;
+        final String[] types = {"All Types", "OFFERING", "WANTED"};
+
+        builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setTitle("Select the Advertisement Type");
+
+        builder.setSingleChoiceItems(types, -1, new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                typeResult = types[which];
+            }
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                TextView textView = findViewById(R.id.textView_mainActivity_adType);
+
+                if (typeResult == null)
+                {
+                    typeResult = types[0];
+                }
+
+                textView.setText(typeResult);
+
+                if (typeResult.equals(types[0]))
+                {
+                    revertTabs();
+                }
+                else
+                {
+                    AdType adType = AdType.valueOf(typeResult);
+
+                    filterTabs(adType);
+                }
+
+                int position = tabLayout.getSelectedTabPosition();
+                tabSetUp();
+                viewPager.setCurrentItem(position);
+            }
+        });
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+
+            }
+        });
+
+        dialog = builder.create();
+        dialog.show();
+    }
+
+
+    private void filterTabs(AdType adType)
+    {
+        tabFragmentAllObj.filterByType(adType);
+        tabFragmentBooksObj.filterByType(adType);
+        tabFragmentTransportationObj.filterByType(adType);
+        tabFragmentServicesJobsObj.filterByType(adType);
+        tabFragmentLivingObj.filterByType(adType);
+        tabFragmentEventsObj.filterByType(adType);
+        tabFragmentElectronicsObj.filterByType(adType);
+        tabFragmentOtherObj.filterByType(adType);
+    }
+
+
+    private void revertTabs()
+    {
+        tabFragmentAllObj.revertAds();
+        tabFragmentBooksObj.revertAds();
+        tabFragmentTransportationObj.revertAds();
+        tabFragmentServicesJobsObj.revertAds();
+        tabFragmentLivingObj.revertAds();
+        tabFragmentEventsObj.revertAds();
+        tabFragmentElectronicsObj.revertAds();
+        tabFragmentOtherObj.revertAds();
+    }
+
+
     public void postAdBtnClick(View view)
     {
         if (Login.isLoggedIn())
         {
             Intent postAd = new Intent(getApplicationContext(), PostAd.class);
-            postAd.putExtra(Intent.EXTRA_TEXT, userName);
+            postAd.putExtra(USERNAME_TEXT, userName);
             startActivity(postAd);
         }
         else

@@ -79,8 +79,6 @@ public class SignUp extends AppCompatActivity
     private void validate(String firstNLastName, String userName, String userPassword, String userConfirmPassword,
                           String userSecurityQuestion, String userSecurityAnswer)
     {
-
-
         int number;
 
         // are the fields empty
@@ -99,8 +97,7 @@ public class SignUp extends AppCompatActivity
                     {
 
                         UserAdvertiser newUserAdvertiser = new UserAdvertiser(firstNLastName, userName, userPassword,
-                                userSecurityQuestion, userSecurityAnswer, null, null,
-                                null, 0);   // create a new user
+                                userSecurityQuestion, userSecurityAnswer, null, null, null, 0);   // create a new user
 
                         if (accessUsers.insertNewUserAdvertiser(newUserAdvertiser) != null)
                         {   // check if userName is in the database and insert

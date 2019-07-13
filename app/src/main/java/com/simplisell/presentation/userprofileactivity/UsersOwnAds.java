@@ -18,9 +18,6 @@ public class UsersOwnAds extends AppCompatActivity
 
     private static final String USERNAME_TEXT = "USER";
 
-    private List<Ad> ads;
-    private AccessAds adsSearch;
-    private RecyclerView recyclerView;
     private String userName;
 
 
@@ -32,11 +29,11 @@ public class UsersOwnAds extends AppCompatActivity
         userName = getIntent().getStringExtra(USERNAME_TEXT);
 
 
-        adsSearch = new AccessAds();
-        ads = adsSearch.getUserSpecificAds(userName);
+        AccessAds adsSearch = new AccessAds();
+        List<Ad> ads = adsSearch.getUserSpecificAds(userName);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.profile_usersAds_recycle_view);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, ads);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);

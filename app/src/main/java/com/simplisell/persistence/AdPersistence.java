@@ -19,4 +19,8 @@ public interface AdPersistence
     void updateAd(final Ad ad);
 
     void reportAd(final int adId);
+
+    List<Ad> getreportedAds();
+
+    int getNewAdId();
 }

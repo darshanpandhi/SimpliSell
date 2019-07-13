@@ -31,7 +31,7 @@ public class AdPersistenceStub implements AdPersistence
         String description = "iPad Ad description";
         double price = 554.99;
 
-        Ad newAd = new Ad(0, adOwner, adType, category, title, description, price, date);
+        Ad newAd = new Ad(0, adOwner, adType, category, title, description, price, date, 0);
         ads.add(newAd);
 
         adOwner = "Allice";
@@ -42,7 +42,7 @@ public class AdPersistenceStub implements AdPersistence
         price = 40;
 
 
-        newAd = new Ad(1, adOwner, adType, category, title, description, price, date);
+        newAd = new Ad(1, adOwner, adType, category, title, description, price, date, 0);
         ads.add(newAd);
 
         adOwner = "Jay";
@@ -52,7 +52,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "CarPooling Ad Description";
         price = 100;
 
-        newAd = new Ad(2, adOwner, adType, category, title, description, price, date);
+        newAd = new Ad(2, adOwner, adType, category, title, description, price, date, 0);
         ads.add(newAd);
 
 
@@ -63,7 +63,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "A nice book by Dr APJ abdul kalaam";
         price = 0;
 
-        newAd = new Ad(3, adOwner, adType, category, title, description, price, date);
+        newAd = new Ad(3, adOwner, adType, category, title, description, price, date, 0);
         ads.add(newAd);
 
 
@@ -74,7 +74,7 @@ public class AdPersistenceStub implements AdPersistence
         description = "Book for COMP2080 and COMP3170";
         price = 20;
 
-        newAd = new Ad(4, adOwner, adType, category, title, description, price, date);
+        newAd = new Ad(4, adOwner, adType, category, title, description, price, date, 0);
         ads.add(newAd);
     }
 
@@ -160,5 +160,53 @@ public class AdPersistenceStub implements AdPersistence
     {
         Ad repostedAd = getAd(adID);
         repostedAd.resetExpiryDate();
+    }
+
+    @Override
+    public final void reportAd(int adId)
+    {
+        Ad ad = getAd(adId);
+        ad.reportAd();
+    }
+
+
+    @Override
+    public List<Ad> getreportedAds()
+    {
+        List<Ad> reportedAdList = new ArrayList<>();
+
+        for(Ad currentAd : ads)
+        {
+            if(currentAd.getNumReports() > 0)
+                reportedAdList.add(currentAd);
+        }
+
+        return reportedAdList;
+    }
+
+
+    public final int getNewAdId()
+    {
+        int currentAdId =  findMaxId();
+
+        return currentAdId + 1;
+    }
+
+    private int findMaxId()
+    {
+        int maxId = -1;
+        int currAdId;
+
+        for(Ad ad : ads)
+        {
+            currAdId = ad.getAdId();
+
+            if(currAdId > maxId)
+            {
+                maxId = currAdId;
+            }
+        }
+
+        return maxId;
     }
 }

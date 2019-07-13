@@ -39,14 +39,14 @@ public final class AccessAds
         return adPersistence.getAds();
     }
 
+    public  final int getNewAdId()
+    {
+        return adPersistence.getNewAdId();
+    }
+
     public final void reportAd(final int adId)
     {
         adPersistence.reportAd(adId);
-    }
-
-    public final List<Ad> getReportedAds()
-    {
-        return adPersistence.getAds();
     }
 
 
@@ -58,22 +58,11 @@ public final class AccessAds
 
     public final Ad insertAd(final Ad newAd)
     {
-        if (newAd == null || newAd.getClass() != Ad.class)
+        if(newAd != null)
         {
-            return null;
+            newAd.resetExpiryDate();
         }
 
-        int newAdId = 0;
-        List<Ad> allAds = getAllAds();
-
-        if (allAds.size() != 0)
-        {
-            Ad maxAd = Collections.max(allAds, compareAdId);
-            newAdId = maxAd.getAdId() + 1;
-        }
-
-        newAd.setAdId(newAdId);
-        newAd.resetExpiryDate();
         return adPersistence.insertAd(newAd);
     }
 
@@ -109,6 +98,11 @@ public final class AccessAds
         }
 
         return adList;
+    }
+
+    public final List<Ad> getReportedAds()
+    {
+        return adPersistence.getreportedAds();
     }
 
 
@@ -201,15 +195,6 @@ public final class AccessAds
         public int compare(Ad o1, Ad o2)
         {
             return o1.getPrice() > o2.getPrice() ? 1 : o1.getPrice() < o2.getPrice() ? -1 : 0;
-        }
-    };
-
-    Comparator<Ad> compareAdId = new Comparator<Ad>()
-    {
-        @Override
-        public int compare(Ad o1, Ad o2)
-        {
-            return o1.getAdId() > o2.getAdId() ? 1 : o1.getAdId() < o2.getAdId() ? -1 : 0;
         }
     };
 }

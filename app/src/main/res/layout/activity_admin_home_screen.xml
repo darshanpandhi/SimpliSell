@@ -23,20 +23,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
-                android:text="@string/adminControl"
+                android:text="@string/reportedAds"
                 android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:fontFamily="@font/orbitron"/>
     </LinearLayout>
 
-    <Button
-            android:layout_width="289dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/black_overlay"
-            android:textColor="@android:color/background_light"
-            android:text="@string/reportedAds"
-            android:fontFamily="@font/candal"
-            android:onClick="viewReportedAdsBtnClick"/>
+    <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/admin_reportedAds_recycle_view"
+            android:layout_width="575dp"
+            android:layout_height="802dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp">
+
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

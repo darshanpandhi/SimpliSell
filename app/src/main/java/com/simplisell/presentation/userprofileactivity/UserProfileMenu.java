@@ -8,22 +8,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.simplisell.R;
-import com.simplisell.business.AccessUsers;
-import com.simplisell.objects.User;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
+
 public class UserProfileMenu extends AppCompatActivity
 {
 
     private final String USERNAME_TEXT = "USER";
 
     private static String userName = null;
-    private static User currUser = null;
     private static ListView listView;
-    private static String[] titles = {"My profile","My ads","Logout"};
-
-    private AccessUsers accessUsers;
+    private static String[] titles = {"My Profile", "My Ads", "Logout"};
 
 
     @Override
@@ -31,45 +27,10 @@ public class UserProfileMenu extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_user_profile_menu);
 
-        accessUsers = new AccessUsers();
-
-        try
-        {
-
-            userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
-
-            if (userName != null)
-            {
-
-                currUser = accessUsers.getUser(userName);
-                if (currUser == null)
-                {
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), Login.class));
-                }
-                else
-                {
-                    setContentView(R.layout.activity_user_profile_menu);
-                    initialize();
-                }
-
-
-            }
-            else
-            {
-                finish();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-            }
-
-        }
-        catch (Exception e)
-        {
-
-            finish();
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
-
+        userName = getIntent().getStringExtra(USERNAME_TEXT);
+        initialize();
     }
 
 
@@ -82,7 +43,6 @@ public class UserProfileMenu extends AppCompatActivity
         listView.setAdapter(profileListViewAdapter);
 
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -90,31 +50,29 @@ public class UserProfileMenu extends AppCompatActivity
             {
                 if (position == 0)
                 {
-                    Intent postAd=new Intent(getApplicationContext(), ProfileInformation.class);
-                    postAd.putExtra(USERNAME_TEXT, userName);
-                    startActivity(postAd);
-
+                    Intent intent = new Intent(getApplicationContext(), ProfileInformation.class);
+                    intent.putExtra(USERNAME_TEXT, userName);
+                    startActivity(intent);
                 }
-                else if (position == 1)
+                else
                 {
-
-                    Intent postAd=new Intent(getApplicationContext(), UsersOwnAds.class);
-                    postAd.putExtra(USERNAME_TEXT, userName);
-                    startActivity(postAd);
-                }
-                else if (position == 2)
+                    if (position == 1)
                     {
-                        logout();
+
+                        Intent intent = new Intent(getApplicationContext(), UsersOwnAds.class);
+                        intent.putExtra(USERNAME_TEXT, userName);
+                        startActivity(intent);
                     }
+                    else
+                    {
+                        if (position == 2)
+                        {
+                            logout();
+                        }
+                    }
+                }
             }
         });
-    }
-
-
-    public void accountBtnClick(View view)
-    {
-        finish();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
 

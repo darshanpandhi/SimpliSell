@@ -52,20 +52,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 int adId = myAd.get(viewHolder.getAdapterPosition()).getAdId();
                 String adUserName = myAd.get(viewHolder.getAdapterPosition()).getAdOwner();
 
+                Intent viewAd;
 
                 if (adUserName.equals(userName))
-                { // logged in user and its their Ad
-
-                    Intent viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
-                    viewAd.putExtra(ADID_TEXT, adId);
-                    myContext.startActivity(viewAd);
-                }
-                else   // not logged in user
                 {
-                    Intent viewAd = new Intent(myContext, ViewAdOfOtherUser.class);
-                    viewAd.putExtra(ADID_TEXT, adId);
-                    myContext.startActivity(viewAd);
+                    // logged in user and its their Ad
+                    viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
                 }
+                else
+                {
+                    // not logged in user
+                    viewAd = new Intent(myContext, ViewAdOfOtherUser.class);
+                }
+                viewAd.putExtra(ADID_TEXT, adId);
+                myContext.startActivity(viewAd);
             }
         });
 

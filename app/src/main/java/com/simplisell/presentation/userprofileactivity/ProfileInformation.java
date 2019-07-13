@@ -18,6 +18,7 @@ import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.EncoderDecoder;
 import com.simplisell.objects.User;
+import com.simplisell.objects.UserAdvertiser;
 
 public class ProfileInformation extends AppCompatActivity
 {
@@ -80,49 +81,49 @@ public class ProfileInformation extends AppCompatActivity
 
     private void setUp()
     {
-        User currUser = accessUsers.getUser(userName);
+        UserAdvertiser userAdvertiser = accessUsers.getUserAdvertiser(userName);
 
-        if (currUser.getProfilePhoto() != null)
+        if (userAdvertiser.getProfilePhoto() != null)
         {
-            Bitmap photo = EncoderDecoder.stringToBitMap(currUser.getProfilePhoto());
+            Bitmap photo = EncoderDecoder.stringToBitMap(userAdvertiser.getProfilePhoto());
             Bitmap displayProfile = Bitmap.createScaledBitmap(photo, (int) (photo.getWidth() * 2.8),
                     (int) (photo.getHeight() * 2.8), true);
             profileImage.setImageBitmap(displayProfile);
             photoTextView.setText("");
         }
 
-        if (currUser.getFirstAndLastName() != null)
+        if (userAdvertiser.getFirstAndLastName() != null)
         {
-            firstAndLastName.setHint(currUser.getFirstAndLastName());
+            firstAndLastName.setHint(userAdvertiser.getFirstAndLastName());
         }
 
-        if (currUser.getEmail() != null)
+        if (userAdvertiser.getEmail() != null)
         {
-            email.setHint(currUser.getEmail());
+            email.setHint(userAdvertiser.getEmail());
         }
 
-        if (currUser.getPhoneNumber() != null)
+        if (userAdvertiser.getPhoneNumber() != null)
         {
-            phoneNumber.setHint(currUser.getPhoneNumber());
+            phoneNumber.setHint(userAdvertiser.getPhoneNumber());
         }
 
-        securityQuestion.setHint(currUser.getSecurityQuestion());
-        securityAnswer.setHint(currUser.getSecurityAnswer());
+        securityQuestion.setHint(userAdvertiser.getSecurityQuestion());
+        securityAnswer.setHint(userAdvertiser.getSecurityAnswer());
     }
 
 
     public void profileInformationSaveClick(View view)
     {
 
-        User currUser = accessUsers.getUser(userName);
+        UserAdvertiser userAdvertiser = accessUsers.getUserAdvertiser(userName);
 
-        String userName = currUser.getUserName();
-        String userFullName = currUser.getFirstAndLastName();
-        String userEmail = currUser.getEmail();
-        String userPhoneNumber = currUser.getPhoneNumber();
-        String userSecurityQuestion = currUser.getSecurityQuestion();
-        String userSecurityAnswer = currUser.getSecurityAnswer();
-        String userProfilePhoto = currUser.getProfilePhoto();
+        String userName = userAdvertiser.getUserName();
+        String userFullName = userAdvertiser.getFirstAndLastName();
+        String userEmail = userAdvertiser.getEmail();
+        String userPhoneNumber = userAdvertiser.getPhoneNumber();
+        String userSecurityQuestion = userAdvertiser.getSecurityQuestion();
+        String userSecurityAnswer = userAdvertiser.getSecurityAnswer();
+        String userProfilePhoto = userAdvertiser.getProfilePhoto();
 
         boolean userUpdatedProfile = false;
 

@@ -46,6 +46,7 @@ public class AccessUsersTest
         assertEquals("123456", addedUserAdvertiser.getPassword());
         assertEquals("What is your favourite color?", addedUserAdvertiser.getSecurityQuestion());
         assertEquals("Red", addedUserAdvertiser.getSecurityAnswer());
+        assertEquals(0, addedUserAdvertiser.getNumReports());
 
         verify(userPersistence).getUser("UniqueUser");
         verify(userPersistence).insertUserAdvertiser(userAdvertiser);

@@ -66,7 +66,7 @@ public class UserPersistenceStub implements UserPersistence
     @Override
     public void reportUserAdvertiser(final String userName)
     {
-        UserAdvertiser reportedUserAdvertiser = findUserAdvertiser(userName);
+        UserAdvertiser reportedUserAdvertiser = getUserAdvertiser(userName);
 
         if (reportedUserAdvertiser != null)
         {
@@ -80,7 +80,7 @@ public class UserPersistenceStub implements UserPersistence
                                          final String newPhoneNumber, final String newSecurityQuestion,
                                          final String newSecurityAnswer)
     {
-        UserAdvertiser userAdvertiser = findUserAdvertiser(userName);
+        UserAdvertiser userAdvertiser = getUserAdvertiser(userName);
 
         if (userAdvertiser != null)
         {
@@ -96,7 +96,7 @@ public class UserPersistenceStub implements UserPersistence
     @Override
     public void updateProfileImage(final String userName, final String profilePhoto)
     {
-        UserAdvertiser userAdvertiser = findUserAdvertiser(userName);
+        UserAdvertiser userAdvertiser = getUserAdvertiser(userName);
 
         if (userAdvertiser != null)
         {
@@ -130,7 +130,7 @@ public class UserPersistenceStub implements UserPersistence
     }
 
 
-    private UserAdvertiser findUserAdvertiser(final String userName)
+    public final UserAdvertiser getUserAdvertiser(final String userName)
     {
         User requiredUser = findUser(userName);
         UserAdvertiser requiredUserAdvertiser = null;

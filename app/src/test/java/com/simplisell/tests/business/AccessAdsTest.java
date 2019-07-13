@@ -23,11 +23,12 @@ import java.util.List;
 public class AccessAdsTest
 {
     private AccessAds adPersistence;
+    private AdPersistenceStub adStub;
 
     @Before
     public final void setup()
     {
-        AdPersistenceStub adStub = new AdPersistenceStub();
+        adStub = new AdPersistenceStub();
         adPersistence = new AccessAds(adStub);
     }
 
@@ -36,25 +37,29 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: insert unique ad");
 
+        int adId = adStub.getNewAdId();
         String userName = "Marley";
         AdType adType = AdType.OFFERING;
         Category category = Category.JOBS_SERVICES;
         String title = "Test Title";
         String description = "Test Description";
         double price = 200;
+        Date expiryDate = null;
+        int numReports = 0;
 
-
-        Ad uniqueAd = new Ad(userName, adType, category, title, description, price);
+        Ad uniqueAd = new Ad(adId, userName, adType, category, title, description, price, expiryDate, numReports);
 
         Ad insertedAd = adPersistence.insertAd(uniqueAd);
 
         assertNotNull(insertedAd);
+        assertEquals(adId, insertedAd.getAdId());
         assertEquals(userName, insertedAd.getAdOwner());
         assertEquals(adType, insertedAd.getAdType());
         assertEquals(category, insertedAd.getCategory());
         assertEquals(title, insertedAd.getTitle());
         assertEquals(description, insertedAd.getDescription());
         assertEquals(price, insertedAd.getPrice(), 0);
+        assertEquals(numReports, insertedAd.getNumReports());
 
         System.out.println("Finished AccessAdsTest: insert unique ad");
     }
@@ -64,14 +69,18 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: insert duplicate ad");
 
+        int adId = adStub.getNewAdId();
         String userName = "Bob";
         AdType adType = AdType.OFFERING;
         Category category = Category.JOBS_SERVICES;
         String title = "Test Title";
         String description = "Test Description";
         double price = 200;
+        Date expiryDate = null;
+        int numReports = 0;
 
-        Ad ad = new Ad(userName, adType, category, title, description, price);
+        Ad ad = new Ad(adId, userName, adType, category, title, description, price, expiryDate,
+                numReports);
 
         Ad insertedAd = adPersistence.insertAd(ad);
         // adding the same ad again
@@ -99,14 +108,17 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: get deleted ad");
 
+        int adId = adStub.getNewAdId();
         String userName = "John";
         AdType adType = AdType.OFFERING;
         Category category = Category.JOBS_SERVICES;
         String title = "Test Title";
         String description = "Test Description";
         double price = 200;
+        Date expiryDate = null;
+        int numReports = 0;
 
-        Ad uniqueAd = new Ad(userName, adType, category, title, description, price);
+        Ad uniqueAd = new Ad(adId, userName, adType, category, title, description, price, expiryDate, numReports);
 
         // verifying if we are able to get a deleted ad from the list
         Ad insertedAd = adPersistence.insertAd(uniqueAd);
@@ -122,14 +134,17 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: remove wrong ad");
 
+        int adId = adStub.getNewAdId();
         String userName = "Bob";
         AdType adType = AdType.OFFERING;
         Category category = Category.JOBS_SERVICES;
         String title = "Test Title";
         String description = "Test Description";
         double price = 200;
+        Date expiryDate = null;
+        int numReports = 0;
 
-        Ad ad = new Ad(userName, adType, category, title, description, price);
+        Ad ad = new Ad(adId, userName, adType, category, title, description, price, expiryDate, numReports);
 
         // removing ad not present in the list of adds
         Ad removedAd = adPersistence.removeAd(ad);
@@ -167,8 +182,8 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: get all ads by category");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1, null, 0));
         List<Ad> ads = adPersistence.getAllAdsByCategory(Category.ELECTRONICS);
 
         for (Ad ad : ads)
@@ -184,12 +199,12 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: sort price (ascending)");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 10));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
-                "test", "test", 100));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1000));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 10, null, 0));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS,
+                "test", "test", 100, null, 0));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1000, null, 0));
         List<Ad> ads = adPersistence.sortPriceAsc(adPersistence.getAllAds());
 
         for (int i = 0; i < ads.size()-1; i++)
@@ -207,12 +222,12 @@ public class AccessAdsTest
         System.out.println("\nStarting AccessAdsTest sort price (descending)");
 
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 10));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
-                "test", "test", 100));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1000));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 10, null, 0));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS,
+                "test", "test", 100, null, 0));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1000, null, 0));
         List<Ad> ads = adPersistence.sortPriceDesc(adPersistence.getAllAds());
         for (int i = 0; i < ads.size()-1; i++)
         {
@@ -229,8 +244,8 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: get all ads for specific user");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1, null, 0));
         List<Ad> ads = adPersistence.getUserSpecificAds("test");
 
         for (Ad ad : ads)
@@ -246,14 +261,14 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: filter ads by ad type");
 
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 10));
-        adPersistence.insertAd(new Ad("test", AdType.OFFERING, Category.OTHERS,
-                "test", "test", 100));
-        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
-                "test", "test", 2));
-        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
-                "test", "test", 0));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 10, null, 0));
+        adPersistence.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS,
+                "test", "test", 100, null, 0));
+        adPersistence.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 2, null, 0));
+        adPersistence.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 0, null, 0));
 
         List<Ad> offeringAds = adPersistence.filterAdsByType(adPersistence.getAllAds(), AdType.OFFERING);
         List<Ad> wantedAds = adPersistence.filterAdsByType(adPersistence.getAllAds(), AdType.WANTED);
@@ -277,10 +292,10 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: remove expired ads");
 
-        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
-                "test", "test", 0));
-        adPersistence.insertAd(new Ad( "test", AdType.WANTED, Category.ELECTRONICS,
-                "test", "test", 0));
+        adPersistence.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 0, null, 0));
+        adPersistence.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 0, null, 0));
 
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DATE, -30);
@@ -338,11 +353,14 @@ public class AccessAdsTest
         String oldTile = updateThisAd.getTitle();
         String oldDescription = updateThisAd.getDescription();
         Double oldPrice = updateThisAd.getPrice();
+        Date oldExpiryDate = null;
+        int oldNumReports = 0;
 
         String newTitle = "this is a new title!!!";
         double newPrice = 321.23;
 
-        Ad updatedAd = new Ad(updateThisAd.getAdId(), updateThisAd.getAdOwner(), updateThisAd.getAdType(), oldCategory, newTitle, oldDescription, newPrice, null);
+        Ad updatedAd = new Ad(updateThisAd.getAdId(), updateThisAd.getAdOwner(), updateThisAd.getAdType(),
+                oldCategory, newTitle, oldDescription, newPrice, oldExpiryDate, oldNumReports);
 
         adPersistence.updateAd(updatedAd);
 
@@ -350,6 +368,7 @@ public class AccessAdsTest
         assertNotEquals(oldPrice, updateThisAd.getPrice());
         assertEquals(oldDescription, updateThisAd.getDescription());
         assertEquals(oldCategory, updateThisAd.getCategory());
+        assertEquals(oldNumReports, updateThisAd.getNumReports());
 
         assertEquals(newTitle, updateThisAd.getTitle());
         assertEquals(newPrice, updateThisAd.getPrice(),0.001);
