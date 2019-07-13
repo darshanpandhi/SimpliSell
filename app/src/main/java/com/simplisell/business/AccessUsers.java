@@ -29,14 +29,18 @@ public class AccessUsers
 
     public User insertNewUser(User newUser)
     {
+        User retValue = null;
+
         String userName = newUser.getUserName();
 
         if (!duplicateExists(userName))
         {
             userPersistence.insertUser(newUser);
+            retValue = newUser;
+
         }
 
-        return newUser;
+        return retValue;
     }
 
 

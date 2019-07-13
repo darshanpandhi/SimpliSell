@@ -162,6 +162,7 @@ public final class AccessAds
 
         Date currDate = new Date(currTime);
 
+        List<Ad> allAds = adPersistence.getAds();
         List<Integer> adsToRemove = new ArrayList<>();
 
         for (Ad ad : allAds)
@@ -169,8 +170,13 @@ public final class AccessAds
             Date expiryDate = ad.getExpiryDate();
             if (expiryDate.compareTo(currDate) < 0)
             {
-                adPersistence.removeAd(ad);
+                adsToRemove.add(ad.getAdId());
             }
+        }
+
+        for (Integer x : adsToRemove)
+        {
+            adPersistence.removeAd(getAd(x));
         }
 
 
