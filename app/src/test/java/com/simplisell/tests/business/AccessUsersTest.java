@@ -71,46 +71,46 @@ public class AccessUsersTest
     }
 
 
-    @Test
-    public void testChangePassword()
-    {
-        System.out.println("\nStarting AccessUsersTest: test change password");
-
-        User user = new User("ba ba","User10", "123456", "What is your favourite " +
-                "color", "Red", null, null);
-        accessUsers.insertNewUser(user);
-        assertNotNull(user);
-
-        accessUsers.updatePassword("User10", "654321");
-        assertEquals("654321", accessUsers.getUser("User10").getPassword());
-
-        System.out.println("Finished insertNewUser: password changed");
-    }
-
-    @Test
-    public void testUpdateProfileInformation()
-    {
-        System.out.println("\nStarting AccessUsersTest: test update profile information");
-
-        User user = new User("Bobby Lee","Bobby", "123456", "What is your favourite " +
-                "color", "Red", null, null);
-        accessUsers.insertNewUser(user);
-        assertNotNull(user);
-
-        String newFullName = "Lee Bobby";
-        String newEmail = "leebobby@yahoo.ca";
-        String newPhoneNumber = "1234567890";
-        String newSecurityQuestion = "What is your favourite movie";
-        String newSecurityAnswer = "Hereditary";
-        accessUsers.updateProfileInformation("Bobby", newFullName, newEmail, newPhoneNumber, newSecurityQuestion, newSecurityAnswer);
-        user = accessUsers.getUser("Bobby");
-        assertEquals(newFullName, user.getFirstAndLastName());
-        assertEquals(newEmail, user.getEmail());
-        assertEquals(newPhoneNumber, user.getPhoneNumber());
-        assertEquals(newSecurityQuestion, user.getSecurityQuestion());
-        assertEquals(newSecurityAnswer, user.getSecurityAnswer());
-
-        System.out.println("Finished insertNewUser: profile information updated");
-    }
+//    @Test
+//    public void testChangePassword()
+//    {
+//        System.out.println("\nStarting AccessUsersTest: test change password");
+//
+//        User user = new User("ba ba","User10", "123456", "What is your favourite " +
+//                "color", "Red", null, null);
+//        accessUsers.insertNewUser(user);
+//        assertNotNull(user);
+//
+//        accessUsers.updatePassword("User10", "654321");
+//        assertEquals("654321", accessUsers.getUser("User10").getPassword());
+//
+//        System.out.println("Finished insertNewUser: password changed");
+//    }
+//
+//    @Test
+//    public void testUpdateProfileInformation()
+//    {
+//        System.out.println("\nStarting AccessUsersTest: test update profile information");
+//
+//        User user = new User("Bobby Lee","Bobby", "123456", "What is your favourite " +
+//                "color", "Red", null, null);
+//        accessUsers.insertNewUser(user);
+//        assertNotNull(user);
+//
+//        String newFullName = "Lee Bobby";
+//        String newEmail = "leebobby@yahoo.ca";
+//        String newPhoneNumber = "1234567890";
+//        String newSecurityQuestion = "What is your favourite movie";
+//        String newSecurityAnswer = "Hereditary";
+//        accessUsers.updateProfileInformation("Bobby", newFullName, newEmail, newPhoneNumber, newSecurityQuestion, newSecurityAnswer);
+//        user = accessUsers.getUser("Bobby");
+//        assertEquals(newFullName, user.getFirstAndLastName());
+//        assertEquals(newEmail, user.getEmail());
+//        assertEquals(newPhoneNumber, user.getPhoneNumber());
+//        assertEquals(newSecurityQuestion, user.getSecurityQuestion());
+//        assertEquals(newSecurityAnswer, user.getSecurityAnswer());
+//
+//        System.out.println("Finished insertNewUser: profile information updated");
+//    }
 
 }
