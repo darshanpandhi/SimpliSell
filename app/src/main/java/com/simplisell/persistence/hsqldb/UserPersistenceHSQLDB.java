@@ -38,8 +38,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
 
     private User fromResultSet(final ResultSet rs) throws SQLException
     {
-        User requiredUser;
-
         final String firstAndLastName = rs.getString("FULLNAME");
         final String userName = rs.getString("USERNAME");
         final String password = rs.getString("PASSWORD");
