@@ -47,9 +47,9 @@ public class UserPersistenceHSQLDB implements UserPersistence
         final String securityAnswer = rs.getString("SECURITYANSWER");
         final String email = rs.getString("EMAIL");
         final String phoneNumber = rs.getString("PHONENUMBER");
-        final boolean isAdmin = rs.getBoolean("ADMIN");
+        final boolean isAdminInt = rs.getBoolean("ADMIN");
 
-        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,isAdmin);
+        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,isAdminInt);
     }
 
 
