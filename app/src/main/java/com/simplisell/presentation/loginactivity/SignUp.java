@@ -23,7 +23,6 @@ public class SignUp extends AppCompatActivity
     private final String USERNAME_TEXT = "USER";
 
     private static String uniqueUserName;
-    private ProgressDialog progressDialog;
     private EditText name;              // name of user
     private EditText userName;             // firstNLastName of user
     private EditText password;          // password of user
@@ -43,7 +42,6 @@ public class SignUp extends AppCompatActivity
         uniqueUserName = null;
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
 
         // initializing the buttons and edit textboxes
         userName = findViewById(R.id.editText_name_user);
@@ -88,11 +86,6 @@ public class SignUp extends AppCompatActivity
 
         int number;
 
-        // Show a progress Dialog while the authentication is loading
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Signing up");
-        progressDialog.show();
-
         // are the fields empty
         boolean empty =
                 (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
@@ -123,7 +116,6 @@ public class SignUp extends AppCompatActivity
                             Intent signedUp = new Intent(getApplicationContext(), MainActivity.class);
                             signedUp.putExtra(USERNAME_TEXT, uniqueUserName);
                             RecyclerViewAdapter.login(userName);
-                            progressDialog.dismiss();
                             startActivity(signedUp);
                         }
                         else

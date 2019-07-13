@@ -1,6 +1,7 @@
 package com.simplisell.presentation.userprofileactivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -88,6 +89,7 @@ public class UserProfileMenu extends AppCompatActivity
 
                 if (position == 0)
                 {
+                    view.setBackgroundColor(Color.RED);
                     Intent postAd = new Intent(getApplicationContext(), ProfileInformation.class);
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
@@ -96,7 +98,7 @@ public class UserProfileMenu extends AppCompatActivity
                 {
                     if (position == 1)
                     {
-
+                        view.setBackgroundColor(Color.RED);
                         Intent postAd = new Intent(getApplicationContext(), UsersOwnAds.class);
                         postAd.putExtra(USERNAME_TEXT, userName);
                         startActivity(postAd);
@@ -105,12 +107,14 @@ public class UserProfileMenu extends AppCompatActivity
                     {
                         if (position == 2)
                         {
+                            view.setBackgroundColor(Color.RED);
                             Intent postAd = new Intent(getApplicationContext(), PostAd.class);
                             postAd.putExtra(USERNAME_TEXT, userName);
                             startActivity(postAd);
                         }
                         else
                         {
+                            view.setBackgroundColor(Color.RED);
                             if (position == 3)
                             {
                                 logout();

@@ -335,4 +335,7 @@ public class MainActivity extends AppCompatActivity
         tabFragmentOtherObj.revertAds();
     }
 
+
+
+
 }

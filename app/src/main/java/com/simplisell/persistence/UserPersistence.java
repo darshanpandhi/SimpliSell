@@ -16,4 +16,6 @@ public interface UserPersistence
                                   String newSecurityQuestion, String newSecurityAnswer);
 
     void updateProfileImage(String userName, String profilePhoto);
+
+    void deleteUser(String userName);
 }
