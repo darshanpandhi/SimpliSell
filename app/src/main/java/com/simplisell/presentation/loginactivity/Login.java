@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.simplisell.R;
-import com.simplisell.business.Credentials;
+import com.simplisell.business.UserCredentials;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity
     private EditText userNameEntered;             // the edit text box for userName of the user
     private EditText passwordEntered;          // the edit text box for password of the user
 
-    private Credentials credentials;
+    private UserCredentials userCredentials;
 
     private static boolean isLoggedIn;
 
@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity
         userNameEntered = findViewById(R.id.editText_login_enterUserName);
         passwordEntered = findViewById(R.id.editText_login_enterPassword);
 
-        credentials = new Credentials();
+        userCredentials = new UserCredentials();
 
         isLoggedIn = false;
     }
@@ -50,38 +50,27 @@ public class Login extends AppCompatActivity
         String userName;       // The userName from the textbox will be stored here.
         String userPassword;    // The userName in the password will be stored here.
 
-        // check if these fields are empty
-        boolean userNameEmpty = userNameEntered.getText().toString().isEmpty();
-        boolean passwordEmpty = passwordEntered.getText().toString().isEmpty();
 
-        if (userNameEmpty || passwordEmpty)   // if userName or password field is empty
+        userName = userNameEntered.getText().toString();
+        userPassword = passwordEntered.getText().toString();
+
+        User loggedInUser = userCredentials.correctPassword(userName, userPassword);
+
+        if (loggedInUser != null)
         {
-            // Make a toast to display error message
-            Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
+            // if login is successful
+            // show user that login was successful
+            Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+
+            finish();
+
+            logIn(loggedInUser);
         }
         else
-        {
-            userName = userNameEntered.getText().toString();
-            userPassword = passwordEntered.getText().toString();
-
-            User loggedInUser = credentials.correctPassword(userName, userPassword);
-
-            if (loggedInUser != null)
-            {
-                // if login is successful
-                // show user that login was successful
-                Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-
-                finish();
-
-                logIn(loggedInUser);
-            }
-            else
             {
                 // if authentication is not successful.
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
-        }
     }
 
     private void logIn(User loggedInUser)

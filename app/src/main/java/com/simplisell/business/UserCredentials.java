@@ -4,18 +4,18 @@ import com.simplisell.application.Services;
 import com.simplisell.objects.User;
 import com.simplisell.persistence.UserPersistence;
 
-public class Credentials
+public class UserCredentials
 {
     private UserPersistence userPersistence;
 
 
-    public Credentials()
+    public UserCredentials()
     {
         userPersistence = Services.getUserPersistence();
     }
 
 
-    public Credentials(UserPersistence userPersistence)
+    public UserCredentials(UserPersistence userPersistence)
     {
         this.userPersistence = userPersistence;
     }
