@@ -22,7 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private static String userName = null;
     private final String ADID_TEXT = "ADID";
-
+    private final String USERNAME_TEXT = "USER";
     private Context myContext;
     private List<Ad> myAd;
 
@@ -74,13 +74,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         if(reported > 0)
                         {
                             viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
-
                         }
 
                     }
+                    viewAd.putExtra(USERNAME_TEXT, currUser.getUserName());
                 }
-
-
                 viewAd.putExtra(ADID_TEXT, adId);
                 myContext.startActivity(viewAd);
             }

@@ -9,19 +9,21 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessAds;
+import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
-import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
 import java.util.Date;
 
 public class ViewAdOfCurrentUser extends AppCompatActivity
 {
     private final String USERNAME_TEXT = "USER";
-
     private final String ADID_TEXT = "ADID";
 
     private Ad currAd;              // holds the curr ad object
+    private User currUser;
+    private String userName;          // user looking at the ad
     private int adId;               // id of the current ad
     private String title;           // title of the current ad
     private String description;     // description of the current ad
@@ -29,7 +31,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     private Date expireDate;
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
-
+    private AccessUsers accessUsers = new AccessUsers();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,8 +41,10 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
 
         // get id of ad passed from previous activity
         adId = getIntent().getIntExtra(ADID_TEXT, -1);
+        userName = getIntent().getStringExtra(USERNAME_TEXT);
 
         currAd = accessAds.getAd(adId);
+        currUser = accessUsers.getUser(userName);
 
         // retrieve information of the current ad
         title = currAd.getTitle();
@@ -98,11 +102,8 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
 
         finish();
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra(USERNAME_TEXT, currAd.getAdOwner());
+        i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
-
-
 
 }
