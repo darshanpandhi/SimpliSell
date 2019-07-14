@@ -14,6 +14,8 @@ import com.simplisell.objects.Ad;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 
+import org.w3c.dom.Text;
+
 public class ViewAdOfOtherUser extends AppCompatActivity
 {
 
@@ -24,6 +26,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
     private String title;           // title of the current ad
     private String description;     // description of the current ad
     private double price;           // price of the current ad
+    private User user;
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ad
     private AccessUsers accessUsers = new AccessUsers();
@@ -42,6 +45,9 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         title = currAd.getTitle();
         description = currAd.getDescription();
         price = currAd.getPrice();
+        user = accessUsers.getUser(currAd.getAdOwner());
+        System.out.println(user);
+
 
         // display corresponding information
         TextView textViewTitle = findViewById(R.id.textView_viewAdOU_title);
@@ -53,6 +59,8 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         TextView textViewPrice = findViewById(R.id.textView_viewAdOU_price);
         String price = "$" + this.price;
         textViewPrice.setText(price);
+
+        displayContactInformation();
     }
 
     public void reportAdBtnClick(View view)
@@ -64,6 +72,35 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         // go back to main page after deletion
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainPage);
+    }
+
+    public void displayContactInformation()
+    {
+        String fullName = user.getFirstAndLastName();
+        String email = user.getEmail();
+        String phoneNumber = user.getPhoneNumber();
+
+        TextView textViewFullName = findViewById(R.id.textView_viewAdOU_fullName);
+        TextView textViewEmail = findViewById(R.id.textView_viewAdOU_email);
+        TextView textViewPhoneNumber = findViewById(R.id.textView_viewAdOU_phoneNumber);
+
+        if (fullName == null)
+        {
+            fullName = "N/A";
+        }
+        if (email == null)
+        {
+            email = "N/A";
+        }
+        if (phoneNumber == null)
+        {
+            phoneNumber = "N/A";
+        }
+
+        textViewFullName.setText("Ad Owner: " + fullName);
+        textViewEmail.setText("Emaill: " + email);
+        textViewPhoneNumber.setText("Phone Number: " + phoneNumber);
+
     }
 
 }
