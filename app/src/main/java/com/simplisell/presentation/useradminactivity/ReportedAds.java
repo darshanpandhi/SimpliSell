@@ -24,7 +24,6 @@ public class ReportedAds extends AppCompatActivity
     private String userName;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
