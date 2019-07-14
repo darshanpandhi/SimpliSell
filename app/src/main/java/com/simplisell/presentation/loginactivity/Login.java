@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity
             userName = userNameEntered.getText().toString();
             userPassword = passwordEntered.getText().toString();
 
-            User loggedInUser = credentials.authenticate(userName, userPassword);
+            User loggedInUser = credentials.correctPassword(userName, userPassword);
 
             if (loggedInUser != null)
             {

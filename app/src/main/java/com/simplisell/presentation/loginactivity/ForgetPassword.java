@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.Credentials;
+import com.simplisell.business.ValidPasswordChecker;
 import com.simplisell.objects.User;
 
 public class ForgetPassword extends AppCompatActivity
@@ -102,7 +103,7 @@ public class ForgetPassword extends AppCompatActivity
                 String confirmNewPass = confirmNewPassword.getText().toString();
                 if (newPass.equals(confirmNewPass))
                 {
-                    if (credentials.validPassword(newPass))
+                    if (ValidPasswordChecker.validPassword(newPass))
                     {
                         accessUsers.updatePassword(user.getUserName(), newPass);
                         Toast.makeText(getApplicationContext(), "Password has been changed", Toast.LENGTH_SHORT).show();

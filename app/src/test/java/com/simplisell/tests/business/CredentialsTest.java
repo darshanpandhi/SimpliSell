@@ -34,13 +34,13 @@ public class CredentialsTest
         accessUsers.insertNewUser(User);
         String passwordInput = "123456";
 
-        assertNotNull(credentials.authenticate("User1", passwordInput));
+        assertNotNull(credentials.correctPassword("User1", passwordInput));
 
         System.out.println("Finished testCorrectPassword: correct password for user");
     }
 
     @Test
-    public void testWrongPassword()
+    public void testWronagPassword()
     {
         System.out.println("\nStarting testCorrectPassword: incorrect password for user");
 
@@ -51,7 +51,7 @@ public class CredentialsTest
         String userNameInput = "User1";
         String passwordInput = "1234567";
 
-        assertNull(credentials.authenticate(userNameInput, passwordInput));
+        assertNull(credentials.correctPassword(userNameInput, passwordInput));
 
         System.out.println("Finished testCorrectPassword: incorrect password for user");
     }
@@ -95,108 +95,8 @@ public class CredentialsTest
 //        String userNameInput = "InvalidUser";
 //        String passwordInput = "123456";
 //
-//        assertNull(credentials.authenticate(userNameInput, passwordInput));
+//        assertNull(credentials.correctPassword(userNameInput, passwordInput));
 //
 //        System.out.println("Finished testCorrectPassword: username not found");
 //    }
-
-    @Test
-    public void testValidPasswordLength()
-    {
-        System.out.println("\nStarting testValidPassword: password has length greater than or equal to 6 and less than or equal to 12");
-
-        String password = "123456";
-        boolean isValid = credentials.validPassword(password);
-        assertTrue(isValid);
-        password = "qwertyuiopas";
-        isValid = credentials.validPassword(password);
-
-        assertTrue(isValid);
-
-        System.out.println("Finished testValidPassword: password has length greater than or equal to 6 and less than or equal to 12");
-    }
-
-    @Test
-    public void testValidPasswordLowerCaseLetters()
-    {
-        System.out.println("\nStarting testValidPassword: password has lowercase letters");
-
-        String password = "abcdefghijkl";
-        boolean isValid = credentials.validPassword(password);
-
-        assertTrue(isValid);
-
-        System.out.println("Finished testValidPassword: password has lowercase letters");
-    }
-
-    @Test
-    public void testValidPasswordUpperCaseLetters()
-    {
-        System.out.println("\nStarting testValidPassword: password has uppercase letters");
-
-        String password = "ABCDEFGH";
-        boolean isValid = credentials.validPassword(password);
-
-        assertTrue(isValid);
-
-        System.out.println("Finished testValidPassword: password has uppsercase letters");
-    }
-
-    @Test
-    public void testValidPasswordNumbers()
-    {
-        System.out.println("\nStarting testValidPassword: password has numbers");
-
-        String password = "123456789";
-        boolean isValid = credentials.validPassword(password);
-
-        assertTrue(isValid);
-
-        System.out.println("Finished testValidPassword: password has number");
-    }
-
-    @Test
-    public void testValidPasswordLettersAndNumMix()
-    {
-        System.out.println("\nStarting testValidPassword: password has letters and numbers");
-
-        String password = "aBc1d34";
-        boolean isValid = credentials.validPassword(password);
-
-        assertTrue(isValid);
-
-        System.out.println("Finished testValidPassword: password has letters and numbers");
-    }
-
-    @Test
-    public void testInvalidPasswordLength()
-    {
-        System.out.println("\nStarting testValidPassword: password has length less than 6 or greater than to 12");
-
-        String password = "12345";
-        boolean isValid = credentials.validPassword(password);
-        assertFalse(isValid);
-        password = "abcdefghijklm";
-        isValid = credentials.validPassword(password);
-
-        assertFalse(isValid);
-
-        System.out.println("Finished testValidPassword: password has length less than 6 or greater than to 12");
-    }
-
-    @Test
-    public void testInvalidPasswordCharacters()
-    {
-        System.out.println("\nStarting testValidPassword: password has an invalid character (not a letter or number)");
-
-        String password = "!_&abcd";
-        boolean isValid = credentials.validPassword(password);
-        assertFalse(isValid);
-        password = "aaaaaa  ";
-        isValid = credentials.validPassword(password);
-
-        assertFalse(isValid);
-
-        System.out.println("Finished testValidPassword: password has an invalid character (not a letter or number)");
-    }
 }

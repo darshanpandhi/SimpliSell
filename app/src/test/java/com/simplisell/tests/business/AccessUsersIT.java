@@ -29,13 +29,13 @@ public class AccessUsersIT {
     @Test
     public void testGetUser() {
         final User user;
-        System.out.println("\nStarting AccessUsers: testGetUser");
+        System.out.println("\nStarting AccessUsersIT: testGetUser");
 
         user = accessUsers.getUser("Bob");
         assertNotNull("User should not be null", user);
         assertTrue("Bob".equals(user.getUserName()));
 
-        System.out.println("Finished test AccessUsers");
+        System.out.println("Finished test AccessUsersIT: testGetUser");
     }
 
     @After

@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.Credentials;
+import com.simplisell.business.ValidPasswordChecker;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
@@ -29,8 +29,6 @@ public class SignUp extends AppCompatActivity
     private Spinner securityQuestion;  // security question of user
     private EditText securityAnswer;    // security answer of user
     private AccessUsers accessUsers;      // helps  access users
-    private Credentials credentials;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,7 +49,6 @@ public class SignUp extends AppCompatActivity
         securityAnswer = findViewById(R.id.editText_name_registrationSecurityAnswer);
 
         accessUsers = new AccessUsers();
-        credentials = new Credentials();
     }
 
 
@@ -95,7 +92,7 @@ public class SignUp extends AppCompatActivity
             {
                 if (userConfirmPassword.equals(userPassword))  // if both fields have the same password
                 {
-                    if (credentials.validPassword(userPassword))  // if password meets the standards
+                    if (ValidPasswordChecker.validPassword(userPassword))  // if password meets the standards
                     {
 
                         User newUserAdvertiser = new User(firstNLastName, userName, userPassword,
