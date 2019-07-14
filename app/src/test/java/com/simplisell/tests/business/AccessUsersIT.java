@@ -2,6 +2,8 @@ package com.simplisell.tests.business;
 
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
+import com.simplisell.persistence.UserPersistence;
+import com.simplisell.persistence.hsqldb.UserPersistenceHSQLDB;
 import com.simplisell.tests.utils.TestUtils;
 
 import org.junit.After;
@@ -23,19 +25,70 @@ public class AccessUsersIT {
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        this.accessUsers = new AccessUsers();
+        UserPersistence userPersistence = new UserPersistenceHSQLDB(tempDB.getAbsolutePath().replace(".script", ""));
+        accessUsers = new AccessUsers(userPersistence);
     }
 
     @Test
-    public void testGetUser() {
-        final User user;
+    public void testGetUser()
+    {
+        User user;
         System.out.println("\nStarting AccessUsersIT: testGetUser");
 
         user = accessUsers.getUser("Bob");
         assertNotNull("User should not be null", user);
         assertTrue("Bob".equals(user.getUserName()));
 
-        System.out.println("Finished test AccessUsersIT: testGetUser");
+        System.out.println("Finished AccessUsersIT: testGetUser");
+    }
+
+    @Test
+    public void testInsertUser()
+    {
+        System.out.println("\nStarting AccessUsersIT: testInsertUser");
+        User insertedUser = new User("fullName", "insertedUserName", "123456", "What is your favourite color?", "Red", null, null, false);
+        insertedUser = accessUsers.insertNewUser(insertedUser);
+        assertNotNull(insertedUser);
+        assertNotNull(accessUsers.getUser("insertedUserName"));
+        System.out.println("Finished AccessUsersIT: testInsertUser");
+    }
+
+    @Test
+    public void testUpdatePassword()
+    {
+        System.out.println("\nStarting AccessUsersIT: testUpdatePassword");
+        User user = accessUsers.getUser("Bob");
+        assertNotNull(user);
+        assertEquals("123456", user.getPassword());
+        accessUsers.updatePassword("Bob", "111111");
+        user = accessUsers.getUser("Bob");
+        assertEquals("111111", user.getPassword());
+        System.out.println("Finished AccessUsersIT: testUpdatePassword");
+    }
+
+    @Test
+    public void testUpdateProfileInformation()
+    {
+        System.out.println("\nStarting AccessUsersIT: testUpdateProfileInformation");
+        User user = accessUsers.getUser("Bob");
+        assertNotNull(user);
+        assertEquals("Bob Marley", user.getFirstAndLastName());
+        assertEquals(null, user.getEmail());
+        assertEquals(null, user.getPhoneNumber());
+        assertEquals("What is your favourite color?", user.getSecurityQuestion());
+        assertEquals("Red", user.getSecurityAnswer());
+        String newFullName = "Bob Saget";
+        String newEmail = "bob@email.com";
+        String newPhoneNumber = "12345678";
+        String newSecurityAnswer = "Green";
+        accessUsers.updateProfileInformation("Bob", newFullName, newEmail, newPhoneNumber, "What is your favourite color?", "Green");
+        user = accessUsers.getUser("Bob");
+        assertEquals(newFullName, user.getFirstAndLastName());
+        assertEquals(newEmail, user.getEmail());
+        assertEquals(newPhoneNumber, user.getPhoneNumber());
+        assertEquals("What is your favourite color?", user.getSecurityQuestion());
+        assertEquals(newSecurityAnswer, user.getSecurityAnswer());
+        System.out.println("Finished AccessUsersIT: testUpdateProfileInformation");
     }
 
     @After
