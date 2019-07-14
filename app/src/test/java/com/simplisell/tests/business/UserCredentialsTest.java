@@ -1,7 +1,7 @@
 package com.simplisell.tests.business;
 
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.Credentials;
+import com.simplisell.business.UserCredentials;
 import com.simplisell.objects.User;
 import com.simplisell.tests.persistence.UserPersistenceStub;
 
@@ -10,16 +10,16 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CredentialsTest
+public class UserCredentialsTest
 {
-    private Credentials credentials;
+    private UserCredentials userCredentials;
     private AccessUsers accessUsers;
 
     @Before
     public void setup()
     {
         UserPersistenceStub userStub = new UserPersistenceStub();
-        credentials = new Credentials(userStub);
+        userCredentials = new UserCredentials(userStub);
         accessUsers = new AccessUsers(userStub);
     }
 
@@ -34,7 +34,7 @@ public class CredentialsTest
         accessUsers.insertNewUser(User);
         String passwordInput = "123456";
 
-        assertNotNull(credentials.correctPassword("User1", passwordInput));
+        assertNotNull(userCredentials.correctPassword("User1", passwordInput));
 
         System.out.println("Finished testCorrectPassword: correct password for user");
     }
@@ -51,7 +51,7 @@ public class CredentialsTest
         String userNameInput = "User1";
         String passwordInput = "1234567";
 
-        assertNull(credentials.correctPassword(userNameInput, passwordInput));
+        assertNull(userCredentials.correctPassword(userNameInput, passwordInput));
 
         System.out.println("Finished testCorrectPassword: incorrect password for user");
     }
@@ -66,7 +66,7 @@ public class CredentialsTest
 //        String userNameInput = "User1";
 //        String securityQuestionAnswer = "Red";
 //
-//        assertTrue(credentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
+//        assertTrue(userCredentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
 //
 //        System.out.println("Finished testCorrectSecurityAnswer: correct answer for user security question");
 //    }
@@ -81,7 +81,7 @@ public class CredentialsTest
 //        String userNameInput = "User1";
 //        String securityQuestionAnswer = "Green";
 //
-//        assertFalse(credentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
+//        assertFalse(userCredentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
 //
 //        System.out.println("Finished testIncorrectSecurityAnswer: incorrect answer for user security question");
 //    }
@@ -95,7 +95,7 @@ public class CredentialsTest
 //        String userNameInput = "InvalidUser";
 //        String passwordInput = "123456";
 //
-//        assertNull(credentials.correctPassword(userNameInput, passwordInput));
+//        assertNull(userCredentials.correctPassword(userNameInput, passwordInput));
 //
 //        System.out.println("Finished testCorrectPassword: username not found");
 //    }

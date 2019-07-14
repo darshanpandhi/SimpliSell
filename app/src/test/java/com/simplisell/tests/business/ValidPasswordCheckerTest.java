@@ -1,14 +1,9 @@
 package com.simplisell.tests.business;
 
-import com.simplisell.business.AccessUsers;
-import com.simplisell.business.Credentials;
 import com.simplisell.business.ValidPasswordChecker;
-import com.simplisell.objects.User;
-import com.simplisell.tests.persistence.UserPersistenceStub;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class ValidPasswordCheckerTest
