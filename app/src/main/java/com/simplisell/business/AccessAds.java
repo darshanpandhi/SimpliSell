@@ -22,8 +22,6 @@ public final class AccessAds
     {
         adPersistence = Services.getAdPersistence();
         allAds = adPersistence.getAds();
-        removeExpiredAds();
-
     }
 
 
@@ -31,8 +29,6 @@ public final class AccessAds
     {
         this.adPersistence = adPersistence;
         allAds = adPersistence.getAds();
-        removeExpiredAds();
-
     }
 
 

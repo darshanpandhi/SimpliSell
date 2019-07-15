@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         setContentView(R.layout.activity_main);
 
         accessAds = new AccessAds();
+        accessAds.removeExpiredAds();
         accessUsers = new AccessUsers();
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 

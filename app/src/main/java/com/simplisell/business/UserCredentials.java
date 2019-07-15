@@ -48,7 +48,7 @@ public class UserCredentials
         return correctAnswer;
     }
 
-
+    // Correct Password Helper Method
     private boolean correctPassword(User user, String password)
     {
         boolean match = false;

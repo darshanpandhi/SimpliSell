@@ -23,7 +23,7 @@ public class ValidPasswordChecker {
         for (int i = 0; i < password.length() && !containsInvalidCharacters; i++)
         {
             char character = password.charAt(i);
-            if (!isNum(character) && !isLetter(character))
+            if (!isValid(character))
             {
                 containsInvalidCharacters = true;
             }
@@ -31,19 +31,14 @@ public class ValidPasswordChecker {
         return containsInvalidCharacters;
     }
 
-
-    private static boolean isNum(final char character)
+    private static boolean isValid(final char character)
     {
         int asciiForCharacter = (int) character;
-        return asciiForCharacter >= '0' && asciiForCharacter <= '9';
-    }
-
-
-    private static boolean isLetter(final char character)
-    {
-        int asciiForCharacter = (int) character;
+        boolean isNum = asciiForCharacter >= '0' && asciiForCharacter <= '9';
         boolean isLowerCaseLetter = asciiForCharacter >= 'a' && asciiForCharacter <= 'z';
         boolean isUpperCaseLetter = asciiForCharacter >= 'A' && asciiForCharacter <= 'Z';
-        return isLowerCaseLetter || isUpperCaseLetter;
+        boolean isLetter = isLowerCaseLetter || isUpperCaseLetter;
+        return isNum || isLetter;
     }
+
 }

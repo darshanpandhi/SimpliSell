@@ -7,6 +7,10 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.simplisell.application.Services;
+import com.simplisell.objects.Ad;
+import com.simplisell.objects.AdType;
+import com.simplisell.objects.Category;
+import com.simplisell.persistence.AdPersistence;
 import com.simplisell.persistence.UserPersistence;
 import com.simplisell.persistence.hsqldb.PersistenceException;
 import com.simplisell.presentation.SplashScreen;
@@ -37,6 +41,7 @@ public class AllAcceptanceTest
 {
 
     UserPersistence userPersistence;
+    AdPersistence adPersistence;
 
 
     @Rule
@@ -47,7 +52,16 @@ public class AllAcceptanceTest
     {
 
         userPersistence = Services.getUserPersistence();
+        adPersistence = Services.getAdPersistence();
 
+        try
+        {
+            userPersistence.deleteUser("Bob2");
+        }
+        catch (PersistenceException e)
+        {
+            System.out.println("Failed to delete \'Bob2\' from the users because the user didnt register");
+        }
     }
 
 
@@ -59,6 +73,9 @@ public class AllAcceptanceTest
         try
         {
             userPersistence.deleteUser("Bob2");
+
+            Ad deleteAd = new Ad(5,null, AdType.OFFERING, Category.ACCOMMODATION,null,null, -1, null, -1);
+            adPersistence.removeAd(deleteAd);
         }
         catch (PersistenceException e)
         {
