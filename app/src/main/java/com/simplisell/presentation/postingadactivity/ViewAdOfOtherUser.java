@@ -98,7 +98,7 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         }
 
         textViewFullName.setText("Ad Owner: " + fullName);
-        textViewEmail.setText("Emaill: " + email);
+        textViewEmail.setText("Email: " + email);
         textViewPhoneNumber.setText("Phone Number: " + phoneNumber);
 
     }

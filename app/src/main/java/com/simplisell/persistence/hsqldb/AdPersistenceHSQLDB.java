@@ -19,7 +19,6 @@ public class AdPersistenceHSQLDB implements AdPersistence
 {
     private final String dbPath;
 
-
     public AdPersistenceHSQLDB(String dbPath)
     {
         this.dbPath = dbPath;
