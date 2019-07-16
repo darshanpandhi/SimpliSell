@@ -179,13 +179,10 @@
     </LinearLayout>
 
 
-
-
     <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager_mainActivity"
-            android:layout_width="match_parent"
-            android:layout_height="776dp"
-            android:layout_gravity="end"
-            android:outlineAmbientShadowColor="@color/colorPrimary"
-            android:outlineSpotShadowColor="@color/colorPrimary"/>
+        android:id="@+id/view_pager_mainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        />
 </LinearLayout>
