@@ -27,17 +27,16 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 *   TabFragmentAdapter
 
 **Login**
-*   Responsible for User Login and helps the user witb a forgot password link in case they need to reset the password.
+*   Responsible for User Login and gives the user the option to reset his/her password in case of forgotten password.
 
 **SignUp**
-*   Sign Up helps the user create a new account and they will be able to post Ads. 
-
+*   Sign Up helps the user create a new account so that they can post Ads. 
 
 **EditAd**
-*   The user can edit an Ad that they posted already.
+*   Allows user to edit his/her own ad.
 
 **PostAd**
-*   The user can post an Ad.
+*   Allows user to post an Ad.
 
 
 ##  Business Layer
