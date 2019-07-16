@@ -29,15 +29,12 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
     private final String USERNAME_TEXT = "USER";
 
     private static String userName = null;
-    private User loggedInUser = null;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private AccessUsers accessUsers;      // helps  access users
     private AccessAds accessAds;             // helps  access ads
 
-    private ImageButton profileBtn;
 
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
@@ -59,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
         accessAds = new AccessAds();
         accessAds.removeExpiredAds();
-        accessUsers = new AccessUsers();
-        profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 
         getCurrentUserName();
         initializeTabFragments();
