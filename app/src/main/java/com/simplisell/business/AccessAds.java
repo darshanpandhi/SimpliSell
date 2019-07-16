@@ -21,7 +21,6 @@ public final class AccessAds
     public AccessAds()
     {
         adPersistence = Services.getAdPersistence();
-        removeExpiredAds();
         allAds = adPersistence.getAds();
     }
 
