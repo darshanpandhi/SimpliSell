@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
         getCurrentUserName();
         initializeTabFragments();
-//
-//        tabSetUp();
+
+        tabSetUp();
     }
 
 
