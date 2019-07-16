@@ -37,7 +37,7 @@ public final class AccessAds
         return adPersistence.getAds();
     }
 
-    public  final int getNewAdId()
+    public final int getNewAdId()
     {
         return adPersistence.getNewAdId();
     }
@@ -85,22 +85,12 @@ public final class AccessAds
 
     public List<Ad> getAllAdsByCategory(Category category)
     {
-        List<Ad> adList = new ArrayList<Ad>();
-
-        for (Ad ad : allAds)
-        {
-            if (ad.getCategory() == category)
-            {
-                adList.add(ad);
-            }
-        }
-
-        return adList;
+        return adPersistence.getAdsByCategory(category);
     }
 
     public final List<Ad> getReportedAds()
     {
-        return adPersistence.getreportedAds();
+        return adPersistence.getReportedAds();
     }
 
 
@@ -120,19 +110,9 @@ public final class AccessAds
     }
 
 
-    public List<Ad> filterAdsByType(List<Ad> ads, AdType adType)
+    public List<Ad> filterAdsByType(AdType adType)
     {
-        List<Ad> adList = new ArrayList<Ad>();
-
-        for (Ad ad : ads)
-        {
-            if (ad.getAdType() == adType)
-            {
-                adList.add(ad);
-            }
-        }
-
-        return adList;
+        return adPersistence.getAdsByType(adType);
     }
 
 
@@ -174,10 +154,7 @@ public final class AccessAds
         {
             adPersistence.removeAd(getAd(x));
         }
-
-
     }
-
 
     //Need multiple comparator functions per asc or desc sort due to API level 23
     Comparator<Ad> compareByPriceDesc = new Comparator<Ad>()

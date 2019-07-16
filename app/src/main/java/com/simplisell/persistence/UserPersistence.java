@@ -13,6 +13,4 @@ public interface UserPersistence
                                   final String newSecurityAnswer);
 
     User insertUser(final User user);
-
-    void deleteUser(String userName);
 }

@@ -56,47 +56,47 @@ public class UserCredentialsTest
         System.out.println("Finished testCorrectPassword: incorrect password for user");
     }
 
-//    @Test
-//    public void testCorrectSecurityAnswer()
-//    {
-//        System.out.println("\nStarting testCorrectSecurityAnswer: correct answer for user security question");
-//
-//        User user = new User("a1","User1", "123456", "What is your favourite color", "Red", null, null, null);
-//        accessUsers.insertNewUser(user);
-//        String userNameInput = "User1";
-//        String securityQuestionAnswer = "Red";
-//
-//        assertTrue(userCredentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
-//
-//        System.out.println("Finished testCorrectSecurityAnswer: correct answer for user security question");
-//    }
-//
-//    @Test
-//    public void testIncorrectSecurityAnswer()
-//    {
-//        System.out.println("\nStarting testIncorrectSecurityAnswer: incorrect answer for user security question");
-//
-//        User user = new User("asd","User1", "123456", "What is your favourite color", "Red", null, null, null);
-//        accessUsers.insertNewUser(user);
-//        String userNameInput = "User1";
-//        String securityQuestionAnswer = "Green";
-//
-//        assertFalse(userCredentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
-//
-//        System.out.println("Finished testIncorrectSecurityAnswer: incorrect answer for user security question");
-//    }
-//    @Test
-//    public void userNameNotFound()
-//    {
-//        System.out.println("\nStarting testCorrectPassword: username not found");
-//
-//        User user = new User("da da","User1", "123456", "What is your favourite color", "Red", null, null, null);
-//        User addedUser = accessUsers.insertNewUser(user);
-//        String userNameInput = "InvalidUser";
-//        String passwordInput = "123456";
-//
-//        assertNull(userCredentials.correctPassword(userNameInput, passwordInput));
-//
-//        System.out.println("Finished testCorrectPassword: username not found");
-//    }
+    @Test
+    public void testCorrectSecurityAnswer()
+    {
+        System.out.println("\nStarting testCorrectSecurityAnswer: correct answer for user security question");
+
+        User user = new User("a1","User1", "123456", "What is your favourite color", "Red", null, null, false);
+        accessUsers.insertNewUser(user);
+        String userNameInput = "User1";
+        String securityQuestionAnswer = "Red";
+
+        assertTrue(userCredentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
+
+        System.out.println("Finished testCorrectSecurityAnswer: correct answer for user security question");
+    }
+
+    @Test
+    public void testIncorrectSecurityAnswer()
+    {
+        System.out.println("\nStarting testIncorrectSecurityAnswer: incorrect answer for user security question");
+
+        User user = new User("asd","User1", "123456", "What is your favourite color", "Red", null, null, false);
+        accessUsers.insertNewUser(user);
+        String userNameInput = "User1";
+        String securityQuestionAnswer = "Green";
+
+        assertFalse(userCredentials.correctSecurityAnswer(userNameInput, securityQuestionAnswer));
+
+        System.out.println("Finished testIncorrectSecurityAnswer: incorrect answer for user security question");
+    }
+    @Test
+    public void userNameNotFound()
+    {
+        System.out.println("\nStarting testCorrectPassword: username not found");
+
+        User user = new User("da da","User1", "123456", "What is your favourite color", "Red", null, null, false);
+        User addedUser = accessUsers.insertNewUser(user);
+        String userNameInput = "InvalidUser";
+        String passwordInput = "123456";
+
+        assertNull(userCredentials.correctPassword(userNameInput, passwordInput));
+
+        System.out.println("Finished testCorrectPassword: username not found");
+    }
 }

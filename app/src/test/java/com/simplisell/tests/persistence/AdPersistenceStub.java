@@ -171,7 +171,7 @@ public class AdPersistenceStub implements AdPersistence
 
 
     @Override
-    public List<Ad> getreportedAds()
+    public List<Ad> getReportedAds()
     {
         List<Ad> reportedAdList = new ArrayList<>();
 
@@ -182,6 +182,38 @@ public class AdPersistenceStub implements AdPersistence
         }
 
         return reportedAdList;
+    }
+
+    @Override
+    public List<Ad> getAdsByType(AdType adType)
+    {
+        List<Ad> adList = new ArrayList<Ad>();
+
+        for (Ad ad : ads)
+        {
+            if (ad.getAdType() == adType)
+            {
+                adList.add(ad);
+            }
+        }
+
+        return adList;
+    }
+
+    @Override
+    public List<Ad> getAdsByCategory(Category category)
+    {
+        List<Ad> adList = new ArrayList<Ad>();
+
+        for (Ad ad : ads)
+        {
+            if (ad.getCategory() == category)
+            {
+                ads.add(ad);
+            }
+        }
+
+        return adList;
     }
 
 

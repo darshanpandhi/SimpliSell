@@ -126,7 +126,6 @@ public class AdPersistenceHSQLDB implements AdPersistence
             st.setInt(9, ad.getNumReports());
 
             st.executeUpdate();
-            st.close();
 
             return ad;
         }
@@ -143,9 +142,11 @@ public class AdPersistenceHSQLDB implements AdPersistence
         try (final Connection c = connection())
         {
             final PreparedStatement sc = c.prepareStatement("DELETE FROM ADS WHERE ADID = ?");
-            sc.setString(1, String.valueOf(ad.getAdId()));
+            sc.setInt(1, ad.getAdId());
             sc.executeUpdate();
-            sc.close();
+            final PreparedStatement st = c.prepareStatement("DELETE FROM ADS WHERE ADID = ?");
+            sc.setInt(1, ad.getAdId());
+            sc.executeUpdate();
             return ad;
         }
         catch (final SQLException e)
@@ -155,7 +156,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
     }
 
     @Override
-    public List<Ad> getreportedAds()
+    public List<Ad> getReportedAds()
     {
         List<Ad> reportedAdList = new ArrayList<>();
         List<Ad> allAdList = getAds();
@@ -211,6 +212,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
+    @Override
     public final void reportAd(final int adID)
     {
         try (final Connection c = connection()) {
@@ -223,6 +225,57 @@ public class AdPersistenceHSQLDB implements AdPersistence
             st.executeUpdate();
         }
         catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+
+    public final List<Ad> getAdsByType(AdType adType)
+    {
+        final List<Ad> ads = new ArrayList<>();
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM ADS WHERE ADTYPE = ?");
+            st.setInt(1, adType.ordinal());
+
+            final ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                final Ad ad = fromResultSet(rs);
+                ads.add(ad);
+            }
+
+            rs.close();
+            st.close();
+
+            return ads;
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
+    public final List<Ad> getAdsByCategory(Category category)
+    {
+        final List<Ad> ads = new ArrayList<>();
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM ADS WHERE CATEGORY = ?");
+            st.setInt(1, category.ordinal());
+
+            final ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                final Ad ad = fromResultSet(rs);
+                ads.add(ad);
+            }
+
+            rs.close();
+            st.close();
+
+            return ads;
+        }
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }

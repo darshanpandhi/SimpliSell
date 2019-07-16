@@ -86,7 +86,7 @@ public class TabFragment extends Fragment
 
     public void filterByType(AdType adType)
     {
-        filteredAds = adsSearch.filterAdsByType(ads, adType);
+        filteredAds = adsSearch.filterAdsByType(adType);
     }
 
 

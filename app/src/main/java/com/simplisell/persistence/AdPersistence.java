@@ -1,6 +1,8 @@
 package com.simplisell.persistence;
 
 import com.simplisell.objects.Ad;
+import com.simplisell.objects.AdType;
+import com.simplisell.objects.Category;
 
 import java.util.List;
 
@@ -20,7 +22,13 @@ public interface AdPersistence
 
     void reportAd(final int adId);
 
-    List<Ad> getreportedAds();
+    List<Ad> getReportedAds();
 
     int getNewAdId();
+
+    //mockito
+    List<Ad> getAdsByType(AdType ad);
+
+    //mockito
+    List<Ad> getAdsByCategory(Category category);
 }
