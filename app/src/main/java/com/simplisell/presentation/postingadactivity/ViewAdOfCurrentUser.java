@@ -82,6 +82,10 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     {
         accessAds.repostAd(currAd.getAdId());
         Toast.makeText(getApplicationContext(), "Advertisement Reposted", Toast.LENGTH_LONG).show();
+
+        // go back to main page after repost
+        Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainPage);
     }
 
 

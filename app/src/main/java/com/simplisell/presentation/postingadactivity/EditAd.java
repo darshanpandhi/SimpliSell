@@ -96,7 +96,7 @@ public class EditAd extends AppCompatActivity
         // if empty field exists
         if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty)
         {
-            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -123,7 +123,7 @@ public class EditAd extends AppCompatActivity
             catch (Exception e)
             {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -151,27 +151,29 @@
                 android:textStyle="bold" />
 
         <Button
-                android:layout_width="289dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="50dp"
-                android:background="@android:drawable/editbox_background"
-                android:backgroundTint="@color/black_overlay"
-                android:fontFamily="@font/candal"
-                android:onClick="postAdBtnClick"
-                android:text="@string/postAnAd"
-                android:textColor="@android:color/background_light" />
+            android:id="@+id/button_mainActivity_postAnAd"
+            android:layout_width="289dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="50dp"
+            android:background="@android:drawable/editbox_background"
+            android:backgroundTint="@color/black_overlay"
+            android:fontFamily="@font/candal"
+            android:onClick="postAdBtnClick"
+            android:text="@string/postAnAd"
+            android:textColor="@android:color/background_light" />
 
 
         <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:background="@drawable/baseline_sort_white_18"
-                android:onClick="sortBtnClick"
-                tools:ignore="contentDescription" />
+            android:id="@+id/button_mainActivity_sortByPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/baseline_sort_white_18"
+            android:onClick="sortBtnClick"
+            tools:ignore="contentDescription" />
 
 
     </LinearLayout>
