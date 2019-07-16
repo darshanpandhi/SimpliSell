@@ -24,7 +24,7 @@ import static org.hamcrest.CoreMatchers.allOf;
 @RunWith(AndroidJUnit4.class)
 
 @LargeTest
-public class SearchAcceptanceTest {
+public class SearchFeatureAcceptanceTest {
 
     @Rule
     public ActivityTestRule<SplashScreen> activityRule = new ActivityTestRule<>(SplashScreen.class);
@@ -61,7 +61,7 @@ public class SearchAcceptanceTest {
         onView(allOf(withText("Other"), isDisplayed())).perform(click());
         SystemClock.sleep(500);
         onView(withId(R.id.tabview_mainActivity)).perform(swipeRight());
-        SystemClock.sleep(500);
+        SystemClock.sleep(1000);
         onView(allOf(withText("All"), isDisplayed())).perform(click());
         SystemClock.sleep(500);
 
@@ -87,7 +87,7 @@ public class SearchAcceptanceTest {
         onView(allOf(withText("Other"), isDisplayed())).perform(click());
         SystemClock.sleep(500);
         onView(withId(R.id.tabview_mainActivity)).perform(swipeRight());
-        SystemClock.sleep(500);
+        SystemClock.sleep(1000);
         onView(allOf(withText("All"), isDisplayed())).perform(click());
         SystemClock.sleep(500);
 
@@ -112,7 +112,7 @@ public class SearchAcceptanceTest {
         onView(allOf(withText("Other"), isDisplayed())).perform(click());
         SystemClock.sleep(500);
         onView(withId(R.id.tabview_mainActivity)).perform(swipeRight());
-        SystemClock.sleep(500);
+        SystemClock.sleep(1000);
         onView(allOf(withText("All"), isDisplayed())).perform(click());
         SystemClock.sleep(500);
 
@@ -142,7 +142,7 @@ public class SearchAcceptanceTest {
         onView(allOf(withText("Other"), isDisplayed())).perform(click());
         SystemClock.sleep(500);
         onView(withId(R.id.tabview_mainActivity)).perform(swipeRight());
-        SystemClock.sleep(500);
+        SystemClock.sleep(1000);
         onView(allOf(withText("All"), isDisplayed())).perform(click());
         SystemClock.sleep(1000);
 

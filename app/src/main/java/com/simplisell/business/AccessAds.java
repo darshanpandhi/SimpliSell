@@ -38,7 +38,7 @@ public final class AccessAds
 
     public final List<Ad> getAllAds()
     {
-        return adPersistence.getAds();
+        return allAds;
     }
 
     public  final int getNewAdId()

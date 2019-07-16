@@ -91,6 +91,8 @@ public class PostAd extends AppCompatActivity
                 finish();
                 Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
                 viewAd.putExtra(ADID_TEXT, ad.getAdId());
+                viewAd.putExtra(USERNAME_TEXT, userName);
+
 
                 startActivity(viewAd);
             }

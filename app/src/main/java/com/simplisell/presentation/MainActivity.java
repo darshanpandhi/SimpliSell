@@ -148,7 +148,10 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
         if (intentThatStartedThisActivity.hasExtra(USERNAME_TEXT))
         {
+
             userName = intentThatStartedThisActivity.getStringExtra(USERNAME_TEXT);
+
+
         }
     }
 

@@ -28,7 +28,7 @@ import static org.hamcrest.CoreMatchers.allOf;
 @RunWith(AndroidJUnit4.class)
 
 @LargeTest
-public class AdPostingAcceptanceTest {
+public class AdPostingFeatureAcceptanceTest {
 
 
     @Rule
