@@ -159,7 +159,7 @@ public class AccessAdsTest
 //
 //        accessAds.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
 //                "test", "test", 1, null, 0));
-//        List<Ad> ads = accessAds.getAllAdsByCategory(Category.ELECTRONICS);
+//        List<Ad> ads = accessAds.filterAdsByCategory(Category.ELECTRONICS);
 //
 //        for (Ad ad : ads)
 //        {
@@ -234,32 +234,32 @@ public class AccessAdsTest
     @Test
     public void testFilterAdsByType()
     {
-//        System.out.println("\nStarting AccessAdsTest: filter ads by ad type");
-//
-//        accessAds.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
-//                "test", "test", 10, null, 0));
-//        accessAds.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS,
-//                "test", "test", 100, null, 0));
-//        accessAds.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
-//                "test", "test", 2, null, 0));
-//        accessAds.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
-//                "test", "test", 0, null, 0));
-//
-//        List<Ad> offeringAds = accessAds.filterAdsByType(AdType.OFFERING);
-//        List<Ad> wantedAds = accessAds.filterAdsByType(AdType.WANTED);
-//
-//        for (Ad ad : offeringAds)
-//        {
-//            assertEquals(AdType.OFFERING, ad.getAdType());
-//        }
-//
-//        for (Ad ad : wantedAds)
-//        {
-//            assertEquals(AdType.WANTED, ad.getAdType());
-//        }
-//
-//
-//        System.out.println("Finished AccessAdsTest: filter ads by ad type");
+        System.out.println("\nStarting AccessAdsTest: filter ads by ad type");
+
+        accessAds.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 10, null, 0));
+        accessAds.insertAd(new Ad(adStub.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS,
+                "test", "test", 100, null, 0));
+        accessAds.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 2, null, 0));
+        accessAds.insertAd(new Ad( adStub.getNewAdId(), "test", AdType.WANTED, Category.ELECTRONICS,
+                "test", "test", 0, null, 0));
+
+        List<Ad> offeringAds = accessAds.filterAdsByType(AdType.OFFERING);
+        List<Ad> wantedAds = accessAds.filterAdsByType(AdType.WANTED);
+
+        for (Ad ad : offeringAds)
+        {
+            assertEquals(AdType.OFFERING, ad.getAdType());
+        }
+
+        for (Ad ad : wantedAds)
+        {
+            assertEquals(AdType.WANTED, ad.getAdType());
+        }
+
+
+        System.out.println("Finished AccessAdsTest: filter ads by ad type");
     }
 
     @Test

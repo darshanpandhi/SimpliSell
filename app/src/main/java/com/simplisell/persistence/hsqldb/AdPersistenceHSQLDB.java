@@ -280,6 +280,31 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
+    public final List<Ad> getAdsByUser(String userName)
+    {
+        final List<Ad> ads = new ArrayList<>();
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM ADS WHERE ADOWNER = ?");
+            st.setString(1, userName);
+
+            final ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                final Ad ad = fromResultSet(rs);
+                ads.add(ad);
+            }
+
+            rs.close();
+            st.close();
+
+            return ads;
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
     public final int getNewAdId()
     {
         int currentAdId =  findMaxId();

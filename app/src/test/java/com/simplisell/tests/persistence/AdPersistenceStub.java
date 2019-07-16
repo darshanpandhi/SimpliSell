@@ -216,6 +216,22 @@ public class AdPersistenceStub implements AdPersistence
         return adList;
     }
 
+    @Override
+    public List<Ad> getAdsByUser(String userName)
+    {
+        List<Ad> adList = new ArrayList<Ad>();
+
+        for (Ad ad : ads)
+        {
+            if (ad.getAdOwner().equals(userName))
+            {
+                adList.add(ad);
+            }
+        }
+
+        return adList;
+    }
+
 
     public final int getNewAdId()
     {

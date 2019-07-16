@@ -20,15 +20,20 @@ public interface AdPersistence
 
     void updateAd(final Ad ad);
 
-    void reportAd(final int adId);
+    int getNewAdId();
 
+    //mockito
     List<Ad> getReportedAds();
 
-    int getNewAdId();
+    //mockito
+    void reportAd(final int adId);
 
     //mockito
     List<Ad> getAdsByType(AdType ad);
 
     //mockito
     List<Ad> getAdsByCategory(Category category);
+
+    //mockito
+    List<Ad> getAdsByUser(String userName);
 }

@@ -150,7 +150,7 @@ public class AccessAdsIT {
         String oldDescription = updateThisAd.getDescription();
         Double oldPrice = updateThisAd.getPrice();
         Date oldExpiryDate = null;
-        int oldNumReports = 1;
+        int oldNumReports = updateThisAd.getNumReports();
 
         String newTitle = "this is a new title!!!";
         double newPrice = 321.23;
@@ -245,7 +245,7 @@ public class AccessAdsIT {
 
         accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
                 "test", "test", 1, null, 0));
-        List<Ad> ads = accessAds.getAllAdsByCategory(Category.ELECTRONICS);
+        List<Ad> ads = accessAds.filterAdsByCategory(Category.ELECTRONICS);
 
         for (Ad ad : ads)
         {
@@ -339,6 +339,7 @@ public class AccessAdsIT {
 
         System.out.println("Finished AccessAdsTest: filter ads by ad type");
     }
+
     
     @After
     public void tearDown() {

@@ -83,9 +83,14 @@ public final class AccessAds
     }
 
 
-    public List<Ad> getAllAdsByCategory(Category category)
+    public List<Ad> filterAdsByCategory(Category category)
     {
         return adPersistence.getAdsByCategory(category);
+    }
+
+    public List<Ad> filterAdsByType(AdType adType)
+    {
+        return adPersistence.getAdsByType(adType);
     }
 
     public final List<Ad> getReportedAds()
@@ -96,24 +101,9 @@ public final class AccessAds
 
     public List<Ad> getUserSpecificAds(String userName)
     {
-        List<Ad> adList = new ArrayList<Ad>();
-
-        for (Ad ad : allAds)
-        {
-            if (ad.getAdOwner().equals(userName))
-            {
-                adList.add(ad);
-            }
-        }
-
-        return adList;
+        return adPersistence.getAdsByUser(userName);
     }
 
-
-    public List<Ad> filterAdsByType(AdType adType)
-    {
-        return adPersistence.getAdsByType(adType);
-    }
 
 
     public List<Ad> sortPriceAsc(List<Ad> ads)

@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         setContentView(R.layout.activity_main);
 
         accessAds = new AccessAds();
+        accessAds.removeExpiredAds();           //remove expired ads whenever main activity is called
         accessUsers = new AccessUsers();
         profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivty_accountButton);
 
@@ -71,14 +72,14 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
     private void initializeTabFragments()
     {
         tabFragmentAllObj = new TabFragment(accessAds.getAllAds(), accessAds);
-        tabFragmentBooksObj = new TabFragment(accessAds.getAllAdsByCategory(Category.BOOKS), accessAds);
-        tabFragmentTransportationObj = new TabFragment(accessAds.getAllAdsByCategory(Category.TRANSPORTATION),
+        tabFragmentBooksObj = new TabFragment(accessAds.filterAdsByCategory(Category.BOOKS), accessAds);
+        tabFragmentTransportationObj = new TabFragment(accessAds.filterAdsByCategory(Category.TRANSPORTATION),
                 accessAds);
-        tabFragmentServicesJobsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.JOBS_SERVICES), accessAds);
-        tabFragmentLivingObj = new TabFragment(accessAds.getAllAdsByCategory(Category.ACCOMMODATION), accessAds);
-        tabFragmentEventsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.EVENTS), accessAds);
-        tabFragmentElectronicsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.ELECTRONICS), accessAds);
-        tabFragmentOtherObj = new TabFragment(accessAds.getAllAdsByCategory(Category.OTHERS), accessAds);
+        tabFragmentServicesJobsObj = new TabFragment(accessAds.filterAdsByCategory(Category.JOBS_SERVICES), accessAds);
+        tabFragmentLivingObj = new TabFragment(accessAds.filterAdsByCategory(Category.ACCOMMODATION), accessAds);
+        tabFragmentEventsObj = new TabFragment(accessAds.filterAdsByCategory(Category.EVENTS), accessAds);
+        tabFragmentElectronicsObj = new TabFragment(accessAds.filterAdsByCategory(Category.ELECTRONICS), accessAds);
+        tabFragmentOtherObj = new TabFragment(accessAds.filterAdsByCategory(Category.OTHERS), accessAds);
     }
 
 
