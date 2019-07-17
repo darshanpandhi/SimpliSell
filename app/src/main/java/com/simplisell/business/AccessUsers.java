@@ -35,9 +35,7 @@ public class AccessUsers
 
         if (!duplicateExists(userName))
         {
-            userPersistence.insertUser(newUser);
-            retValue = newUser;
-
+            retValue = userPersistence.insertUser(newUser);
         }
 
         return retValue;
@@ -48,7 +46,7 @@ public class AccessUsers
     {
         boolean userExists;
 
-        if(userPersistence.getUser(userName) ==  null)
+        if (userPersistence.getUser(userName) == null)
         {
             userExists = false;
         }
@@ -59,7 +57,6 @@ public class AccessUsers
 
         return userExists;
     }
-
 
 
     public void updatePassword(String userName, String password)

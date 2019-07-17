@@ -373,6 +373,28 @@ public class AccessAdsTest
         assertEquals(newTitle, updateThisAd.getTitle());
         assertEquals(newPrice, updateThisAd.getPrice(),0.001);
 
-        System.out.println("Finished AccessAdsTest: ad updated (category and description did not change)");
+        System.out.println("\nFinished AccessAdsTest: update Ad (category and description does not change)");
     }
+
+    @Test
+    public void testReportAd()
+    {
+        System.out.println("\nStarting AccessAdsTest: report Ads (category and description does not change)");
+
+
+
+        System.out.println("\nFinished AccessAdsTest: report Ad (category and description does not change)");
+    }
+
+    @Test
+    public void testGetReportedAds()
+    {
+        System.out.println("\nStarting AccessAdsTest: get reported Ads (category and description does not change)");
+
+
+
+        System.out.println("\nFinished AccessAdsTest: get reported Ads (category and description does not change)");
+    }
+
+
 }
