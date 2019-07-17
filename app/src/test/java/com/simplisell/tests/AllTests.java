@@ -13,8 +13,8 @@ import com.simplisell.tests.business.ValidPasswordCheckerTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         UserTest.class,
-        UserCredentialsTest.class,
         AdTest.class,
+        UserCredentialsTest.class,
         AccessUsersTest.class,
         AccessAdsTest.class,
         ValidPasswordCheckerTest.class

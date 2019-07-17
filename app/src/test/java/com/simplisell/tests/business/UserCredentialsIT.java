@@ -3,24 +3,34 @@ package com.simplisell.tests.business;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.business.UserCredentials;
 import com.simplisell.objects.User;
-import com.simplisell.tests.persistence.UserPersistenceStub;
+import com.simplisell.persistence.UserPersistence;
+import com.simplisell.persistence.hsqldb.UserPersistenceHSQLDB;
+import com.simplisell.tests.utils.TestUtils;
 
-import static org.junit.Assert.*;
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UserCredentialsTest
-{
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+
+public class UserCredentialsIT {
     private UserCredentials userCredentials;
     private AccessUsers accessUsers;
+    private File tempDB;
 
     @Before
-    public void setup()
-    {
-        UserPersistenceStub userStub = new UserPersistenceStub();
-        userCredentials = new UserCredentials(userStub);
-        accessUsers = new AccessUsers(userStub);
+    public void setUp() throws IOException {
+        this.tempDB = TestUtils.copyDB();
+        UserPersistence userPersistence = new UserPersistenceHSQLDB(tempDB.getAbsolutePath().replace(".script", ""));
+        accessUsers = new AccessUsers(userPersistence);
+        userCredentials = new UserCredentials(userPersistence);
     }
 
     @Test
@@ -99,4 +109,11 @@ public class UserCredentialsTest
 
         System.out.println("Finished testCorrectPassword: username not found");
     }
+
+    @After
+    public void tearDown() {
+        // reset DB
+        this.tempDB.delete();
+    }
+
 }

@@ -80,12 +80,6 @@ public final class Ad
     }
 
 
-    public void setAdId(int newId)
-    {
-        this.adId = newId;
-    }
-
-
     public void setCategory(Category category)
     {
         this.category = category;
