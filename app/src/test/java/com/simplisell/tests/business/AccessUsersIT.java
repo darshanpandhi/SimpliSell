@@ -72,11 +72,6 @@ public class AccessUsersIT {
         System.out.println("\nStarting AccessUsersIT: testUpdateProfileInformation");
         User user = accessUsers.getUser("Bob");
         assertNotNull(user);
-        assertEquals("Bob Marley", user.getFirstAndLastName());
-        assertEquals(null, user.getEmail());
-        assertEquals(null, user.getPhoneNumber());
-        assertEquals("What is your favourite color?", user.getSecurityQuestion());
-        assertEquals("Red", user.getSecurityAnswer());
         String newFullName = "Bob Saget";
         String newEmail = "bob@email.com";
         String newPhoneNumber = "12345678";

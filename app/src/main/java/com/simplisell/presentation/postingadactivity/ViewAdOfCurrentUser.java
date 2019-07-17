@@ -103,7 +103,6 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     @Override
     public void onBackPressed()
     {   // if anytime the back is pressed. Go back
-
         finish();
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra(USERNAME_TEXT, userName);
