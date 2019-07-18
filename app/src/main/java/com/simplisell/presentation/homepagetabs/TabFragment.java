@@ -84,6 +84,10 @@ public class TabFragment extends Fragment
     }
 
 
+    // This method calls the filterAdsByType method in accessAds to visually filter an already sorted list of ads
+    // (sorted by category). This was originally labeled as a code smell via Rob. However upon further discussions
+    // this was revoked. Please see issue https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/issues/130
+    // for more details.
     public void filterByType(AdType adType)
     {
         filteredAds = adsSearch.filterAdsByType(ads, adType);

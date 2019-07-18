@@ -121,7 +121,7 @@ public final class AccessAds
 
 
     /*
-     * This method is called by the presentation layer to visually filter an already
+     *      This method is called by the presentation layer to visually filter an already
      *      sorted list of ads (sorted by category). This method does not make a call
      *      to the database as it is not necessary. Was originally labeled as a code
      *      smell via Rob. However upon further discussions this was revoked. Please
