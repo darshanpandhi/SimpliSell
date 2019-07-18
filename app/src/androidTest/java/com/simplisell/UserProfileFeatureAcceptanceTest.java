@@ -65,7 +65,7 @@ public class UserProfileFeatureAcceptanceTest
         }
         catch (PersistenceException e)
         {
-            System.out.println("Failed to delete \'Bob2\' from the users because the user didnt register");
+            System.out.println("Failed to delete \'Bob2\' from the users because the user didn't register");
         }
     }
 

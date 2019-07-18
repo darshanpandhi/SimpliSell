@@ -8,6 +8,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.simplisell.presentation.SplashScreen;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,6 +19,8 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeDown;
+import static android.support.test.espresso.action.ViewActions.swipeUp;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -44,6 +47,13 @@ public class AdPostingFeatureAcceptanceTest {
         onView(withId(R.id.editText_login_enterPassword)).perform(typeText("123456"));
         onView(withId(R.id.button_login_loginButton)).perform(click());
         SystemClock.sleep(1000);
+    }
+
+    @After
+    public void logout()
+    {
+        onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
+        onView(withText("Logout")).perform(click());
     }
 
     @Test
@@ -118,6 +128,7 @@ public class AdPostingFeatureAcceptanceTest {
         pressBack();
 
         // check if ad is updated correctly
+        onView(withId(R.id.view_pager_mainActivity)).perform(swipeUp());
         onView(allOf(withText("MATH1500 And MATH1700 Textbooks"), isDisplayed())).perform(click());
         onView(withId(R.id.textView_viewAdCU_title)).check(matches(withText("MATH1500 And MATH1700 Textbooks")));
         onView(withId(R.id.textView_viewAdCU_description)).check(matches(withText("Selling my MATH1500 and MATH1700 textbooks.")));
@@ -129,8 +140,13 @@ public class AdPostingFeatureAcceptanceTest {
         SystemClock.sleep(2500);
 
         // delete ad
+        onView(withId(R.id.view_pager_mainActivity)).perform(swipeUp());
         onView(allOf(withText("MATH1500 And MATH1700 Textbooks"), isDisplayed())).perform(click());
         onView(withId(R.id.button_viewAdCU_delete)).perform(click());
+
+        onView(withId(R.id.view_pager_mainActivity)).perform(swipeUp());
+        SystemClock.sleep(1500);
+        onView(withId(R.id.view_pager_mainActivity)).perform(swipeDown());
         SystemClock.sleep(1500);
 
         // view individual ad
@@ -140,7 +156,8 @@ public class AdPostingFeatureAcceptanceTest {
         onView(allOf(withText("CarPooling Ad Title"), isDisplayed())).perform(click());
         SystemClock.sleep(2000);
         pressBack();
-        onView(allOf(withText("Analysis of Algorithms"), isDisplayed())).perform(click());
+        onView(withId(R.id.view_pager_mainActivity)).perform(swipeUp());
+        onView(allOf(withText("Apple Watch"), isDisplayed())).perform(click());
         SystemClock.sleep(2000);
         pressBack();
     }
