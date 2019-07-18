@@ -22,6 +22,8 @@ public class EditAd extends AppCompatActivity
 {
 
     private final String ADID_TEXT = "ADID";
+    private final String USERNAME_TEXT = "USER";
+
 
     private Ad currAd;                  // holds the curr ad object
     private int adId;                   // id of the current ad
@@ -29,6 +31,7 @@ public class EditAd extends AppCompatActivity
     private String title;               // title of the current ad
     private String description;         // description of the current ad
     private double price;               // price of the current ad
+    private String userName;
 
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
 
@@ -43,8 +46,8 @@ public class EditAd extends AppCompatActivity
 
         // get id of ad passed from previous activity
         adId = getIntent().getIntExtra(ADID_TEXT, -1);
+        userName = getIntent().getStringExtra(USERNAME_TEXT);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
 
         currAd = accessAds.getAd(adId);
 
@@ -96,7 +99,7 @@ public class EditAd extends AppCompatActivity
         // if empty field exists
         if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty)
         {
-            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -123,7 +126,7 @@ public class EditAd extends AppCompatActivity
             catch (Exception e)
             {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -180,6 +183,6 @@ public class EditAd extends AppCompatActivity
 
         finish();
         Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-    }
+        i.putExtra(USERNAME_TEXT, userName);
+        startActivity(i);    }
 }

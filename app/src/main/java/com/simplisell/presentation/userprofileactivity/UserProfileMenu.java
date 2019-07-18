@@ -9,22 +9,28 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.simplisell.R;
+import com.simplisell.application.Services;
 import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.User;
+import com.simplisell.persistence.UserPersistence;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.PostAd;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
+import com.simplisell.presentation.useradminactivity.ReportedAds;
 
 public class UserProfileMenu extends AppCompatActivity
 {
 
     private final String USERNAME_TEXT = "USER";
+    private User user;
+    private AccessUsers accessUsers;
 
     private static String userName = null;
-    private static User currUser = null;
     private static ListView listView;
-    private static String[] titles = {"My Profile", "My Ads", "Post an Ad", "Logout"};
+    private static String[] titlesNotAdmin = {"My Profile", "My Ads", "Post an Ad", "Logout"};
+    private static String[] titlesIsAdmin = {"My Profile", "My Ads","Post an Ad","Reported Ads", "Logout"};
+
 
 
     @Override
@@ -32,41 +38,13 @@ public class UserProfileMenu extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_user_profile_menu);
 
-        AccessUsers accessUsers = new AccessUsers();
+        userName = getIntent().getStringExtra(USERNAME_TEXT);
+        accessUsers = new AccessUsers();
+        user = accessUsers.getUser(userName);
 
-        try
-        {
-
-            userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged in.
-
-            if (userName != null)
-            {
-
-                currUser = accessUsers.getUser(userName);
-                if (currUser == null)
-                {
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), Login.class));
-                }
-                else
-                {
-                    setContentView(R.layout.activity_user_profile_menu);
-                    initialize();
-                }
-            }
-            else
-            {
-                finish();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-            }
-        }
-        catch (Exception e)
-        {
-
-            finish();
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
+        initialize();
     }
 
 
@@ -74,10 +52,20 @@ public class UserProfileMenu extends AppCompatActivity
     {
         listView = findViewById(R.id.profile_list_view);
 
-        ProfileListViewAdapter profileListViewAdapter = new ProfileListViewAdapter(this, titles);
+        ProfileListViewAdapter profileListViewAdapter = null;
+
+
+        if(user.isAdmin())  // if user is an admin
+        {
+            profileListViewAdapter = new ProfileListViewAdapter(this, titlesIsAdmin);
+        }
+        else
+        {
+            profileListViewAdapter = new ProfileListViewAdapter(this, titlesNotAdmin);
+
+        }
 
         listView.setAdapter(profileListViewAdapter);
-
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -86,70 +74,54 @@ public class UserProfileMenu extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
 
-
+                view.setBackgroundColor(Color.RED);
                 if (position == 0)
                 {
-                    view.setBackgroundColor(Color.RED);
                     Intent postAd = new Intent(getApplicationContext(), ProfileInformation.class);
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
-                }
-                else
+                } else if (position == 1)
                 {
-                    if (position == 1)
+                    Intent postAd = new Intent(getApplicationContext(), UsersOwnAds.class);
+                    postAd.putExtra(USERNAME_TEXT, userName);
+                    startActivity(postAd);
+                } else if (position == 2)
+                {
+                    Intent postAd = new Intent(getApplicationContext(), PostAd.class);
+                    postAd.putExtra(USERNAME_TEXT, userName);
+                    startActivity(postAd);
+                }
+                if (user.isAdmin())
+                {
+                    if (position == 3)
                     {
-                        view.setBackgroundColor(Color.RED);
-                        Intent postAd = new Intent(getApplicationContext(), UsersOwnAds.class);
-                        postAd.putExtra(USERNAME_TEXT, userName);
-                        startActivity(postAd);
-                    }
-                    else
+                        Intent intent = new Intent(getApplicationContext(), ReportedAds.class);
+                        intent.putExtra(USERNAME_TEXT, userName);
+                        startActivity(intent);
+                    } else if (position == 4)
                     {
-                        if (position == 2)
-                        {
-                            view.setBackgroundColor(Color.RED);
-                            Intent postAd = new Intent(getApplicationContext(), PostAd.class);
-                            postAd.putExtra(USERNAME_TEXT, userName);
-                            startActivity(postAd);
-                        }
-                        else
-                        {
-                            view.setBackgroundColor(Color.RED);
-                            if (position == 3)
-                            {
-                                logout();
-                            }
-                        }
+                        logout();
                     }
+                } else
+                {
+                    if (position == 3)
+                    {
+                        logout();
+                    }
+
                 }
             }
         });
     }
 
 
-    public void accountBtnClick(View view)
-    {
-        finish();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-    }
-
-
     public void logout()
     {
-        MainActivity.logOutUser();
+        Login.logOut();
         userName = null;
+        MainActivity.logout();
         RecyclerViewAdapter.logOut();
         finish();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-    }
-
-
-    @Override
-    public void onBackPressed()
-    {
-        finish();
-        Intent i = new Intent(this, MainActivity.class);
-        i.putExtra(USERNAME_TEXT, userName);
-        startActivity(i);
     }
 }

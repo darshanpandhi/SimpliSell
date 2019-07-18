@@ -10,7 +10,7 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 **MainActivity**
 *   Includes the homepage UI which views all the Ads and has a post Ad button and a profile Button for easy navgation for the user.
 
-**SpashActivity**
+**SplashActivity**
 *   When the app starts the splash screen stays for about 2 seconds.
 
 **UserProfile**
@@ -20,6 +20,8 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 *   UserProfileMenu
 *   ProfileListViewAdapter
 
+**UserAdminActivity**
+*   Responsbile for letting the admin user delete advertisements
 
 **HomePageTabs**
 
@@ -27,17 +29,16 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 *   TabFragmentAdapter
 
 **Login**
-*   Responsible for User Login and helps the user witb a forgot password link in case they need to reset the password.
+*   Responsible for User Login and gives the user the option to reset his/her password in case of forgotten password.
 
 **SignUp**
-*   Sign Up helps the user create a new account and they will be able to post Ads. 
-
+*   Sign Up helps the user create a new account so that they can post Ads. 
 
 **EditAd**
-*   The user can edit an Ad that they posted already.
+*   Allows user to edit his/her own ad.
 
 **PostAd**
-*   The user can post an Ad.
+*   Allows user to post an Ad.
 
 
 ##  Business Layer
@@ -52,9 +53,13 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 
 *   Insert, and get users from the database
 
-**Credentials**
+**UserCredentials**
 
-*   Authenticate users, and validates that a password meets the password standard
+*   Authenticate users.
+ 
+**ValidPasswordChecker**
+
+*   Validates if password meets the required standard
 
 ##  Persistence Layer
 *   Information is stored and retrived from a database or file system

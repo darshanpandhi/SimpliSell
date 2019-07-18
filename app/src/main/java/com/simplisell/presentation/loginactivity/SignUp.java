@@ -1,6 +1,5 @@
 package com.simplisell.presentation.loginactivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.Credentials;
+import com.simplisell.business.ValidPasswordChecker;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
@@ -30,8 +29,6 @@ public class SignUp extends AppCompatActivity
     private Spinner securityQuestion;  // security question of user
     private EditText securityAnswer;    // security answer of user
     private AccessUsers accessUsers;      // helps  access users
-    private Credentials credentials;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,7 +49,6 @@ public class SignUp extends AppCompatActivity
         securityAnswer = findViewById(R.id.editText_name_registrationSecurityAnswer);
 
         accessUsers = new AccessUsers();
-        credentials = new Credentials();
     }
 
 
@@ -82,13 +78,12 @@ public class SignUp extends AppCompatActivity
     private void validate(String firstNLastName, String userName, String userPassword, String userConfirmPassword,
                           String userSecurityQuestion, String userSecurityAnswer)
     {
-
-
         int number;
 
         // are the fields empty
         boolean empty =
                 (!firstNLastName.isEmpty() && !userName.isEmpty() && !userPassword.isEmpty() && !userConfirmPassword.isEmpty() && !userSecurityQuestion.isEmpty() && !userSecurityAnswer.isEmpty());
+
         boolean selectedSecurityQuestion = !userSecurityQuestion.equals("Select a security question");
 
         if (empty)  // if any field is empty
@@ -97,13 +92,14 @@ public class SignUp extends AppCompatActivity
             {
                 if (userConfirmPassword.equals(userPassword))  // if both fields have the same password
                 {
-                    if (credentials.validPassword(userPassword))  // if password meets the standards
+                    if (ValidPasswordChecker.validPassword(userPassword))  // if password meets the standards
                     {
 
-                        User newUser = new User(firstNLastName, userName, userPassword, userSecurityQuestion,
-                                userSecurityAnswer, null, null);   // create a new user
+                        User newUserAdvertiser = new User(firstNLastName, userName, userPassword,
+                                userSecurityQuestion, userSecurityAnswer, null, null,
+                                false);   // create a new userAdvertiser
 
-                        if (accessUsers.insertNewUser(newUser) != null)
+                        if (accessUsers.insertNewUser(newUserAdvertiser) != null)
                         {   // check if userName is in the database and insert
 
                             String registrationSuccessMessage = "Registration successful";
@@ -112,6 +108,7 @@ public class SignUp extends AppCompatActivity
                             String successMessage = "Logged in as " + userName;
                             Toast.makeText(this, successMessage, Toast.LENGTH_SHORT).show();
                             uniqueUserName = userName;
+
                             // Pass this domain object across activities
                             Intent signedUp = new Intent(getApplicationContext(), MainActivity.class);
                             signedUp.putExtra(USERNAME_TEXT, uniqueUserName);

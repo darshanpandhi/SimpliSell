@@ -1,6 +1,5 @@
 package com.simplisell.presentation.postingadactivity;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -63,12 +62,6 @@ public class PostAd extends AppCompatActivity
         String description;
         double price;
 
-
-        // Show a progress Dialog while the authentication is loading
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Posting");
-        progressDialog.show();
-
         // check if all fields are filled
         boolean titleEmpty = this.title.getText().toString().isEmpty();
         boolean descriptionEmpty = this.description.getText().toString().isEmpty();
@@ -79,8 +72,7 @@ public class PostAd extends AppCompatActivity
         // if empty field exists
         if (titleEmpty || descriptionEmpty || priceEmpty || categoryEmpty || typeEmpty)
         {
-            progressDialog.dismiss();
-            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please enter all fields", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -90,7 +82,8 @@ public class PostAd extends AppCompatActivity
                 description = this.description.getText().toString().trim();
                 price = Double.parseDouble(this.price.getText().toString());
                 // add ad into database
-                Ad ad = new Ad(userName, adType, category, title, description, price);
+                Ad ad = new Ad(accessAds.getNewAdId(), userName, adType, category, title, description, price,
+                        null, 0);
                 accessAds.insertAd(ad);
                 Toast.makeText(getApplicationContext(), "Advertisement Posted", Toast.LENGTH_LONG).show();
 
@@ -98,12 +91,13 @@ public class PostAd extends AppCompatActivity
                 finish();
                 Intent viewAd = new Intent(getApplicationContext(), ViewAdOfCurrentUser.class);
                 viewAd.putExtra(ADID_TEXT, ad.getAdId());
-                progressDialog.dismiss();
+                viewAd.putExtra(USERNAME_TEXT, userName);
+
+
                 startActivity(viewAd);
             }
             catch (Exception e)
             {
-                progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Invalid fields", Toast.LENGTH_LONG).show();
             }
         }

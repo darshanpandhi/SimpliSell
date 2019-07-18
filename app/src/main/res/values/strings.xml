@@ -87,7 +87,19 @@
 
     <string name="save">SAVE</string>
 
-    <string name="changePasswoed">CHANGE PASSWORD</string>
+    <string name="reportAd">REPORT AD</string>
+
+    <string name="viewReportedAds">View Reported Ads</string>
+
+    <string name="reportedAds">Reported Ads</string>
+
+    <string name="changePassword">CHANGE PASSWORD</string>
+
+    <string name="fullName">Full Name: </string>
+
+    <string name="adOwnerEmail">Email: </string>
+
+    <string name="adOwnerPhoneNumber">Phone Number: </string>
 
     <string-array name = "security_questions">
         <item>Select a security question</item>

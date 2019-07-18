@@ -2,7 +2,6 @@ package com.simplisell.presentation;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -10,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
+import android.widget.TextView;
 import com.simplisell.R;
-import com.simplisell.business.AccessUsers;
 import com.simplisell.business.AccessAds;
+import com.simplisell.business.AccessUsers;
 import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.objects.User;
@@ -22,23 +21,20 @@ import com.simplisell.presentation.homepagetabs.TabFragment;
 import com.simplisell.presentation.homepagetabs.TabPagerAdapter;
 import com.simplisell.presentation.loginactivity.Login;
 import com.simplisell.presentation.postingadactivity.PostAd;
+import com.simplisell.presentation.userprofileactivity.UserProfileButton;
 import com.simplisell.presentation.userprofileactivity.UserProfileMenu;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements UserProfileButton
 {
-
-    private static User currUser = null;
-    private static String userName = null;
-
     private final String USERNAME_TEXT = "USER";
+
+    private static String userName = null;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private AccessUsers accessUsers;      // helps  access users
-    private AccessAds search;             // helps  access ads
+    private AccessAds accessAds;             // helps  access ads
 
-    private ImageButton profileBtn;
 
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
@@ -58,78 +54,65 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        search = new AccessAds();
+        accessAds = new AccessAds();
+        removeExpiredAds();
+
+        getCurrentUserName();
         initializeTabFragments();
-
-        accessUsers = new AccessUsers();
-
-        getLoggedInUser();
-
-        profileBtn = (ImageButton) findViewById(R.id.imageButton_mainActivity_accountButton);
 
         tabSetUp();
     }
 
 
-
-
-
-    void initializeTabFragments()
+    private void initializeTabFragments()
     {
-        tabFragmentAllObj = new TabFragment(search.getAllAds(), search);
-        tabFragmentBooksObj = new TabFragment(search.getAllAdsByCategory(Category.BOOKS), search);
-        tabFragmentTransportationObj = new TabFragment(search.getAllAdsByCategory(Category.TRANSPORTATION), search);
-        tabFragmentServicesJobsObj = new TabFragment(search.getAllAdsByCategory(Category.JOBS_SERVICES), search);
-        tabFragmentLivingObj = new TabFragment(search.getAllAdsByCategory(Category.ACCOMMODATION), search);
-        tabFragmentEventsObj = new TabFragment(search.getAllAdsByCategory(Category.EVENTS), search);
-        tabFragmentElectronicsObj = new TabFragment(search.getAllAdsByCategory(Category.ELECTRONICS), search);
-        tabFragmentOtherObj = new TabFragment(search.getAllAdsByCategory(Category.OTHERS), search);
+        tabFragmentAllObj = new TabFragment(accessAds.getAllAds(), accessAds);
+        tabFragmentBooksObj = new TabFragment(accessAds.getAllAdsByCategory(Category.BOOKS), accessAds);
+        tabFragmentTransportationObj = new TabFragment(accessAds.getAllAdsByCategory(Category.TRANSPORTATION),
+                accessAds);
+        tabFragmentServicesJobsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.JOBS_SERVICES), accessAds);
+        tabFragmentLivingObj = new TabFragment(accessAds.getAllAdsByCategory(Category.ACCOMMODATION), accessAds);
+        tabFragmentEventsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.EVENTS), accessAds);
+        tabFragmentElectronicsObj = new TabFragment(accessAds.getAllAdsByCategory(Category.ELECTRONICS), accessAds);
+        tabFragmentOtherObj = new TabFragment(accessAds.getAllAdsByCategory(Category.OTHERS), accessAds);
     }
 
 
-    private void getLoggedInUser()
+    private void tabSetUp()
     {
-        if (userName == null)  // if there is no logged in user
-        {
-            try
-            {
-
-                userName = getIntent().getStringExtra(USERNAME_TEXT);   // get the username to see if user was logged
-                // in.
-
-                if (userName != null)
-                {
-
-                    currUser = accessUsers.getUser(userName);
-                }
-            }
-            catch (Exception e)
-            {
-
-                userName = null;
-                currUser = null;
-            }
-        }
-        else
-        {
-            currUser = accessUsers.getUser(userName);   //Update to show profile image
-        }
-    }
+        tabLayout = findViewById(R.id.tabview_mainActivity);
+        viewPager = findViewById(R.id.view_pager_mainActivity);
 
 
+        TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
+
+        // adding the fragments
+        adapter.addFragment(tabFragmentAllObj, "All");
+        adapter.addFragment(tabFragmentBooksObj, "Books");
+        adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
+        adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
+        adapter.addFragment(tabFragmentEventsObj, "Events");
+        adapter.addFragment(tabFragmentTransportationObj, "Transportation");
+        adapter.addFragment(tabFragmentLivingObj, "Accommodation");
+        adapter.addFragment(tabFragmentOtherObj, "Other");
 
 
-    public static void logOutUser()
-    {   // logs out user
-        currUser = null;
-        userName = null;
+        // adapter setup
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
 
     @Override
     public void onBackPressed()
-    {   // if anytime the back is pressed. Go to app home
+    {
+        // if anytime the back is pressed. Go to app home
+        homeScreen();
+    }
 
+
+    private void homeScreen()
+    {
         Intent i = new Intent(Intent.ACTION_MAIN);
         i.addCategory(Intent.CATEGORY_HOME);
         startActivity(i);
@@ -138,25 +121,61 @@ public class MainActivity extends AppCompatActivity
 
     public void accountBtnClick(View view)
     {
+        Intent nextActivityIntent;
 
-        if (userName == null)
-        {   // not logged in
-
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
-        else   // already logged in
+        if (userName != null)
         {
-            finish();
-            Intent intent = new Intent(getApplicationContext(), UserProfileMenu.class);
-            intent.putExtra(USERNAME_TEXT, userName);
-            startActivity(intent);
+            nextActivityIntent = new Intent(getApplicationContext(), UserProfileMenu.class);
+            nextActivityIntent.putExtra(USERNAME_TEXT, userName);
+        }
+        else
+        {
+            // not logged in
+            nextActivityIntent = new Intent(getApplicationContext(), Login.class);
+        }
+
+        startActivity(nextActivityIntent);
+    }
+
+
+    private void getCurrentUserName()
+    {
+        if(userName == null)
+        {
+
+            Intent intentThatStartedThisActivity = getIntent();
+
+            if (intentThatStartedThisActivity.hasExtra(USERNAME_TEXT))
+            {
+
+                userName = intentThatStartedThisActivity.getStringExtra(USERNAME_TEXT);
+            }
         }
     }
 
 
-    public void selectTypeBtnClick(View view)
+    public void sortBtnClick(View view)
     {
-        search = new AccessAds();
+
+        int position = tabLayout.getSelectedTabPosition();   // get position of current tab layout
+
+        tabFragmentAllObj.sort();
+        tabFragmentBooksObj.sort();
+        tabFragmentTransportationObj.sort();
+        tabFragmentServicesJobsObj.sort();
+        tabFragmentLivingObj.sort();
+        tabFragmentEventsObj.sort();
+        tabFragmentElectronicsObj.sort();
+        tabFragmentOtherObj.sort();
+
+        tabSetUp();                 // set up all tabs again
+
+        viewPager.setCurrentItem(position); // set it to the position user wanted
+    }
+
+
+    public void filterTypeBtnClick(View view)
+    {
         AlertDialog dialog;
         AlertDialog.Builder builder;
         final String[] types = {"All Types", "OFFERING", "WANTED"};
@@ -219,69 +238,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void sortBtnClick(View view)
-    {
-
-        int position = tabLayout.getSelectedTabPosition();   // get position of current tab layout
-
-        tabFragmentAllObj.sort();
-        tabFragmentBooksObj.sort();
-        tabFragmentTransportationObj.sort();
-        tabFragmentServicesJobsObj.sort();
-        tabFragmentLivingObj.sort();
-        tabFragmentEventsObj.sort();
-        tabFragmentElectronicsObj.sort();
-        tabFragmentOtherObj.sort();
-
-        tabSetUp();                 // set up all tabs again
-
-        viewPager.setCurrentItem(position); // set it to the position user wanted
-    }
-
-
-    public void postAdBtnClick(View view)
-    {
-        if (userName == null)
-        {
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
-        else
-        {
-            finish();
-            Intent postAd = new Intent(getApplicationContext(), PostAd.class);
-            postAd.putExtra(USERNAME_TEXT, userName);
-            startActivity(postAd);
-        }
-    }
-
-
-    private void tabSetUp()
-    {
-
-        tabLayout = findViewById(R.id.tabview_mainActivity);
-        viewPager = findViewById(R.id.view_pager_mainActivity);
-
-
-        TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
-
-        // adding the fragments
-        adapter.addFragment(tabFragmentAllObj, "All");
-        adapter.addFragment(tabFragmentBooksObj, "Books");
-        adapter.addFragment(tabFragmentServicesJobsObj, "Services & Jobs");
-        adapter.addFragment(tabFragmentElectronicsObj, "Electronics");
-        adapter.addFragment(tabFragmentEventsObj, "Events");
-        adapter.addFragment(tabFragmentTransportationObj, "Transportation");
-        adapter.addFragment(tabFragmentLivingObj, "Accommodation");
-        adapter.addFragment(tabFragmentOtherObj, "Other");
-
-
-        // adapter setup
-
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-    }
-
-
     private void filterTabs(AdType adType)
     {
         tabFragmentAllObj.filterByType(adType);
@@ -308,6 +264,28 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public void postAdBtnClick(View view)
+    {
+        if (Login.isLoggedIn())
+        {
+            Intent postAd = new Intent(getApplicationContext(), PostAd.class);
+            postAd.putExtra(USERNAME_TEXT, userName);
+            startActivity(postAd);
+        }
+        else
+        {
+            startActivity(new Intent(getApplicationContext(), Login.class));
+        }
+    }
 
+    private void removeExpiredAds()
+    {
+        accessAds.removeExpiredAds();
+        accessAds = new AccessAds();       //   Call another time since removeExpired
+    }
 
+    public static void logout()
+    {
+        userName = null;
+    }
 }

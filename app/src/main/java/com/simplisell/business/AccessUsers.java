@@ -4,8 +4,6 @@ import com.simplisell.application.Services;
 import com.simplisell.objects.User;
 import com.simplisell.persistence.UserPersistence;
 
-import java.util.List;
-
 public class AccessUsers
 {
     private UserPersistence userPersistence;
@@ -29,17 +27,35 @@ public class AccessUsers
     }
 
 
-    public User insertNewUser(User currentUser)
+    public User insertNewUser(User newUser)
     {
-        User newUser = null;
-        String userName = currentUser.getUserName();
-        boolean uniqueUserName = userPersistence.getUser(userName) == null;
-        if (uniqueUserName)
+        User retValue = null;
+
+        String userName = newUser.getUserName();
+
+        if (!duplicateExists(userName))
         {
-            newUser = currentUser;
-            userPersistence.insertUser(newUser);
+            retValue = userPersistence.insertUser(newUser);
         }
-        return newUser;
+
+        return retValue;
+    }
+
+
+    private boolean duplicateExists(final String userName)
+    {
+        boolean userExists;
+
+        if (userPersistence.getUser(userName) == null)
+        {
+            userExists = false;
+        }
+        else
+        {
+            userExists = true;
+        }
+
+        return userExists;
     }
 
 
@@ -54,5 +70,10 @@ public class AccessUsers
     {
         userPersistence.updateProfileInformation(userName, newFullName, newEmail, newPhoneNumber, newSecurityQuestion
                 , newSecurityAnswer);
+    }
+
+    public void deleteUser(String userName)
+    {
+        userPersistence.deleteUser(userName);
     }
 }

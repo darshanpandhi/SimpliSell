@@ -2,6 +2,7 @@ package com.simplisell.persistence;
 
 import com.simplisell.objects.Ad;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface AdPersistence
@@ -17,4 +18,12 @@ public interface AdPersistence
     void repostAd(int adID);
 
     void updateAd(final Ad ad);
+
+    void reportAd(final int adId);
+
+    void changeExpiryDate(final int adId, Date newDate);
+
+    List<Ad> getReportedAds();
+
+    int getNewAdId();
 }

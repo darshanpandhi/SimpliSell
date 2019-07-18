@@ -16,7 +16,8 @@ import android.widget.Toast;
 
 import com.simplisell.R;
 import com.simplisell.business.AccessUsers;
-import com.simplisell.business.Credentials;
+import com.simplisell.business.UserCredentials;
+import com.simplisell.business.ValidPasswordChecker;
 import com.simplisell.objects.User;
 
 public class ForgetPassword extends AppCompatActivity
@@ -25,7 +26,7 @@ public class ForgetPassword extends AppCompatActivity
     private TextView securityQuestion;
     private EditText securityAnswer;
     private AccessUsers accessUsers;      // helps  access users
-    private Credentials credentials;
+    private UserCredentials userCredentials;
     private EditText newPassword;
     private EditText confirmNewPassword;
     private boolean securityQuestionDisplayed;
@@ -39,14 +40,13 @@ public class ForgetPassword extends AppCompatActivity
         setContentView(R.layout.activity_forget_password);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-
         userName = findViewById(R.id.editText_forgetPassword_userName);
         securityAnswer = findViewById(R.id.editText_forgetPassword_securityAnswer);
         securityQuestion = findViewById(R.id.textView_forgetPassword_securityQuestion);
         securityQuestionDisplayed = false;
 
         accessUsers = new AccessUsers();
-        credentials = new Credentials();
+        userCredentials = new UserCredentials();
     }
 
 
@@ -103,7 +103,7 @@ public class ForgetPassword extends AppCompatActivity
                 String confirmNewPass = confirmNewPassword.getText().toString();
                 if (newPass.equals(confirmNewPass))
                 {
-                    if (credentials.validPassword(newPass))
+                    if (ValidPasswordChecker.validPassword(newPass))
                     {
                         accessUsers.updatePassword(user.getUserName(), newPass);
                         Toast.makeText(getApplicationContext(), "Password has been changed", Toast.LENGTH_SHORT).show();
@@ -177,7 +177,7 @@ public class ForgetPassword extends AppCompatActivity
                 User user = accessUsers.getUser(userName);
                 if (user != null)
                 {
-                    boolean correct = credentials.correctSecurityAnswer(userName, answer);
+                    boolean correct = userCredentials.correctSecurityAnswer(userName, answer);
                     if (correct)
                     {
                         alertResetPassword(user);

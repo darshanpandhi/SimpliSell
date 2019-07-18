@@ -1,13 +1,8 @@
 package com.simplisell.presentation.userprofileactivity;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -25,6 +20,7 @@ public class ProfileInformation extends AppCompatActivity
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private static final String USERNAME_TEXT = "USER";
 
+    private ImageButton profileImage;
     private String userName;
     private EditText firstAndLastName;   // name of user
     private EditText password;          // password of user
@@ -44,7 +40,6 @@ public class ProfileInformation extends AppCompatActivity
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-
         userName = getIntent().getStringExtra(USERNAME_TEXT);
         accessUsers = new AccessUsers();
         password = findViewById(R.id.profileEditBoxPassword);
@@ -61,41 +56,39 @@ public class ProfileInformation extends AppCompatActivity
 
     private void setUp()
     {
-        User currUser = accessUsers.getUser(userName);
+        User userAdvertiser = accessUsers.getUser(userName);
 
-
-
-        if (currUser.getFirstAndLastName() != null)
+        if (userAdvertiser.getFirstAndLastName() != null)
         {
-            firstAndLastName.setHint(currUser.getFirstAndLastName());
+            firstAndLastName.setHint(userAdvertiser.getFirstAndLastName());
         }
 
-        if (currUser.getEmail() != null)
+        if (userAdvertiser.getEmail() != null)
         {
-            email.setHint(currUser.getEmail());
+            email.setHint(userAdvertiser.getEmail());
         }
 
-        if (currUser.getPhoneNumber() != null)
+        if (userAdvertiser.getPhoneNumber() != null)
         {
-            phoneNumber.setHint(currUser.getPhoneNumber());
+            phoneNumber.setHint(userAdvertiser.getPhoneNumber());
         }
 
-        securityQuestion.setText(currUser.getSecurityQuestion());
-        securityAnswer.setHint(currUser.getSecurityAnswer());
+        securityQuestion.setText(userAdvertiser.getSecurityQuestion());
+        securityAnswer.setHint(userAdvertiser.getSecurityAnswer());
     }
 
 
     public void profileInformationSaveClick(View view)
     {
 
-        User currUser = accessUsers.getUser(userName);
+        User userAdvertiser = accessUsers.getUser(userName);
 
-        String userName = currUser.getUserName();
-        String userFullName = currUser.getFirstAndLastName();
-        String userEmail = currUser.getEmail();
-        String userPhoneNumber = currUser.getPhoneNumber();
-        String userSecurityQuestion = currUser.getSecurityQuestion();
-        String userSecurityAnswer = currUser.getSecurityAnswer();
+        String userName = userAdvertiser.getUserName();
+        String userFullName = userAdvertiser.getFirstAndLastName();
+        String userEmail = userAdvertiser.getEmail();
+        String userPhoneNumber = userAdvertiser.getPhoneNumber();
+        String userSecurityQuestion = userAdvertiser.getSecurityQuestion();
+        String userSecurityAnswer = userAdvertiser.getSecurityAnswer();
 
         boolean userUpdatedProfile = false;
 
@@ -148,8 +141,6 @@ public class ProfileInformation extends AppCompatActivity
     {
         return (userAttribute.getText().toString()).isEmpty();
     }
-
-
 
 
     @Override

@@ -8,34 +8,49 @@ import java.util.List;
 
 public class UserPersistenceStub implements UserPersistence
 {
-    private List<User> users;
+    private List<User> userList;
 
 
     public UserPersistenceStub()
     {
-        this.users = new ArrayList<>();
-        User user;
-        user = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null);
-        users.add(user);
-        user = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", null, null);
-        users.add(user);
-        user = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null, null);
-        users.add(user);
+        userList = new ArrayList<>();
+
+        User newUser;
+
+        newUser = new User("Bob Marley", "Bob", "123456",
+                "What is your favourite color", "Red", null,
+                null, false);
+        userList.add(newUser);
+
+        newUser = new User("Allice Wonderland", "Allice",
+                "111111", "What is your favourite color", "Green",
+                null, null, false);
+        userList.add(newUser);
+
+        newUser = new User("Jay Petr", "Jay", "222222",
+                "What is your mother\'s maiden name?", "Elsa", null,
+                null, false);
+        userList.add(newUser);
+
+        newUser = new User("Ronak the dude","Ronak", "admin",
+                "What is your favourite color", "Black","","",true);
+        userList.add(newUser);
     }
 
 
-    @Override
     public User getUser(final String userName)
     {
         User user = findUser(userName);
+
         return user;
     }
 
+
     @Override
-    public User insertUser(final User user)
+    public User insertUser(final User User)
     {
-        users.add(user);
-        return user;
+        userList.add(User);
+        return User;
     }
 
 
@@ -51,49 +66,55 @@ public class UserPersistenceStub implements UserPersistence
 
 
     @Override
-    public void updateProfileInformation(String userName, String newFullName, String newEmail, String newPhoneNumber, String newSecurityQuestion, String newSecurityAnswer)
+    public void updateProfileInformation(final String userName, final String newFullName, final String newEmail,
+                                         final String newPhoneNumber, final String newSecurityQuestion,
+                                         final String newSecurityAnswer)
     {
-        User user = getUser(userName);
-        user.setFirstAndLastName(newFullName);
-        user.setEmail(newEmail);
-        user.setPhoneNumber(newPhoneNumber);
-        user.setSecurityQuestion(newSecurityQuestion);
-        user.setSecurityAnswer(newSecurityAnswer);
+        User User = getUser(userName);
+
+        if (User != null)
+        {
+            User.setFirstAndLastName(newFullName);
+            User.setEmail(newEmail);
+            User.setPhoneNumber(newPhoneNumber);
+            User.setSecurityQuestion(newSecurityQuestion);
+            User.setSecurityAnswer(newSecurityAnswer);
+        }
     }
+
 
     private User findUser(final String userName)
     {
-        User user = null;
+        User requiredUser = null;
 
         if (userName != null)
         {
-
             boolean foundUser = false;
-            for (int i = 0; i < users.size() && !foundUser; i++)
+            User currentUser;
+
+            for (int i = 0; i < userList.size() && !foundUser; i++)
             {
-                user = users.get(i);
-                if (user.getUserName().equals(userName))
+                currentUser = userList.get(i);
+
+                if (currentUser.getUserName().equals(userName))
                 {
                     foundUser = true;
+                    requiredUser = currentUser;
                 }
-            }
-            if (!foundUser)
-            {
-                user = null;
             }
         }
 
-        return user;
+        return requiredUser;
     }
 
     public void deleteUser(String userName)
     {
 
-        for(int i = 0; i<users.size(); i++)
+        for(int i = 0; i<userList.size(); i++)
         {
-            if(users.get(i).getUserName().equals(userName))
+            if(userList.get(i).getUserName().equals(userName))
             {
-                users.remove(i);
+                userList.remove(i);
             }
         }
 

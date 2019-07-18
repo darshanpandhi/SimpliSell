@@ -21,7 +21,6 @@ public final class AccessAds
     public AccessAds()
     {
         adPersistence = Services.getAdPersistence();
-        removeExpiredAds();
         allAds = adPersistence.getAds();
     }
 
@@ -29,14 +28,23 @@ public final class AccessAds
     public AccessAds(final AdPersistence adPersistence)
     {
         this.adPersistence = adPersistence;
-        removeExpiredAds();
         allAds = adPersistence.getAds();
     }
 
 
     public final List<Ad> getAllAds()
     {
-        return adPersistence.getAds();
+        return allAds;
+    }
+
+    public  final int getNewAdId()
+    {
+        return adPersistence.getNewAdId();
+    }
+
+    public final void reportAd(final int adId)
+    {
+        adPersistence.reportAd(adId);
     }
 
 
@@ -48,22 +56,11 @@ public final class AccessAds
 
     public final Ad insertAd(final Ad newAd)
     {
-        if (newAd == null || newAd.getClass() != Ad.class)
+        if(newAd != null)
         {
-            return null;
+            newAd.resetExpiryDate();
         }
 
-        int newAdId = 0;
-        List<Ad> allAds = getAllAds();
-
-        if (allAds.size() != 0)
-        {
-            Ad maxAd = Collections.max(allAds, compareAdId);
-            newAdId = maxAd.getAdId() + 1;
-        }
-
-        newAd.setAdId(newAdId);
-        newAd.resetExpiryDate();
         return adPersistence.insertAd(newAd);
     }
 
@@ -101,6 +98,11 @@ public final class AccessAds
         return adList;
     }
 
+    public final List<Ad> getReportedAds()
+    {
+        return adPersistence.getReportedAds();
+    }
+
 
     public List<Ad> getUserSpecificAds(String userName)
     {
@@ -118,6 +120,14 @@ public final class AccessAds
     }
 
 
+    /*
+     *      This method is called by the presentation layer to visually filter an already
+     *      sorted list of ads (sorted by category). This method does not make a call
+     *      to the database as it is not necessary. Was originally labeled as a code
+     *      smell via Rob. However upon further discussions this was revoked. Please
+     *      see issue https://code.cs.umanitoba.ca/comp3350-summer2019/crazy-eights---8/issues/130
+     *      for more details.
+     */
     public List<Ad> filterAdsByType(List<Ad> ads, AdType adType)
     {
         List<Ad> adList = new ArrayList<Ad>();
@@ -174,6 +184,11 @@ public final class AccessAds
         }
     }
 
+    public void setExpiryDate(int adId, Date newDate)
+    {
+        adPersistence.changeExpiryDate(adId, newDate);
+    }
+
 
     //Need multiple comparator functions per asc or desc sort due to API level 23
     Comparator<Ad> compareByPriceDesc = new Comparator<Ad>()
@@ -191,15 +206,6 @@ public final class AccessAds
         public int compare(Ad o1, Ad o2)
         {
             return o1.getPrice() > o2.getPrice() ? 1 : o1.getPrice() < o2.getPrice() ? -1 : 0;
-        }
-    };
-
-    Comparator<Ad> compareAdId = new Comparator<Ad>()
-    {
-        @Override
-        public int compare(Ad o1, Ad o2)
-        {
-            return o1.getAdId() > o2.getAdId() ? 1 : o1.getAdId() < o2.getAdId() ? -1 : 0;
         }
     };
 }

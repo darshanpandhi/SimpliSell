@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.simplisell.R;
-import com.simplisell.business.Credentials;
+import com.simplisell.business.UserCredentials;
 import com.simplisell.objects.User;
 import com.simplisell.presentation.MainActivity;
 import com.simplisell.presentation.postingadactivity.RecyclerViewAdapter;
@@ -18,11 +18,12 @@ public class Login extends AppCompatActivity
 {
     private final String USERNAME_TEXT = "USER";
 
-    private static String uniqueUserName;
+    private EditText userNameEntered;             // the edit text box for userName of the user
+    private EditText passwordEntered;          // the edit text box for password of the user
 
-    private EditText userName;             // the edit text box for userName of the user
-    private EditText password;          // the edit text box for password of the user
-    private Credentials credentials;
+    private UserCredentials userCredentials;
+
+    private static boolean isLoggedIn;
 
 
     @Override
@@ -34,59 +35,57 @@ public class Login extends AppCompatActivity
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        uniqueUserName = null;
-
         // initializing the buttons and edit textboxes
-        userName = findViewById(R.id.editText_login_enterUserName);
-        password = findViewById(R.id.editText_login_enterPassword);
+        userNameEntered = findViewById(R.id.editText_login_enterUserName);
+        passwordEntered = findViewById(R.id.editText_login_enterPassword);
 
-        credentials = new Credentials();
+        userCredentials = new UserCredentials();
+
+        isLoggedIn = false;
     }
 
 
     public void loginBtnClick(View view)
     {
-        String userNameEditBox;       // The userName in the textbox will be stored here.
-        String passwordEditBox;    // The userName in the password will be stored here.
+        String userName;       // The userName from the textbox will be stored here.
+        String userPassword;    // The userName in the password will be stored here.
 
 
-        // check if these fields are empty
-        boolean userNameEmpty = userName.getText().toString().isEmpty();
-        boolean passwordEmpty = password.getText().toString().isEmpty();
+        userName = userNameEntered.getText().toString();
+        userPassword = passwordEntered.getText().toString();
 
-        if (userNameEmpty || passwordEmpty)   // if userName or password field is empty
+        User loggedInUser = userCredentials.correctPassword(userName, userPassword);
+
+        if (loggedInUser != null)
         {
-            // Make a toast to display error message
-            Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
+            // if login is successful
+            // show user that login was successful
+            Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+
+            finish();
+
+            logIn(loggedInUser);
         }
         else
-        {
-
-            userNameEditBox = userName.getText().toString();
-            passwordEditBox = password.getText().toString();
-
-            User loggedInUser = credentials.authenticate(userNameEditBox, passwordEditBox);
-
-            if (loggedInUser != null)
             {
-                // if logging in is successful
-
-                // show user that login was successful
-                Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
-                uniqueUserName = userNameEditBox;
-
-                // login and go to homepage
-                Intent logIn = new Intent(this, MainActivity.class);
-                logIn.putExtra(USERNAME_TEXT, uniqueUserName);
-                RecyclerViewAdapter.login(userNameEditBox);
-                finish();
-                startActivity(logIn);
-            }
-            else    // if authentication is not successful.
-            {
+                // if authentication is not successful.
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
-        }
+    }
+
+    private void logIn(User loggedInUser)
+    {
+        isLoggedIn = true;
+
+        String userName = loggedInUser.getUserName();
+
+        Intent logIn;
+
+        logIn = new Intent(getApplicationContext(), MainActivity.class);
+        logIn.putExtra(USERNAME_TEXT, userName);
+        RecyclerViewAdapter.login(userName);
+        finish();
+        startActivity(logIn);
     }
 
 
@@ -111,5 +110,15 @@ public class Login extends AppCompatActivity
         finish();
         Intent loginPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(loginPage);
+    }
+
+    public static boolean isLoggedIn()
+    {
+        return isLoggedIn;
+    }
+
+    public static void logOut()
+    {
+        isLoggedIn = false;
     }
 }

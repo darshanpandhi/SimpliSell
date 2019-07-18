@@ -52,9 +52,12 @@
 *       salesOrder  //BAD! because it is a class
         SalesOrder  //GOOD! 
 ### 2.2 - Packages
-*   **Package names will use lower case characters only!**
+*   **Package names will use lower case characters only, with consecutive words simply concatenated together (no underscores)**
 *       Common  //BAD!
         common  //GOOD!
+*       com.example.deepSpace  //BAD!
+        com.example.deep_space //BAD!
+        com.example.deepspace  //GOOD!
 ### 2.3 - Other
 *   **Use camelCase for other identifiers (e.g. fields, local variables, methods, and parameters)**
 *       addTototal()    //BAD!
