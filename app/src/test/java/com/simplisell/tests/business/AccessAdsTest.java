@@ -147,7 +147,7 @@ public class AccessAdsTest
         System.out.println("Finished AccessAdsTest: get deleted ad");
     }
 
-    @Test (expected = PersistenceException.class)
+    @Test 
     public void testRemoveAd()
     {
         System.out.println("\nStarting AccessAdsTest: remove ad");
@@ -327,7 +327,7 @@ public class AccessAdsTest
         accessAdsStub.removeExpiredAds();
         int sizeAfter = accessAdsStub.getAllAds().size();
 
-        assertTrue(sizeBefore == sizeAfter + 3);
+        assertEquals(sizeBefore, sizeAfter + 3);
 
         System.out.println("Finished AccessAdsTest: remove expired ads");
     }
