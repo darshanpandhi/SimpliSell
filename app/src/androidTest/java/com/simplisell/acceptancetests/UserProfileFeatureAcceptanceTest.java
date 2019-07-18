@@ -81,7 +81,9 @@ public class UserProfileFeatureAcceptanceTest
         onView(withId(R.id.editText_login_enterUserName)).perform(typeText("Bob2"));
         onView(withId(R.id.editText_login_enterPassword)).perform(typeText("1111111111"));
         onView(withId(R.id.button_login_loginButton)).perform(click());
+        SystemClock.sleep(1000);
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
+        SystemClock.sleep(1000);
 
 
         // Test updating profile information
@@ -90,11 +92,15 @@ public class UserProfileFeatureAcceptanceTest
         onView(withId(R.id.profileEditBoxEmail)).perform(typeText("ceo@google.ca"));
         onView(withId(R.id.profileEditBoxNumber)).perform(typeText("4312342232"));
         pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.profileEditBoxAnswer)).perform(typeText("jess"));
         pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.profileEditBoxPassword)).perform(typeText("password"));
         pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.profie_info_save)).perform(click());
+        SystemClock.sleep(1000);
         onView(withText("Logout")).perform(click());
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
 
@@ -109,11 +115,12 @@ public class UserProfileFeatureAcceptanceTest
         onView(withId(R.id.editText_login_enterPassword)).perform(clearText());
         onView(withId(R.id.editText_login_enterPassword)).perform(typeText("password"));
         onView(withId(R.id.button_login_loginButton)).perform(click());
-
+        SystemClock.sleep(1000);
 
 
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
         onData(anything()).inAdapterView(withId(R.id.profile_list_view)).atPosition(0).perform(click());
+        SystemClock.sleep(1000);
         onView(withId(R.id.profileEditBoxName6)).check(matches(withHint("Crazy 8")));
         onView(withId(R.id.profileEditBoxEmail)).check(matches(withHint("ceo@google.ca")));
         onView(withId(R.id.profileEditBoxNumber)).check(matches(withHint("4312342232")));
@@ -139,12 +146,16 @@ public class UserProfileFeatureAcceptanceTest
         onView(withId(R.id.editText_postAd_title)).perform(typeText("The conjuring"));
         onView(withId(R.id.editText_postAd_description)).perform(typeText("Book for sale!"));
         pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.editText_postAd_price)).perform(typeText("10.0"));
         pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.button_post_ad)).perform(click());
         pressBack();
+        SystemClock.sleep(1000);
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
         onData(anything()).inAdapterView(withId(R.id.profile_list_view)).atPosition(1).perform(click());
+        SystemClock.sleep(1000);
         onView(withText("The conjuring")).perform(click());
         onView(withId(R.id.textView_viewAdCU_title)).check(matches(withText("The conjuring")));
         onView(withId(R.id.textView_viewAdCU_description)).check(matches(withText("Book for sale!")));
