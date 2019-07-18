@@ -1,10 +1,10 @@
 package com.simplisell;
 
-import com.simplisell.allAcceptanecTests.AdPostingFeatureAcceptanceTest;
-import com.simplisell.allAcceptanecTests.AdminAndReportFeaturesAcceptanceTest;
-import com.simplisell.allAcceptanecTests.LoginFeatureAcceptanceTest;
-import com.simplisell.allAcceptanecTests.SearchFeatureAcceptanceTest;
-import com.simplisell.allAcceptanecTests.UserProfileFeatureAcceptanceTest;
+import com.simplisell.acceptancetests.AdPostingFeatureAcceptanceTest;
+import com.simplisell.acceptancetests.AdminAndReportFeaturesAcceptanceTest;
+import com.simplisell.acceptancetests.LoginFeatureAcceptanceTest;
+import com.simplisell.acceptancetests.SearchFeatureAcceptanceTest;
+import com.simplisell.acceptancetests.UserProfileFeatureAcceptanceTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

@@ -1,4 +1,4 @@
-package com.simplisell.allAcceptanecTests;
+package com.simplisell.acceptancetests;
 
 
 import android.os.SystemClock;
@@ -14,7 +14,6 @@ import com.simplisell.persistence.hsqldb.PersistenceException;
 import com.simplisell.presentation.SplashScreen;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
