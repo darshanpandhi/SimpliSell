@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
         accessAds = new AccessAds();
         accessAds.removeExpiredAds();
+        accessAds = new AccessAds();       //   Call another time to update all ads
 
         getCurrentUserName();
         initializeTabFragments();

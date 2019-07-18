@@ -148,20 +148,19 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: get ad");
     }
 
-    @Test (expected = PersistenceException.class)
+    @Test
     public void testRemoveAd()
     {
         System.out.println("\nStarting AccessAdsTestIT:  ad");
-        int adId = 1;
-        Ad removedAd = accessAds.getAd(adId);
+        int adId = 100;
+        Ad removedAd = accessAds.insertAd(new Ad(adId, "test", AdType.OFFERING, Category.ELECTRONICS,
+                "test", "test", 1, null, 0));
         assertNotNull(removedAd);
         assertEquals(adId, removedAd.getAdId());
 
         removedAd = accessAds.removeAd(removedAd);
 
         assertEquals(adId, removedAd.getAdId());
-        Ad checkAd = accessAds.getAd(1);        // Should throw an exception since you ad does not exist
-        System.out.println("Finished AccessAdsTestIT: remove ad");
     }
 
     @Test(expected = NullPointerException.class)
@@ -387,7 +386,7 @@ public class AccessAdsIT {
 
         Date oldDate = new Date(c.getTimeInMillis());
 
-        //Set 3 ads to expire
+        //Set 2 ads to expire
         accessAds.setExpiryDate(0, oldDate);
         accessAds.setExpiryDate(1, oldDate);
 
