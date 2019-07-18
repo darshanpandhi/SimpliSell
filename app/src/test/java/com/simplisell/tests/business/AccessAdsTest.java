@@ -147,7 +147,7 @@ public class AccessAdsTest
         System.out.println("Finished AccessAdsTest: get deleted ad");
     }
 
-    @Test 
+    @Test
     public void testRemoveAd()
     {
         System.out.println("\nStarting AccessAdsTest: remove ad");
