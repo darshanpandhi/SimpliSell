@@ -73,9 +73,9 @@ public class SearchFeatureAcceptanceTest
 
         // test filtering by type
         onView(withId(R.id.textView_mainActivity_adType)).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("OFFERING")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("OK")).perform(click());
         SystemClock.sleep(500);
         onView(withId(R.id.view_pager_mainActivity)).perform(swipeLeft());
@@ -104,9 +104,9 @@ public class SearchFeatureAcceptanceTest
         SystemClock.sleep(500);
 
         onView(withId(R.id.textView_mainActivity_adType)).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("WANTED")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("OK")).perform(click());
         SystemClock.sleep(500);
         onView(allOf(withText("Wanted Tutoring Services"), isDisplayed())).check(matches(isDisplayed()));
@@ -133,9 +133,9 @@ public class SearchFeatureAcceptanceTest
         SystemClock.sleep(500);
 
         onView(withId(R.id.textView_mainActivity_adType)).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("All Types")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("OK")).perform(click());
         SystemClock.sleep(500);
 
@@ -169,9 +169,9 @@ public class SearchFeatureAcceptanceTest
         // combined search test
         SystemClock.sleep(1000);
         onView(withId(R.id.textView_mainActivity_adType)).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("OFFERING")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("OK")).perform(click());
         SystemClock.sleep(500);
 
@@ -192,9 +192,9 @@ public class SearchFeatureAcceptanceTest
         SystemClock.sleep(1000);
 
         onView(withId(R.id.textView_mainActivity_adType)).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("All Types")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(500);
         onView(withText("OK")).perform(click());
         SystemClock.sleep(500);
     }

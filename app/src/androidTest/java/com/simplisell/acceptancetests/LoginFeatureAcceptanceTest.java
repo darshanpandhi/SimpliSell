@@ -279,7 +279,7 @@ public class LoginFeatureAcceptanceTest
 
 
 
-        // Test correct credintals
+        // Test correct credentials
         onView(withId(R.id.editText_login_enterPassword)).perform(clearText());
         onView(withId(R.id.editText_login_enterPassword)).perform(typeText("1111111111"));
         onView(withId(R.id.button_login_loginButton)).perform(click());

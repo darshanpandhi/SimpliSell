@@ -55,6 +55,7 @@ public class AdPostingFeatureAcceptanceTest
     public void logout()
     {
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
+        SystemClock.sleep(1500);
         onView(withText("Logout")).perform(click());
     }
 
@@ -65,17 +66,17 @@ public class AdPostingFeatureAcceptanceTest
         // Bob tries to post an ad
         onView(withId(R.id.button_mainActivity_postAnAd)).perform(click());
         onView(withId(R.id.textView_postAd_adType)).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1500);
         onView(withText("OFFERING")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1500);
         onView(withText("OK")).perform(click());
         pressBack();
         onView(withId(R.id.button_post_ad)).perform(click());
         SystemClock.sleep(1500);
         onView(withId(R.id.textView_postAd_category)).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1500);
         onView(withText("BOOKS")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1500);
         onView(withText("OK")).perform(click());
         onView(withId(R.id.button_post_ad)).perform(click());
         SystemClock.sleep(1500);
@@ -104,12 +105,12 @@ public class AdPostingFeatureAcceptanceTest
         // edit category
         onView(withId(R.id.textView_editAd_category)).perform(click());
         onView(withText("ELECTRONICS")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1500);
         onView(withText("OK")).perform(click());
         onView(withId((R.id.textView_editAd_category))).check(matches(withText("ELECTRONICS")));
         onView(withId(R.id.textView_editAd_category)).perform(click());
         onView(withText("BOOKS")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1500);
         onView(withText("OK")).perform(click());
 
         // edit title
@@ -128,12 +129,15 @@ public class AdPostingFeatureAcceptanceTest
 
         // update ad
         onView(withId(R.id.button_editAd_save)).perform(click());
+        SystemClock.sleep(1500);
 
         pressBack();
 
         // check if ad is updated correctly
         onView(withId(R.id.view_pager_mainActivity)).perform(swipeUp());
         onView(allOf(withText("MATH1500 And MATH1700 Textbooks"), isDisplayed())).perform(click());
+        SystemClock.sleep(1500);
+
         onView(withId(R.id.textView_viewAdCU_title)).check(matches(withText("MATH1500 And MATH1700 Textbooks")));
         onView(withId(R.id.textView_viewAdCU_description)).check(matches(withText("Selling my MATH1500 and MATH1700 " +
                 "textbooks.")));

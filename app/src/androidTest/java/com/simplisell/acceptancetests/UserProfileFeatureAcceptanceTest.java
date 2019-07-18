@@ -123,18 +123,18 @@ public class UserProfileFeatureAcceptanceTest
 
         // Test view users own ads from profile.
         onData(anything()).inAdapterView(withId(R.id.profile_list_view)).atPosition(1).perform(click());
-        SystemClock.sleep(500);
+        SystemClock.sleep(1000);
         pressBack();
         onData(anything()).inAdapterView(withId(R.id.profile_list_view)).atPosition(2).perform(click());
         onView(withId(R.id.textView_postAd_adType)).perform(click());
-        SystemClock.sleep(100);
+        SystemClock.sleep(1000);
         onView(withText("OFFERING")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1000);
         onView(withText("OK")).perform(click());
         onView(withId(R.id.textView_postAd_category)).perform(click());
-        SystemClock.sleep(100);
+        SystemClock.sleep(1000);
         onView(withText("BOOKS")).perform(click());
-        SystemClock.sleep(200);
+        SystemClock.sleep(1000);
         onView(withText("OK")).perform(click());
         onView(withId(R.id.editText_postAd_title)).perform(typeText("The conjuring"));
         onView(withId(R.id.editText_postAd_description)).perform(typeText("Book for sale!"));
@@ -150,6 +150,7 @@ public class UserProfileFeatureAcceptanceTest
         onView(withId(R.id.textView_viewAdCU_description)).check(matches(withText("Book for sale!")));
         onView(withId(R.id.button_viewAdCU_delete)).perform(click());
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
+        SystemClock.sleep(1000);
         onView(withText("Logout")).perform(click());
     }
 }
