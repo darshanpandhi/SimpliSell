@@ -410,6 +410,56 @@ public class AccessAdsTest
 
 
     @Test
+    public final void testSetExpiryDate()
+    {
+        System.out.println("\nStarting AccessAdsTest: Set Expiry Date");
+
+        final int TEST_AD_ID = 0;
+
+        // create a new ad (to be reported)
+        when(adPersistence.getNewAdId()).thenReturn(TEST_AD_ID);
+        final Ad ad = new Ad(accessAdsMock.getNewAdId(), "testOwner", AdType.WANTED, Category.OTHERS,
+                "testTitle", "testDescription", 45, null, 0);
+
+        // insert Ad
+        when(adPersistence.insertAd(ad)).thenReturn(ad);
+        accessAdsMock.insertAd(ad);
+
+        // retrieve the ad
+        when(adPersistence.getAd(TEST_AD_ID)).thenReturn(ad);
+
+        // new Date
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -30);
+
+        final Date newDate =  new Date(c.getTimeInMillis());
+
+        doAnswer(new Answer()
+        {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable
+            {
+                Object[] args = invocation.getArguments();
+                Ad ad = accessAdsMock.getAd((int) args[0]);
+                ad.setExpiryDate(newDate);
+
+                return null;
+            }
+        }).when(adPersistence).changeExpiryDate(TEST_AD_ID, newDate);
+
+        accessAdsMock.setExpiryDate(TEST_AD_ID, newDate);
+
+        assertEquals("Expiry date hasn't been updated", newDate, ad.getExpiryDate());
+
+        verify(adPersistence).getNewAdId();
+        verify(adPersistence).insertAd(ad);
+        verify(adPersistence).getAd(TEST_AD_ID);
+        verify(adPersistence).changeExpiryDate(TEST_AD_ID, newDate);
+
+        System.out.println("\nFinished AccessAdsTest: Set Expiry Date");
+    }
+
+    @Test
     public final void testReportAd()
     {
         System.out.println("\nStarting AccessAdsTest: report Ad");
