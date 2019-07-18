@@ -19,7 +19,10 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 *   ProfileInformation
 *   UserProfileMenu
 *   ProfileListViewAdapter
+*   
 
+**UserAdminActivity**
+*   ReportedAds
 
 **HomePageTabs**
 
@@ -51,9 +54,13 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 
 *   Insert, and get users from the database
 
-**Credentials**
+**UserCredentials**
 
-*   Authenticate users, and validates that a password meets the password standard
+*   Authenticate users.
+ 
+**ValidPasswordChecker**
+
+*   Validates if password meets the required standard
 
 ##  Persistence Layer
 *   Information is stored and retrived from a database or file system
