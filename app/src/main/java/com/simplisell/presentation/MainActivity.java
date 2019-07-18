@@ -140,14 +140,16 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
     private void getCurrentUserName()
     {
-        Intent intentThatStartedThisActivity = getIntent();
-
-        if (intentThatStartedThisActivity.hasExtra(USERNAME_TEXT))
+        if(userName == null)
         {
 
-            userName = intentThatStartedThisActivity.getStringExtra(USERNAME_TEXT);
+            Intent intentThatStartedThisActivity = getIntent();
 
+            if (intentThatStartedThisActivity.hasExtra(USERNAME_TEXT))
+            {
 
+                userName = intentThatStartedThisActivity.getStringExtra(USERNAME_TEXT);
+            }
         }
     }
 
