@@ -100,7 +100,7 @@ public final class AccessAds
 
     public final List<Ad> getReportedAds()
     {
-        return adPersistence.getreportedAds();
+        return adPersistence.getReportedAds();
     }
 
 
@@ -182,8 +182,11 @@ public final class AccessAds
         {
             adPersistence.removeAd(getAd(x));
         }
+    }
 
-
+    public void setExpiryDate(int adId, Date newDate)
+    {
+        adPersistence.changeExpiryDate(adId, newDate);
     }
 
 

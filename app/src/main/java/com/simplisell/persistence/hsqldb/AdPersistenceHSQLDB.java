@@ -154,7 +154,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
     }
 
     @Override
-    public List<Ad> getreportedAds()
+    public List<Ad> getReportedAds()
     {
         List<Ad> reportedAdList = new ArrayList<>();
         List<Ad> allAdList = getAds();
@@ -209,6 +209,23 @@ public class AdPersistenceHSQLDB implements AdPersistence
             throw new PersistenceException(e);
         }
     }
+
+    @Override
+    public final void changeExpiryDate(final int adId, Date newDate)
+    {
+        try (final Connection c = connection())
+        {
+            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET EXPIRYDATE = ? WHERE ADID = ?");
+            st.setDate(1, newDate);
+            st.setInt(2, adId);
+            st.executeUpdate();
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
 
     public final void reportAd(final int adID)
     {

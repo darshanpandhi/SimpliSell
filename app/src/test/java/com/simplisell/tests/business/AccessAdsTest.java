@@ -17,7 +17,7 @@ import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.business.AccessAds;
 import com.simplisell.tests.persistence.AdPersistenceStub;
-import org.mockito.ArgumentCaptor;
+
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -339,7 +339,20 @@ public class AccessAdsTest
         System.out.println("Finished AccessAdsTest: remove expired ads");
     }
 
+    @Test
+    public void testChangeExpiryDate()
+    {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -30);
 
+        Date oldDate = new Date(c.getTimeInMillis());
+
+        System.out.println("\nStarting AccessAdsTest: change expiry date");
+        accessAdsStub.setExpiryDate(0, oldDate);
+        assertEquals(accessAdsStub.getAd(0).getExpiryDate(), oldDate);
+        System.out.println("Finished AccessAdsTest: change expiry date");
+
+    }
     @Test
     public void testRepostAd()
     {
@@ -514,7 +527,7 @@ public class AccessAdsTest
         reportedAdsList.add(newAd2);
         reportedAdsList.add(newAd3);
 
-        when(adPersistence.getreportedAds()).thenReturn(reportedAdsList);
+        when(adPersistence.getReportedAds()).thenReturn(reportedAdsList);
 
 
         assertEquals("Reported Ads List is not the same as expected", reportedAdsList, accessAdsMock.getReportedAds());
@@ -529,7 +542,7 @@ public class AccessAdsTest
         // 2 (out of 3) ads are reported
         verify(adPersistence, times(2)).reportAd(any(Integer.class));
 
-        verify(adPersistence).getreportedAds();
+        verify(adPersistence).getReportedAds();
 
         System.out.println("\nFinished AccessAdsTest: get reported Ads");
     }

@@ -11,6 +11,7 @@ import com.simplisell.tests.utils.TestUtils;
 
 import junit.framework.TestCase;
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,11 +32,12 @@ import static org.junit.Assert.assertTrue;
 public class AccessAdsIT {
     private AccessAds accessAds ;
     private File tempDB;
+    private AdPersistence adPersistence;
 
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
-        AdPersistence adPersistence = new AdPersistenceHSQLDB(tempDB.getAbsolutePath().replace(".script", ""));
+        adPersistence = new AdPersistenceHSQLDB(tempDB.getAbsolutePath().replace(".script", ""));
         accessAds = new AccessAds(adPersistence);
     }
 
@@ -124,7 +126,7 @@ public class AccessAdsIT {
     @Test (expected = PersistenceException.class)
     public void testRemoveAd()
     {
-        System.out.println("\nStarting AccessAdsTestIT: remove ad");
+        System.out.println("\nStarting AccessAdsTestIT:  ad");
         int adId = 1;
         Ad removedAd = accessAds.getAd(adId);
         assertNotNull(removedAd);
@@ -338,6 +340,30 @@ public class AccessAdsIT {
 
 
         System.out.println("Finished AccessAdsTest: filter ads by ad type");
+    }
+
+    @Test
+    public void testRemoveExpiredAds()
+    {
+        System.out.println("\nStarting AccessAdsTest: remove expired ads");
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -30);
+
+        Date oldDate = new Date(c.getTimeInMillis());
+
+        //Set 3 ads to expire
+        accessAds.setExpiryDate(0, oldDate);
+        accessAds.setExpiryDate(1, oldDate);
+
+        int sizeBefore = accessAds.getAllAds().size();
+        accessAds.removeExpiredAds();
+        accessAds = new AccessAds(adPersistence);
+        int sizeAfter = accessAds.getAllAds().size();
+
+        assertTrue(sizeBefore == sizeAfter + 2);
+
+        System.out.println("Finished AccessAdsTest: remove expired ads");
     }
 
 

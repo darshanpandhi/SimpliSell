@@ -171,7 +171,7 @@ public class AdPersistenceStub implements AdPersistence
 
 
     @Override
-    public List<Ad> getreportedAds()
+    public List<Ad> getReportedAds()
     {
         List<Ad> reportedAdList = new ArrayList<>();
 
@@ -182,6 +182,13 @@ public class AdPersistenceStub implements AdPersistence
         }
 
         return reportedAdList;
+    }
+
+    @Override
+    public void changeExpiryDate(final int adId, Date newDate)
+    {
+        Ad ad = getAd(adId);
+        ad.setExpiryDate(newDate);
     }
 
 
