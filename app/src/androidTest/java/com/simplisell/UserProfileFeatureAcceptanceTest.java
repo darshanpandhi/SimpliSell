@@ -59,12 +59,6 @@ public class UserProfileFeatureAcceptanceTest
     @After
     public void cleanUp()
     {
-
-
-
-
-
-
         try
         {
             userPersistence.deleteUser("Bob2");

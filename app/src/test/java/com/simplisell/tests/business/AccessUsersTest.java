@@ -98,4 +98,16 @@ public class AccessUsersTest
         System.out.println("Finished insertNewUser: profile information updated");
     }
 
+    @Test
+    public void testRemoveUser()
+    {
+        System.out.println("\nStarting AccessUsersTest: test removeUser");
+        User user = new User("Jay Mat","RemoveThisUser", "123456", "What is your favourite " +
+                "color", "Red", null, null, false);
+        userList.insertNewUser(user);
+        assertNotNull("User not inserted", userList.getUser("RemoveThisUser"));
+        userList.deleteUser("RemoveThisUser");
+        assertNull("User not deleted", userList.getUser("RemoveThisUser"));
+        System.out.println("Finished AccessUsersTest: test removeUser");
+    }
 }

@@ -6,6 +6,8 @@ import com.simplisell.persistence.UserPersistence;
 import com.simplisell.persistence.hsqldb.UserPersistenceHSQLDB;
 import com.simplisell.tests.utils.TestUtils;
 
+import junit.framework.TestCase;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
+import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -84,6 +87,19 @@ public class AccessUsersIT {
         assertEquals("What is your favourite color?", user.getSecurityQuestion());
         assertEquals(newSecurityAnswer, user.getSecurityAnswer());
         System.out.println("Finished AccessUsersIT: testUpdateProfileInformation");
+    }
+
+    @Test
+    public void testRemoveUser()
+    {
+        System.out.println("\nStarting AccessUsersTest: test removeUser");
+        User user = new User("Jay Mat","RemoveThisUser", "123456", "What is your favourite " +
+                "color", "Red", null, null, false);
+        accessUsers.insertNewUser(user);
+        TestCase.assertNotNull("User not inserted", accessUsers.getUser("RemoveThisUser"));
+        accessUsers.deleteUser("RemoveThisUser");
+        assertNull("User not deleted", accessUsers.getUser("RemoveThisUser"));
+        System.out.println("Finished AccessUsersTest: test removeUser");
     }
 
     @After

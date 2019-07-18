@@ -71,4 +71,9 @@ public class AccessUsers
         userPersistence.updateProfileInformation(userName, newFullName, newEmail, newPhoneNumber, newSecurityQuestion
                 , newSecurityAnswer);
     }
+
+    public void deleteUser(String userName)
+    {
+        userPersistence.deleteUser(userName);
+    }
 }

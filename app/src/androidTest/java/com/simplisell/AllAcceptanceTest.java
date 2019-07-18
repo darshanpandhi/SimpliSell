@@ -10,7 +10,6 @@ import org.junit.runners.Suite;
             UserProfileFeatureAcceptanceTest.class,
             AdPostingFeatureAcceptanceTest.class,
             SearchFeatureAcceptanceTest.class
-
     })
 
     public class AllAcceptanceTest
