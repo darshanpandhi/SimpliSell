@@ -1,6 +1,5 @@
 package com.simplisell.acceptancetests;
 
-
 import android.os.SystemClock;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
@@ -36,6 +35,7 @@ public class AdminAndReportFeaturesAcceptanceTest
 
     @Rule
     public ActivityTestRule<SplashScreen> activityRule = new ActivityTestRule<>(SplashScreen.class);
+
 
     @Test
     public void adminReportTest()

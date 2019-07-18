@@ -1,6 +1,5 @@
 package com.simplisell.acceptancetests;
 
-
 import android.os.SystemClock;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
@@ -29,10 +28,12 @@ import static org.hamcrest.CoreMatchers.is;
 @RunWith(AndroidJUnit4.class)
 
 @LargeTest
-public class SearchFeatureAcceptanceTest {
+public class SearchFeatureAcceptanceTest
+{
 
     @Rule
     public ActivityTestRule<SplashScreen> activityRule = new ActivityTestRule<>(SplashScreen.class);
+
 
     @Test
     public void searchFeatureTest()

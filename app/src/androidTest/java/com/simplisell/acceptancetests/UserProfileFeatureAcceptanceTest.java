@@ -1,6 +1,5 @@
 package com.simplisell.acceptancetests;
 
-
 import android.os.SystemClock;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
@@ -43,9 +42,9 @@ public class UserProfileFeatureAcceptanceTest
     private UserPersistence userPersistence;
     private AdPersistence adPersistence;
 
-
     @Rule
     public ActivityTestRule<SplashScreen> activityRule = new ActivityTestRule<>(SplashScreen.class);
+
 
     @Before
     public void setupDatabase()
@@ -53,8 +52,8 @@ public class UserProfileFeatureAcceptanceTest
 
         userPersistence = Services.getUserPersistence();
 
-        userPersistence.insertUser(new User("","Bob2","1111111111","Whats your mothers maiden name?","No Idea",null,null,false));
-
+        userPersistence.insertUser(new User("", "Bob2", "1111111111", "Whats your mothers maiden name?", "No Idea",
+                null, null, false));
     }
 
 
@@ -70,7 +69,6 @@ public class UserProfileFeatureAcceptanceTest
             System.out.println("Failed to delete \'Bob2\' from the users because the user didn't register");
         }
     }
-
 
 
     @Test
@@ -153,8 +151,5 @@ public class UserProfileFeatureAcceptanceTest
         onView(withId(R.id.button_viewAdCU_delete)).perform(click());
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
         onView(withText("Logout")).perform(click());
-
-
     }
-
 }

@@ -11,7 +11,8 @@ public class ValidPasswordCheckerTest
     @Test
     public void testValidPasswordLength()
     {
-        System.out.println("\nStarting testValidPassword: password has length greater than or equal to 6 and less than or equal to 12");
+        System.out.println("\nStarting testValidPassword: password has length greater than or equal to 6 and less " +
+                "than or equal to 12");
 
         String password = "123456";
         boolean isValid = ValidPasswordChecker.validPassword(password);
@@ -21,8 +22,10 @@ public class ValidPasswordCheckerTest
 
         assertTrue(isValid);
 
-        System.out.println("Finished testValidPassword: password has length greater than or equal to 6 and less than or equal to 12");
+        System.out.println("Finished testValidPassword: password has length greater than or equal to 6 and less than " +
+                "or equal to 12");
     }
+
 
     @Test
     public void testValidPasswordLowerCaseLetters()
@@ -37,6 +40,7 @@ public class ValidPasswordCheckerTest
         System.out.println("Finished testValidPassword: password has lowercase letters");
     }
 
+
     @Test
     public void testValidPasswordUpperCaseLetters()
     {
@@ -49,6 +53,7 @@ public class ValidPasswordCheckerTest
 
         System.out.println("Finished testValidPassword: password has uppsercase letters");
     }
+
 
     @Test
     public void testValidPasswordNumbers()
@@ -63,6 +68,7 @@ public class ValidPasswordCheckerTest
         System.out.println("Finished testValidPassword: password has number");
     }
 
+
     @Test
     public void testValidPasswordLettersAndNumMix()
     {
@@ -75,6 +81,7 @@ public class ValidPasswordCheckerTest
 
         System.out.println("Finished testValidPassword: password has letters and numbers");
     }
+
 
     @Test
     public void testInvalidPasswordLength()
@@ -91,6 +98,7 @@ public class ValidPasswordCheckerTest
 
         System.out.println("Finished testValidPassword: password has length less than 6 or greater than to 12");
     }
+
 
     @Test
     public void testInvalidPasswordCharacters()

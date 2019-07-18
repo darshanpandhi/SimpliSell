@@ -20,17 +20,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-
-public class AccessUsersIT {
-    private AccessUsers accessUsers ;
+public class AccessUsersIT
+{
+    private AccessUsers accessUsers;
     private File tempDB;
 
+
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws IOException
+    {
         this.tempDB = TestUtils.copyDB();
         UserPersistence userPersistence = new UserPersistenceHSQLDB(tempDB.getAbsolutePath().replace(".script", ""));
         accessUsers = new AccessUsers(userPersistence);
     }
+
 
     @Test
     public void testGetUser()
@@ -45,16 +48,19 @@ public class AccessUsersIT {
         System.out.println("Finished AccessUsersIT: testGetUser");
     }
 
+
     @Test
     public void testInsertUser()
     {
         System.out.println("\nStarting AccessUsersIT: testInsertUser");
-        User insertedUser = new User("fullName", "insertedUserName", "123456", "What is your favourite color?", "Red", null, null, false);
+        User insertedUser = new User("fullName", "insertedUserName", "123456", "What is your favourite color?", "Red"
+                , null, null, false);
         insertedUser = accessUsers.insertNewUser(insertedUser);
         assertNotNull(insertedUser);
         assertNotNull(accessUsers.getUser("insertedUserName"));
         System.out.println("Finished AccessUsersIT: testInsertUser");
     }
+
 
     @Test
     public void testUpdatePassword()
@@ -69,6 +75,7 @@ public class AccessUsersIT {
         System.out.println("Finished AccessUsersIT: testUpdatePassword");
     }
 
+
     @Test
     public void testUpdateProfileInformation()
     {
@@ -79,7 +86,8 @@ public class AccessUsersIT {
         String newEmail = "bob@email.com";
         String newPhoneNumber = "12345678";
         String newSecurityAnswer = "Green";
-        accessUsers.updateProfileInformation("Bob", newFullName, newEmail, newPhoneNumber, "What is your favourite color?", "Green");
+        accessUsers.updateProfileInformation("Bob", newFullName, newEmail, newPhoneNumber, "What is your favourite " +
+                "color?", "Green");
         user = accessUsers.getUser("Bob");
         assertEquals(newFullName, user.getFirstAndLastName());
         assertEquals(newEmail, user.getEmail());
@@ -89,12 +97,13 @@ public class AccessUsersIT {
         System.out.println("Finished AccessUsersIT: testUpdateProfileInformation");
     }
 
+
     @Test
     public void testRemoveUser()
     {
         System.out.println("\nStarting AccessUsersTest: test removeUser");
-        User user = new User("Jay Mat","RemoveThisUser", "123456", "What is your favourite " +
-                "color", "Red", null, null, false);
+        User user = new User("Jay Mat", "RemoveThisUser", "123456", "What is your favourite " + "color", "Red", null,
+                null, false);
         accessUsers.insertNewUser(user);
         TestCase.assertNotNull("User not inserted", accessUsers.getUser("RemoveThisUser"));
         accessUsers.deleteUser("RemoveThisUser");
@@ -102,10 +111,11 @@ public class AccessUsersIT {
         System.out.println("Finished AccessUsersTest: test removeUser");
     }
 
+
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         // reset DB
         this.tempDB.delete();
     }
-
 }

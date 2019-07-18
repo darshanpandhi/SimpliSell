@@ -17,23 +17,18 @@ public class UserPersistenceStub implements UserPersistence
 
         User newUser;
 
-        newUser = new User("Bob Marley", "Bob", "123456",
-                "What is your favourite color", "Red", null,
+        newUser = new User("Bob Marley", "Bob", "123456", "What is your favourite color", "Red", null, null, false);
+        userList.add(newUser);
+
+        newUser = new User("Allice Wonderland", "Allice", "111111", "What is your favourite color", "Green", null,
                 null, false);
         userList.add(newUser);
 
-        newUser = new User("Allice Wonderland", "Allice",
-                "111111", "What is your favourite color", "Green",
-                null, null, false);
+        newUser = new User("Jay Petr", "Jay", "222222", "What is your mother\'s maiden name?", "Elsa", null, null,
+                false);
         userList.add(newUser);
 
-        newUser = new User("Jay Petr", "Jay", "222222",
-                "What is your mother\'s maiden name?", "Elsa", null,
-                null, false);
-        userList.add(newUser);
-
-        newUser = new User("Ronak the dude","Ronak", "admin",
-                "What is your favourite color", "Black","","",true);
+        newUser = new User("Ronak the dude", "Ronak", "admin", "What is your favourite color", "Black", "", "", true);
         userList.add(newUser);
     }
 
@@ -107,17 +102,16 @@ public class UserPersistenceStub implements UserPersistence
         return requiredUser;
     }
 
+
     public void deleteUser(String userName)
     {
 
-        for(int i = 0; i<userList.size(); i++)
+        for (int i = 0; i < userList.size(); i++)
         {
-            if(userList.get(i).getUserName().equals(userName))
+            if (userList.get(i).getUserName().equals(userName))
             {
                 userList.remove(i);
             }
         }
-
     }
-
 }

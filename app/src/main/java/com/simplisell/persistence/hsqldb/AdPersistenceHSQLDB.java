@@ -19,6 +19,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
 {
     private final String dbPath;
 
+
     public AdPersistenceHSQLDB(String dbPath)
     {
         this.dbPath = dbPath;
@@ -153,16 +154,19 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
+
     @Override
     public List<Ad> getReportedAds()
     {
         List<Ad> reportedAdList = new ArrayList<>();
         List<Ad> allAdList = getAds();
 
-        for(Ad currentAd : allAdList)
+        for (Ad currentAd : allAdList)
         {
-            if(currentAd.getNumReports() > 0)
+            if (currentAd.getNumReports() > 0)
+            {
                 reportedAdList.add(currentAd);
+            }
         }
 
         return reportedAdList;
@@ -174,8 +178,8 @@ public class AdPersistenceHSQLDB implements AdPersistence
     {
         try (final Connection c = connection())
         {
-            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET CATEGORY = ?, TITLE = ?, DESCRIPTION = ?," +
-                    " PRICE = ? WHERE ADID = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE ADS SET CATEGORY = ?, TITLE = ?, DESCRIPTION = ?,"
+                    + " PRICE = ? WHERE ADID = ?");
             st.setInt(1, ad.getCategory().ordinal());
             st.setString(2, ad.getTitle());
             st.setString(3, ad.getDescription());
@@ -210,6 +214,7 @@ public class AdPersistenceHSQLDB implements AdPersistence
         }
     }
 
+
     @Override
     public final void changeExpiryDate(final int adId, Date newDate)
     {
@@ -229,7 +234,8 @@ public class AdPersistenceHSQLDB implements AdPersistence
 
     public final void reportAd(final int adID)
     {
-        try (final Connection c = connection()) {
+        try (final Connection c = connection())
+        {
             Ad ad = getAd(adID);
             ad.reportAd();
 
@@ -238,17 +244,20 @@ public class AdPersistenceHSQLDB implements AdPersistence
             st.setInt(2, adID);
             st.executeUpdate();
         }
-        catch (final SQLException e) {
+        catch (final SQLException e)
+        {
             throw new PersistenceException(e);
         }
     }
 
+
     public final int getNewAdId()
     {
-        int currentAdId =  findMaxId();
+        int currentAdId = findMaxId();
 
         return currentAdId + 1;
     }
+
 
     private int findMaxId()
     {
@@ -257,11 +266,11 @@ public class AdPersistenceHSQLDB implements AdPersistence
 
         List<Ad> adList = getAds();
 
-        for(Ad ad : adList)
+        for (Ad ad : adList)
         {
             currAdId = ad.getAdId();
 
-            if(currAdId > maxId)
+            if (currAdId > maxId)
             {
                 maxId = currAdId;
             }

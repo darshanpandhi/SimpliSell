@@ -109,10 +109,12 @@ public final class Ad
         this.expiryDate = date;
     }
 
+
     public int getNumReports()
     {
         return numReports;
     }
+
 
     public void reportAd()
     {

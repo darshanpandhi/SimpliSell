@@ -33,6 +33,7 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
     private AccessAds accessAds = new AccessAds();    // helps with accessing ads
     private AccessUsers accessUsers = new AccessUsers();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -108,5 +109,4 @@ public class ViewAdOfCurrentUser extends AppCompatActivity
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
 }

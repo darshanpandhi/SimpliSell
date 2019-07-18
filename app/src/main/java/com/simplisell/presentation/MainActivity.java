@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
     private AccessAds accessAds;             // helps  access ads
 
-
     private TabFragment tabFragmentAllObj;
     private TabFragment tabFragmentBooksObj;
     private TabFragment tabFragmentTransportationObj;
@@ -140,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
 
     private void getCurrentUserName()
     {
-        if(userName == null)
+        if (userName == null)
         {
 
             Intent intentThatStartedThisActivity = getIntent();
@@ -278,11 +277,13 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         }
     }
 
+
     private void removeExpiredAds()
     {
         accessAds.removeExpiredAds();
         accessAds = new AccessAds();       //   Call another time since removeExpired
     }
+
 
     public static void logout()
     {

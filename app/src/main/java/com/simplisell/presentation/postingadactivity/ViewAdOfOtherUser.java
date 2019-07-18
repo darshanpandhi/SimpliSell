@@ -63,16 +63,17 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         displayContactInformation();
     }
 
+
     public void reportAdBtnClick(View view)
     {
         accessAds.reportAd(currAd.getAdId());
-        Toast.makeText(getApplicationContext(), "Advertisement Reported",
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Advertisement Reported", Toast.LENGTH_SHORT).show();
 
         // go back to main page after deletion
         Intent mainPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainPage);
     }
+
 
     public void displayContactInformation()
     {
@@ -100,7 +101,5 @@ public class ViewAdOfOtherUser extends AppCompatActivity
         textViewFullName.setText("Ad Owner: " + fullName);
         textViewEmail.setText("Email: " + email);
         textViewPhoneNumber.setText("Phone Number: " + phoneNumber);
-
     }
-
 }

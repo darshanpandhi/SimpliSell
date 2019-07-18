@@ -4,6 +4,7 @@ import com.simplisell.objects.AdType;
 import com.simplisell.objects.Category;
 import com.simplisell.persistence.AdPersistence;
 import com.simplisell.objects.Ad;
+
 import java.sql.Date;
 
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class AdPersistenceStub implements AdPersistence
         ads.add(newAd);
     }
 
+
     @Override
     public List<Ad> getAds()
     {
@@ -130,6 +132,7 @@ public class AdPersistenceStub implements AdPersistence
         return insertedAd;
     }
 
+
     @Override
     public final Ad removeAd(final Ad adToBeRemoved)
     {
@@ -145,6 +148,7 @@ public class AdPersistenceStub implements AdPersistence
         return removedAd;
     }
 
+
     @Override
     public final void updateAd(Ad newAd)
     {
@@ -155,12 +159,14 @@ public class AdPersistenceStub implements AdPersistence
         ad.setPrice(newAd.getPrice());
     }
 
+
     @Override
     public void repostAd(final int adID)
     {
         Ad repostedAd = getAd(adID);
         repostedAd.resetExpiryDate();
     }
+
 
     @Override
     public final void reportAd(int adId)
@@ -175,14 +181,17 @@ public class AdPersistenceStub implements AdPersistence
     {
         List<Ad> reportedAdList = new ArrayList<>();
 
-        for(Ad currentAd : ads)
+        for (Ad currentAd : ads)
         {
-            if(currentAd.getNumReports() > 0)
+            if (currentAd.getNumReports() > 0)
+            {
                 reportedAdList.add(currentAd);
+            }
         }
 
         return reportedAdList;
     }
+
 
     @Override
     public void changeExpiryDate(final int adId, Date newDate)
@@ -194,21 +203,22 @@ public class AdPersistenceStub implements AdPersistence
 
     public final int getNewAdId()
     {
-        int currentAdId =  findMaxId();
+        int currentAdId = findMaxId();
 
         return currentAdId + 1;
     }
+
 
     private int findMaxId()
     {
         int maxId = -1;
         int currAdId;
 
-        for(Ad ad : ads)
+        for (Ad ad : ads)
         {
             currAdId = ad.getAdId();
 
-            if(currAdId > maxId)
+            if (currAdId > maxId)
             {
                 maxId = currAdId;
             }

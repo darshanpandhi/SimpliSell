@@ -5,6 +5,7 @@ import com.simplisell.tests.persistence.AdPersistenceStub;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -17,11 +18,13 @@ public class AdTest
 {
     private AdPersistenceStub adStub;
 
+
     @Before
     public final void setup()
     {
         adStub = new AdPersistenceStub();
     }
+
 
     @Test
     public void testNewAd()
@@ -30,8 +33,7 @@ public class AdTest
 
         System.out.println("\nStarting testAd");
 
-        newAd = new Ad(adStub.getNewAdId(), "AdOwner1", null, null, null,
-                null, 0, null, 0);
+        newAd = new Ad(adStub.getNewAdId(), "AdOwner1", null, null, null, null, 0, null, 0);
         newAd.setCategory(Category.ACCOMMODATION);
         newAd.setTitle("Roommate required");
         newAd.setDescription("Roommate Ad Description");
@@ -49,6 +51,7 @@ public class AdTest
 
         System.out.println("Finished testAd");
     }
+
 
     @After
     public final void teardown()

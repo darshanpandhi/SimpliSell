@@ -1,6 +1,5 @@
 package com.simplisell.acceptancetests;
 
-
 import android.os.SystemClock;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
@@ -38,9 +37,9 @@ public class LoginFeatureAcceptanceTest
 
     private UserPersistence userPersistence;
 
-
     @Rule
     public ActivityTestRule<SplashScreen> activityRule = new ActivityTestRule<>(SplashScreen.class);
+
 
     @After
     public void cleanUp()
@@ -57,7 +56,6 @@ public class LoginFeatureAcceptanceTest
             System.out.println("Failed to delete \'Bob2\' from the users because the user didnt register");
         }
     }
-
 
 
     @Test
@@ -290,10 +288,5 @@ public class LoginFeatureAcceptanceTest
         onView(withId(R.id.profileEditBoxName6)).check(matches(withHint("Bob the dude")));
         pressBack();
         onView(withText("Logout")).perform(click());
-
-
-
-
     }
-
 }

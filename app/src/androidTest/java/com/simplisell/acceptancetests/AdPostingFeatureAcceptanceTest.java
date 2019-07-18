@@ -1,6 +1,5 @@
 package com.simplisell.acceptancetests;
 
-
 import android.os.SystemClock;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
@@ -15,7 +14,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
@@ -33,11 +31,12 @@ import static org.hamcrest.CoreMatchers.allOf;
 @RunWith(AndroidJUnit4.class)
 
 @LargeTest
-public class AdPostingFeatureAcceptanceTest {
-
+public class AdPostingFeatureAcceptanceTest
+{
 
     @Rule
     public ActivityTestRule<SplashScreen> activityRule = new ActivityTestRule<>(SplashScreen.class);
+
 
     @Before
     public void login()
@@ -51,12 +50,14 @@ public class AdPostingFeatureAcceptanceTest {
         SystemClock.sleep(1000);
     }
 
+
     @After
     public void logout()
     {
         onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
         onView(withText("Logout")).perform(click());
     }
+
 
     @Test
     public void postAdTest()
@@ -116,7 +117,8 @@ public class AdPostingFeatureAcceptanceTest {
 
         // edit description
         onView(withId(R.id.editText_editAd_description)).perform(clearText());
-        onView(withId(R.id.editText_editAd_description)).perform(typeText("Selling my MATH1500 and MATH1700 textbooks."));
+        onView(withId(R.id.editText_editAd_description)).perform(typeText("Selling my MATH1500 and MATH1700 textbooks" +
+                "."));
         pressBack();
 
         // edit price
@@ -133,7 +135,8 @@ public class AdPostingFeatureAcceptanceTest {
         onView(withId(R.id.view_pager_mainActivity)).perform(swipeUp());
         onView(allOf(withText("MATH1500 And MATH1700 Textbooks"), isDisplayed())).perform(click());
         onView(withId(R.id.textView_viewAdCU_title)).check(matches(withText("MATH1500 And MATH1700 Textbooks")));
-        onView(withId(R.id.textView_viewAdCU_description)).check(matches(withText("Selling my MATH1500 and MATH1700 textbooks.")));
+        onView(withId(R.id.textView_viewAdCU_description)).check(matches(withText("Selling my MATH1500 and MATH1700 " +
+                "textbooks.")));
         onView(withId(R.id.textView_viewAdCU_price)).check(matches(withText("$100.0")));
 
 

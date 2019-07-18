@@ -28,18 +28,21 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-
-public class AccessAdsIT {
-    private AccessAds accessAds ;
+public class AccessAdsIT
+{
+    private AccessAds accessAds;
     private File tempDB;
     private AdPersistence adPersistence;
 
+
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws IOException
+    {
         this.tempDB = TestUtils.copyDB();
         adPersistence = new AdPersistenceHSQLDB(tempDB.getAbsolutePath().replace(".script", ""));
         accessAds = new AccessAds(adPersistence);
     }
+
 
     @Test
     public final void testInsertUniqueAd()
@@ -73,7 +76,8 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: insert unique ad");
     }
 
-    @Test (expected = PersistenceException.class)
+
+    @Test(expected = PersistenceException.class)
     public final void testInsertDuplicateAd()
     {
         System.out.println("\nStarting AccessAdsTestIT: insert duplicate ad");
@@ -88,8 +92,7 @@ public class AccessAdsIT {
         Date expiryDate = null;
         int numReports = 0;
 
-        Ad ad = new Ad(adId, userName, adType, category, title, description, price, expiryDate,
-                numReports);
+        Ad ad = new Ad(adId, userName, adType, category, title, description, price, expiryDate, numReports);
 
         Ad insertedAd = accessAds.insertAd(ad);
         // adding the same ad again
@@ -100,7 +103,8 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: insert duplicate ad");
     }
 
-    @Test (expected = PersistenceException.class)
+
+    @Test(expected = PersistenceException.class)
     public final void testGetDeleted()
     {
         System.out.println("\nStarting AccessAdsTestIT: get deleted ad");
@@ -125,6 +129,7 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: get deleted ad");
     }
 
+
     @Test
     public void testGetAllAds()
     {
@@ -137,6 +142,7 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: get all ads");
     }
 
+
     @Test
     public void testGetAd()
     {
@@ -148,13 +154,14 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: get ad");
     }
 
+
     @Test
     public void testRemoveAd()
     {
         System.out.println("\nStarting AccessAdsTestIT:  ad");
         int adId = 100;
-        Ad removedAd = accessAds.insertAd(new Ad(adId, "test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1, null, 0));
+        Ad removedAd = accessAds.insertAd(new Ad(adId, "test", AdType.OFFERING, Category.ELECTRONICS, "test", "test",
+                1, null, 0));
         assertNotNull(removedAd);
         assertEquals(adId, removedAd.getAdId());
 
@@ -162,6 +169,7 @@ public class AccessAdsIT {
 
         assertEquals(adId, removedAd.getAdId());
     }
+
 
     @Test(expected = NullPointerException.class)
     public final void testRemoveNull()
@@ -173,6 +181,7 @@ public class AccessAdsIT {
 
         System.out.println("Finished AccessAdsTest: remove null");
     }
+
 
     @Test
     public void testUpdateAd()
@@ -204,10 +213,11 @@ public class AccessAdsIT {
         assertEquals(oldNumReports, updateThisAd.getNumReports());
 
         assertEquals(newTitle, updateThisAd.getTitle());
-        assertEquals(newPrice, updateThisAd.getPrice(),0.001);
+        assertEquals(newPrice, updateThisAd.getPrice(), 0.001);
 
         System.out.println("Finished AccessAdsTestIT: ad updated (category and description did not change)");
     }
+
 
     @Test
     public void testRepostAd()
@@ -236,6 +246,7 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: ad reposted");
     }
 
+
     @Test
     public void testReportAd()
     {
@@ -250,19 +261,22 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: ad reported");
     }
 
+
     @Test
     public void testGetReportedAds()
     {
         System.out.println("\nStarting AccessAdsTestIT: getting reported Ads");
         List<Ad> reportedAds = accessAds.getReportedAds();
         assertNotNull(reportedAds);
-        for (int i = 0; i < reportedAds.size(); i++){
+        for (int i = 0; i < reportedAds.size(); i++)
+        {
             assertTrue(reportedAds.get(i).getNumReports() > 0);
         }
         System.out.println("\nStarting AccessAdsTestIT: reporting Ad have been received");
     }
 
-    @Test (expected = NullPointerException.class)
+
+    @Test(expected = NullPointerException.class)
     public final void testInsertNull()
     {
         System.out.println("\nStarting AccessAdsTest: insert null");
@@ -274,13 +288,14 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTest: insert null");
     }
 
+
     @Test
     public void testGetAllAdsByCategory()
     {
         System.out.println("\nStarting AccessAdsTest: get all ads by category");
 
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS, "test",
+                "test", 1, null, 0));
         List<Ad> ads = accessAds.getAllAdsByCategory(Category.ELECTRONICS);
 
         for (Ad ad : ads)
@@ -291,27 +306,29 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTest: get all ads by category");
     }
 
+
     @Test
     public void testSortPriceAsc()
     {
         System.out.println("\nStarting AccessAdsTest: sort price (ascending)");
 
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 10, null, 0));
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS,
-                "test", "test", 100, null, 0));
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1000, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS, "test",
+                "test", 10, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS, "test", "test",
+                100, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS, "test",
+                "test", 1000, null, 0));
         List<Ad> ads = accessAds.sortPriceAsc(accessAds.getAllAds());
 
-        for (int i = 0; i < ads.size()-1; i++)
+        for (int i = 0; i < ads.size() - 1; i++)
         {
-            double priceDiff = ads.get(i+1).getPrice() - ads.get(i).getPrice();
+            double priceDiff = ads.get(i + 1).getPrice() - ads.get(i).getPrice();
             TestCase.assertTrue(priceDiff >= 0);
         }
 
         System.out.println("Finished AccessAdsTest: sort price (ascending)");
     }
+
 
     @Test
     public void testSortPriceDesc()
@@ -319,16 +336,16 @@ public class AccessAdsIT {
         System.out.println("\nStarting AccessAdsTest sort price (descending)");
 
 
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 10, null, 0));
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS,
-                "test", "test", 100, null, 0));
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1000, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS, "test",
+                "test", 10, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.OTHERS, "test", "test",
+                100, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS, "test",
+                "test", 1000, null, 0));
         List<Ad> ads = accessAds.sortPriceDesc(accessAds.getAllAds());
-        for (int i = 0; i < ads.size()-1; i++)
+        for (int i = 0; i < ads.size() - 1; i++)
         {
-            double priceDiff = ads.get(i).getPrice() - ads.get(i+1).getPrice();
+            double priceDiff = ads.get(i).getPrice() - ads.get(i + 1).getPrice();
             TestCase.assertTrue(priceDiff >= 0);
         }
 
@@ -341,8 +358,8 @@ public class AccessAdsIT {
     {
         System.out.println("\nStarting AccessAdsTest: get all ads for specific user");
 
-        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS,
-                "test", "test", 1, null, 0));
+        accessAds.insertAd(new Ad(accessAds.getNewAdId(), "test", AdType.OFFERING, Category.ELECTRONICS, "test",
+                "test", 1, null, 0));
         List<Ad> ads = accessAds.getUserSpecificAds("test");
 
         for (Ad ad : ads)
@@ -352,6 +369,7 @@ public class AccessAdsIT {
 
         System.out.println("Finished AccessAdsTest: get all ads for specific user");
     }
+
 
     @Test
     public void testFilterAdsByType()
@@ -375,6 +393,7 @@ public class AccessAdsIT {
 
         System.out.println("Finished AccessAdsTest: filter ads by ad type");
     }
+
 
     @Test
     public void testRemoveExpiredAds()
@@ -402,9 +421,9 @@ public class AccessAdsIT {
 
 
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         // reset DB
         this.tempDB.delete();
     }
-
 }

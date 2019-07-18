@@ -29,8 +29,7 @@ public class UserProfileMenu extends AppCompatActivity
     private static String userName = null;
     private static ListView listView;
     private static String[] titlesNotAdmin = {"My Profile", "My Ads", "Post an Ad", "Logout"};
-    private static String[] titlesIsAdmin = {"My Profile", "My Ads","Post an Ad","Reported Ads", "Logout"};
-
+    private static String[] titlesIsAdmin = {"My Profile", "My Ads", "Post an Ad", "Reported Ads", "Logout"};
 
 
     @Override
@@ -55,14 +54,13 @@ public class UserProfileMenu extends AppCompatActivity
         ProfileListViewAdapter profileListViewAdapter = null;
 
 
-        if(user.isAdmin())  // if user is an admin
+        if (user.isAdmin())  // if user is an admin
         {
             profileListViewAdapter = new ProfileListViewAdapter(this, titlesIsAdmin);
         }
         else
         {
             profileListViewAdapter = new ProfileListViewAdapter(this, titlesNotAdmin);
-
         }
 
         listView.setAdapter(profileListViewAdapter);
@@ -80,16 +78,24 @@ public class UserProfileMenu extends AppCompatActivity
                     Intent postAd = new Intent(getApplicationContext(), ProfileInformation.class);
                     postAd.putExtra(USERNAME_TEXT, userName);
                     startActivity(postAd);
-                } else if (position == 1)
+                }
+                else
                 {
-                    Intent postAd = new Intent(getApplicationContext(), UsersOwnAds.class);
-                    postAd.putExtra(USERNAME_TEXT, userName);
-                    startActivity(postAd);
-                } else if (position == 2)
-                {
-                    Intent postAd = new Intent(getApplicationContext(), PostAd.class);
-                    postAd.putExtra(USERNAME_TEXT, userName);
-                    startActivity(postAd);
+                    if (position == 1)
+                    {
+                        Intent postAd = new Intent(getApplicationContext(), UsersOwnAds.class);
+                        postAd.putExtra(USERNAME_TEXT, userName);
+                        startActivity(postAd);
+                    }
+                    else
+                    {
+                        if (position == 2)
+                        {
+                            Intent postAd = new Intent(getApplicationContext(), PostAd.class);
+                            postAd.putExtra(USERNAME_TEXT, userName);
+                            startActivity(postAd);
+                        }
+                    }
                 }
                 if (user.isAdmin())
                 {
@@ -98,17 +104,21 @@ public class UserProfileMenu extends AppCompatActivity
                         Intent intent = new Intent(getApplicationContext(), ReportedAds.class);
                         intent.putExtra(USERNAME_TEXT, userName);
                         startActivity(intent);
-                    } else if (position == 4)
-                    {
-                        logout();
                     }
-                } else
+                    else
+                    {
+                        if (position == 4)
+                        {
+                            logout();
+                        }
+                    }
+                }
+                else
                 {
                     if (position == 3)
                     {
                         logout();
                     }
-
                 }
             }
         });

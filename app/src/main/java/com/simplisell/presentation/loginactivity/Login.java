@@ -67,11 +67,12 @@ public class Login extends AppCompatActivity
             logIn(loggedInUser);
         }
         else
-            {
-                // if authentication is not successful.
-                Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
-            }
+        {
+            // if authentication is not successful.
+            Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     private void logIn(User loggedInUser)
     {
@@ -112,10 +113,12 @@ public class Login extends AppCompatActivity
         startActivity(loginPage);
     }
 
+
     public static boolean isLoggedIn()
     {
         return isLoggedIn;
     }
+
 
     public static void logOut()
     {

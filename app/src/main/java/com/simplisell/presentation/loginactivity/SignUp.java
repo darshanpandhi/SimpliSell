@@ -30,6 +30,7 @@ public class SignUp extends AppCompatActivity
     private EditText securityAnswer;    // security answer of user
     private AccessUsers accessUsers;      // helps  access users
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -96,8 +97,8 @@ public class SignUp extends AppCompatActivity
                     {
 
                         User newUserAdvertiser = new User(firstNLastName, userName, userPassword,
-                                userSecurityQuestion, userSecurityAnswer, null, null,
-                                false);   // create a new userAdvertiser
+                                userSecurityQuestion, userSecurityAnswer, null, null, false);   // create a new
+                        // userAdvertiser
 
                         if (accessUsers.insertNewUser(newUserAdvertiser) != null)
                         {   // check if userName is in the database and insert

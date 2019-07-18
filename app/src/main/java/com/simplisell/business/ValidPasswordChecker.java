@@ -1,6 +1,7 @@
 package com.simplisell.business;
 
-public class ValidPasswordChecker {
+public class ValidPasswordChecker
+{
 
     public static boolean validPassword(final String password)
     {

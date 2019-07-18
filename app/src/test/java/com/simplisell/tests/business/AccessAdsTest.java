@@ -147,6 +147,7 @@ public class AccessAdsTest
         System.out.println("Finished AccessAdsTest: get deleted ad");
     }
 
+
     @Test
     public void testRemoveAd()
     {
@@ -332,6 +333,7 @@ public class AccessAdsTest
         System.out.println("Finished AccessAdsTest: remove expired ads");
     }
 
+
     @Test
     public void testChangeExpiryDate()
     {
@@ -344,8 +346,9 @@ public class AccessAdsTest
         accessAdsStub.setExpiryDate(0, oldDate);
         assertEquals(accessAdsStub.getAd(0).getExpiryDate(), oldDate);
         System.out.println("Finished AccessAdsTest: change expiry date");
-
     }
+
+
     @Test
     public void testRepostAd()
     {
@@ -418,8 +421,8 @@ public class AccessAdsTest
 
         // create a new ad (to be reported)
         when(adPersistence.getNewAdId()).thenReturn(TEST_AD_ID);
-        final Ad ad = new Ad(accessAdsMock.getNewAdId(), "testOwner", AdType.WANTED, Category.OTHERS,
-                "testTitle", "testDescription", 45, null, 0);
+        final Ad ad = new Ad(accessAdsMock.getNewAdId(), "testOwner", AdType.WANTED, Category.OTHERS, "testTitle",
+                "testDescription", 45, null, 0);
 
         // insert Ad
         when(adPersistence.insertAd(ad)).thenReturn(ad);
@@ -432,7 +435,7 @@ public class AccessAdsTest
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DATE, -30);
 
-        final Date newDate =  new Date(c.getTimeInMillis());
+        final Date newDate = new Date(c.getTimeInMillis());
 
         doAnswer(new Answer()
         {
@@ -458,6 +461,7 @@ public class AccessAdsTest
 
         System.out.println("\nFinished AccessAdsTest: Set Expiry Date");
     }
+
 
     @Test
     public final void testReportAd()
@@ -520,7 +524,7 @@ public class AccessAdsTest
     {
         System.out.println("\nStarting AccessAdsTest: get reported Ads");
 
-       final Ad newAd1 = new Ad(0, "testOwner1", AdType.WANTED, Category.OTHERS, "testTitle1", "testDescription1",
+        final Ad newAd1 = new Ad(0, "testOwner1", AdType.WANTED, Category.OTHERS, "testTitle1", "testDescription1",
                 45, null, 0);
 
         final Ad newAd2 = new Ad(1, "testOwner2", AdType.WANTED, Category.OTHERS, "testTitle2", "testDescription2",

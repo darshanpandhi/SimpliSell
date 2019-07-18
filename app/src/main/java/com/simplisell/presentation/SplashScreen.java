@@ -89,7 +89,6 @@ public class SplashScreen extends AppCompatActivity
     }
 
 
-
     private void copyDatabaseToDevice()
     {
         final String DB_PATH = "db";

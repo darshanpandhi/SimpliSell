@@ -47,7 +47,8 @@ public class UserPersistenceHSQLDB implements UserPersistence
         final String phoneNumber = rs.getString("PHONENUMBER");
         final boolean isAdmin = rs.getBoolean("ADMIN");
 
-        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,isAdmin);
+        return new User(firstAndLastName, userName, password, securityQuestion, securityAnswer, email, phoneNumber,
+                isAdmin);
     }
 
 
@@ -87,7 +88,7 @@ public class UserPersistenceHSQLDB implements UserPersistence
             st.setString(5, user.getSecurityAnswer());
             st.setString(6, user.getEmail());
             st.setString(7, user.getPhoneNumber());
-            st.setBoolean(8,user.isAdmin());
+            st.setBoolean(8, user.isAdmin());
 
             st.executeUpdate();
             return user;
@@ -137,7 +138,6 @@ public class UserPersistenceHSQLDB implements UserPersistence
             throw new PersistenceException(e);
         }
     }
-
 
 
     @Override

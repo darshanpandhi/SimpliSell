@@ -17,7 +17,7 @@ import java.util.List;
 public class ReportedAds extends AppCompatActivity
 {
 
-    private static final String USERNAME_TEXT="USER";
+    private static final String USERNAME_TEXT = "USER";
 
     private List<Ad> reportedAds;
     private RecyclerView recyclerView;
@@ -51,6 +51,4 @@ public class ReportedAds extends AppCompatActivity
         i.putExtra(USERNAME_TEXT, userName);
         startActivity(i);
     }
-
-
 }

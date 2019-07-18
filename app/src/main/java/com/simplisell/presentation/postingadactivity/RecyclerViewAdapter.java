@@ -55,9 +55,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 int adId = myAd.get(viewHolder.getAdapterPosition()).getAdId();
                 String adUserName = myAd.get(viewHolder.getAdapterPosition()).getAdOwner();
 
-                Intent viewAd = new Intent(myContext, ViewAdOfOtherUser.class);;
+                Intent viewAd = new Intent(myContext, ViewAdOfOtherUser.class);
+                ;
 
-                if(userName != null)
+                if (userName != null)
                 {
                     User currUser = accessUsers.getUser(userName);
 
@@ -67,15 +68,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
                     }
 
-                    if(currUser.isAdmin())
+                    if (currUser.isAdmin())
                     {
                         int reported = myAd.get(viewHolder.getAdapterPosition()).getNumReports();
 
-                        if(reported > 0)
+                        if (reported > 0)
                         {
                             viewAd = new Intent(myContext, ViewAdOfCurrentUser.class);
                         }
-
                     }
                     viewAd.putExtra(USERNAME_TEXT, currUser.getUserName());
                 }

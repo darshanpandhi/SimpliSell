@@ -24,7 +24,6 @@ public class EditAd extends AppCompatActivity
     private final String ADID_TEXT = "ADID";
     private final String USERNAME_TEXT = "USER";
 
-
     private Ad currAd;                  // holds the curr ad object
     private int adId;                   // id of the current ad
     private Category category = null;   // category of the current ad
@@ -184,5 +183,6 @@ public class EditAd extends AppCompatActivity
         finish();
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra(USERNAME_TEXT, userName);
-        startActivity(i);    }
+        startActivity(i);
+    }
 }
