@@ -9,7 +9,8 @@ import org.junit.runners.Suite;
             LoginFeatureAcceptanceTest.class,
             UserProfileFeatureAcceptanceTest.class,
             AdPostingFeatureAcceptanceTest.class,
-            SearchFeatureAcceptanceTest.class
+            SearchFeatureAcceptanceTest.class,
+            AdminAndReportFeaturesAcceptanceTest.class
     })
 
     public class AllAcceptanceTest
