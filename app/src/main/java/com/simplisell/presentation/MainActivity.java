@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         setContentView(R.layout.activity_main);
 
         accessAds = new AccessAds();
-        accessAds.removeExpiredAds();
-        accessAds = new AccessAds();       //   Call another time to update all ads
+        removeExpiredAds();
 
         getCurrentUserName();
         initializeTabFragments();
@@ -277,6 +276,12 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         {
             startActivity(new Intent(getApplicationContext(), Login.class));
         }
+    }
+
+    private void removeExpiredAds()
+    {
+        accessAds.removeExpiredAds();
+        accessAds = new AccessAds();       //   Call another time since removeExpired
     }
 
     public static void logout()
