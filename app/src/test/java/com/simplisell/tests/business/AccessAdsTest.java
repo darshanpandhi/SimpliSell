@@ -1,6 +1,8 @@
 package com.simplisell.tests.business;
 
 import com.simplisell.persistence.AdPersistence;
+import com.simplisell.persistence.hsqldb.PersistenceException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -145,30 +147,21 @@ public class AccessAdsTest
         System.out.println("Finished AccessAdsTest: get deleted ad");
     }
 
-
-    @Test
-    public final void testRemoveWrongAd()
+    @Test (expected = PersistenceException.class)
+    public void testRemoveAd()
     {
-        System.out.println("\nStarting AccessAdsTest: remove wrong ad");
+        System.out.println("\nStarting AccessAdsTest: remove ad");
+        int adId = 1;
+        Ad removedAd = accessAdsStub.getAd(adId);
+        Assert.assertNotNull(removedAd);
+        assertEquals(adId, removedAd.getAdId());
 
-        int adId = adStub.getNewAdId();
-        String userName = "Bob";
-        AdType adType = AdType.OFFERING;
-        Category category = Category.JOBS_SERVICES;
-        String title = "Test Title";
-        String description = "Test Description";
-        double price = 200;
-        Date expiryDate = null;
-        int numReports = 0;
+        removedAd = accessAdsStub.removeAd(removedAd);
 
-        Ad ad = new Ad(adId, userName, adType, category, title, description, price, expiryDate, numReports);
-
-        // removing ad not present in the list of adds
-        Ad removedAd = accessAdsStub.removeAd(ad);
-
-        assertNull(removedAd);
-
-        System.out.println("Finished AccessAdsTest: remove wrong ad");
+        assertEquals(adId, removedAd.getAdId());
+        Ad checkAd = accessAdsStub.getAd(1);        // Should throw an exception since you ad does not exist
+        assertNull(checkAd);
+        System.out.println("Finished AccessAdsTest: remove ad");
     }
 
 
