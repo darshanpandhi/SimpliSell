@@ -1,11 +1,13 @@
-package com.simplisell;
+package com.simplisell.allAcceptanecTests;
 
 
 import android.os.SystemClock;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.simplisell.R;
 import com.simplisell.presentation.SplashScreen;
 
 import org.junit.Rule;
@@ -40,7 +42,7 @@ public class AdminAndReportFeaturesAcceptanceTest
     {
         // login in with Bob
         SystemClock.sleep(2500);
-        onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
         SystemClock.sleep(1000);
         onView(withId(R.id.editText_login_enterUserName)).perform(typeText("Bob"));
         onView(withId(R.id.editText_login_enterPassword)).perform(clearText());

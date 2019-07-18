@@ -1,11 +1,13 @@
-package com.simplisell;
+package com.simplisell.allAcceptanecTests;
 
 
 import android.os.SystemClock;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.simplisell.R;
 import com.simplisell.application.Services;
 import com.simplisell.persistence.UserPersistence;
 import com.simplisell.persistence.hsqldb.PersistenceException;
@@ -65,7 +67,7 @@ public class LoginFeatureAcceptanceTest
         SystemClock.sleep(1500);
 
         // Guest Login - Guest can view ads without logging In
-        onView(withId(R.id.view_pager_mainActivity)).perform(click());
+        onView(ViewMatchers.withId(R.id.view_pager_mainActivity)).perform(click());
         onView(withId(R.id.textView_viewAdOU_title)).check(matches(withText("Analysis of Algorithms")));
         onView(withId(R.id.textView_viewAdOU_price)).check(matches(withText("$20.0")));
         onView(withId(R.id.textView_viewAdOU_description)).check(matches(withText("Book for COMP2080 and COMP3170")));

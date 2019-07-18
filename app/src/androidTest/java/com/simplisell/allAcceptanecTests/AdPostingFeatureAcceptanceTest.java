@@ -1,11 +1,13 @@
-package com.simplisell;
+package com.simplisell.allAcceptanecTests;
 
 
 import android.os.SystemClock;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.simplisell.R;
 import com.simplisell.presentation.SplashScreen;
 
 import org.junit.After;
@@ -41,7 +43,7 @@ public class AdPostingFeatureAcceptanceTest {
     public void login()
     {
         // sign in with user Bob
-        onView(withId(R.id.button_mainActivity_postAnAd)).perform(click());
+        onView(ViewMatchers.withId(R.id.button_mainActivity_postAnAd)).perform(click());
         onView(withId(R.id.editText_login_enterUserName)).perform(typeText("Bob"));
         onView(withId(R.id.editText_login_enterPassword)).perform(clearText());
         onView(withId(R.id.editText_login_enterPassword)).perform(typeText("123456"));

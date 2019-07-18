@@ -1,11 +1,13 @@
-package com.simplisell;
+package com.simplisell.allAcceptanecTests;
 
 
 import android.os.SystemClock;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.simplisell.R;
 import com.simplisell.presentation.SplashScreen;
 
 import org.junit.Rule;
@@ -35,7 +37,7 @@ public class SearchFeatureAcceptanceTest {
     {
         // test category search
         SystemClock.sleep(500);
-        onView(withId(R.id.view_pager_mainActivity)).perform(swipeLeft());
+        onView(ViewMatchers.withId(R.id.view_pager_mainActivity)).perform(swipeLeft());
         SystemClock.sleep(500);
         onView(allOf(withText("Analysis of Algorithms"), isDisplayed())).perform(click());
         SystemClock.sleep(500);

@@ -1,11 +1,13 @@
-package com.simplisell;
+package com.simplisell.allAcceptanecTests;
 
 
 import android.os.SystemClock;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.simplisell.R;
 import com.simplisell.application.Services;
 import com.simplisell.objects.User;
 import com.simplisell.persistence.AdPersistence;
@@ -77,7 +79,7 @@ public class UserProfileFeatureAcceptanceTest
         SystemClock.sleep(1500);
 
 
-        onView(withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
+        onView(ViewMatchers.withId(R.id.imageButton_mainActivity_accountButton)).perform(click());
         onView(withId(R.id.editText_login_enterUserName)).perform(typeText("Bob2"));
         onView(withId(R.id.editText_login_enterPassword)).perform(typeText("1111111111"));
         onView(withId(R.id.button_login_loginButton)).perform(click());
