@@ -10,7 +10,7 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 **MainActivity**
 *   Includes the homepage UI which views all the Ads and has a post Ad button and a profile Button for easy navgation for the user.
 
-**SpashActivity**
+**SplashActivity**
 *   When the app starts the splash screen stays for about 2 seconds.
 
 **UserProfile**
@@ -19,10 +19,9 @@ The architecture for SimpliSell is 3-tier architecture, consisting of the presen
 *   ProfileInformation
 *   UserProfileMenu
 *   ProfileListViewAdapter
-*   
 
 **UserAdminActivity**
-*   ReportedAds
+*   Responsbile for letting the admin user delete advertisements
 
 **HomePageTabs**
 
