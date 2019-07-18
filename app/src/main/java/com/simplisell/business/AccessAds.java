@@ -182,8 +182,6 @@ public final class AccessAds
         {
             adPersistence.removeAd(getAd(x));
         }
-
-
     }
 
 

@@ -98,6 +98,31 @@ public class AccessAdsIT {
         System.out.println("Finished AccessAdsTestIT: insert duplicate ad");
     }
 
+    @Test (expected = PersistenceException.class)
+    public final void testGetDeleted()
+    {
+        System.out.println("\nStarting AccessAdsTestIT: get deleted ad");
+
+        int adId = accessAds.getNewAdId();
+        String userName = "John";
+        AdType adType = AdType.OFFERING;
+        Category category = Category.JOBS_SERVICES;
+        String title = "Test Title";
+        String description = "Test Description";
+        double price = 200;
+        Date expiryDate = null;
+        int numReports = 0;
+
+        Ad uniqueAd = new Ad(adId, userName, adType, category, title, description, price, expiryDate, numReports);
+
+        // verifying if we are able to get a deleted ad from the list
+        Ad insertedAd = accessAds.insertAd(uniqueAd);
+        Ad removedAd = accessAds.removeAd(insertedAd);
+        Ad foundAd = accessAds.getAd(removedAd.getAdId());
+
+        System.out.println("Finished AccessAdsTestIT: get deleted ad");
+    }
+
     @Test
     public void testGetAllAds()
     {
@@ -134,8 +159,18 @@ public class AccessAdsIT {
 
         assertEquals(adId, removedAd.getAdId());
         Ad checkAd = accessAds.getAd(1);        // Should throw an exception since you ad does not exist
-        assertNull(checkAd);
         System.out.println("Finished AccessAdsTestIT: remove ad");
+    }
+
+    @Test(expected = NullPointerException.class)
+    public final void testRemoveNull()
+    {
+        System.out.println("\nStarting AccessAdsTest: remove null");
+
+        Ad removeAd = accessAds.removeAd(null);
+        assertNull(removeAd);
+
+        System.out.println("Finished AccessAdsTest: remove null");
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.simplisell.persistence;
 
 import com.simplisell.objects.Ad;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface AdPersistence
