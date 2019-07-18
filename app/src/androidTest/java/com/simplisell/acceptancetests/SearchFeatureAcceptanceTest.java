@@ -1,4 +1,4 @@
-package com.simplisell.allAcceptanecTests;
+package com.simplisell.acceptancetests;
 
 
 import android.os.SystemClock;
