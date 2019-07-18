@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements UserProfileButton
         tabFragmentOtherObj = new TabFragment(accessAds.getAllAdsByCategory(Category.OTHERS), accessAds);
     }
 
-    //
+    
     private void tabSetUp()
     {
         tabLayout = findViewById(R.id.tabview_mainActivity);
